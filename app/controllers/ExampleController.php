@@ -44,4 +44,8 @@ class ExampleController extends BaseController {
             $this->redirect('Example','index');
         }
     }
+
+    public function index2() {
+        echo "Hello world";
+    }
 }
