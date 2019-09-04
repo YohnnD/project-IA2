@@ -143,7 +143,7 @@ CREATE TABLE usuarios(
     nombre_usuario VARCHAR(20) NOT NULL,
     apellido_usuario VARCHAR(20) NOT NULL,
     email_usuario VARCHAR(40),    
-    contrasenia_usuario VARCHAR(8) NOT NULL,
+    contrasenia_usuario VARCHAR(255) NOT NULL,
     id_rol INT NOT NULL,
 
     PRIMARY KEY (nick_usuario)

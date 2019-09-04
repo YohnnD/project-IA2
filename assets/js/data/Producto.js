@@ -1,3 +1,4 @@
+var url = "http://localhost/project-ia2/Producto/";
 $(document).ready(function(){
     // Registrar
     $('#register').submit(function(e) {
@@ -10,6 +11,8 @@ $(document).ready(function(){
         var precio_producto = $('#precio_producto').val();
         var stock_min_producto = $('#stock_min_producto').val();
         var stock_max_producto = $('#stock_max_producto').val();
+        var talla = $('#talla').val();
+        var stock_pro_talla = $('#stock_pro_talla').val();
 
         // Sending data by AJAX
         $.ajax({
@@ -22,9 +25,11 @@ $(document).ready(function(){
                     modelo_producto: modelo_producto,
                     precio_producto: precio_producto,
                     stock_min_producto: stock_min_producto,
-                    stock_max_producto: stock_max_producto
-                    },
-            // url: "",
+                    stock_max_producto: stock_max_producto,
+                    talla: talla,
+                    stock_pro_talla: stock_pro_talla
+                },
+            url: url + "register",
             beforeSend: function() {
                 console.log("Sending data...");
             },
@@ -32,7 +37,7 @@ $(document).ready(function(){
                 console.log(data);
                 swal({
                     title: "¡Bien hecho!",
-                    text: "Se ha registrado el producto " + nombre_producto + " exitosamente.",
+                    text: "Se ha registrado el producto '" + nombre_producto + "' exitosamente.",
                     icon: "success",
                     button: {
                         text: "Aceptar",
@@ -44,7 +49,7 @@ $(document).ready(function(){
                     timer: 3000
                 })
                 .then(redirect => {
-                    location.href = "Productos.php";
+                    location.href = url + "index";
                 })
             },
             error: function(err) {
@@ -74,7 +79,7 @@ $(document).ready(function(){
     // Eliminar
     $('#delete').click(function (){
         swal({
-            title: "Eliminar Producto ???",
+            title: "Eliminar Producto",
             text: "¿Esta seguro que desea eliminar este producto? Si lo hace, no podrá revertir los cambios.",
             icon: "warning",
             buttons: {

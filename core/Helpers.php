@@ -26,6 +26,16 @@ class Helpers{//clases donde se añaden metodos que se necesiten en la vista
             return $message;
         }
 
+    // Mejorar para identificar al usuario
+    public static function isIdentified() {
+        if(!isset($_SESSION['nick_usuario'])) {
+            $this->redirect();
+        }
+        else{
+            return true;
+        }
     }
+}
+
 
 

@@ -27,121 +27,37 @@
                 <div class="col s12">
                     <h4 class="center-align">Productos terminados</h4>
                 </div>
-                <div class="col s12 m4">
-                    <div class="card">
-                        <!-- <div class="card-header"></div> -->
-                        <div class="card-image">
-                            <img src="<?php echo BASE_URL; ?>assets/images/producto-1.jpg" alt="" srcset="">
-                        </div>
-                        <div class="card-content">
-                            <span><b>Producto:</b> Camisa de caballero</span><br>
-                            <span><b>Descripción:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, facere.</span><br>
-                            <span><b>Precio:</b> 20$</span><br>
-
-                        </div>
-                        <div class="card-footer center-align">
-                            <a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn a2-green btn-rounded waves-effect waves-light">Detalles<i class="icon-find_in_page right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m4">
-                    <div class="card">
-                        <!-- <div class="card-header"></div> -->
-                        <div class="card-image">
-                            <img src="<?php echo BASE_URL; ?>assets/images/producto-1.jpg" alt="" srcset="">
-                        </div>
-                        <div class="card-content">
-                            <span><b>Producto:</b> Camisa de caballero</span><br>
-                            <span><b>Descripción:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, facere.</span><br>
-                            <span><b>Precio:</b> 20$</span><br>
-
-                        </div>
-                        <div class="card-footer center-align">
-                            <a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn a2-green btn-rounded waves-effect waves-light">Detalles<i class="icon-find_in_page right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m4">
-                    <div class="card">
-                        <!-- <div class="card-header"></div> -->
-                        <div class="card-image">
-                            <img src="<?php echo BASE_URL; ?>assets/images/producto-1.jpg" alt="" srcset="">
-                        </div>
-                        <div class="card-content">
-                            <span><b>Producto:</b> Camisa de caballero</span><br>
-                            <span><b>Descripción:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, facere.</span><br>
-                            <span><b>Precio:</b> 20$</span><br>
-
-                        </div>
-                        <div class="card-footer center-align">
-                            <a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn a2-green btn-rounded waves-effect waves-light">Detalles<i class="icon-find_in_page right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Optional -->
-            <div class="row">
                 <div class="col s12">
-                    <table class="centered highlight responsive-table">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Costo</th>
-                                <th>Precio</th>
-                                <th>Cant. Disp</th>
-                                <th>Detalles</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>ASDF001</td>
-                                <td>Franela Olímpica</td>
-                                <td>Franela de algodón cuello redondo</td>
-                                <td>5$</td>
-                                <td>8$</td>
-                                <td>50</td>
-                                <td><a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-find_in_page"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>ASDF002</td>
-                                <td>Franela Regular</td>
-                                <td>Franela chemese cuello V</td>
-                                <td>5$</td>
-                                <td>8$</td>
-                                <td>100</td>
-                                <td><a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-find_in_page"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>ASDF001</td>
-                                <td>Franela Olímpica</td>
-                                <td>Franela de algodón cuello redondo</td>
-                                <td>5$</td>
-                                <td>8$</td>
-                                <td>50</td>
-                                <td><a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-find_in_page"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>ASDF001</td>
-                                <td>Franela Olímpica</td>
-                                <td>Franela de algodón cuello redondo</td>
-                                <td>5$</td>
-                                <td>8$</td>
-                                <td>50</td>
-                                <td><a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-find_in_page"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>ASDF001</td>
-                                <td>Franela Olímpica</td>
-                                <td>Franela de algodón cuello redondo</td>
-                                <td>5$</td>
-                                <td>8$</td>
-                                <td>50</td>
-                                <td><a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-find_in_page"></i></a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <?php if($allProductos == null): ?>
+                        <h4 class="center-align">No hay productos para mostrar.</h4>
+                    <?php else: ?>
+                        <table class="centered highlight responsive-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Costo</th>
+                                    <th>Precio</th>
+                                    <th>Cant. Disp</th>
+                                    <th>Detalles</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($allProductos as $producto): ?>
+                                <tr>
+                                    <td><?php echo $producto->codigo_producto; ?></td>
+                                    <td><?php echo $producto->nombre_producto; ?></td>
+                                    <td><?php echo $producto->descripcion_producto; ?></td>
+                                    <td><?php echo $producto->costo_producto; ?></td>
+                                    <td><?php echo $producto->precio_producto; ?></td>
+                                    <td><?php echo $producto->stock_max_producto; ?></td>
+                                    <td><a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-find_in_page"></i></a></td>
+                                </tr>
+                                <?php endforeach; ?>        
+                            </tbody>
+                        </table>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

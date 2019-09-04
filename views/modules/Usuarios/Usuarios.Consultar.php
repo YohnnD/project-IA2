@@ -28,12 +28,15 @@
                     <h4 class="center-align">Consultar Usuarios</h4>
                 </div>
                 <div class="col s12">
+                    <?php if($allUsuarios == null): ?>
+                    <h4 class="center-align">No hay usuarios para mostrar.</h4>
+                    <?php else: ?>
                     <table class="centered responsive-table highlight">
                         <thead>
                             <tr>
                                 <th>Usuario</th>
-                                <th>Cedula</th>
                                 <th>Nombre</th>
+                                <th>E-mail</th>
                                 <th>Rol</th>
                                 <th>Detalles</th>
                                 <!-- <th></th>
@@ -41,29 +44,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach($allUsuarios as $usuario): ?>
                             <tr>
-                                <td>codeslator</td>
-                                <td>28286639</td>
-                                <td>Andrés Meléndez</td>
-                                <td>SuperUsuario</td>
-                                <td><a href="<?php echo Helpers::url('Usuario','details'); ?>" class="btn btn-small a2-green waves-effect waves-light"><i class="icon-pageview"></i></a></td>
+                                <td><?php echo $usuario->nick_usuario; ?></td>
+                                <td><?php echo $usuario->nombre_usuario . " " . $usuario->apellido_usuario; ?></td>
+                                <td><?php echo $usuario->email_usuario; ?></td>
+                                <td><?php echo $usuario->id_rol; ?></td>
+                                <td><a href="<?php echo Helpers::url('Usuario','details'); ?>/<?php echo $usuario->nick_usuario; ?>" class="btn btn-small a2-green waves-effect waves-light"><i class="icon-pageview"></i></a></td>
                             </tr>
-                            <tr>
-                                <td>yohnn_d</td>
-                                <td>27085898</td>
-                                <td>Yohnneiber Díaz</td>
-                                <td>Administrador</td>
-                                <td><a href="<?php echo Helpers::url('Usuario','details'); ?>" class="btn btn-small a2-green waves-effect waves-light"><i class="icon-pageview"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>jm_soft</td>
-                                <td>27317920</td>
-                                <td>Jhon Morán</td>
-                                <td>Lacayo</td>
-                                <td><a href="<?php echo Helpers::url('Usuario','details'); ?>" class="btn btn-small a2-green waves-effect waves-light"><i class="icon-pageview"></i></a></td>
-                            </tr>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
+                <?php endif; ?>
                 </div>
             </div>
         </div>

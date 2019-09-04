@@ -27,7 +27,7 @@
             </div> -->
         </div>
         <div class="container">
-            <form action="" method="post" class="row" id="register">
+            <form action="<?php echo Helpers::url('Usuario','register'); ?>" method="post" class="row" id="register">
                 <div class="col s12 title center-align">
                     <h4>Registrar Usuario</h4>
                 </div>
@@ -63,15 +63,15 @@
                 </div>
                 <div class="input-field col s12 m6 xl4">
                     <i class="icon-beenhere prefix"></i>
-                    <input type="password" name="password_usuario" id="password_usuario" class="validate" required>
-                    <label for="password_usuario">Password del Usuario</label>
+                    <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" class="validate" required>
+                    <label for="contrasenia_usuario">Password del Usuario</label>
                 </div>
                 <div class="input-field col s12 m6 xl4">
                     <i class="icon-beenhere prefix"></i>
-                    <input type="password" name="repeat_password_usuario" id="repeat_password_usuario" class="validate" required>
-                    <label for="repeat_password_usuario">Repetir Password del Usuario</label>
+                    <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario" class="validate" required>
+                    <label for="repeat_contrasenia_usuario">Repetir Password del Usuario</label>
                 </div>
-                <div class="file-field input-field col s12">
+                <!-- <div class="file-field input-field col s12">
                     <div class="btn purple">
                         <span><i class="icon-photo_size_select_actual right"></i>Imagen</span>
                         <input type="file" name="url_imagen" id="url_imagen">
@@ -79,11 +79,11 @@
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" placeholder="Elige una imagen">
                     </div>
-                </div>
+                </div> -->
                 <div class="input-field col s12">
                     <i class="icon-assistant prefix"></i>
                     <select name="id_rol" id="id_rol">
-                        <option value="" disabled selected>Elige un rol</option>
+                        <option value="null" disabled selected>Elige un rol</option>
                         <option value="1">Superusuario</option>
                         <option value="2">Administrador</option>
                         <option value="3">Operador</option>

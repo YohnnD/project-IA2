@@ -27,9 +27,14 @@
             </div>
         </div>
         <div class="container">
-            <form action="" method="post" class="row" id="register">
+            <form action="<?php echo Helpers::url('Producto','register'); ?>" method="post" class="row" id="register">
                 <div class="col s12 title center-align">
                     <h4>Registrar Producto</h4>
+                </div>
+                <div class="input-field col s12 m6 xl4">
+                    <i class="icon-label prefix"></i>
+                    <input id="codigo_producto" type="text" name="codigo_producto" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z0-9]+" title="Escribe el codigo del producto. max(30)" required>
+                    <label for="codigo_producto">Código del Producto</label>
                 </div>
                 <div class="input-field col s12 m6 xl4">
                     <i class="icon-label prefix"></i>
@@ -42,11 +47,12 @@
                     <label for="descripcion_producto">Descripción</label>
                 </div>
                 <div class="input-field col s12 m6 xl4">
-                    <i class="icon-redeem prefix"></i>
+                    <i class="icon-wc prefix"></i>
                     <select name="tipo_producto" id="tipo_producto" required>
-                        <option value="" disabled selected>Elije el tipo</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
+                        <option value="null" disabled selected>Elije el tipo</option>
+                        <option value="ma">Masculino</option>
+                        <option value="fe">Femenino</option>
+                        <option value="ux">Unisex</option>
                     </select>
                     <label for="tipo_producto">Tipo del Producto</label>
                 </div>
@@ -71,13 +77,31 @@
                 </div>
                 <div class="input-field col s12 m6 xl4">
                     <i class="icon-call_received prefix"></i>
-                    <input type="number" name="stock_min_producto" id="stock_min_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números." required>
+                    <input type="number" name="stock_min_producto" id="stock_min_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números. Mínimo 24" required>
                     <label for="stock_min_producto">Stock Mínimo</label>
                 </div>
                 <div class="input-field col s12 m6 xl4">
                     <i class="icon-call_made prefix"></i>
                     <input type="number" name="stock_max_producto" id="stock_max_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números." required>
                     <label for="stock_max_producto">Stock Máximo</label>
+                </div>
+                <div class="input-field col s12 m6 xl4">
+                    <i class="icon-straighten prefix"></i>
+                    <select name="talla" id="talla" required>
+                        <option value="null" disabled selected>Elije la talla</option>
+                        <option value="S">P/S</option>
+                        <option value="M">M/M</option>
+                        <option value="L">G/L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                        <option value="UNICA">Unica</option>
+                    </select>
+                    <label for="talla">Talla</label>
+                </div>
+                <div class="input-field col s12 m6 xl4">
+                    <i class="icon-call_made prefix"></i>
+                    <input type="number" name="stock_pro_talla" id="stock_pro_talla" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números. Mínimo 24" required>
+                    <label for="stock_pro_talla">Cantidad por Talla</label>
                 </div>
                 <div class="input-field col s12 center-align">
                     <button type="submit" class="btn waves-effect waves-light a2-green">
@@ -98,6 +122,6 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Producto.js"></script>
+    <!-- <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Producto.js"></script> -->
 </body>
 </html>

@@ -33,8 +33,7 @@
                             <img src="<?php echo BASE_URL; ?>assets/images/matthew.png" alt="" srcset="">
                         </div>
                         <div class="card-content">
-                            <form action="" method="post" class="row" id="actualizar">
-                                <input type="hidden" name="id_usuario" id="id_usuario" value="" required>
+                            <form action="" method="post" class="row" id="update">
                                 <!-- <div class="input-field col s12 m6 xl4">
                                     <i class="icon-contact_mail prefix"></i>
                                     <input id="cedula_usuario" type="text" name="cedulaUcedula_usuarioscedula_usuariouario" class="validate" minlength="5" maxlength="8" pattern="[0-9]+"  title="Solo puedes usar números." required>
@@ -42,12 +41,12 @@
                                 </div> -->
                                 <div class="input-field col s12 m6 xl4">
                                     <i class="icon-person_pin prefix"></i>
-                                    <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate" minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." required disabled>
+                                    <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate" minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->nombre_usuario; ?>" required disabled>
                                     <label for="nombre_usuario" >Nombre del Usuario</label>
                                 </div>
                                 <div class="input-field col s12 m6 xl4">
                                     <i class="icon-person_pin prefix"></i>
-                                    <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate"  minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." required disabled>
+                                    <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate"  minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->apellido_usuario; ?>" required disabled>
                                     <label for="apellido_usuario">Apellido del Usuario</label>
                                 </div>
                                 <!-- <div class="input-field col s12 m6 xl4">
@@ -57,24 +56,25 @@
                                 </div> -->
                                 <div class="input-field col s12 m6 xl4">
                                     <i class="icon-markunread prefix"></i>
-                                    <input type="email" name="email_usuario" id="email_usuario" class="validate" required disabled>
+                                    <input type="email" name="email_usuario" id="email_usuario" class="validate" value="<?php echo $usuario->email_usuario; ?>" required disabled>
                                     <label for="email_usuario">E-mail del Usuario</label>
                                 </div>
                                 <div class="input-field col s12 m6 xl4">
                                     <i class="icon-person_pin prefix"></i>
-                                    <input type="text" name="nick_usuario" id="nick_usuario" class="validate" required disabled>
+                                    <input type="text" name="nick_usuario" id="nick_usuario" class="validate" value="<?php echo $usuario->nick_usuario; ?>" required disabled>
                                     <label for="nick_usuario">Nick del Usuario</label>
                                 </div>
-                                <div class="input-field col s12 xl4">
+                                <div class="input-field col s12 m6 xl4">
                                     <i class="icon-beenhere prefix"></i>
-                                    <input type="password" name="password_usuario" id="password_usuario" class="validate" required disabled>
-                                    <label for="password_usuario">Password del Usuario</label>
+                                    <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" class="validate" required disabled>
+                                    <label for="contrasenia_usuario">Password del Usuario</label>
                                 </div>
-                                <!-- <div class="input-field col s12 m6 xl4">
+                                <div class="input-field col s12 m6 xl4">
                                     <i class="icon-beenhere prefix"></i>
-                                    <input type="password" name="repeat_password_usuario" id="repeat_password_usuario" class="validate" required disabled>
-                                    <label for="repeat_password_usuario">Repetir Password del Usuario</label>
+                                    <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario" class="validate" required disabled>
+                                    <label for="repeat_contrasenia_usuario">Repetir Password del Usuario</label>
                                 </div>
+                                <!-- 
                                 <div class="file-field input-field col s12">
                                     <div class="btn purple">
                                         <span><i class="icon-photo_size_select_actual right"></i>Imagen</span>
@@ -84,7 +84,7 @@
                                         <input class="file-path validate" type="text" placeholder="Elige una imagen">
                                     </div>
                                 </div> -->
-                                <div class="input-field col s12">
+                                <div class="input-field col s12" id="last-input">
                                     <i class="icon-assistant prefix"></i>
                                     <select name="id_rol" id="id_rol" disabled>
                                         <option value="" disabled selected>Elige un rol</option>
@@ -94,20 +94,25 @@
                                     </select>
                                     <label for="id_rol">Rol</label>
                                 </div>
-                                <div class="col s12 m6 center-align">
-                                    <a href="#!" id="modify" class="btn blue waves-effect waves-light col s12">
+                                <div class="col s12 m6 center-align" id="modify-btn">
+                                    <button id="modify" class="btn blue waves-effect waves-light col s12">
                                         <i class="icon-update left"></i>                        
                                         Modificar
                                         <i class="icon-update right"></i>
-                                    </a>
+                                    </button>
                                 </div>
                                 <!-- <br class="show-on-down-only"> -->
-                                <div class="col s12 m6 center-align">
-                                    <a href="#!" id="delete" class="btn red waves-effect waves-light col s12">
+                                <div class="col s12 m6 center-align" id="delete-btn">
+                                    <button id="delete" class="btn red waves-effect waves-light col s12">
                                         <i class="icon-remove left"></i>                        
                                         Eliminar
                                         <i class="icon-remove right"></i>
-                                    </a>
+                                    </button>
+                                </div>
+                                <div class="col s12 center-align" style="display: none" id="update-btn">
+                                    <button type="submit" class="btn green waves-effect waves-light col s12">
+                                        Actualizar
+                                    </button>
                                 </div>
                             </form>
                         </div>

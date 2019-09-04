@@ -26,6 +26,15 @@
                 <!-- <div class="col s12">
                     <h4>Enlaces rápidos</h4>
                 </div> -->
+                <?php if($_SESSION['nick_usuario']): ?>
+                <div class="col s12">
+                    <div class="alert alert-danger">
+                        <span>
+                            <?php var_dump($_SESSION); ?>
+                        </span>
+                    </div>
+                </div>
+                <?php endif; ?>
                 <div class="col s12 m3">
                     <a href="<?php echo Helpers::url('Usuario','index'); ?>" class="btn-app blue">
                         <i class="icon-group_add"></i>
