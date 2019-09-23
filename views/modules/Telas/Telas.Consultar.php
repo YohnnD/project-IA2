@@ -29,7 +29,7 @@
                     <h4 class="center-align">Telas Disponibles</h4>
                 </div>
                 <div class="col s12">
-                    <table class="centered striped responsive-table">
+                    <table class="striped centered responsive-table">
                         <thead>
                             <tr>
                                 <th>Tela</th>
@@ -39,44 +39,28 @@
                                 <th>Detalles</th>
                             </tr>
                         </thead>
+
+                    <?php if(empty($query)){ ?>
                         <tbody>
                             <tr>
-                                <td>Seda</td>
-                                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, repudiandae!</td>
-                                <td>Metros</td>
-                                <td>???</td>
-                                <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Seda</td>
-                                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, repudiandae!</td>
-                                <td>Metros</td>
-                                <td>???</td>
-                                <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Seda</td>
-                                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, repudiandae!</td>
-                                <td>Metros</td>
-                                <td>???</td>
-                                <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Seda</td>
-                                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, repudiandae!</td>
-                                <td>Metros</td>
-                                <td>???</td>
-                                <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
-                            </tr>
+                                <td colspan="5"><p>No hay datos registrados</p></td> 
+                            </tr>                 
                         </tbody>
+
+                    <?php }else foreach($query as $tela):?>
+                        <tbody>                 
+                            <tr>
+                                <td><?php echo $tela->nombre_tela; ?></td>
+                                <td><?php echo $tela->descripcion_tela; ?></td>
+                                <td><?php echo $tela->unidad_med_tela; ?></td>
+                                <td><?php echo $tela->tipo_tela; ?></td>
+                                <td>
+                                    <a href="<?php echo Helpers::url('Tela','details')."/".$tela->id_tela?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
+                                </td>
+                            </tr>                       
+                        </tbody>
+                    <?php endforeach; ?>
+                    
                     </table>
                 </div>
             </div>

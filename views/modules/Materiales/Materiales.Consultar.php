@@ -39,44 +39,28 @@
                                 <th>Detalles</th>
                             </tr>
                         </thead>
+
+                        <?php if(empty($query)){ ?>
                         <tbody>
                             <tr>
-                                <td>Celoven</td>
-                                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, repudiandae!</td>
-                                <td>5</td>
-                                <td>$ 3.00</td>
-                                <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Agujas</td>
-                                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, repudiandae!</td>
-                                <td>20</td>
-                                <td>$ 10.00</td>
-                                <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Tinta</td>
-                                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, repudiandae!</td>
-                                <td>15</td>
-                                <td>$ 5.00 c/u</td>
-                                <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Tijeras</td>
-                                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, repudiandae!</td>
-                                <td>4</td>
-                                <td>$ 3.50 c/u</td>
-                                <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
+                                <td colspan="5"><p>No hay datos registrados</p></td>
                             </tr>
                         </tbody>
+
+                        <?php }else foreach($query as $material): ?>
+                        <tbody>      
+                            <tr>
+                                <td><?php echo $material->nombre_material; ?> </td>
+                                <td><?php echo $material->descripcion_material; ?></td>
+                                <td><?php echo $material->unidad_material; ?></td>
+                                <td><?php echo "$".$material->precio_material; ?></td>
+                                <td>
+                                    <a href="<?php echo Helpers::url('Material','details')."/".$material->id_material?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
+                                </td>
+                            </tr>          
+                        </tbody>
+                        <?php endforeach; ?>
+
                     </table>
                 </div>
             </div>

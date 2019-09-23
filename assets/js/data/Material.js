@@ -1,13 +1,17 @@
 $(document).ready(function () {
-    // Registrar
-    $('#register').submit(function (e) {
+
+    const url="http://localhost/project-ia2/Material/"; // Constante global para ser usadaen las rutas de ajax
+   
+    // Registro del Material
+
+    $('#register').submit(function (e) { //recibe el parametro register por id del formulario
         e.preventDefault();
-        // Getting form data
+        // Valores de los input en la vista
         var nombre_material = $('#nombre_material').val();
         var unidad_material = $('#unidad_material').val();
         var precio_material = $('#precio_material').val();
         var descripcion_material = $('#descripcion_material').val();
-        // Sending data by AJAX
+        // Enviar objetopor ajax
         $.ajax({
             method: "POST",
             dataType: "json",
@@ -17,7 +21,7 @@ $(document).ready(function () {
                 precio_material: precio_material,
                 descripcion_material: descripcion_material,
             },
-            // url: "",
+            url: url + "create",
             beforeSend: function () {
                 console.log("Sending data...");
             },
@@ -25,7 +29,7 @@ $(document).ready(function () {
                 console.log(data);
                 swal({
                         title: "¡Bien hecho!",
-                        text: "Se ha registrado la tela " + nombre_material + " exitosamente.",
+                        text: "Se ha registrado el material " + nombre_material + " exitosamente.",
                         icon: "success",
                         button: {
                             text: "Aceptar",
@@ -37,7 +41,7 @@ $(document).ready(function () {
                         timer: 3000
                     })
                     .then(redirect => {
-                        location.href = "Telas.php";
+                        location.href = url + "index";
                     })
             },
             error: function (err) {
@@ -58,19 +62,125 @@ $(document).ready(function () {
         });
     });
 
-    // Modificar
+    $('#edit').click(function(){
+        $('#update :input').removeAttr('disabled','disabled'); //Remueve la propiedad disabled a los inputs
 
+        //desaparecen botones
+        $('#delete').hide();
+        $('#edit').hide();
+        //aparecen botones
+        $('#update-btn').show();
+        $('#back').show();
 
-    // Actualizar
-    $('#update').submit(function (e) {
+        });
+
+    // Modificar Material
+    $('#update').submit(function (e) { // recibe el parametro update por el id del formulario
         e.preventDefault();
+        
+        //Datos de los input en la vista
+        var id_material = $('#id_material').val();
+        var nombre_material = $('#nombre_material').val();
+        var unidad_material = $('#unidad_material').val();
+        var precio_material = $('#precio_material').val();
+        var descripcion_material = $('#descripcion_material').val();
+        
+        // Mostrar alerta de confirmacion para modificar datos
+        swal({
+            title: "¿Quiere modificar la información del material " + nombre_material + "?",
+            text: "¿Esta seguro que desea modificar este material? Si lo hace, no podrá revertir los cambios.",
+            icon: "warning",
+            buttons: {
+                confirm: {
+                    text: "Actualizar",
+                    value: true,
+                    visible: true,
+                    className: "green"
+
+                },
+                cancel: {
+                    text: "Cancelar",
+                    value: false,
+                    visible: true,
+                    className: "grey lighten-2"
+                }
+            }
+
+        }).then(function(value){
+            if(value == true){
+                $.ajax({
+                    method: "POST",
+                    datatype: "JSON",
+                    data: { id_material: id_material,
+                            nombre_material : nombre_material,
+                            unidad_material: unidad_material,
+                            precio_material: precio_material,
+                            descripcion_material: descripcion_material },           
+                    url: url + "update",
+                    
+                    beforeSend: function(){
+                        console.log("Sending data...");
+                    },
+        
+                    success: function(data) {
+                        console.log(data);
+                        swal({
+                            title: "¡Bien hecho!",
+                            text: "Se ha modificado la información del material " +  nombre_material + " exitosamente.",
+                            icon: "success",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            },
+                            timer: 3000
+                        })
+                        .then(redirect => {
+                            location.href = url + "getAll";
+                        })
+                    },
+                    error: function(err) {
+        
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }
+                })}else {
+
+                swal({
+                    text: "La informacion del material no ha sido modificada.",
+                    icon: "info",
+                    button: {
+                        text: "Aceptar",
+                        className: "green"
+                    }
+                });
+            }
+        });
     });
 
-
     // Eliminar
-    $('#delete').click(function () {
+    $('#delete').click(function () { // recibe el parametro eliminar por el id del formulario
+        
+        // Datos de los input en la vista
+        var id_material = $('#id_material').val();
+        var nombre_material = $('#nombre_material').val();
+        
+        // Mostrar alerta de confirmacion para eliminar datos
         swal({
-            title: "Eliminar Material ????",
+            title: "¿Quiere eliminar el material "+nombre_material+"?",
             text: "¿Esta seguro que desea eliminar este material? Si lo hace, no podrá revertir los cambios.",
             icon: "warning",
             buttons: {
@@ -88,6 +198,37 @@ $(document).ready(function () {
                     className: "grey lighten-2"
                 }
             }
-        })
+        }).then(function(value){
+            if(value == true){
+                $.ajax({
+                    method: "POST",
+                    datatype: "JSON",
+                    data: {id_material:id_material},
+                    url: url + "delete",
+                });
+
+                swal({
+                    text: "Se ha eliminado el material exitosamente.",
+                    icon: "success",
+                    button: {
+                        text: "Entendido",
+                        className: "green"
+                    },
+                    timer: 3000
+                })
+                .then(redirect => {
+                    location.href = url + "getAll";
+                });
+            }else {
+                swal({
+                    text: "El material no ha sido eliminado",
+                    icon: "info",
+                    button: {
+                        text: "Aceptar",
+                        className: "green"
+                    }
+                });
+            }
+        });
     });
 });

@@ -31,20 +31,21 @@
             <form action="" method="post" class="row" id="register">
                 <div class="col s12">
                     <h4 class="center-align">Registrar Tela</h4>
+                                  
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="icon-rate_review prefix"></i>
-                    <input type="text" name="nombre_tela" id="nombre_tela" required>
+                    <input type="text" name="nombre_tela" id="nombre_tela" class="validate" minlength="1" maxlength="20" required>
                     <label for="nombre_tela">Nombre de Tela</label>
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="icon-straighten prefix"></i>
-                    <input type="text" name="unidad_med_tela" id="unidad_med_tela" required>
+                    <input type="text" name="unidad_med_tela" id="unidad_med_tela" class="validate" minlength="1" maxlength="3" required>
                     <label for="unidad_med_tela">Unidad de Medida</label>
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="icon-texture prefix"></i>
-                    <input type="text" name="tipo_tela" id="tipo_tela" required>
+                    <input type="text" name="tipo_tela" id="tipo_tela" class="validate" minlength="1" maxlength="20" required>
                     <label for="tipo_tela">Tipo de Tela</label>
                 </div>
                 <div class="input-field col s12 m6">
@@ -53,7 +54,7 @@
                     <label for="descripcion_tela">Descripción</label>
                 </div>
                 <div class="input-field col s12 center-align">
-                    <button type="submit" class="btn a2-green waves-effect waves-light col s12">
+                    <button type="submit" class="btn a2-green waves-effect waves-light col s12" name="registrar">
                         Registrar
                         <i class="icon-send right"></i>
                     </button>

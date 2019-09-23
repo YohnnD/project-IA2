@@ -28,23 +28,23 @@
             </div>
         </div>
         <div class="container">
-            <form action="" method="post" class="row" id="register">
+            <form action=" " method="post" class="row" id="register" >
                 <div class="col s12">
                     <h4 class="center-align">Registrar Material</h4>
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="icon-streetview prefix"></i>
-                    <input type="text" name="nombre_material" id="nombre_material" required>
+                    <input type="text" name="nombre_material" id="nombre_material" minlength="3" maxlength="100" required>
                     <label for="nombre_material">Nombre del Material</label>
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="icon-exposure_plus_1 prefix"></i>
-                    <input type="text" name="unidad_material" id="unidad_material" required>
+                    <input type="text" name="unidad_material" id="unidad_material" minlength="1" maxlength="5" required>
                     <label for="unidad_material">Unidades</label>
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="icon-attach_money prefix"></i>
-                    <input type="number" name="precio_material" id="precio_material" required>
+                    <input type="text" name="precio_material" id="precio_material" pattern="[0-9.]+" title="Solo puedes usar números y puntos." required>
                     <label for="precio_material">Precio del Material</label>
                 </div>
                 <div class="input-field col s12 m6">
@@ -53,7 +53,7 @@
                     <label for="descripcion_material">Descripción</label>
                 </div>
                 <div class="input-field col s12 center-align">
-                    <button type="submit" class="btn a2-green waves-effect waves-light col s12">
+                    <button type="submit" class="btn a2-green waves-effect waves-light col s12" name="registrar" >
                         Registrar
                         <i class="icon-send right"></i>
                     </button>
@@ -70,6 +70,6 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Meterial.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Material.js"></script>
 </body>
 </html>
