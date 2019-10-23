@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,33 +12,212 @@
     <title>Detalles - Inversiones A2</title>
 </head>
 <body>
-    <!-- Header -->
-    <?php require_once "views/layouts/header.php"; ?>
+<!-- Header -->
+<?php require_once "views/layouts/header.php"; ?>
 
-    <!-- Main Container -->
-    <main>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col s12 breadcrumb-nav left-align">
-                    <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
-                    <a href="<?php echo Helpers::url('Pedido','index'); ?>" class="breadcrumb">Gestionar Pedidos</a>
-                    <a href="<?php echo Helpers::url('Pedido','getAll'); ?>" class="breadcrumb">Consultar Pedidos</a>
-                    <a href="<?php echo Helpers::url('Pedido','details'); ?>" class="breadcrumb">Detalles</a>
-                </div>
-                <div class="col s12"></div>
-                <div class="col s12"></div>
+<!-- Main Container -->
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 breadcrumb-nav left-align">
+                <a href="<?php echo Helpers::url('Home', 'index'); ?>" class="breadcrumb">Inicio</a>
+                <a href="<?php echo Helpers::url('Pedido', 'index'); ?>" class="breadcrumb">Gestionar Pedidos</a>
+                <a href="<?php echo Helpers::url('Pedido', 'getAll'); ?>" class="breadcrumb">Consultar Pedidos</a>
+                <a href="<?php echo Helpers::url('Pedido', 'details'); ?>" class="breadcrumb">Detalles</a>
             </div>
-        </div>
-    </main>
+            <form method="post" action="<?php echo Helpers::url('Pedido','update');?>" class="row" id="form-pedido">
+            <div class="col s12">
+                    <div class="col s12">
+                        <h4 class="center-align">PEDIDO</h4>
+                    </div>
 
-    <!-- Footer -->
-    <?php require_once "views/layouts/footer.php"; ?>
+                    <div class="input-field col s12 m4">
+                        <i class="icon-person prefix"></i>
+                        <input type="text" name="cedula_cliente" id="cedula_cliente" class="validate" minlength="5"
+                               maxlength="15" pattern="[VvJjEe0-9]+"
+                               title="Solo puede usar números del 0-9 y V, J ó E"
+                               value="<?php echo $pedido->cedula_cliente; ?>" required readonly>
+                        <label for="cedula_cliente">Cedula o RIF del Cliente</label>
+                    </div>
+                    <div class="input-field col s12 m4">
+                        <i class="icon-person prefix"></i>
+                        <input type="text" name="nombre_cliente" id="nombre_cliente" class="validate" minlength="5"
+                               maxlength="15" pattern="[VvJjEe0-9]+"
+                               title="Solo puede usar números del 0-9 y V, J ó E" required disabled
+                               value="<?php echo $pedido->nombre_cliente; ?>">
+                        <label for="nombre_cliente">Nombre</label>
+                    </div>
+
+                    <div class="input-field col s12 m4">
+                        <i class="icon-person prefix"></i>
+                        <input type="text" name="representante_cliente" id="representante_cliente" class="validate"
+                               minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
+                               title="Solo puede usar números del 0-9 y V, J ó E" required
+                               value="<?php echo $pedido->representante_cliente; ?>" disabled>
+                        <label for="representante_cliente" >Representante</label>
+                    </div>
+            </div>
+            <div class="col s12">
+                <div class="divider"></div>
+                    <div class="input-field col s12 m4">
+                        <i class="icon-person prefix"></i>
+                        <input type="text" name="codigo_pedido" id="codigo_pedido" class="validate"
+                               minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
+                               title="Solo puede usar números del 0-9 y V, J ó E" required readonly
+                               value="<?php echo $pedido->codigo_pedido; ?>">
+                        <label for="codigo_pedido" >Codigo Pedido</label>
+                    </div>
+
+                    <div class="input-field col s12 m4">
+                        <i class="icon-insert_invitation prefix"></i>
+                        <input type="text" name="fecha_pedido" id="fecha_pedido" class="datepicker"
+                               value="<?php echo $pedido->fecha_pedido; ?>">
+                        <label for="fecha_pedido">Fecha del Pedido</label>
+                    </div>
+
+                    <div class="input-field col s12 m4">
+                        <i class="icon-event_available prefix"></i>
+                        <input type="text" name="fecha_entrega_pedido" id="fecha_entrega_pedido" class="datepicker"
+                               value="<?php echo $pedido->fecha_entrega_pedido; ?>">
+                        <label for="fecha_entrega_pedido">Fecha de Entrega</label>
+                    </div>
 
 
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Pedido.js"></script>
+
+
+                <div class="input-field col s12 m6">
+                    <select name="status_pedido" id="status_pedido">
+                        <option value="null" selected>Selecione una opción</option>
+                        <option value="En Proceso" <?php if($pedido->status_pedido==='En Proceso'): echo "selected"; endif; ?> >En Proceso</option>
+                        <option value="Cancelado"  <?php if($pedido->status_pedido==='Cancelado'): echo "selected"; endif; ?> >Cancelado</option>
+                        <option value="Facturado"  <?php if($pedido->status_pedido==='Facturado'): echo "selected"; endif; ?> >Facturado</option>
+                    </select>
+                    <label for="id_tela">Estado del pedido</label>
+                </div>
+
+
+                    <div class="input-field col s12 m6">
+                        <i class="icon-description prefix"></i>
+                        <textarea name="descripcion_pedido" id="descripcion_pedido"
+                                  class="materialize-textarea"><?php echo $pedido->descripcion_pedido; ?></textarea>
+                        <label for="descripcion_pedido">Descripción</label>
+                    </div>
+            </div>
+            <?php if($servicios!=null):?>
+            <div class="col s12">
+                <div class="col s12">
+                    <h4 class="center-align">SERVICIOS</h4>
+                </div>
+                <div class="divider"></div>
+                    <?php foreach ($servicios as $servicio): ?>
+                        <input type="text" name="id_servicio[]" value="<?php echo $servicio->id_servicio; ?>">
+                        <div class="input-field col s12 m4">
+                            <i class="icon-plus_one prefix"></i>
+                            <input type="text" name="nombre_servicio" id="nombre_servicio"
+                                   class="validate" pattern="" title=""
+                                   value="<?php echo $servicio->nombre_servicio; ?>" disabled>
+                            <label for="nombre_servicio">Nombre Servicio</label>
+                        </div>
+
+
+                        <div class="input-field col s12 m4">
+                            <i class="icon-plus_one prefix"></i>
+                            <input type="number" name="cantidad_prenda[]" id="cantidad_prenda"
+                                   class="validate" pattern="[0-9]+" title="Solo puede usar números."
+                                   value="<?php echo $servicio->cantidad_prenda; ?>">
+                            <label for="cantidad_prenda">Cantidad de Prendas</label>
+                        </div>
+
+                        <div class="input-field col s12 m4">
+                            <i class="icon-star_border prefix"></i>
+                            <input type="number" name="cantidad_medida[]" id="cantidad_medida"
+                                   class="validate" pattern="[0-9]+" title="Solo puede usar números."
+                                   value="<?php echo $servicio->cantidad_medida; ?>">
+                            <label for="cantidad_prenda">Cantidad de Medida</label>
+                        </div>
+
+                        <div class="input-field col s12 m6">
+                            <i class="icon-star_border prefix"></i>
+                            <input type="number" name="precio_servicio_${name_str}" id="precio_servicio"
+                                   class="validate" pattern="[0-9]+" title="Solo puede usar números."
+                                   value="<?php echo $servicio->precio_servicio; ?>" disabled>
+                            <label for="cantidad_prenda">Precio Servicio</label>
+                        </div>
+
+
+                        <div class="input-field col s12 m6">
+                            <select name="id_tela[]" id="tela">
+                                <?php foreach ($telas as $tela): ?>
+                                    <?php if($tela->id_tela===$servicio->id_tela):?>
+                                    <option value="<?php echo $tela->id_tela; ?>" selected><?php echo $tela->nombre_tela; ?></option>
+                                    <?php else:?>
+                                        <option value="<?php echo $tela->id_tela; ?>" ><?php echo $tela->nombre_tela; ?></option>
+                                    <?php endif;?>
+                                <?php endforeach; ?>
+                            </select>
+                            <label for="id_tela">Telas</label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif;?>
+
+            <?php if($productos!=null):?>
+            <div class="col s12">
+                <div class="col s12">
+                    <h4 class="center-align">PRODUCTOS</h4>
+                </div>
+                <table class="centered highlight responsive-table center-align">
+                    <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cant. Disp</th>
+                        <th>Cantidad Pedida</th>
+                    </tr>
+                    </thead>
+                    <tbody id="productos_select" >
+                    <?php foreach ($productos as $producto): ?>
+                        <input type="hidden" name="codigo_producto[]" value="<?php echo $producto->codigo_producto;?>">
+                        <tr>
+                            <th><?php echo $producto->codigo_producto; ?></th>
+                            <th><?php echo $producto->nombre_producto; ?></th>
+                            <th><?php echo $producto->precio_producto; ?></th>
+                            <th><?php echo $producto->stock_producto; ?></th>
+                            <th><input type="number" name="cant_producto_pedido[]" class="col s4 m4 center cant_producto_pedido" value="<?php echo $producto->cant_pro_pedido; ?>"></th>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <?php endif;?>
+
+                <div class="input-field col s12 m6 center-align">
+                    <button type="submit" href="#!" class="btn blue waves-effect waves-light col s12" id="modify">
+                        <i class="icon-update right"></i>
+                        Modificar
+                    </button>
+                </div>
+                <div class="input-field col s12 m6 center-align">
+                    <a href="#!" class="btn red waves-effect waves-light col s12" id="delete">
+                        <i class="icon-delete right"></i>
+                        Eliminar
+                    </a>
+                </div>
+            </form>
+
+
+    </div>
+</main>
+
+<!-- Footer -->
+<?php require_once "views/layouts/footer.php"; ?>
+
+
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
 </body>
 </html>

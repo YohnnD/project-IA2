@@ -12,40 +12,40 @@
     <title>Pedidos - Inversiones A2</title>
 </head>
 <body>
-    <!-- Header -->
-    <?php require_once "views/layouts/header.php"; ?>
+<!-- Header -->
+<?php require_once "views/layouts/header.php"; ?>
 
-    <!-- Main Container -->
-    <main>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col s12 breadcrumb-nav left-align">
-                    <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
-                    <a href="<?php echo Helpers::url('Pedido','index'); ?>" class="breadcrumb">Gestionar Pedidos</a>
-                </div>
-                <div class="col s12 m6">
-                    <a href="<?php echo Helpers::url('Pedido','create'); ?>" class="btn-app orange">
-                        <i class="icon-add_shopping_cart"></i>
-                        <span>Registrar Pedido</span>
-                    </a>
-                </div>
-                <div class="col s12 m6">
-                    <a href="<?php echo Helpers::url('Pedido','getAll'); ?>" class="btn-app pink">
-                        <i class="icon-chrome_reader_mode"></i>
-                        <span>Consultar Pedidos</span>
-                    </a>
-                </div>
+<!-- Main Container -->
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col s12 breadcrumb-nav left-align">
+                <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
+                <a href="<?php echo Helpers::url('Pedido','index'); ?>" class="breadcrumb">Gestionar Pedidos</a>
+            </div>
+            <div class="col s12 m6">
+                <a href="<?php echo Helpers::url('Pedido','create'); ?>" class="btn-app orange">
+                    <i class="icon-add_shopping_cart"></i>
+                    <span>Registrar Pedido</span>
+                </a>
+            </div>
+            <div class="col s12 m6">
+                <a href="<?php echo Helpers::url('Pedido','getAll'); ?>" class="btn-app pink">
+                    <i class="icon-chrome_reader_mode"></i>
+                    <span>Consultar Pedidos</span>
+                </a>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <!-- Footer -->
-    <?php require_once "views/layouts/footer.php"; ?>
+<!-- Footer -->
+<?php require_once "views/layouts/footer.php"; ?>
 
 
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
 </body>
 </html>

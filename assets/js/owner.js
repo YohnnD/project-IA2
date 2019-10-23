@@ -15,5 +15,7 @@ $(document).ready(function(){
 
     $('select').formSelect();
     $('.tabs').tabs();
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker(
+        {'format':'yyyy-mm-dd'}
+    );
 });

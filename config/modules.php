@@ -2,8 +2,8 @@
 
 //modulos del sistema se pueden agregar mas
 define('USUARIOS','USUARIOS');
-define('PEDIDOS','USUARIOS');
-define('CLIENTES','USUARIOS');
+define('PEDIDOS','PEDIDOS');
+define('CLIENTES','CLIENTES');
 define('SERVICIOS','SERVICIOS');
 define('REPORTES','RESPORTES');
 define('TELAS','TELAS');

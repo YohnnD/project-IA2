@@ -39,8 +39,10 @@ class BaseModel{
     /*funcion que registrar en bitacora, la idea seria enviar solo modulo y accion,
      pero necesiton que login este listo para detectar si los cambios fueron realizados
     */
-    public function registerBiracora($module=null,$action=null,$nickUser=null){
+    public function registerBiracora($module=null,$action=null){
+
         $insert = false;
+        $nickUser=$_SESSION['nick_usuario'];
         if($module!==null&&$action!==null){
 
             date_default_timezone_set('America/Caracas');//zona horaria

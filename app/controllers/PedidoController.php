@@ -1,35 +1,198 @@
 <?php
 	class PedidoController extends BaseController {
-		public function __construct() {
+
+	    public function __construct() {
 			parent::__construct();
 		}
 
 		public function index() {
+
 			$this->view('Pedidos/Pedidos');
-		}	
+		}
 
 		public function create() {
-			$this->view('Pedidos/Pedidos.Registrar');
+		    $pedido=new Pedido();
+		    $services=$pedido->getServices();
+			$this->view('Pedidos/Pedidos.Registrar',['services'=>$services]);
 		}
 
 		public function getAll() {
-			$this->view('Pedidos/Pedidos.Consultar');
+            $pedido=new Pedido();
+            $pedidos=$pedido->getAll();
+			$this->view('Pedidos/Pedidos.Consultar',['pedidos'=>$pedidos]);
 		}
 
 		public function register() {
-
+            $pedido=new Pedido();
+            $cedulaCliente=$this->input('cedula_cliente');
+            $codigoPedido=$pedido->generatedNumberPedido();
+            $fechaPedido=$this->input('fecha_pedido');
+            $fechaEntregaPedido=$this->input('fecha_entrega_pedido');
+            $statusPedido=$this->input('status_pedido');
+            $descripcionPedido=$this->input('descripcion_pedido');
+            $pedido->setCedulaCliente($cedulaCliente);
+            $pedido->setFechaEntregaPedido($fechaEntregaPedido);
+            $pedido->setFechaPedido($fechaPedido);
+            $pedido->setCodigoPedido($codigoPedido);
+            $pedido->setStatusPedido($statusPedido);
+            $pedido->setDescripcionPedido($descripcionPedido);
+            $pedido->save();
+            $response=$codigoPedido;
+            $this->sendAjax($response);
 		}
 
 		public function details() {
-			$this->view('Pedidos/Pedidos.Detalles');
-		}
+            $codigoPedido=$_GET['id'];
+            $pedido= new Pedido();
+            $pedido->setCodigoPedido($codigoPedido);
+            $pedido_find=$pedido->getBy();
+            $telas=$pedido->getTelas();
+            $servicios_find=$pedido->getServicicio();
+            $productos_find=$pedido->getProductos();
 
-		public function update() {
+                $this->view('Pedidos/Pedidos.Detalles',
+                        ['pedido'=>$pedido_find,
+                        'servicios'=>$servicios_find,
+                        'telas'=>$telas,
+                        'productos'=>$productos_find
+                        ]);
 
 		}
 
 		public function delete() {
-
+            $pedido= new Pedido();
+            $codigoPedido=$_GET['id'];
+            $pedido->setCodigoPedido($codigoPedido);
+            $deletePedido=$pedido->delete();
+            $this->sendAjax($deletePedido);
 		}
-	}
+
+
+		public function saveServiPedido(){
+         $data=$this->input('json');
+         $pedido= new Pedido();
+         foreach ($data as $serviPedido){
+                 $pedido->setIdServicio($serviPedido['id']);
+                 $pedido->setCodigoPedido($serviPedido['codigo_pedido']);
+                 $pedido->setCantidadPrenda($serviPedido['cant_prenda']);
+                 $pedido->setCantidadMedida($serviPedido['cant_medida']);
+                 $pedido->setIdTela($serviPedido['id_tela']);
+                 $save=$pedido->saveServiPedido();
+         }
+
+             $this->sendAjax($save);
+		}
+
+
+        public function verifyCedula(){
+            $cedulaCliente=$this->input('cedula_cliente');
+            $pedido= new Pedido();
+            $pedido->setCedulaCliente($cedulaCliente);
+            $cliente=$pedido->checkCedula();
+            $this->sendAjax($cliente);
+        }
+
+
+
+        public function getTelas(){
+            $pedido= new Pedido();
+            $telas=$pedido->getTelas();
+            $services=$pedido->getServices();
+            $this->sendAjax(["telas"=>$telas,"services"=>$services]);
+        }
+
+
+
+
+        public function registerFactura(){
+            $pedido= new Pedido();
+            $codigoFactura=$pedido->generateNumberFactura();
+
+            $codigoPedido=$this->input('codigo_pedido');
+            $modoPagoFactura=$this->input('modo_pago_factura');
+            $porcentajeVentas=$this->input('porcentaje_pago_factura');
+            $pedido->setCodigoPedido($codigoPedido);
+            $pedido->setCodigoFactura($codigoFactura);
+            $pedido->setModoPagoFactura($modoPagoFactura);
+            $pedido->setPorcentajeVentaFactura($porcentajeVentas);
+            $save=$pedido->saveFactura();
+            $this->sendAjax($save);
+        }
+
+
+        public function productosFind(){
+            $pedido= new Pedido();
+            $find=$_GET['id'];
+            $pedido->setCodigoProducto($find);
+            $productos=$pedido->findProductos();
+            $this->sendAjax($productos);
+        }
+
+        public function registerProducto(){
+            $data=$this->input('json');
+            $pedido= new Pedido();
+            foreach ($data as $proPedido){
+                $pedido->setCodigoProducto($proPedido['codigo_producto']);
+                $pedido->setCodigoPedido($proPedido['codigo_pedido']);
+                $pedido->setCantidadPrenda($proPedido['cant_prenda_pedida']);
+                $save=$pedido->saveProPredido();
+            }
+            $this->sendAjax($save);
+        }
+
+
+        public function update() {
+            $codigoPedido=$this->input('codigo_pedido');
+            $cedulaCliente=$this->input('cedula_cliente');
+            $fechaPedido=$this->input('fecha_pedido');
+            $fechaEntregaPedido=$this->input('fecha_entrega_pedido');
+            $statusPedido=$this->input('status_pedido');
+            $descripcionPedido=$this->input('descripcion_pedido');
+
+            $codigoProducto=$this->input('codigo_producto');
+            $cant_producto_pedido=$this->input('cant_producto_pedido');
+
+
+            $pedido=new Pedido();
+            $pedido->setCedulaCliente($cedulaCliente);
+            $pedido->setFechaEntregaPedido($fechaEntregaPedido);
+            $pedido->setFechaPedido($fechaPedido);
+            $pedido->setCodigoPedido($codigoPedido);
+            $pedido->setStatusPedido($statusPedido);
+            $pedido->setDescripcionPedido($descripcionPedido);
+
+            $pedido->update();
+
+
+            $id_servicio=$this->input('id_servicio');
+            $cantidadPrenda=$this->input('cantidad_prenda');
+            $cantidadMedida=$this->input('cantidad_medida');
+            $idTela=$this->input('id_tela');
+
+
+            for($i=0;$i<count($id_servicio);$i++){
+                $pedido->setIdServicio($id_servicio[$i]);
+                $pedido->setCantidadPrenda($cantidadPrenda[$i]);
+                $pedido->setCantidadMedida($cantidadMedida[$i]);
+                $pedido->setIdTela($idTela[$i]);
+                $pedido->updateServiPedido();
+            }
+
+
+            for($i=0;$i<count($cant_producto_pedido);$i++){
+                $pedido->setCantidadPrenda($cant_producto_pedido[$i]);
+                $pedido->setCodigoProducto($codigoProducto[$i]);
+                $pedido->updateProducto();
+            }
+              header('Location:http://localhost/project-IA2/Pedido/details/'.$codigoPedido);
+        }
+
+
+
+
+
+
+
+
+    }
 ?>
