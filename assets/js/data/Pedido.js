@@ -1,12 +1,14 @@
 $(document).ready(function () {
     // Registrar
 
+    var url ="http://localhost/project-IA2/";
+
     $('#add-services').click(function () {
         var texto = '';
         $.ajax({
             method: "POST",
             dataType: "json",
-            url: "http://localhost/project-IA2/Pedido/getTelas",
+            url: url+"Pedido/getTelas",
             beforeSend: function () {
 
             },
@@ -17,12 +19,12 @@ $(document).ready(function () {
                     var name_str = name.substr(0, 4);
                     var id_servicio=$(this).val();
                     var price_service=0;
-                    console.log(id_servicio);
+
 
                     data['services'].forEach(function (services,index) {
                         if(services['id_servicio']==id_servicio){
                             price_service=services['precio_servicio'];
-                            console.log(price_service);
+
                         }
 
                     });
@@ -94,7 +96,7 @@ $(document).ready(function () {
         var servicios_seleted = [];
         var id_servicios = [];
         $('input[type=checkbox]:checked').each(function () {
-            servicios_seleted.push($(this).attr('id').toLowerCase());
+            servicios_seleted.push($(this).attr('id'));
             id_servicios.push($(this).val());
         });
 
@@ -119,7 +121,7 @@ $(document).ready(function () {
             method: "POST",
             dataType: "json",
             data: {json: json},
-            url: "http://localhost/project-IA2/Pedido/saveServiPedido",
+            url: url+"Pedido/saveServiPedido",
             beforeSend: function () {
                 console.log("Sending data...");
             },
@@ -152,6 +154,7 @@ $(document).ready(function () {
 
 
     $('#cedula_cliente').blur(function () {
+        console.log(url);
         var cedula_cliente = $('#cedula_cliente').val();
         $.ajax({
             method: "POST",
@@ -160,7 +163,7 @@ $(document).ready(function () {
                 cedula_cliente: cedula_cliente
             },
 
-            url: "http://localhost/project-IA2/Pedido/verifyCedula",
+            url: url+"Pedido/verifyCedula",
             beforeSend: function () {
                 $('#cedula_cliente').attr('disabled', 'disabled');
             },
@@ -195,7 +198,7 @@ $(document).ready(function () {
 
                     }).then(function (registrar) {
                         if (registrar) {
-                            location.href = "http://localhost/project-IA2/Cliente/create";
+                            location.href = url+"Cliente/create";
                         }
                         $('#cedula_cliente').removeAttr('disabled', '');
                     });
@@ -226,53 +229,7 @@ $(document).ready(function () {
 
 
 
-    $('#register-material').submit(function (e) {
-        e.preventDefault();
-        var data=[];
-        $('#three a.btn-app > :input.cant_material').each(function () {
-            if($(this).val()!==""){
-                data.push({id_material:$(this).siblings(':input.id_material').val(),
-                    cant_material:$(this).val()});
-            }
-        });
 
-        var json_text = JSON.stringify(data);
-        var json = JSON.parse(json_text);
-
-        console.log(json);
-
-        $.ajax({
-            method: "POST",
-            dataType: "json",
-            data: {json:json},
-            url: "http://localhost/project-IA2/Pedido/registerMateriales",
-            beforeSend: function () {
-
-            },
-            success: function (response) {
-                swal({
-                    title: "¡Bien hecho,Ya casi terminamos!",
-                    text: "Materiales agregados al pedido  con éxito. incluye la forma de pago.(3/4).",
-                    icon: "success",
-                    button: {
-                        text: "Aceptar",
-                        visible: true,
-                        value: true,
-                        className: "green",
-                        closeModal: true
-                    },
-                    timer: 3000
-                }).then(function () {
-                    $('#register-material :input').attr('disabled', 'disabled');
-                    $('ul.tabs').tabs();
-                    $('ul.tabs').tabs("select", "four");
-                });
-            },
-            error: function (err) {
-                console.log(err.responseText);
-            }
-        });
-    });
 
 
     $('#porcentaje').blur(function () {
@@ -326,7 +283,7 @@ $(document).ready(function () {
                 descripcion_pedido: descripcion_pedido,
                 fecha_entrega_pedido: fecha_entrega_pedido
             },
-            url: "http://localhost/project-IA2/Pedido/register",
+            url: url+"Pedido/register",
             beforeSend: function () {
 
                 console.log("Sending data...");
@@ -410,8 +367,6 @@ $(document).ready(function () {
 
 
 
-
-
         $('#total_servicios').val(total_service);
         $('#total_producto').val(total_producto);
         $('#total_pagar').val(total_producto+total_service);
@@ -432,7 +387,7 @@ $(document).ready(function () {
         $.ajax({
             method: "GET",
             dataType: "json",
-            url: "http://localhost/project-IA2/Pedido/productosFind/"+search,
+            url: url+"Pedido/productosFind/"+search,
             beforeSend: function () {
 
             },
@@ -486,42 +441,6 @@ $(document).ready(function () {
     });
 
 
-
-
-
-
-
-
-
-    // Modificar
-
-    function addProducto(producto,codigo_producto) {
-
-
-
-            for (var i = 0; i < producto.length; i++) {
-                if(producto[i].codigo_producto==codigo_producto){
-                     var  texto = `
-                                   <tr>
-                                       <th><input type="number" name="codigo_prodcuto"  readonly class="col s4 m4 center codigo_producto" value="${producto[i].codigo_producto}" readonly></th>
-                                       <th>${producto[i].nombre_producto}</th>
-                                       <th><input type="number" name="cant_producto_pedido[]" class="col s4 m4 center cant_producto_pedido calc" value=""></th>
-                                       <th><input type="number" name="precio[]" class="col s4 m4 center precio calc" value="${producto[i].precio_producto}" readonly></th>
-                                       <th><button type="button" class="delete-product btn red "><i class="icon-delete"></button></th>
-                                    
-                                   </tr>
-                     
-                     `;
-                     $('#product-list').append(texto);
-                    $('.delete-product').click(function () {
-                        $(this).parent().parent().text("");
-                    });
-                }
-            }
-    }
-
-
-
     $('#register-factura').submit(function (e) {
        e.preventDefault();
        var codigo_pedido=$('#codigo_pedido').val();
@@ -537,7 +456,7 @@ $(document).ready(function () {
                 modo_pago_factura: forma_pago,
                 porcentaje_pago_factura:porcentaje,
             },
-            url: "http://localhost/project-IA2/Pedido/registerFactura",
+            url: url+"Pedido/registerFactura",
             beforeSend: function () {
 
                 console.log("Sending data...");
@@ -557,7 +476,7 @@ $(document).ready(function () {
                     },
                     timer: 3000
                 }).then(function () {
-                    window.location.href="http://localhost/project-IA2/Pedido/getAll";
+                    window.location.href=url+"Pedido/getAll";
                 });
             },
             error: function (err) {
@@ -581,12 +500,6 @@ $(document).ready(function () {
 
 
     });
-
-
-
-
-
-
 
 
     $('#register-product').submit(function (e) {
@@ -613,7 +526,7 @@ $(document).ready(function () {
             method: "POST",
             dataType: "json",
             data: { codigo_producto:codigo_productos, cant_pro_pedida:cant_pro_pedida,codigo_pedido:codigo_pedido},
-            url: "http://localhost/project-IA2/Pedido/registerProducto",
+            url: url+"Pedido/registerProducto",
             beforeSend: function () {
                 console.log("Sending data...");
             },
@@ -700,7 +613,7 @@ $(document).ready(function () {
                 $.ajax({
                     method: "GET",
                     dataType: "json",
-                    url: "http://localhost/project-IA2/Pedido/delete/"+codigo_pedido,
+                    url: url+"Pedido/delete/"+codigo_pedido,
                     beforeSend: function() {
                         console.log("Sending data...");
                     },
@@ -717,7 +630,7 @@ $(document).ready(function () {
                                 closeModal: true
                             }
                         }).then(function () {
-                            window.location.href="http://localhost/project-IA2/Pedido/getAll";
+                            window.location.href=url+"Pedido/getAll";
                         });
                     },
                     error: function(err) {
@@ -739,4 +652,29 @@ $(document).ready(function () {
             }
         })
     });
+
+
+    function addProducto(producto,codigo_producto) {
+
+        for (var i = 0; i < producto.length; i++) {
+            if(producto[i].codigo_producto==codigo_producto){
+                var  texto = `
+                                   <tr>
+                                       <th><input type="number" name="codigo_prodcuto"  readonly class="col s4 m4 center codigo_producto" value="${producto[i].codigo_producto}" readonly></th>
+                                       <th>${producto[i].nombre_producto}</th>
+                                       <th><input type="number" name="cant_producto_pedido[]" class="col s4 m4 center cant_producto_pedido calc" value=""></th>
+                                       <th><input type="number" name="precio[]" class="col s4 m4 center precio calc" value="${producto[i].precio_producto}" readonly></th>
+                                       <th><button type="button" class="delete-product btn red "><i class="icon-delete"></button></th>
+                                    
+                                   </tr>
+                     
+                     `;
+                $('#product-list').append(texto);
+                $('.delete-product').click(function () {
+                    $(this).parent().parent().text("");
+                });
+            }
+        }
+    }
+
 });

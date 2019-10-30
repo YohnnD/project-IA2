@@ -232,9 +232,9 @@
                 closeModal: true
             },
             timer: 3000
-        })
+        });
     </script>
-    <?php unset($_SESSION['message']);endif; ?>
+    <?php Helpers::messageError('message');endif; ?>
 
 
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>

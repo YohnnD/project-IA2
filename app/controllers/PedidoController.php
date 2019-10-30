@@ -222,13 +222,7 @@ class PedidoController extends BaseController
         header('Location:http://localhost/project-IA2/Pedido/details/' . $codigoPedido);
     }
 
-    public function product(){
-        $pedido = new Pedido();
-        $pedido->setCodigoProducto(1);
-        $pedido->setCantidadPrenda(10);
-
-    }
-
+   
 
 }
 
