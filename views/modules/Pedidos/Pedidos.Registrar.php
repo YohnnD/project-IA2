@@ -38,10 +38,10 @@
             </div>
             <div class="row">
                 <ul id="tabs-swipe-demo" class="tabs center-align">
-                    <li class="tab col m3"><a class="active" href="#one">PEDIDO-CLIENTE</a></li>
-                    <li class="tab col m3"><a href="#two">SERVICIOS</a></li>
-                    <li class="tab col m3"><a href="#three">PRODUCTOS</a></li>
-                    <li class="tab col m3"><a href="#four" class="four" >PAGOS</a></li>
+                    <li class="tab col m3 "><a class="active" href="#one">PEDIDO-CLIENTE</a></li>
+                    <li class="tab col m3 "><a href="#two" class="disabled">SERVICIOS</a></li>
+                    <li class="tab col m3 "><a href="#three" >PRODUCTOS</a></li>
+                    <li class="tab col m3 "><a href="#four" class="four">PAGOS</a></li>
                 </ul>
             </div>
             <!-- Tab 1 -->
@@ -171,22 +171,41 @@
             </div>
 
             <div class="row p-5x" id="three">
-                <form method="#" action="#" id="register-material">
-
+                <form method="#" action="#" id="register-product">
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix icon-search"></i>
-                            <input type="text" id="search" class="autocomplete">
+                            <input type="text" id="search" class="autocomplete" autocomplete="off">
                             <label for="autocomplete-input">Buscar</label>
                         </div>
+                        <table class="responsive-table striped">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Producto</th>
+                                    <th>Cant Pedida</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
 
 
+                            <tbody id="product-list">
+
+                            </tbody>
+                        </table>
+
+                        <div class="input-field col s12 center-align">
+                            <button type="submit" class="btn a2-green waves-effect waves-light col s12">
+                                <i class="icon-send right"></i>
+                                SIGUIENTE(3/4)
+                            </button>
+                        </div>
                 </form>
             </div>
-
+        </div>
 
             <div class="row p-5x" id="four">
-                <form method="#" action="#">
+                <form method="#" action="#" id="register-factura">
                     <div class="input-field col s12">
                         <i class="icon-star prefix"></i>
                         <select name="forma_de_pago" id="forma_pago">
@@ -201,35 +220,35 @@
 
                     <div class="input-field col s12 m12">
                         <i class="icon-person prefix"></i>
-                        <input type="text" name="porcentaje" id="porcentaje" class="validate" minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
+                        <input type="text" name="porcentaje" id="porcentaje" class="validate"  pattern="[VvJjEe0-9]+" value="0"
                                title="Solo puede usar números del 0-9 y V, J ó E" required>
                         <label for="porcentaje">Porcentaje</label>
                     </div>
+                                       <div class="input-field col s12 m12">
+                                           <i class="icon-person prefix"></i>
+                                           <input type="text" name="total_servicios" id="total_servicios" class="validate money"
+                                                  minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
+                                                  title="Solo puede usar números del 0-9 y V, J ó E" required readonly>
+                                           <label for="total_servicios">Precio de Servicios</label>
+                                       </div>
 
                     <div class="input-field col s12 m12">
                         <i class="icon-person prefix"></i>
-                        <input type="text" name="total_servicios" id="total_servicios" class="validate"
+                        <input type="text" name="total_producto" id="total_producto" class="validate money"
                                minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
-                               title="Solo puede usar números del 0-9 y V, J ó E" required>
-                        <label for="total_servicios">Precio de Servicios</label>
-                    </div>
-
-                    <div class="input-field col s12 m12">
-                        <i class="icon-person prefix"></i>
-                        <input type="text" name="total_materiales" id="total_materiales" class="validate"
-                               minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
-                               title="Solo puede usar números del 0-9 y V, J ó E" required>
-                        <label for="total_materiales">Precio de Materiales</label>
+                               title="Solo puede usar números del 0-9 y V, J ó E" required readonly>
+                        <label for="total_producto">Precio de productos</label>
                     </div>
 
 
-                    <div class="input-field col s12 m12">
-                        <i class="icon-person prefix"></i>
-                        <input type="text" name="total_pagar" id="total_pagar" class="validate"
-                               minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
-                               title="Solo puede usar números del 0-9 y V, J ó E" required>
-                        <label for="total_pagar">Total a Pagar:</label>
-                    </div>
+
+                  <div class="input-field col s12 m12">
+                      <i class="icon-person prefix"></i>
+                      <input type="text" name="total_pagar" id="total_pagar" class="validate money"
+                             minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
+                             title="Solo puede usar números del 0-9 y V, J ó E" required readonly>
+                      <label for="total_pagar">Total a Pagar:</label>
+                  </div>
 
                     <div class="input-field col s12 center-align">
                         <button type="submit" class="btn a2-green waves-effect waves-light col s12">
@@ -242,11 +261,6 @@
         </div>
     </div>
 
-
-    <div class="container">
-
-
-    </div>
 </main>
 
 <!-- Footer -->

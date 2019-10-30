@@ -7,4 +7,5 @@ define('ELIMINAR','ELIMINAR');
 define('ACTUALIZAR','ACTUALIZAR');
 define('REPORTE','REPORTE');
 define('VERIFICAR','VERIFICAR');
+define('FACTURAR','FACTURAR');
 define('EXAMPLE_ACTION','ACTION');

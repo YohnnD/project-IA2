@@ -25,7 +25,7 @@
                 <a href="<?php echo Helpers::url('Pedido', 'getAll'); ?>" class="breadcrumb">Consultar Pedidos</a>
                 <a href="<?php echo Helpers::url('Pedido', 'details'); ?>" class="breadcrumb">Detalles</a>
             </div>
-            <form method="post" action="<?php echo Helpers::url('Pedido','update');?>" class="row" id="form-pedido">
+            <form method="post" action="<?php echo Helpers::url('Pedido','update');?>" class="row" id="form-pedido-details">
             <div class="col s12">
                     <div class="col s12">
                         <h4 class="center-align">PEDIDO</h4>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="divider"></div>
                     <?php foreach ($servicios as $servicio): ?>
-                        <input type="text" name="id_servicio[]" value="<?php echo $servicio->id_servicio; ?>">
+                        <input type="hidden" name="id_servicio[]" value="<?php echo $servicio->id_servicio; ?>">
                         <div class="input-field col s12 m4">
                             <i class="icon-plus_one prefix"></i>
                             <input type="text" name="nombre_servicio" id="nombre_servicio"
@@ -166,7 +166,7 @@
                 <div class="col s12">
                     <h4 class="center-align">PRODUCTOS</h4>
                 </div>
-                <table class="centered highlight responsive-table center-align">
+                <table class="centered highlight responsive-table ">
                     <thead>
                     <tr>
                         <th>Código</th>
@@ -200,7 +200,7 @@
                     </button>
                 </div>
                 <div class="input-field col s12 m6 center-align">
-                    <a href="#!" class="btn red waves-effect waves-light col s12" id="delete">
+                    <a href="#" class="btn red waves-effect waves-light col s12" id="delete">
                         <i class="icon-delete right"></i>
                         Eliminar
                     </a>
@@ -218,6 +218,26 @@
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
+<?php if(isset($_SESSION['message'])):?>
+    <script>
+        swal({
+            title: "¡Bien hecho!",
+            text: "Pedido actualizado con éxito.",
+            icon: "success",
+            button: {
+                text: "Aceptar",
+                visible: true,
+                value: true,
+                className: "green",
+                closeModal: true
+            },
+            timer: 3000
+        })
+    </script>
+    <?php unset($_SESSION['message']);endif; ?>
+
+
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Pedido.js"></script>
 </body>
 </html>

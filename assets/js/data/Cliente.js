@@ -183,7 +183,7 @@ $(document).ready(function () {
     // Eliminar
     $('#delete').click(function () {
         swal({
-            title: "Eliminar Cliente ???",
+            title: "Eliminar Cliente ",
             text: "¿Esta seguro que desea eliminar este cliente? Si lo hace, no podrá revertir los cambios.",
             icon: "warning",
             buttons: {

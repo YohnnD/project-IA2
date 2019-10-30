@@ -73,7 +73,7 @@ class Cliente extends BaseModel{
     }
 
     public function getAll(){
-        $this->registerBiracora(CLIENTES,CONSULTAR);
+        $this->registerBitacora(CLIENTES,CONSULTAR);
         $query=$this->db()->query("SELECT * FROM clientes ORDER BY cedula_cliente ASC");
         if($query){
             if($query->rowCount() != 0) {
@@ -90,7 +90,7 @@ class Cliente extends BaseModel{
 
 
     public function save(){
-        $this->registerBiracora(CLIENTES,REGISTRAR);
+        $this->registerBitacora(CLIENTES,REGISTRAR);
         $sql =   "INSERT INTO clientes 
                   (cedula_cliente, tipo_documento_cliente, nombre_cliente, descripcion_cliente,
                   direccion_cliente, telefono_cliente, representante_cliente) 
@@ -108,7 +108,7 @@ class Cliente extends BaseModel{
     }
 
     public function getBy(){
-        $this->registerBiracora(CLIENTES,DETALLES);
+        $this->registerBitacora(CLIENTES,DETALLES);
         $sql="SELECT * FROM clientes WHERE cedula_cliente='$this->cedulaCliente'";
         $row=$this->db()->query($sql);
         if($row = $row->fetch(PDO::FETCH_OBJ)){
@@ -118,7 +118,7 @@ class Cliente extends BaseModel{
     }
 
     public function checkCedula(){
-        $this->registerBiracora(CLIENTES,VERIFICAR);
+        $this->registerBitacora(CLIENTES,VERIFICAR);
 
         $sql="SELECT * FROM clientes WHERE cedula_cliente='$this->cedulaCliente'";
         $query=$this->db()->query($sql);
@@ -133,7 +133,7 @@ class Cliente extends BaseModel{
 
 
     public function update(){
-        $this->registerBiracora(CLIENTES,ACTUALIZAR);
+        $this->registerBitacora(CLIENTES,ACTUALIZAR);
         $sql="UPDATE clientes SET cedula_cliente=:cedula_cliente,nombre_cliente=:nombre_cliente,
               tipo_documento_cliente=:tipo_documento,descripcion_cliente=:descripcion_cliente,
               direccion_cliente=:direccion_cliente,telefono_cliente=:telefono_cliente, 
@@ -155,7 +155,7 @@ class Cliente extends BaseModel{
 
 
     public function delete(){
-        $this->registerBiracora(CLIENTES,ELIMINAR);
+        $this->registerBitacora(CLIENTES,ELIMINAR);
         $sql="DELETE FROM clientes WHERE cedula_cliente='$this->cedulaCliente'";
         $register=$this->db()->query($sql);
         return $register;

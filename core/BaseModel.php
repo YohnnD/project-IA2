@@ -39,7 +39,7 @@ class BaseModel{
     /*funcion que registrar en bitacora, la idea seria enviar solo modulo y accion,
      pero necesiton que login este listo para detectar si los cambios fueron realizados
     */
-    public function registerBiracora($module=null,$action=null){
+    public function registerBitacora($module=null,$action=null){
 
         $insert = false;
         $nickUser=$_SESSION['nick_usuario'];
