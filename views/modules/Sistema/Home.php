@@ -26,15 +26,6 @@
                 <!-- <div class="col s12">
                     <h4>Enlaces rápidos</h4>
                 </div> -->
-                <?php if($_SESSION['nick_usuario']): ?>
-                <div class="col s12">
-                    <div class="alert alert-danger">
-                        <span>
-                            <?php var_dump($_SESSION); ?>
-                        </span>
-                    </div>
-                </div>
-                <?php endif; ?>
                 <div class="col s12 m3">
                     <a href="<?php echo Helpers::url('Usuario','index'); ?>" class="btn-app blue">
                         <i class="icon-group_add"></i>
@@ -99,8 +90,10 @@
                             <i class="icon-group_add"></i>
                         </div>
                         <div class="widget-stats-content">
-                            <span class="widget-stats-title">New customers</span>
-                            <span class="timer widget-stats-number" data-from="0" data-to="100"></span>
+                            <span class="widget-stats-title">Clientes Registrados</span>
+                            <?php foreach($cliente as $clientes): ?>
+                            <span class="timer widget-stats-number" data-from="0" data-to="<?php echo $clientes->total ?>"></span>
+                            <?php endforeach; ?>
                         </div>
                     </div> 
                 </div>
@@ -112,7 +105,9 @@
                         <div class="widget-stats-content">
                             <span class="widget-stats-title">Ganancias del mes</span>
                             <span class="widget-stats-number">
-                                <span class="timer" data-from="0" data-to="5000"></span>
+                                <?php /* foreach($ganancia as $ganancias):*/ ?>
+                                <span class="timer" data-from="0" data-to="50"></span>
+                                <?php /*endforeach;*/ ?>
                                 <span>$</span>
                             </span>
                         </div>
@@ -133,7 +128,9 @@
                         </div>
                         <div class="widget-stats-content">
                             <span class="widget-stats-title">Ventas facturadas</span>
-                            <span class="widget-stats-number">50</span>
+                            <?php foreach($factura as $facturas): ?>
+                            <span class="widget-stats-number"><?php echo $facturas->total ?></span>
+                            <?php endforeach; ?>
                         </div>
                     </div> 
                 </div>
@@ -157,75 +154,81 @@
             </div>
             <!-- Row para tablas -->
             <div class="row">
-                <div class="col s12 m6">
+                <div class="col s12 m4">
                     <ul class="collection with-header">
-                        <li class="collection-header"><h4>Pedidos</h4></li>
-                        <li class="collection-item">
-                            <span class="new badge red" data-badge-caption="Pendiente"></span>
-                            <span class="title"><b>Cliente:</b> Jhon Doe</span><br>
-                            <span class=""><b>Contacto: </b> +1 123 4567890</span>
-                            <!-- <a href="!#" class="secondary-content"><i class="icon-find_in_page"></i></a> -->
+                        <li class="collection-header"><h4>Pedidos Pendientes</h4></li>
+                        <?php if($pedido==null){  ?>
+                            <li class="collection-item">
+                            
+                            <div> 
+                                <span class="title"></b>No hay Pedidos En Proceso</span><br>
+                                
+                            </div>
                         </li>
+                        <?php }else{foreach($pedido as $pedidos): ?>
                         <li class="collection-item">
+                            
                             <span class="new badge red" data-badge-caption="Pendiente"></span>
-                            <span class="title"><b>Cliente:</b> Anna Frank</span><br>
-                            <span class=""><b>Contacto: </b> +1 123 4567890</span>
+                            <span class="title"><b>Cliente: </b> <?php echo $pedidos->nombre_cliente; ?></span><br>
+                            <span class=""><b>Contacto: </b><?php echo $pedidos->telefono_cliente; ?></span><br>
+                            <span class=""><b>Fecha Entrega: </b><?php echo $pedidos->fecha_entrega_pedido; ?></span>
+                            
                         </li>
-                        <li class="collection-item">
-                            <span class="new badge red" data-badge-caption="Pendiente"></span>
-                            <span class="title"><b>Cliente:</b> Jhon Doe</span><br>
-                            <span class=""><b>Contacto: </b> +1 123 4567890</span>
-                        </li>
-                        <li class="collection-item">
-                            <span class="new badge red" data-badge-caption="Pendiente"></span>
-                            <span class="title"><b>Cliente:</b> Jhon Doe</span><br>
-                            <span class=""><b>Contacto: </b> +1 123 4567890</span>
-                        </li>
-                        <li class="collection-item">
-                            <span class="new badge red" data-badge-caption="Pendiente"></span>
-                            <span class="title"><b>Cliente:</b> Jhon Doe</span><br>
-                            <span class=""><b>Contacto: </b> +1 123 4567890</span>
-                        </li>
+                        <?php endforeach;}?>
                     </ul>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m4">
                     <ul class="collection with-header">
-                        <li class="collection-header"><h4>Top Productos</h4></li>
+                        <li class="collection-header"><h4>Productos Vendidos</h4></li> 
+                        <?php if($producto==null){  ?>
+                            <li class="collection-item">
+                            
+                            <div> 
+                                <span class="title"></b>No hay Productos Vendidos</span><br>
+                                
+                            </div>
+                        </li>
+                             
+                        <?php  }else{foreach($producto as $productos): ?>
                         <li class="collection-item">
-                            <div>
-                                <span class="title"><b>Producto: </b>Camisa normal</span><br>
-                                <span><b>Ventas totales: </b>135</span>
+                            
+                            <div> 
+                                <span class="title"><b>Producto: </b><?php echo $productos->nombre_producto ?></span><br>
+                                <span><b>Codigo: </b><?php echo $productos->codigo_producto; ?></span><br>
+                                <span><b>Precio: </b><?php echo $productos->precio_producto; ?></span><br>
+                                <span><b>Ventas por Pedidos: </b><?php echo $productos->total; ?></span>
                                 <!-- <a href="#!" class="secondary-content" style="font-size:28px"><i class="icon-find_in_page"></i></a> -->
                             </div>
                         </li>
-                        <li class="collection-item">
-                            <div>
-                                <span class="title"><b>Producto: </b>Camisa normal</span><br>
-                                <span><b>Ventas totales: </b>135</span>
-                                <!-- <a href="#!" class="secondary-content"><i class="icon-find_in_page"></i></a> -->
+                            <?php endforeach;}?>
+                    </ul>
+                </div>
+
+                <div class="col s12 m4">
+                    <ul class="collection with-header">
+                        <li class="collection-header"><h4>Sevicios Vendidos</h4></li> 
+                        <?php if($servicio==null){  ?>
+                            <li class="collection-item">
+                            
+                            <div> 
+                                <span class="title"></b>No hay Servicios Vendidos</span><br>
+                                
                             </div>
                         </li>
+                             
+                        <?php  
+                        }else{foreach($servicio as $servicios): ?>
                         <li class="collection-item">
-                            <div>
-                                <span class="title"><b>Producto: </b>Camisa normal</span><br>
-                                <span><b>Ventas totales: </b>135</span>
-                                <!-- <a href="#!" class="secondary-content"><i class="icon-find_in_page"></i></a> -->
+                            
+                            <div> 
+                                <span class="title"><b>Servicio: </b><?php echo $servicios->nombre_servicio ?></span><br>
+                                <span><b>Descripción: </b><?php echo $servicios->descripcion_servicio; ?></span><br>
+                                <span><b>Precio: </b><?php echo $servicios->precio_servicio; ?></span><br>
+                                <span><b>Ventas por Pedidos: </b><?php echo $servicios->total; ?></span>
+                                <!-- <a href="#!" class="secondary-content" style="font-size:28px"><i class="icon-find_in_page"></i></a> -->
                             </div>
                         </li>
-                        <li class="collection-item">
-                            <div>
-                                <span class="title"><b>Producto: </b>Camisa normal</span><br>
-                                <span><b>Ventas totales: </b>135</span>
-                                <!-- <a href="#!" class="secondary-content"><i class="icon-find_in_page"></i></a> -->
-                            </div>
-                        </li>
-                        <li class="collection-item">
-                            <div>
-                                <span class="title"><b>Producto: </b>Camisa normal</span><br>
-                                <span><b>Ventas totales: </b>135</span>
-                                <!-- <a href="#!" class="secondary-content"><i class="icon-find_in_page"></i></a> -->
-                            </div>
-                        </li>
+                            <?php endforeach;}?>
                     </ul>
                 </div>
             </div>

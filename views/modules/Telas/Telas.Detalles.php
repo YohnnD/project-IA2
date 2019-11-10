@@ -1,3 +1,5 @@
+<?php if($result): ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +76,7 @@
                             </div> 
                             
                             <div class="col s12 m6 center-aling">
-                                <a href="<?php echo Helpers::url('Tela','details')."/".$result->id_tela?>" style="display: none" class="btn green waves-effect waves-light col s12" name="back" id="back">
+                                <a href="<?php echo Helpers::url('Tela','details')."/".$result->id_tela; ?>" style="display: none" class="btn green waves-effect waves-light col s12" name="back" id="back">
                                     <i class="icon-arrow_back right"></i>
                                     Volver
                                     <i class="icon-arrow_back left"></i>
@@ -107,4 +109,11 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Tela.js"></script>
 </body>
+
+<?php else: $this->redirect('Tela', 'index');
+
+endif;
+
+?>
 </html>
+

@@ -29,7 +29,7 @@
                     <h4 class="center-align">Materiales Disponibles</h4>
                 </div>
                 <div class="col s12">
-                    <table class="centered striped responsive-table">
+                    <table class="centered highlight responsive-table">
                         <thead>
                             <tr>
                                 <th>Material</th>
@@ -46,9 +46,10 @@
                                 <td colspan="5"><p>No hay datos registrados</p></td>
                             </tr>
                         </tbody>
+                       
+                        <tbody>   
+                            <?php }else foreach($query as $material): ?> 
 
-                        <?php }else foreach($query as $material): ?>
-                        <tbody>      
                             <tr>
                                 <td><?php echo $material->nombre_material; ?> </td>
                                 <td><?php echo $material->descripcion_material; ?></td>
@@ -57,10 +58,11 @@
                                 <td>
                                     <a href="<?php echo Helpers::url('Material','details')."/".$material->id_material?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
                                 </td>
-                            </tr>          
-                        </tbody>
-                        <?php endforeach; ?>
+                            </tr> 
 
+                            <?php endforeach; ?> 
+                                   
+                        </tbody>
                     </table>
                 </div>
             </div>

@@ -29,7 +29,7 @@
                     <h4 class="center-align">Telas Disponibles</h4>
                 </div>
                 <div class="col s12">
-                    <table class="striped centered responsive-table">
+                    <table class="centered highlight responsive-table">
                         <thead>
                             <tr>
                                 <th>Tela</th>
@@ -46,9 +46,9 @@
                                 <td colspan="5"><p>No hay datos registrados</p></td> 
                             </tr>                 
                         </tbody>
-
-                    <?php }else foreach($query as $tela):?>
-                        <tbody>                 
+            
+                        <tbody>
+                        <?php } else{ foreach($query as $tela):?>                 
                             <tr>
                                 <td><?php echo $tela->nombre_tela; ?></td>
                                 <td><?php echo $tela->descripcion_tela; ?></td>
@@ -57,10 +57,9 @@
                                 <td>
                                     <a href="<?php echo Helpers::url('Tela','details')."/".$tela->id_tela?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
                                 </td>
-                            </tr>                       
-                        </tbody>
-                    <?php endforeach; ?>
-                    
+                            </tr>  
+                            <?php endforeach; } ?>                     
+                        </tbody>                                
                     </table>
                 </div>
             </div>

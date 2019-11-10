@@ -1,3 +1,5 @@
+<?php if($result): ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,4 +110,7 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Material.js"></script>
 </body>
+
+<?php else: $this->redirect('Material', 'index'); endif; ?>
+
 </html>

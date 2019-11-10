@@ -95,8 +95,19 @@
 
 			$material->setId_material($id); // Enviamos los valores al modelo
 			$material->delete(); // llamamos a la función de eliminar del modelo
+
+			}
+
 		}
 
+		public function search(){
+
+			$nombre = ucwords($_POST["nombre"]);
+
+			$material = new Material();
+			$query= $material->search($nombre);
+
+			$this->sendAjax($query);
 		}
 	}
 ?>

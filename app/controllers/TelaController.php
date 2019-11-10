@@ -99,5 +99,15 @@
 
 			}
 		}
+
+		public function search(){
+
+			$nombre = ucwords($_POST["nombre"]);
+
+			$tela = new Tela();
+			$query= $tela->search($nombre);
+
+			$this->sendAjax($query);
+		}
 	}
 ?>

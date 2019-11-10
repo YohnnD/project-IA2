@@ -90,9 +90,10 @@
 				$register = null; // Devolvemos un null si la condicion no se cumple
 			}
 
-			return $register; // Retornamos la variable
+			$this->registerBitacora(MATERIALES , CONSULTAR);
 
-			$this->registerBiracora(MATERIALES,CONSULTAR, $_SESSION["nick_usuario"]);
+			return $register; // Retornamos la variable
+			
 		}
 
 		public function getById(){ // Consulta para obtener un solo registro especifico
@@ -103,6 +104,8 @@
 				
 				$result = $row; // Se guarda el registro en una variable
 			}
+
+			$this->registerBitacora(MATERIALES , DETALLES);
 
 			return $result; //retornamos la variable
 		}
@@ -132,6 +135,8 @@
 
 			$registering = $material->execute(); // Ejecutamos el registro y guardamos en una variable
 
+			$this->registerBitacora(MATERIALES , REGISTRAR);
+
 			return $registering; // retornamos la variable
 		}
 
@@ -155,6 +160,8 @@
 
 			$updating = $material->execute(); // Ejecutamos la consulta
 
+			$this->registerBitacora(MATERIALES , ACTUALIZAR);
+
 			return $updating; // Retornamos la variable
 
 		}
@@ -163,7 +170,26 @@
 
 			$query = $this->db()->query("DELETE FROM $this->table WHERE id_material = '$this->id_material' "); // Creando consulta sql
 
+			$this->registerBitacora(MATERIALES , ELIMINAR);
+
 			return $query; // Retornamos la variable
+		}
+
+		public function search($nombre){
+
+			$query = $this->db()->query("SELECT * FROM materiales WHERE nombre_material ='$nombre'");
+
+			if ($row = $query->fetch(PDO::FETCH_OBJ)){
+
+				$search = $row;
+
+			}else{
+
+				$search = null;
+			}
+
+			return $search;
+
 		}
 
 		

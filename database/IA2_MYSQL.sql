@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS servi_pedidos(
     id_servi_pedido             INT AUTO_INCREMENT  NOT NULL,
     codigo_pedido               VARCHAR(10)         NOT NULL,
     id_servicio                 INT                 NOT NULL,
-    precio_servi_pedido         FLOAT               NOT NULL,
+    id_tela                     INT                 NOT NULL,
     cantidad_prenda             INT                 NOT NULL,
     cantidad_medida             INT                 NOT NULL,
 
@@ -77,34 +77,49 @@ CREATE TABLE IF NOT EXISTS productos(
 CREATE TABLE IF NOT EXISTS pro_tallas(
 
     codigo_producto             VARCHAR(10)         NOT NULL,
-    talla                       VARCHAR(5)          NOT NULL,
+    id_talla                    VARCHAR(5)          NOT NULL,
     stock_pro_talla             INT                 NOT NULL,
 
-    CONSTRAINT pk_pro_talla PRIMARY KEY (codigo_producto)
+    CONSTRAINT pk_pro_talla PRIMARY KEY (codigo_producto, id_talla)
 
 )ENGINE=InnoDb DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+CREATE TABLE IF NOT EXISTS tallas(
+
+    id_talla                    INT AUTO_INCREMENT  NOT NULL,
+    nombre_talla                VARCHAR(3)          NOT NULL,
+
+    CONSTRAINT pk_pro_talla PRIMARY KEY (id_talla)
+
+)ENGINE=InnoDb DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+INSERT INTO tallas VALUES(default, 'XS');
+INSERT INTO tallas VALUES(default, 'S');
+INSERT INTO tallas VALUES(default, 'M');
+INSERT INTO tallas VALUES(default, 'L');
+INSERT INTO tallas VALUES(default, 'XXL');
+INSERT INTO tallas VALUES(default, '32');
+INSERT INTO tallas VALUES(default, '34');
+INSERT INTO tallas VALUES(default, '36');
+INSERT INTO tallas VALUES(default, '38');
+INSERT INTO tallas VALUES(default, '40');
+INSERT INTO tallas VALUES(default, '42');
+INSERT INTO tallas VALUES(default, '44');
+INSERT INTO tallas VALUES(default, '46');
+INSERT INTO tallas VALUES(default, '48');
+INSERT INTO tallas VALUES(default, '50');
+INSERT INTO tallas VALUES(default, '52');
 
 CREATE TABLE IF NOT EXISTS pro_pedidos(
 
     codigo_pedido               VARCHAR(10)         NOT NULL,
     codigo_producto             VARCHAR(10)         NOT NULL,
     cant_pro_pedido             INT                 NOT NULL,
-    precio_pro_pedido           FLOAT               NOT NULL,
 
     CONSTRAINT pk_pro_pedido PRIMARY KEY (codigo_pedido, codigo_producto)
 
 )ENGINE=InnoDb DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
-CREATE TABLE IF NOT EXISTS articulos(
-
-    id_articulo                 INT AUTO_INCREMENT  NOT NULL,
-    nombre_articulo             VARCHAR(20)         NOT NULL,
-    tipo_articulo               VARCHAR(1)          NOT NULL,
-    modelo_articulo             VARCHAR(10)         NOT NULL,
-
-    CONSTRAINT pk_ PRIMARY KEY (id_articulo) 
-
-)ENGINE=InnoDb DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 CREATE TABLE IF NOT EXISTS materiales(
 
@@ -130,33 +145,14 @@ CREATE TABLE IF NOT EXISTS telas(
 
 )ENGINE=InnoDb DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
-CREATE TABLE IF NOT EXISTS art_pedidos(
 
-    id_servi_pedido             INT                 NOT NULL,
-    id_articulo                 INT                 NOT NULL,
-    talla                       VARCHAR(5)          NOT NULL,
-
-    CONSTRAINT pk_art_pedido PRIMARY KEY (id_servi_pedido, id_articulo)              
-
-
-)ENGINE=InnoDb DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-CREATE TABLE IF NOT EXISTS mat_pedidos(
+CREATE TABLE IF NOT EXISTS mat_servicios(
 
     id_material                 INT                 NOT NULL,
-    id_servi_pedido             INT                 NOT NULL,
-    cant_mat_pedido             INT                 NOT NULL,
+    id_servicio                 INT                 NOT NULL,
+    cant_mat_servicio           INT                 NOT NULL,
 
-    CONSTRAINT pk_mat_pedido PRIMARY KEY (id_material, id_servi_pedido)
-
-)ENGINE=InnoDb DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-CREATE TABLE IF NOT EXISTS tel_pedidos(
-
-    id_tela                     INT                 NOT NULL,
-    id_servi_pedido             INT                 NOT NULL,
-
-    CONSTRAINT pk_tel_pedido PRIMARY KEY (id_tela, id_servi_pedido) 
+    CONSTRAINT pk_mat_pedido PRIMARY KEY (id_material, id_servicio)
 
 )ENGINE=InnoDb DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
@@ -186,9 +182,6 @@ CREATE TABLE IF NOT EXISTS usuarios(
 
 )ENGINE=InnoDb DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
-INSERT INTO usuarios (nick_usuario, nombre_usuario, apellido_usuario, email_usuario, contrasenia_usuario, id_rol) 
-VALUES ('admin', 'admin', 'istrador', 'admin@admin.com', '$2y$12$irDLu4S41JsP.H2E9Wbifuk2/qwQbJdhzMnckMr6WyudWl1j1gIY2', 1);
-
 CREATE TABLE IF NOT EXISTS bitacoras(
 
     id_bitacora                 INT AUTO_INCREMENT  NOT NULL,
@@ -211,10 +204,6 @@ CREATE TABLE IF NOT EXISTS roles(
     CONSTRAINT pk_id_rol PRIMARY KEY (id_rol)
 
 )ENGINE=InnoDb DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-INSERT INTO roles VALUES (default, 'superusuario', 'Es el encargado de manejar todo el sistema');
-INSERT INTO roles VALUES (default, 'usuario', 'Tiene acceso limitado al sistema');
-INSERT INTO roles VALUES (default, 'administrador', 'Es quien atiende a los clientes y registra los pedidos en la organización');
 
 
 CREATE TABLE IF NOT EXISTS permisos(
@@ -240,16 +229,14 @@ CREATE TABLE IF NOT EXISTS rol_permisos (
 ALTER TABLE    pedidos         ADD CONSTRAINT    Fkdocumento      FOREIGN KEY    (cedula_cliente)    REFERENCES    clientes(cedula_cliente)         ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    servi_pedidos   ADD CONSTRAINT    Fkpedido_1       FOREIGN KEY    (codigo_pedido)     REFERENCES    pedidos(codigo_pedido)           ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    servi_pedidos   ADD CONSTRAINT    Fkservicio_1     FOREIGN KEY    (id_servicio)       REFERENCES    servicios(id_servicio)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    servi_pedidos   ADD CONSTRAINT    Fktela           FOREIGN KEY    (id_tela)           REFERENCES    telas(id_tela)                   ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    pro_pedidos     ADD CONSTRAINT    Fkpedido_2       FOREIGN KEY    (codigo_pedido)     REFERENCES    pedidos(codigo_pedido)           ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    pro_pedidos     ADD CONSTRAINT    Fkproducto_1     FOREIGN KEY    (codigo_producto)   REFERENCES    productos(codigo_producto)       ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    pro_tallas      ADD CONSTRAINT    Fkproducto_2     FOREIGN KEY    (codigo_producto)   REFERENCES    productos(codigo_producto)       ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    art_pedidos     ADD CONSTRAINT    Fkart            FOREIGN KEY    (id_articulo)       REFERENCES    articulos(id_articulo)           ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    art_pedidos     ADD CONSTRAINT    Fkservi_pedido_1 FOREIGN KEY    (id_servi_pedido)   REFERENCES    servi_pedidos(id_servi_pedido)   ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    mat_pedidos     ADD CONSTRAINT    Fkmaterial       FOREIGN KEY    (id_material)       REFERENCES    materiales(id_material)          ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    mat_pedidos     ADD CONSTRAINT    Fkpedido_3       FOREIGN KEY    (id_servi_pedido)   REFERENCES    servi_pedidos(id_servi_pedido)   ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    tel_pedidos     ADD CONSTRAINT    Fktela           FOREIGN KEY    (id_tela)           REFERENCES    telas(id_tela)                   ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    tel_pedidos     ADD CONSTRAINT    Fkservi_pedido_2 FOREIGN KEY    (id_servi_pedido)   REFERENCES    servi_pedidos(id_servi_pedido)   ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    factura_ventas  ADD CONSTRAINT    Fkpedido_4       FOREIGN KEY    (codigo_pedido)     REFERENCES    pedidos(codigo_pedido)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    pro_tallas      ADD CONSTRAINT    Fktalla          FOREIGN KEY    (id_talla)          REFERENCES    tallas(id_talla)                 ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    mat_servicios   ADD CONSTRAINT    Fkmaterial       FOREIGN KEY    (id_material)       REFERENCES    materiales(id_material)          ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    mat_servicios   ADD CONSTRAINT    Fkservicio_2     FOREIGN KEY    (id_servicio)       REFERENCES    servicios(id_servicio)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    factura_ventas  ADD CONSTRAINT    Fkpedido_5       FOREIGN KEY    (codigo_pedido)     REFERENCES    pedidos(codigo_pedido)           ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    bitacoras       ADD CONSTRAINT    Fkusuario        FOREIGN KEY    (nick_usuario)      REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    rol_permisos    ADD CONSTRAINT    Fkroles          FOREIGN KEY    (id_rol)            REFERENCES    roles(id_rol)                    ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    rol_permisos    ADD CONSTRAINT    Fkpermiso        FOREIGN KEY    (id_permiso)        REFERENCES    permisos(id_permiso)             ON UPDATE CASCADE ON DELETE CASCADE;
