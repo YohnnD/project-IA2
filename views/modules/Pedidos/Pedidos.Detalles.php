@@ -218,7 +218,7 @@
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
-<?php if(isset($_SESSION['message'])):?>
+<?php if(isset($_SESSION['message'])&&$_SESSION['message']===true):?>
     <script>
         swal({
             title: "¡Bien hecho!",

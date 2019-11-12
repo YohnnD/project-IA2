@@ -53,7 +53,7 @@
                                 <td><?php echo $factura->status_pedido?></td>
                                 <td><?php echo $factura->fecha_factura?></td>
                                 <td><?php echo $factura->fecha_entrega_pedido?></td>
-                                <td><a href="<?php echo Helpers::url('Factura','facturaById')."/".$factura->codigo_factura?>" class="btn btn-floating pink waves-effect waves-light"><i class="icon-picture_as_pdf"></i></a></td>
+                                <td><a href="<?php echo Helpers::url('Reporte','facturaById')."/".$factura->codigo_factura?>" class="btn btn-floating pink waves-effect waves-light"><i class="icon-picture_as_pdf"></i></a></td>
                             
                             </tr>
                         <?php endforeach;?>
