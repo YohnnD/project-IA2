@@ -5,7 +5,25 @@
 		}
 
 		public function index() {
-			$this->view('Sistema/Home');
+			
+			
+			$get= new Estadistica();
+			$producto=$get->producto();	
+			$pedido=$get->pedido();
+			$servicio=$get->servicio();
+			$cliente=$get->cliente();
+			$factura=$get->factura();
+			$ingreso=$get->ingreso();
+
+			
+
+			$this->view('Sistema/Home',['producto'=>$producto,
+										'pedido'=>$pedido,
+										'servicio'=>$servicio,
+										'cliente'=>$cliente,
+										'factura'=>$factura,
+										]);
+			 
 		}
 
 		public function account() {
@@ -17,7 +35,13 @@
 		}
 
 		public function getAll() {
+
 			
 		}
+
+		public function top_producto(){
+
+		}
+
 	}
 ?>

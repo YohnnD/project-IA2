@@ -84,7 +84,11 @@
 					$register = null; // Devolvemos un null si la condicion no se cumple
 			}
 
-					return $register; // Retornamos la variable
+			$this->registerBitacora(TELAS , CONSULTAR);
+					
+			return $register; // Retornamos la variable
+
+			
 		}
 
 		public function getById(){ // Consulta para obtener un solo registro especifico
@@ -95,6 +99,8 @@
 
 				$result = $row; // Se guarda el registro en una variable
 			}
+
+			$this->registerBitacora(TELAS , DETALLES);
 
 			return $result; //retornamos la variable
 
@@ -125,6 +131,8 @@
 
 			$registering = $query->execute(); // Ejecutamos el registro y guardamos en una variable
 
+			$this->registerBitacora(TELAS , REGISTRAR);
+
 			return $registering; // retornamos la variable
 
 	}
@@ -132,6 +140,8 @@
 		public function delete(){ // Metodo Eliminar
 
 			$query=$this->db()->query("DELETE FROM $this->table WHERE id_tela= '$this->id_tela' "); // Creando consulta sql
+
+			$this->registerBitacora(TELAS , ELIMINAR);
 
 			return $query; // Retornamos la variable
 		}
@@ -156,9 +166,26 @@
 
 			$updating = $query->execute(); // Ejecutamos la consulta
 
+			$this->registerBitacora(TELAS , ACTUALIZAR);
+
 			return $updating; // Retornamos la variable
 		}
 
-		
+		public function search($nombre){
+
+			$query = $this->db()->query("SELECT * FROM telas WHERE nombre_tela ='$nombre'");
+
+			if ($row = $query->fetch(PDO::FETCH_OBJ)){
+
+				$search = $row;
+
+			}else{
+
+				$search = null;
+			}
+
+			return $search;
+
+		}
 }
 ?>

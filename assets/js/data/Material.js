@@ -1,7 +1,8 @@
-$(document).ready(function () {
 
-    const url="http://localhost/project-ia2/Material/"; // Constante global para ser usadaen las rutas de ajax
-   
+const url="http://localhost/project-ia2/Material/"; // Constante global para ser usadaen las rutas de ajax
+
+$(document).ready(function () {
+ 
     // Registro del Material
 
     $('#register').submit(function (e) { //recibe el parametro register por id del formulario
@@ -232,3 +233,60 @@ $(document).ready(function () {
         });
     });
 });
+
+function buscar(){
+
+    var nombre=$('#nombre_material').val();
+
+       $.ajax({
+            method: "POST",
+            datatype: "JSON",
+            data: {nombre:nombre},
+            url: url + "search",
+
+           beforeSend:function(){
+            console.log("Sending data...");
+           },
+
+           success:function(data){
+
+           if(data){
+
+            swal({
+                title: "Material ya registrado",
+                text: "¿Quiere modificar o ver informacion del Material?, la pagina se actualizara",
+                icon: "info",
+                buttons: {
+                    confirm: {
+                        text: "Detalles",
+                        value: true,
+                        visible: true,
+                        className: "green"
+    
+                    },
+                    cancel: {
+                        text: "Cancelar",
+                        value: false,
+                        visible: true,
+                        className: "grey lighten-2"
+                    }
+                }
+            }).then(function(value){
+                if(value == true){
+
+                   var id_material= data.id_material;
+
+                        location.href = url + "details/" + id_material;
+
+                }else {                  
+                        setTimeout('document.location.reload()', 0);                 
+                }
+            });
+ 
+           }
+        },
+           error:function(err){
+               console.log(err);
+           }                    
+   });   
+};
