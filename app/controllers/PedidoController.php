@@ -145,11 +145,15 @@ class PedidoController extends BaseController
         $codigo_producto = $this->input('codigo_producto');
         $cant_pro_pedida = $this->input('cant_pro_pedida');
         $codigo_pedido = $this->input('codigo_pedido');
+        $id_talla = $this->input('id_talla');
+
         $pedido = new Pedido();
         for ($i = 0; $i < count($codigo_producto);$i++){
             $pedido->setCodigoProducto($codigo_producto[$i]);
             $pedido->setCantidadPrenda($cant_pro_pedida[$i]);
+            $pedido->setIdTallas($id_talla[$i]);
             $save = $pedido->verifyProduct();
+
             if(is_object($save)){
                 break;
             }
@@ -161,6 +165,7 @@ class PedidoController extends BaseController
                 $pedido->setCodigoProducto($codigo_producto[$i]);
                 $pedido->setCodigoPedido($codigo_pedido);
                 $pedido->setCantidadPrenda($cant_pro_pedida[$i]);
+                $pedido->setIdTallas($id_talla[$i]);
                 $save = $pedido->saveProPredido();
             }
 

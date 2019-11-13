@@ -9,6 +9,10 @@
 		}
 
 		public function bitacora() {
+
+
+
+
 			$this->view('Seguridad/Bitacora');
 		}
 	}

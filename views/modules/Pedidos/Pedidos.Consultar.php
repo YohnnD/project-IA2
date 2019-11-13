@@ -43,7 +43,7 @@
                     <?php foreach ($pedidos as $pedido):?>
                         <tr>
                             <td><?php echo $pedido->codigo_pedido;?></td>
-                            <td><?php echo $pedido->nombre_cliente ." ".$pedido->nombre_cliente;?></td>
+                            <td><?php echo $pedido->nombre_cliente?></td>
                             <td><?php echo $pedido->status_pedido;?></td>
                             <td><?php echo $pedido->fecha_pedido;?></td>
                             <td><?php echo $pedido->fecha_entrega_pedido;?></td>

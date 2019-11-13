@@ -139,6 +139,7 @@ $(document).ready(function () {
                     },
                     timer: 3000
                 }).then(function () {
+                    $('#four-tabs').removeClass('disabled');
                     $('#register-service :input').attr('disabled', 'disabled');
                     $('ul.tabs').tabs();
                     $('ul.tabs').tabs("select", "three");
@@ -305,7 +306,8 @@ $(document).ready(function () {
                 }).then(function () {
                     $('#form-consul-client :input').attr('disabled', 'disabled');
                     $('#form-pedido :input').attr('disabled', 'disabled');
-
+                    $('#two-tabs').removeClass('disabled');
+                    $('#three-tabs').removeClass('disabled');
                     $('ul.tabs').tabs();
                     $('ul.tabs').tabs("select", "two");
                 });
@@ -402,7 +404,7 @@ $(document).ready(function () {
 
                     for (var i = 0; i < response.length; i++) {
                         //console.log(countryArray[i].name);
-                        product_array[product[i].codigo_producto+'|'+product[i].nombre_producto]= null;
+                        product_array[product[i].codigo_producto+'|'+product[i].nombre_producto+'|'+product[i].nombre_talla]= null;
                     }
 
 
@@ -507,6 +509,7 @@ $(document).ready(function () {
 
         var codigo_productos=[];
         var cant_pro_pedida=[];
+        var id_tallas=[];
 
         $('.codigo_producto').each(function () {
             codigo_productos.push($(this).val());
@@ -516,7 +519,9 @@ $(document).ready(function () {
             cant_pro_pedida.push($(this).val());
         });
 
-
+        $('.id_talla').each(function () {
+            id_tallas.push($(this).val());
+        });
 
 
            var codigo_pedido = document.querySelector('#codigo_pedido').value
@@ -525,7 +530,7 @@ $(document).ready(function () {
         $.ajax({
             method: "POST",
             dataType: "json",
-            data: { codigo_producto:codigo_productos, cant_pro_pedida:cant_pro_pedida,codigo_pedido:codigo_pedido},
+            data: { codigo_producto:codigo_productos, cant_pro_pedida:cant_pro_pedida,codigo_pedido:codigo_pedido,id_talla:id_tallas},
             url: url+"Pedido/registerProducto",
             beforeSend: function () {
                 console.log("Sending data...");
@@ -563,6 +568,7 @@ $(document).ready(function () {
                         },
                     }).then(function () {
                         $('#register-product :input').attr('disabled', 'disabled');
+                        $('#four-tabs').removeClass('disabled');
                         $('ul.tabs').tabs();
                         $('ul.tabs').tabs("select", "four");
                     });
@@ -662,11 +668,14 @@ $(document).ready(function () {
                                    <tr>
                                        <th><input type="number" name="codigo_prodcuto"  readonly class="col s4 m4 center codigo_producto" value="${producto[i].codigo_producto}" readonly></th>
                                        <th>${producto[i].nombre_producto}</th>
+                                       <th>${producto[i].nombre_talla}</th>
                                        <th><input type="number" name="cant_producto_pedido[]" class="col s4 m4 center cant_producto_pedido calc" value=""></th>
                                        <th><input type="number" name="precio[]" class="col s4 m4 center precio calc" value="${producto[i].precio_producto}" readonly></th>
                                        <th><button type="button" class="delete-product btn red "><i class="icon-delete"></button></th>
-                                    
+                                       <input type="hidden"  name="id_talla[]" class="id_talla" value="${producto[i].id_talla}">
                                    </tr>
+                                   
+           
                      
                      `;
                 $('#product-list').append(texto);
@@ -676,5 +685,35 @@ $(document).ready(function () {
             }
         }
     }
+
+    $('#form-pedido-details').submit(function (e) {
+        e.preventDefault();
+        swal({
+            title: "Actualizar Pedido",
+            text: "¿Esta seguro que desea actualizar este Pedido? Si lo hace, no podrá revertir los cambios.",
+            icon: "warning",
+            buttons: {
+                confirm: {
+                    text: "Actualizar",
+                    value: true,
+                    visible: true,
+                    className: "red"
+
+                },
+                cancel: {
+                    text: "Cancelar",
+                    value: false,
+                    visible: true,
+                    className: "grey lighten-2"
+                }
+            }
+        }).then(function (aceptar) {
+            if (aceptar) {
+                $('#form-pedido-details')[0].submit();
+            }
+
+
+        })
+    });
 
 });

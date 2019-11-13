@@ -166,24 +166,25 @@
                 <div class="col s12">
                     <h4 class="center-align">PRODUCTOS</h4>
                 </div>
-                <table class="centered highlight responsive-table ">
+                <table class="centered highlight responsive-table">
                     <thead>
                     <tr>
                         <th>Código</th>
                         <th>Nombre</th>
+                        <th>Talla</th>
                         <th>Precio</th>
-                        <th>Cant. Disp</th>
+
                         <th>Cantidad Pedida</th>
                     </tr>
                     </thead>
-                    <tbody id="productos_select" >
+                    <tbody id="productos_select" class="center-align" >
                     <?php foreach ($productos as $producto): ?>
                         <input type="hidden" name="codigo_producto[]" value="<?php echo $producto->codigo_producto;?>">
                         <tr>
                             <th><?php echo $producto->codigo_producto; ?></th>
                             <th><?php echo $producto->nombre_producto; ?></th>
+                            <th><?php echo $producto->nombre_talla; ?></th>
                             <th><?php echo $producto->precio_producto; ?></th>
-                            <th><?php echo $producto->stock_producto; ?></th>
                             <th><input type="number" name="cant_producto_pedido[]" class="col s4 m4 center cant_producto_pedido" value="<?php echo $producto->cant_pro_pedido; ?>"></th>
                         </tr>
                     <?php endforeach; ?>

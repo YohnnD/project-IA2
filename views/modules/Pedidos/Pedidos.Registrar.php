@@ -38,10 +38,10 @@
             </div>
             <div class="row">
                 <ul id="tabs-swipe-demo" class="tabs center-align">
-                    <li class="tab col m3 "><a class="active" href="#one">PEDIDO-CLIENTE</a></li>
-                    <li class="tab col m3 "><a href="#two" class="disabled">SERVICIOS</a></li>
-                    <li class="tab col m3 "><a href="#three" >PRODUCTOS</a></li>
-                    <li class="tab col m3 "><a href="#four" class="four">PAGOS</a></li>
+                    <li class="tab col m3" id="one-tabs" ><a class="active" href="#one">PEDIDO-CLIENTE</a></li>
+                    <li class="tab col m3 disabled" id="two-tabs" ><a href="#two" >SERVICIOS</a></li>
+                    <li class="tab col m3 disabled" id="three-tabs" ><a href="#three" >PRODUCTOS</a></li>
+                    <li class="tab col m3 disabled" id="four-tabs" ><a href="#four"  class="four">PAGOS</a></li>
                 </ul>
             </div>
             <!-- Tab 1 -->
@@ -183,6 +183,7 @@
                                 <tr>
                                     <th>Código</th>
                                     <th>Producto</th>
+                                    <th>Talla</th>
                                     <th>Cant Pedida</th>
                                     <th>Precio</th>
                                 </tr>
@@ -193,7 +194,6 @@
 
                             </tbody>
                         </table>
-
                         <div class="input-field col s12 center-align">
                             <button type="submit" class="btn a2-green waves-effect waves-light col s12">
                                 <i class="icon-send right"></i>
@@ -222,7 +222,7 @@
                         <i class="icon-person prefix"></i>
                         <input type="text" name="porcentaje" id="porcentaje" class="validate"  pattern="[VvJjEe0-9]+" value="0"
                                title="Solo puede usar números del 0-9 y V, J ó E" required>
-                        <label for="porcentaje">Porcentaje</label>
+                        <label for="porcentaje">Porcentaje(%)</label>
                     </div>
                                        <div class="input-field col s12 m12">
                                            <i class="icon-person prefix"></i>
@@ -237,7 +237,7 @@
                         <input type="text" name="total_producto" id="total_producto" class="validate money"
                                minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
                                title="Solo puede usar números del 0-9 y V, J ó E" required readonly>
-                        <label for="total_producto">Precio de productos</label>
+                        <label for="total_producto">Precio de productos (Bs)</label>
                     </div>
 
 
@@ -247,7 +247,7 @@
                       <input type="text" name="total_pagar" id="total_pagar" class="validate money"
                              minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
                              title="Solo puede usar números del 0-9 y V, J ó E" required readonly>
-                      <label for="total_pagar">Total a Pagar:</label>
+                      <label for="total_pagar">Total a Pagar (Bs):</label>
                   </div>
 
                     <div class="input-field col s12 center-align">

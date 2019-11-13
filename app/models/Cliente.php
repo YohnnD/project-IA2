@@ -137,11 +137,12 @@ class Cliente extends BaseModel{
         $sql="UPDATE clientes SET cedula_cliente=:cedula_cliente,nombre_cliente=:nombre_cliente,
               tipo_documento_cliente=:tipo_documento,descripcion_cliente=:descripcion_cliente,
               direccion_cliente=:direccion_cliente,telefono_cliente=:telefono_cliente, 
-              representante_cliente=:representante_cliente";
+              representante_cliente=:representante_cliente WHERE cedula_cliente=:cedula";
 
         $query=$this->db()->prepare($sql);
 
         $query->bindValue(":cedula_cliente",$this->cedulaCliente);
+        $query->bindValue(":cedula",$this->cedulaCliente);
         $query->bindValue(":nombre_cliente",$this->nombreCliente);
         $query->bindValue(":tipo_documento",$this->tipoDocumentoCliente);
         $query->bindValue(":descripcion_cliente",$this->descripcionCliente);
