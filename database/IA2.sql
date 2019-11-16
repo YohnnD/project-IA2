@@ -187,6 +187,36 @@ CREATE TABLE IF NOT EXISTS roles(
     PRIMARY KEY (id_rol)
 );
 
+CREATE TABLE IF NOT EXISTS modulos(
+
+    id_modulo               SERIAL         NOT NULL,
+    nombre_modulo           VARCHAR(15)    NOT NULL,
+
+    PRIMARY KEY (id_modulo)
+);
+
+INSERT INTO modulos VALUES(default, 'USUARIOS');
+INSERT INTO modulos VALUES(default, 'PRODUCTOS');
+INSERT INTO modulos VALUES(default, 'PEDIDOS');
+INSERT INTO modulos VALUES(default, 'CLIENTES');
+INSERT INTO modulos VALUES(default, 'SERVICIOS');
+INSERT INTO modulos VALUES(default, 'FACTURAS');
+INSERT INTO modulos VALUES(default, 'REPORTES');
+INSERT INTO modulos VALUES(default, 'TELAS');
+INSERT INTO modulos VALUES(default, 'MATERIALES');
+INSERT INTO modulos VALUES(default, 'ESTADISTICAS');
+INSERT INTO modulos VALUES(default, 'SEGURIDAD');
+INSERT INTO modulos VALUES(default, 'MANTENIMIENTO');
+
+
+CREATE TABLE IF NOT EXISTS rol_modulos (
+
+    id_rol                   INT            NOT NULL,
+    id_modulo                INT            NOT NULL,
+
+    PRIMARY KEY (id_rol, id_modulo)
+);
+
 CREATE TABLE IF NOT EXISTS permisos(
 
     id_permiso               SERIAL         NOT NULL,
@@ -219,5 +249,6 @@ ALTER TABLE    factura_ventas  ADD CONSTRAINT    Fkpedido         FOREIGN KEY   
 ALTER TABLE    bitacoras       ADD CONSTRAINT    Fkusuario        FOREIGN KEY    (nick_usuario)      REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    rol_permisos    ADD CONSTRAINT    Fkroles          FOREIGN KEY    (id_rol)            REFERENCES    roles(id_rol)                    ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    rol_permisos    ADD CONSTRAINT    Fkpermiso        FOREIGN KEY    (id_permiso)        REFERENCES    permisos(id_permiso)             ON UPDATE CASCADE ON DELETE CASCADE;
-
+ALTER TABLE    rol_modulos     ADD CONSTRAINT    Fkrol            FOREIGN KEY    (id_rol)            REFERENCES    roles(id_rol)                    ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    rol_modulos     ADD CONSTRAINT    Fkmodulo         FOREIGN KEY    (id_modulo)         REFERENCES    modulos(id_modulo)               ON UPDATE CASCADE ON DELETE CASCADE;
 
