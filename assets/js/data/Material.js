@@ -1,5 +1,5 @@
 
-const url="http://localhost/project-ia2/Material/"; // Constante global para ser usadaen las rutas de ajax
+const url="http://localhost/project-IA2/Material/"; // Constante global para ser usadaen las rutas de ajax
 
 $(document).ready(function () {
  

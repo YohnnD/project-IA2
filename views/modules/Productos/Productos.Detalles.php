@@ -21,15 +21,133 @@
             <div class="row">
                 <div class="col s12 breadcrumb-nav left-align">
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
-                    <a href="<?php echo Helpers::url('Producto','index'); ?>" class="breadcrumb">Gestionar Productos Terminados</a>
+                    <a href="<?php echo Helpers::url('Producto','index'); ?>" class="breadcrumb">Gestionar Productos</a>
                     <a href="<?php echo Helpers::url('Producto','getAll'); ?>" class="breadcrumb">Consultar Productos</a>
                     <a href="<?php echo Helpers::url('Producto','details'); ?>" class="breadcrumb">Detalles</a>
                 </div>
                 <div class="col s12 center-align">
                     <h4>Detalles del producto</h4>
                 </div>
-                <div class="col s12">
-                    
+                <div class="col s12 m10 offset-m1">
+                    <div class="card testimonial-card">
+                        <div class="card-up a2-green-gradient"></div>
+                        <div class="avatar avatar-centered">
+                            <?php if($producto->img_producto != null || $producto->img_producto != ""): ?>
+                            <img src="<?php echo BASE_URL; ?>storage/productos/<?php echo $producto->img_producto; ?>" alt="" srcset="">
+                            <?php else: ?>
+                            <img src="<?php echo BASE_URL; ?>assets/images/cancel.png" alt="" srcset="">
+                            <?php endif; ?>
+                        </div>
+                        <form action="<?php echo Helpers::url('Producto', 'update'); ?>" method="post" class=" card-content row" id="update">
+                            <div class="input-field col s12 m6">
+                                <i class="icon-label prefix"></i>
+                                <input id="codigo_producto" type="text" name="codigo_producto" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z0-9]+" title="Escribe el codigo del producto. max(30)" value="<?php echo $producto->codigo_producto; ?>" required disabled>
+                                <label for="codigo_producto">Código del Producto</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="icon-label prefix"></i>
+                                <input id="nombre_producto" type="text" name="nombre_producto" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z0-9]+" title="Escribe el nombre del producto. max(30)" value="<?php echo $producto->nombre_producto; ?>" required disabled>
+                                <label for="nombre_producto">Nombre del Producto</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="icon-description prefix"></i>
+                                <textarea name="descripcion_producto" id="descripcion_producto" cols="30" rows="10" class="materialize-textarea" disabled><?php echo $producto->descripcion_producto; ?></textarea>
+                                <label for="descripcion_producto">Descripción</label>
+                            </div>
+                            <div class="input-field col s12 m6 xl4">
+                                <i class="icon-wc prefix"></i>
+                                <select name="tipo_producto" id="tipo_producto" required disabled>
+                                    <option value="null" disabled selected>Elije el tipo</option>
+                                    <option value="ma" <?= $producto->tipo_producto == "ma" ? 'selected' : '' ?>>Masculino</option>
+                                    <option value="fe" <?= $producto->tipo_producto == "fe" ? 'selected' : '' ?>>Femenino</option>
+                                    <option value="ux" <?= $producto->tipo_producto == "ux" ? 'selected' : '' ?>>Unisex</option>
+                                </select>
+                                <label for="tipo_producto">Tipo del Producto</label>
+                            </div>
+                            <div class="input-field col s12 m6 xl4">
+                                <i class="icon-compare prefix"></i>
+                                <select name="modelo_producto" id="modelo_producto" required disabled>
+                                    <option value="" disabled>Elije el modelo</option>
+                                    <option value="1" <?= $producto->modelo_producto == "1" ? 'selected' : '' ?>>Option 1</option>
+                                    <option value="2" <?= $producto->modelo_producto == "2" ? 'selected' : '' ?>>Option 2</option>
+                                </select>
+                                <label for="modelo_producto">Modelo del Producto</label>
+                                
+                            </div>
+                            <div class="input-field col s12 m6 xl4">
+                                <i class="icon-monetization_on prefix"></i>
+                                <input type="number" name="costo_producto" id="costo_producto" class="validate" min="0" pattern="[0-9]+" title="Solo puede usar números." value="<?php echo $producto->costo_producto; ?>" required disabled>
+                                <label for="costo_producto">Costo</label>
+                            </div>
+                            <div class="input-field col s12 m6 xl4">
+                                <i class="icon-monetization_on prefix"></i>
+                                <input type="number" name="precio_producto" id="precio_producto" class="validate" min="0" pattern="[0-9]+" title="Solo puede usar números." value="<?php echo $producto->precio_producto; ?>" required disabled>
+                                <label for="precio_producto">Precio</label>
+                            </div>
+                            <div class="input-field col s12 m6 xl4">
+                                <i class="icon-call_received prefix"></i>
+                                <input type="number" name="stock_min_producto" id="stock_min_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números. Mínimo 24" value="<?php echo $producto->stock_min_producto; ?>" required disabled>
+                                <label for="stock_min_producto">Stock Mínimo</label>
+                            </div>
+                            <div class="input-field col s12 m6 xl4">
+                                <i class="icon-call_made prefix"></i>
+                                <input type="number" name="stock_max_producto" id="stock_max_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números." value="<?php echo $producto->stock_max_producto; ?>"required disabled>
+                                <label for="stock_max_producto">Stock Máximo</label>
+                            </div>
+                            <div class="input-field col s12 m6 xl4">
+                                <i class="icon-call_made prefix"></i>
+                                <input type="number" name="stock_producto" id="stock_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números." value="<?php echo $producto->stock_producto; ?>" required disabled>
+                                <label for="stock_producto">Stock Disponible</label>
+                            </div>
+                            <div class="file-field input-field col s12 m6 xl8">
+                                <div class="btn purple disabled">
+                                    <span><i class="icon-photo_size_select_actual right"></i>Imagen</span>
+                                    <input type="file" name="img_producto" id="img_producto" disabled>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" placeholder="Elige una imagen" value="<?php echo $producto->img_producto; ?>" disabled>
+                                </div>
+                            </div>
+                            <?php foreach ($pro_tallas as $talla): ?>
+                            <div class="input-field col s12 m6">
+                                <i class="icon-straighten prefix"></i>
+                                <?php $_tallas = Helpers::getTallas(); ?>
+                                <select name="talla[]" id="talla" required disabled>
+                                    <option value="null" disabled selected>Elije la talla</option>
+                                    <?php foreach ($_tallas as $_talla) : ?> 
+                                    <option value="<?php echo $_talla->id_talla; ?>" <?php echo $_talla->id_talla == $talla->id_talla ? 'selected' : ''; ?>><?php echo $_talla->nombre_talla; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <label for="talla">Talla</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="icon-call_made prefix"></i>
+                                <input type="number" name="stock_pro_talla[]" id="stock_pro_talla" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números. Mínimo 24" value="<?php echo $talla->stock_pro_talla; ?>" required disabled>
+                                <label for="stock_pro_talla">Cantidad por Talla</label>
+                            </div>
+                            <?php endforeach; ?>
+                            <div class="col s12 m6 center-align" id="modify-btn">
+                                <a id="modify" class="btn blue waves-effect waves-light col s12">
+                                    <i class="icon-update left"></i>                        
+                                    Modificar
+                                    <i class="icon-update right"></i>
+                                </a>
+                            </div>
+                            <!-- <br class="show-on-down-only"> -->
+                            <div class="col s12 m6 center-align" id="delete-btn">
+                                <a id="delete" class="btn red waves-effect waves-light col s12">
+                                    <i class="icon-remove left"></i>                        
+                                    Eliminar
+                                    <i class="icon-remove right"></i>
+                                </a>
+                            </div>
+                            <div class="col s12 center-align" style="display: none" id="update-btn">
+                                <button type="submit" class="btn green waves-effect waves-light col s12">
+                                    Actualizar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

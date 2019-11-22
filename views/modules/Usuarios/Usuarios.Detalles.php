@@ -87,27 +87,27 @@
                                 <div class="input-field col s12" id="last-input">
                                     <i class="icon-assistant prefix"></i>
                                     <select name="id_rol" id="id_rol" disabled>
-                                        <option value="" disabled selected>Elige un rol</option>
-                                        <option value="1">Superusuario</option>
-                                        <option value="2">Administrador</option>
-                                        <option value="3">Operador</option>
+                                        <option value="" disabled>Elige un rol</option>
+                                        <option value="1" <?= $usuario->id_rol == "1" ? 'selected' : '' ?>>Superusuario</option>
+                                        <option value="2" <?= $usuario->id_rol == "2" ? 'selected' : '' ?>>Administrador</option>
+                                        <option value="3" <?= $usuario->id_rol == "3" ? 'selected' : '' ?>>Operador</option>
                                     </select>
                                     <label for="id_rol">Rol</label>
                                 </div>
                                 <div class="col s12 m6 center-align" id="modify-btn">
-                                    <button id="modify" class="btn blue waves-effect waves-light col s12">
+                                    <a id="modify" class="btn blue waves-effect waves-light col s12">
                                         <i class="icon-update left"></i>                        
                                         Modificar
                                         <i class="icon-update right"></i>
-                                    </button>
+                                    </a>
                                 </div>
                                 <!-- <br class="show-on-down-only"> -->
                                 <div class="col s12 m6 center-align" id="delete-btn">
-                                    <button id="delete" class="btn red waves-effect waves-light col s12">
+                                    <a id="delete" class="btn red waves-effect waves-light col s12">
                                         <i class="icon-remove left"></i>                        
                                         Eliminar
                                         <i class="icon-remove right"></i>
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="col s12 center-align" style="display: none" id="update-btn">
                                     <button type="submit" class="btn green waves-effect waves-light col s12">

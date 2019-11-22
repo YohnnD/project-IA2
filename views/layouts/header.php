@@ -27,7 +27,7 @@
         <!-- Sidenav menu -->
         <ul class="sidenav sidenav-fixed show-on-large" id="sidenav-menu">
             <li><a href="" class="logo-container">IA2</a></li>
-            <li><a href="#!" class="waves-effect waves-black"><i class="icon-person left"></i><?php echo $_SESSION['nick_usuario']; ?></a></li>
+            <li><a href="#!" class="waves-effect waves-black"><i class="icon-person left"></i><?php echo $_SESSION['user_auth']->nick_usuario; ?></a></li>
             <li class="divider"></li>
             <li class="hide-on-large-only"><a href="<?php echo Helpers::url('Home','index'); ?>" class="waves-effect waves-black"><i class="icon-home left"></i>Home</a></li>
             <li class="hide-on-large-only"><a href="<?php echo Helpers::url('Home','account'); ?>"><i class="icon-account_box"></i> Account</a></li>
@@ -37,7 +37,7 @@
             <li class="divider hide-on-large-only"></li>
             <li><a href="#!" class="subheader"><i class="icon-dashboard left"></i>Módulos:</a></li>
             <li><a href="<?php echo Helpers::url('Usuario','index'); ?>"><i class="icon-group_add left"></i>Gestionar Usuarios</a></li>
-            <li><a href="<?php echo Helpers::url('Producto','index'); ?>"><i class="icon-loyalty left"></i>Gestionar Productos T.</a></li>
+            <li><a href="<?php echo Helpers::url('Producto','index'); ?>"><i class="icon-loyalty left"></i>Gestionar Productos</a></li>
             <li><a href="<?php echo Helpers::url('Cliente','index'); ?>"><i class="icon-contact_phone left"></i>Gestionar Clientes</a></li>
             <li><a href="<?php echo Helpers::url('Pedido','index'); ?>"><i class="icon-library_books left"></i>Gestionar Pedidos</a></li>
             <li><a href="<?php echo Helpers::url('Factura','index'); ?>"><i class="icon-event_available left"></i>Facturación de Ventas</a></li>
@@ -50,16 +50,15 @@
                                 <li><a href="<?php echo Helpers::url('Servicio','index'); ?>"><i class="icon-star left"></i>Gestionar Servicios</a></li>
                                 <li><a href="<?php echo Helpers::url('Tela','index'); ?>"><i class="icon-layers left"></i>Gestionar Telas</a></li>
                                 <li><a href="<?php echo Helpers::url('Material','index'); ?>"><i class="icon-streetview left"></i>Gestionar Materiales</a></li>
-                                <li><a href="<?php echo Helpers::url('Articulo','index'); ?>"><i class="icon-content_cut left"></i>Gestionar Artículos</a></li>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </li>
-            <li><a href="<?php echo Helpers::url('Reporte','index'); ?>"><i class="icon-report left"></i>Gestionar Reportes</a></li>
+            <li><a href="<?php echo Helpers::url('Reporte','Reporteindex'); ?>"><i class="icon-report left"></i>Gestionar Reportes</a></li>
             <li class="divider"></li>
-            <li><a href="<?php echo Helpers::url('Seguridad','index'); ?>"><i class="icon-security left"></i>Security</a></li>
-            <li><a href="<?php echo Helpers::url('Mantenimiento','index'); ?>"><i class="icon-perm_data_setting left"></i>Mantainance</a></li>            
+            <li><a href="<?php echo Helpers::url('Seguridad','index'); ?>"><i class="icon-security left"></i>Seguridad</a></li>
+            <li><a href="<?php echo Helpers::url('Mantenimiento','index'); ?>"><i class="icon-perm_data_setting left"></i>Mantenimiento</a></li>            
             <!-- <li><a href=""><i class="icon-event_available left"></i></a></li> -->
         </ul>
     </nav>

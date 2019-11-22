@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col s12 breadcrumb-nav left-align">
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
-                    <a href="<?php echo Helpers::url('Producto','index'); ?>" class="breadcrumb">Gestionar Productos Terminados</a>
+                    <a href="<?php echo Helpers::url('Producto','index'); ?>" class="breadcrumb">Gestionar Productos</a>
                 </div>
                 <div class="col s12 m6">
                     <a href="<?php echo Helpers::url('Producto','create'); ?>" class="btn-app red">

@@ -1,13 +1,5 @@
 var url = "http://localhost/project-ia2/Usuario/";
 
-function getId(){
-    var variables = {};
-    var arreglos = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-        variables[key] = value;
-    });
-    return variables;
-}
-
 $(document).ready(function(){
     // Registrar
     $('#register').submit(function(e) {
@@ -37,6 +29,7 @@ $(document).ready(function(){
             url: url + "register",
             beforeSend: function() {
                 console.log("Sending data...");
+                $('#register :input').attr('disabled', 'disabled');
             },
             success: function(data) {
                 console.log(data);
@@ -119,6 +112,7 @@ $(document).ready(function(){
             url: url + "update",
             beforeSend: function() {
                 console.log("Sending data...");
+                $('#update :input').attr('disabled', 'disabled');
             },
             success: function(data) {
                 console.log(data);
@@ -154,13 +148,11 @@ $(document).ready(function(){
                     }
                 });
             }
-        })
+        });
     });
 
     // Eliminar
-    $('#delete').click(function() {
-        // var id = getId()['id'];
-        // console.log(id);
+    $('#delete').click(function(e) {
         var nick_usuario = $('#nick_usuario').val();
         swal({
             title: "Eliminar Usuario " + nick_usuario,
@@ -184,13 +176,52 @@ $(document).ready(function(){
         })
         .then(promise => {
             if(promise) {
-                var id = getId()['id'];
-                console.log(id);
-                /*$.ajax({
-
-                })*/
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {
+                        nick_usuario: nick_usuario
+                    },
+                    url: url + "delete",
+                    beforeSend: function() {
+                        console.log('Sending data...');
+                    },
+                    success: function(data) {
+                        console.log(data);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+                swal({
+                    title: "Eliminación exitosa",
+                    text: "Se ha eliminado el usuario exitosamente.",
+                    icon: "success",
+                    // timer: 3000,
+                    buttons: {
+                        confirm: {
+                            text: "¡Listo!",
+                            className: "green"
+                        }
+                    }
+                })
+                .then(exit => {
+                    location.href = url + "index";
+                });
             }
-        })
+            else {
+                swal({
+                    text: "No se ha eliminado el usuario",
+                    icon: "info",
+                    buttons: {
+                        confirm: {
+                            text: "¡Esta bien!",
+                            className: "blue"
+                        }
+                    }
+                });
+            }
+        });
     });
 
     $('#repeat_contrasenia_usuario').blur(function () {
@@ -200,14 +231,22 @@ $(document).ready(function(){
             swal({
                 title: "¡Oh no!",
                 text: "¡Las contraseñas no coinciden! Vuelve a intentarlo.",
-                icon: "warning"
+                icon: "warning",
+                button: {
+                    text: "Vale",
+                    className: "red"
+                }
             });
         }
         else {
             swal({
                 title: "¡Genial!",
                 text: "¡Las contraseñas coinciden!",
-                icon: "success"
+                icon: "success",
+                button: {
+                    text: "Vale",
+                    className: "green"
+                }
             });
         }
     });

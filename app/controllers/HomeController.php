@@ -6,23 +6,10 @@
 
 		public function index() {
 			
-			
-			$get= new Estadistica();
-			$producto=$get->producto();	
-			$pedido=$get->pedido();
-			$servicio=$get->servicio();
-			$cliente=$get->cliente();
-			$factura=$get->factura();
-			$ingreso=$get->ingreso();
 
+			$this->view('Sistema/Home');
 			
-
-			$this->view('Sistema/Home',['producto'=>$producto,
-										'pedido'=>$pedido,
-										'servicio'=>$servicio,
-										'cliente'=>$cliente,
-										'factura'=>$factura,
-										]);
+			/*$this->sendAjax($ingreso);*/
 			 
 		}
 
@@ -33,14 +20,34 @@
 		public function settings() {
 
 		}
+		
+		public function dashboard(){
 
-		public function getAll() {
+			$get= new Estadistica();
 
 			
+
+			$producto=$get->producto();	
+			$pedido=$get->pedido();
+			$servicio=$get->servicio();
+			$cliente=$get->cliente();
+			$factura=$get->factura();
+		
+			$this->view('Sistema/Estadistica',[	'producto'=>$producto,
+												'pedido'=>$pedido,
+												'servicio'=>$servicio,
+												'cliente'=>$cliente,
+												'factura'=>$factura,
+						]);
+		
 		}
 
-		public function top_producto(){
+		public	function ingreso(){
 
+		$estadistica=new Estadistica();
+		$ingreso=$estadistica->ingreso();
+		$this->sendAjax($ingreso);
+		
 		}
 
 	}

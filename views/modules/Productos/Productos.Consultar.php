@@ -21,11 +21,11 @@
             <div class="row">
                 <div class="col s12 breadcrumb-nav left-align">
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
-                    <a href="<?php echo Helpers::url('Producto','index'); ?>" class="breadcrumb">Gestionar Productos Terminados</a>
+                    <a href="<?php echo Helpers::url('Producto','index'); ?>" class="breadcrumb">Gestionar Productos</a>
                     <a href="<?php echo Helpers::url('Producto','getAll'); ?>" class="breadcrumb">Consultar Productos</a>
                 </div>
                 <div class="col s12">
-                    <h4 class="center-align">Productos terminados</h4>
+                    <h4 class="center-align">Productos</h4>
                 </div>
                 <div class="col s12">
                     <?php if($allProductos == null): ?>
@@ -49,10 +49,10 @@
                                     <td><?php echo $producto->codigo_producto; ?></td>
                                     <td><?php echo $producto->nombre_producto; ?></td>
                                     <td><?php echo $producto->descripcion_producto; ?></td>
-                                    <td><?php echo $producto->costo_producto; ?></td>
-                                    <td><?php echo $producto->precio_producto; ?></td>
+                                    <td><?php echo $producto->costo_producto; ?>$</td>
+                                    <td><?php echo $producto->precio_producto; ?>$</td>
                                     <td><?php echo $producto->stock_max_producto; ?></td>
-                                    <td><a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-find_in_page"></i></a></td>
+                                    <td><a href="<?php echo Helpers::url('Producto','details'); ?>/<?php echo $producto->codigo_producto; ?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-find_in_page"></i></a></td>
                                 </tr>
                                 <?php endforeach; ?>        
                             </tbody>

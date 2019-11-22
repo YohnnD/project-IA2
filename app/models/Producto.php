@@ -2,17 +2,19 @@
 	class Producto extends BaseModel {
 		// Atributos
 		private $table;
-		private $codigo_producto;
-		private $nombre_producto;
-		private $descripcion_producto;
-		private $tipo_producto;
-		private $modelo_producto;
-		private $costo_producto;
-		private $precio_producto;
-		private $stock_max_producto;
-		private $stock_min_producto;
-		private $talla;
-		private $stock_pro_talla;
+		private $codigoProducto;
+		private $nombreProducto;
+		private $descripcionProducto;
+		private $tipoProducto;
+		private $modeloProducto;
+		private $costoProducto;
+		private $precioProducto;
+		private $stockMaxProducto;
+		private $stockMinProducto;
+		private $stockProducto;
+		private $imgProducto;
+		private $idTalla;
+		private $stockProTalla;
 
 		// Métodos
 		public function __construct() {
@@ -22,158 +24,196 @@
 
 		// Getters & Setters
 		public function getCodigoProducto() {
-			return $this->codigo_producto;
+			return $this->codigoProducto;
 		}
 
 		public function getNombreProducto() {
-			return $this->nombre_producto;
+			return $this->nombreProducto;
 		}
 
 		public function getDescripcionProducto() {
-			return $this->descripcion_producto;
+			return $this->descripcionProducto;
 		}
 
 		public function getTipoProducto() {
-			return $this->tipo_producto;
+			return $this->tipoProducto;
 		}
 
 		public function getModeloProducto() {
-			return $this->modelo_producto;
+			return $this->modeloProducto;
 		}
 
 		public function getCostoProducto() {
-			return $this->costo_producto;
+			return $this->costoProducto;
 		}
 
 		public function getPrecioProducto() {
-			return $this->precio_producto;
+			return $this->precioProducto;
 		}
 
 		public function getStockMaxProducto() {
-			return $this->stock_max_producto;
+			return $this->stockMaxProducto;
 		}
 
 		public function getStockMinProducto() {
-			return $this->stock_min_producto;
+			return $this->stockMinProducto;
 		}
 
-		public function getTalla() {
-			return $this->talla;
+		public function getStockProducto() {
+			return $this->stockProducto;
+		}
+
+		public function getImgProducto() {
+			return $this->imgProducto;
+		}
+
+		public function getIdTalla() {
+			return $this->idTalla;
 		}
 
 		public function getStockProTalla() {
-			return $this->stock_pro_talla;
+			return $this->stockProTalla;
 		}
 
-		public function setCodigoProducto($codigo_producto) {
-			$this->codigo_producto = $codigo_producto;
+		public function setCodigoProducto($codigoProducto) {
+			$this->codigoProducto = $codigoProducto;
 		}
 
-		public function setNombreProducto($nombre_producto) {
-			$this->nombre_producto = $nombre_producto;
+		public function setNombreProducto($nombreProducto) {
+			$this->nombreProducto = $nombreProducto;
 		}
 
-		public function setDescripcionProducto($descripcion_producto) {
-			$this->descripcion_producto = $descripcion_producto;
+		public function setDescripcionProducto($descripcionProducto) {
+			$this->descripcionProducto = $descripcionProducto;
 		}
 
-		public function setTipoProducto($tipo_producto) {
-			$this->tipo_producto = $tipo_producto;
+		public function setTipoProducto($tipoProducto) {
+			$this->tipoProducto = $tipoProducto;
 		}
 
-		public function setModeloProducto($modelo_producto) {
-			$this->modelo_producto = $modelo_producto;
+		public function setModeloProducto($modeloProducto) {
+			$this->modeloProducto = $modeloProducto;
 		}
 
-		public function setCostoProducto($costo_producto) {
-			$this->costo_producto = $costo_producto;
+		public function setCostoProducto($costoProducto) {
+			$this->costoProducto = $costoProducto;
 		}
 
-		public function setPrecioProducto($precio_producto) {
-			$this->precio_producto = $precio_producto;
+		public function setPrecioProducto($precioProducto) {
+			$this->precioProducto = $precioProducto;
 		}
 
-		public function setStockMaxProducto($stock_max_producto) {
-			$this->stock_max_producto = $stock_max_producto;
+		public function setStockMaxProducto($stockMaxProducto) {
+			$this->stockMaxProducto = $stockMaxProducto;
 		}
 
-		public function setStockMinProducto($stock_min_producto) {
-			$this->stock_min_producto = $stock_min_producto;
+		public function setStockMinProducto($stockMinProducto) {
+			$this->stockMinProducto = $stockMinProducto;
 		}
 
-		public function setTalla($talla) {
-			$this->talla = $talla;
+		public function setStockProducto($stockProducto) {
+			$this->stockProducto = $stockProducto;
 		}
 
-		public function setStockProTalla($stock_pro_talla) {
-			$this->stock_pro_talla = $stock_pro_talla;
+		public function setImgProducto($imgProducto) {
+			$this->imgProducto = $imgProducto;
+		}
+
+		public function setIdTalla($idTalla) {
+			$this->idTalla = $idTalla;
+		}
+
+		public function setStockProTalla($stockProTalla) {
+			$this->stockProTalla = $stockProTalla;
 		}
 
 		public function insert() {
+			// $this->registerBiracora(PRODUCTOS,REGISTRAR);
 			$query = "INSERT INTO $this->table
 						(codigo_producto,
 						nombre_producto,descripcion_producto,tipo_producto,
 						modelo_producto,costo_producto,precio_producto,stock_max_producto,
-						stock_min_producto) 
+						stock_min_producto,stock_producto,img_producto) 
 						VALUES 
 						(:codigo_producto,:nombre_producto,:descripcion_producto,:tipo_producto,
 						:modelo_producto,:costo_producto,:precio_producto,:stock_max_producto,
-						:stock_min_producto)"; // Consulta SQL
+						:stock_min_producto,:stock_producto,:img_producto)"; // Consulta SQL
 			$result = $this->db()->prepare($query); // Prepara la consulta.
-			$result->bindParam(':codigo_producto', $this->codigo_producto);
-			$result->bindParam(':nombre_producto', $this->nombre_producto);
-			$result->bindParam(':descripcion_producto', $this->descripcion_producto);
-			$result->bindParam(':tipo_producto', $this->tipo_producto);
-			$result->bindParam(':modelo_producto', $this->modelo_producto);
-			$result->bindParam(':costo_producto', $this->costo_producto);
-			$result->bindParam(':precio_producto', $this->precio_producto);
-			$result->bindParam(':stock_max_producto', $this->stock_max_producto);
-			$result->bindParam(':stock_min_producto', $this->stock_min_producto);
-			$insert = $result->execute(); // Ejecuta la primera consulta.
-			if($insert) { // Si se ejecuto
-				$last_id = $this->db()->lastInsertId(); // Obtiene el ultimo ID ingresado
-			}
-			$query = "INSERT INTO pro_tallas (codigo_producto,talla,stock_pro_talla) VALUES 
-						(:codigo_producto,:talla,:stock_pro_talla)";
+			$result->bindParam(':codigo_producto', $this->codigoProducto);
+			$result->bindParam(':nombre_producto', $this->nombreProducto);
+			$result->bindParam(':descripcion_producto', $this->descripcionProducto);
+			$result->bindParam(':tipo_producto', $this->tipoProducto);
+			$result->bindParam(':modelo_producto', $this->modeloProducto);
+			$result->bindParam(':costo_producto', $this->costoProducto);
+			$result->bindParam(':precio_producto', $this->precioProducto);
+			$result->bindParam(':stock_max_producto', $this->stockMaxProducto);
+			$result->bindParam(':stock_min_producto', $this->stockMinProducto);
+			$result->bindParam(':stock_producto', $this->stockProducto);
+			$result->bindParam(':img_producto', $this->imgProducto);
+			$save = $result->execute(); // Ejecuta la primera consulta.
+			return $save;
+		}
+
+		public function insertTallas() {
+			$query = "INSERT INTO pro_tallas (codigo_producto,id_talla,stock_pro_talla) VALUES 
+						(:codigo_producto,:id_talla,:stock_pro_talla)";
 			$result = $this->db()->prepare($query); // Prepara la consulta.
-			$result->bindParam(':codigo_producto', $last_id);
-			$result->bindParam(':talla', $this->talla);
-			$result->bindParam(':stock_pro_talla', $this->stock_pro_talla);
+			$result->bindParam(':codigo_producto', $this->codigoProducto);
+			$result->bindParam(':id_talla', $this->idTalla);
+			$result->bindParam(':stock_pro_talla', $this->stockProTalla);
 			$save = $result->execute(); // Ejecuta la consulta
 			return $save;
 		}
 
 		public function update() {
+			// $this->registerBiracora(PRODUCTOS,ACTUALIZAR);
 			$query = "UPDATE $this->table SET
-						codigo_producto = :codigo_producto, 
+						-- codigo_producto = :codigo_producto, 
 						nombre_producto = :nombre_producto,
-						descripcion_producto = :descripcion_producto, tipo_producto = tipo_producto,
+						descripcion_producto = :descripcion_producto, tipo_producto = :tipo_producto,
 						modelo_producto = :modelo_producto, costo_producto = :costo_producto,
 						precio_producto = :precio_producto, stock_max_producto = :stock_max_producto,
-						stock_min_producto = :stock_min_producto";
+						stock_min_producto = :stock_min_producto, stock_producto = :stock_producto,
+						img_producto = :img_producto
+						WHERE codigo_producto = :codigo_producto";
 			$result = $this->db()->prepare($query); // Prepara la consulta.
-			$result->bindParam(':codigo_producto', $this->codigo_producto);
-			$result->bindParam(':nombre_producto', $this->nombre_producto);
-			$result->bindParam(':descripcion_producto', $this->descripcion_producto);
-			$result->bindParam(':tipo_producto', $this->tipo_producto);
-			$result->bindParam(':modelo_producto', $this->modelo_producto);
-			$result->bindParam(':costo_producto', $this->costo_producto);
-			$result->bindParam(':precio_producto', $this->precio_producto);
-			$result->bindParam(':stock_max_producto', $this->stock_max_producto);
-			$result->bindParam(':stock_min_producto', $this->stock_min_producto);
-			$update = $result->execute(); // Ejecuta la primera consulta.		
-			return $update;
+			$result->bindParam(':codigo_producto', $this->codigoProducto);
+			$result->bindParam(':nombre_producto', $this->nombreProducto);
+			$result->bindParam(':descripcion_producto', $this->descripcionProducto);
+			$result->bindParam(':tipo_producto', $this->tipoProducto);
+			$result->bindParam(':modelo_producto', $this->modeloProducto);
+			$result->bindParam(':costo_producto', $this->costoProducto);
+			$result->bindParam(':precio_producto', $this->precioProducto);
+			$result->bindParam(':stock_max_producto', $this->stockMaxProducto);
+			$result->bindParam(':stock_min_producto', $this->stockMinProducto);
+			$result->bindParam(':stock_producto', $this->stockProducto);
+			$result->bindParam(':img_producto', $this->imgProducto);
+			$save = $result->execute(); // Ejecuta la consulta
+			return $save;
+		}
+
+		public function updateTallas() {
+			$query = "UPDATE pro_tallas SET 
+						-- codigo_producto = :codigo_producto,
+						id_talla = :id_talla, stock_pro_talla = :stock_pro_talla
+						WHERE codigo_producto = :codigo_producto";
+			$result = $this->db()->prepare($query); // Prepara la consulta.
+			$result->bindParam(':codigo_producto', $this->codigoProducto);
+			$result->bindParam(':id_talla', $this->idTalla);
+			$result->bindParam(':stock_pro_talla', $this->stockProTalla);
+			$save = $result->execute(); // Ejecuta la consulta
+			return $save;
 		}
 
 		public function delete() {
-			$query = "DELETE FROM $this->table WHERE codigo_producto = :codigo_producto"; // Consulta SQL
-			$result = $this->db()->prepare($query); // Prepara la consulta SQL
-			$result->bindParam(':codigo_producto',$this->codigo_producto);
-			$delete = $result->execute(); // Ejecuta la consulta
+			// $this->registerBiracora(PRODUCTOS,ELIMINAR);			
+			$query = "DELETE FROM $this->table WHERE codigo_producto = '$this->codigoProducto'"; // Consulta SQL
+			$delete = $this->db()->query($query); // Prepara la consulta SQL
 			return $delete;
 		}
 
 		public function getAll() {
+			// $this->registerBiracora(PRODUCTOS,CONSULTAR);			
 			$sql = "SELECT * FROM $this->table";
             $query = $this->db()->query($sql);
             if($query){ // Evalua la cansulta
@@ -189,13 +229,65 @@
             return $resultSet; // Finalmente retornla el arreglo con los elementos.
 		}
 
-		public function getOne($codigo_producto) {
-			$sql = "SELECT * FROM $this->table WHERE codigo_producto = $codigo_producto";
+		public function getOne($codigoProducto) {
+			// $this->registerBiracora(PRODUCTOS, CONSULTAR);			
+			$sql = "SELECT * FROM $this->table AS pro
+					WHERE pro.codigo_producto = '$codigoProducto'";
 			$query = $this->db()->query($sql);
-			if($row = $query->fetch(PDO::FETCH_OBJ)){
-				$register = $row;
-			}
-			return $register;
+			if($query){
+                if($query->rowCount() != 0){
+                    if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
+                        $register = $row; // Lo almacena en $register
+                    }
+                }
+                else{
+                    $register = null;
+                }
+            }
+            return $register; // Y finalmente, lo retorna.
 		}	
+
+		public function up() {
+
+		}
+
+		public function down() {
+
+		}
+
+		public function getAllTallas() {
+			$sql = "SELECT * FROM tallas";
+            $query = $this->db()->query($sql);
+            if($query){ // Evalua la cansulta
+                if($query->rowCount() != 0) { // Si existe al menos un registro...
+                    while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
+                        $resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
+                    }
+                }
+                else{ // Sino...
+                    $resultSet = null; // Almacena null
+                }
+            }
+            return $resultSet; // Finalmente retornla el arreglo con los elementos.
+		}
+
+		public function getProductoXTallas($codigoProducto) {
+			$sql = "SELECT * FROM pro_tallas AS pt 
+						INNER JOIN tallas AS t
+							ON t.id_talla = pt.id_talla
+						WHERE pt.codigo_producto = '$codigoProducto'";
+            $query = $this->db()->query($sql);
+            if($query){ // Evalua la cansulta
+                if($query->rowCount() != 0) { // Si existe al menos un registro...
+                    while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
+                        $resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
+                    }
+                }
+                else{ // Sino...
+                    $resultSet = null; // Almacena null
+                }
+            }
+            return $resultSet; // Finalmente retornla el arreglo con los elementos.
+		}
 	}
 ?>

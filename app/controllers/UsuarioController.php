@@ -21,12 +21,12 @@
 		public function register() {
 			if($_POST) { // Si se pasan datos por post
 				// Valida los datos recibidos por los inputs
-				$nick_usuario = $this->input('nick_usuario', true, 'string');
-				$nombre_usuario = $this->input('nombre_usuario', true, 'string');
-				$apellido_usuario = $this->input('apellido_usuario', true, 'string');
-				$email_usuario = $this->input('email_usuario', true, 'string');
-				$contrasenia_usuario = $this->input('contrasenia_usuario', true, 'string');
-				$id_rol = $this->input('id_rol', true, 'int');
+				$nickUsuario = $this->input('nick_usuario', true, 'string');
+				$nombreUsuario = $this->input('nombre_usuario', true, 'string');
+				$apellidoUsuario = $this->input('apellido_usuario', true, 'string');
+				$emailUsuario = $this->input('email_usuario', true, 'string');
+				$contraseniaUsuario = $this->input('contrasenia_usuario', true, 'string');
+				$idRol = $this->input('id_rol', true, 'int');
 
 				if($this->validateFails()) { // Si la validacion falla
 					$this->redirect('Usuario','index'); // Redirecciona al inicio.
@@ -34,14 +34,12 @@
 				else { // Si no falla la validacion
 					$usuario = new Usuario(); // Instancia el objeto
 					// Setea los datos
-					$usuario->setNickUsuario($nick_usuario);
-					$usuario->setNombreUsuario(ucwords($nombre_usuario));
-					$usuario->setApellidoUsuario(ucwords($apellido_usuario));
-					$usuario->setEmailUsuario($email_usuario);
-					// Contraseña encriptada
-					$contrasenia_encriptada = password_hash($contrasenia_usuario, PASSWORD_DEFAULT, array('cost' => 12));
-					$usuario->setContraseniaUsuario($contrasenia_encriptada);
-					$usuario->setIdRol($id_rol);
+					$usuario->setNickUsuario($nickUsuario);
+					$usuario->setNombreUsuario(ucwords($nombreUsuario));
+					$usuario->setApellidoUsuario(ucwords($apellidoUsuario));
+					$usuario->setEmailUsuario($emailUsuario);
+					$usuario->setContraseniaEncriptada($contraseniaUsuario);
+					$usuario->setIdRol($idRol);
 					$data = $usuario->insert();
 					$this->sendAjax($data);
 				}
@@ -50,9 +48,9 @@
 
 		public function details() {
 			if(isset($_GET['id'])) {
-				$nick_usuario = $_GET['id'];
+				$nickUsuario = $_GET['id'];
 				$usuario = new Usuario();
-				$register = $usuario->getOne($nick_usuario);
+				$register = $usuario->getOne($nickUsuario);
 				$this->view('Usuarios/Usuarios.Detalles', ['usuario' => $register]);
 			}
 		}
@@ -60,12 +58,12 @@
 		public function update() {
 			if($_POST) { // Si se pasan datos por post
 				// Valida los datos recibidos por los inputs
-				$nick_usuario = $this->input('nick_usuario', true, 'string');
-				$nombre_usuario = $this->input('nombre_usuario', true, 'string');
-				$apellido_usuario = $this->input('apellido_usuario', true, 'string');
-				$email_usuario = $this->input('email_usuario', true, 'string');
-				$contrasenia_usuario = $this->input('contrasenia_usuario', true, 'string');
-				$id_rol = $this->input('id_rol', true, 'int');
+				$nickUsuario = $this->input('nick_usuario', true, 'string');
+				$nombreUsuario = $this->input('nombre_usuario', true, 'string');
+				$apellidoUsuario = $this->input('apellido_usuario', true, 'string');
+				$emailUsuario = $this->input('email_usuario', true, 'string');
+				$contraseniaUsuario = $this->input('contrasenia_usuario', true, 'string');
+				$idRol = $this->input('id_rol', true, 'int');
 
 				if($this->validateFails()) { // Si la validacion falla
 					$this->redirect('Usuario','index'); // Redirecciona al inicio.
@@ -73,14 +71,12 @@
 				else { // Si no falla la validacion
 					$usuario = new Usuario(); // Instancia el objeto
 					// Setea los datos
-					$usuario->setNickUsuario($nick_usuario);
-					$usuario->setNombreUsuario(ucwords($nombre_usuario));
-					$usuario->setApellidoUsuario(ucwords($apellido_usuario));
-					$usuario->setEmailUsuario($email_usuario);
-					// Contraseña encriptada
-					$contrasenia_encriptada = password_hash($contrasenia_usuario, PASSWORD_DEFAULT, array('cost' => 12));
-					$usuario->setContraseniaUsuario($contrasenia_encriptada);
-					$usuario->setIdRol($id_rol);
+					$usuario->setNickUsuario($nickUsuario);
+					$usuario->setNombreUsuario(ucwords($nombreUsuario));
+					$usuario->setApellidoUsuario(ucwords($apellidoUsuario));
+					$usuario->setEmailUsuario($emailUsuario);
+					$usuario->setContraseniaEncriptada($contraseniaUsuario);
+					$usuario->setIdRol($idRol);
 					$data = $usuario->update();
 					$this->sendAjax($data);
 				}
@@ -88,10 +84,10 @@
 		}
 
 		public function delete() {
-			if(isset($_GET['id'])) {
-				$nick_usuario = $_GET['id'];
+			if(isset($_POST['nick_usuario'])) {
+				$nickUsuario = $_POST['nick_usuario'];
 				$usuario = new Usuario();
-				$usuario->setNickUsuario($nick_usuario);
+				$usuario->setNickUsuario($nickUsuario);
 				$data = $usuario->delete();
 				$this->sendAjax($data);
 			}

@@ -1,4 +1,4 @@
--- CLIENTES
+﻿-- CLIENTES
 
 INSERT INTO 	clientes 		VALUES ('27210326','V-', 'Angel Serrano'    , 'Esclavo que hizo el registro' , 'Sarare'         , '04120531200'  ,'UPTAEB');
 INSERT INTO 	clientes 		VALUES ('27085898','V-', 'Yohnneiber Diaz'  , 'Lider'                        , 'Norte'          , '0424'		 ,'UPTAEB');

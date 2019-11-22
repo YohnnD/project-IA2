@@ -9,11 +9,20 @@
 		}
 
 		public function bitacora() {
-
-
-
-
 			$this->view('Seguridad/Bitacora');
+		}
+
+		public function modules() {
+			$this->view('Seguridad/Modulos');
+		}
+
+		public function roles() {
+			$this->view('Seguridad/Roles');			
+		}
+
+		public function permissions() {
+			$this->view('Seguridad/Permisos');			
+
 		}
 	}
 ?>

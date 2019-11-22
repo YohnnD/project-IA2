@@ -213,7 +213,6 @@
 					servi_pedidos.id_servi_pedido,
 					servi_pedidos.cantidad_prenda,
 					servi_pedidos.cantidad_medida,
-					servi_pedidos.precio_servi_pedido,
 					servicios.id_servicio,
 					servicios.nombre_servicio,
 					servicios.precio_servicio,

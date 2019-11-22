@@ -1,76 +1,99 @@
 <?php
+
+require_once 'vendor\autoload.php';
 	class ReporteController extends BaseController {
+		
 		public function __construct() {
-            require_once 'vendor/autoload.php';
+			
 			parent::__construct();
 		}
 
-		public function index() {
+		public function orders() {
+            $mpdf = new \Mpdf\Mpdf();
+
+            $mpdf->WriteHTML('Hello World');
+
+            $mpdf->Output();}
+
+
+            public function reporteIndex() {
+			
 			$this->view('Reportes/Reportes');
 		}
 
-
-        public function FactuIndex() {
-            $factura = new Reporte(); // Instancia un objeto
+		public function index() {
+			$factura = new Reporte(); // Instancia un objeto
             $allFactura = $factura->getFactura();
-            $this->view('Reportes/Facturacion.Listado',
-                ['allFactura' => $allFactura]);
-            //$this->view('Reportes/Reportes');
-        }
-
-
-
-        public function getAllPedido() {
-            $mpdf = new \Mpdf\Mpdf();
-            ob_start();
-            $pedido = new Reporte(); // Instancia un objeto
+             
+			$this->view('Reportes/Facturacion.Listado',
+				['allFactura' => $allFactura]);
+			//$this->view('Reportes/Reportes');
+		}
+		public function getAllPedido() {
+			$pedido = new Reporte(); // Instancia un objeto
             $allPedido = $pedido->getPedidos();
-            $this->view('Reportes/pedidos',['allPedido' => $allPedido]);
+
+            ob_start(); // Recoge todo el contenido de un include.
+            //$this->view('Reportes/pedidos',['allPedido' => $allPedido]);
+            require_once 'views/modules/Reportes/pedidos.php'; 
             $html = ob_get_clean();
-            $mpdf->WriteHTML($html);
-            $mpdf->Output();
-            exit();
-        }
 
-
-
-
-        public function getAllProducto() {
             $mpdf = new \Mpdf\Mpdf();
-            ob_start();
-            $producto = new Reporte(); // Instancia un objeto
-            $allProducto = $producto->getProductos();
-            $this->view('Reportes/productos',['allProducto' => $allProducto]);
-            $html = ob_get_clean();
+
             $mpdf->WriteHTML($html);
+
             $mpdf->Output();
-        }
 
+			//$this->view('Reportes/pedidos',['allPedido' => $allPedido]);
+		}
 
+		public function getAllProducto() {
+			$producto = new Reporte(); // Instancia un objeto
+            $allProducto = $producto->getProductos();
 
-        public function facturaById() {
-            if (isset($_GET["id"])) {
-                $mpdf = new \Mpdf\Mpdf();
-                ob_start();
-                $factura = new Reporte();
-                $id=$_GET["id"];
+            ob_start(); // Recoge todo el contenido de un include.
+            require_once 'views/modules/Reportes/productos.php'; 
+            $html = ob_get_clean();
 
-                $factura->setCodigoFactura($id);
-                $factura_find = $factura->getFacturaId($id);
-                $servicio_find = $factura->getFacturaServicioById($id);
-                $producto_find=$factura->getFacturaProductoById($id);
+            $mpdf = new \Mpdf\Mpdf();
 
-                $this->view('Reportes/Invoice',
-                    ['servicio' => $servicio_find,
-                        'producto' => $producto_find,
-                        'factura' => $factura_find
-                    ]);
+            $mpdf->WriteHTML($html);
 
-                $html = ob_get_clean();
-                $mpdf->WriteHTML($html);
-                $mpdf->Output();
-            }
-        }
+            $mpdf->Output();
+
+			//$this->view('Reportes/productos',['allProducto' => $allProducto]);
+		}
+
+		
+		
+		public function facturaById() {
+			if (isset($_GET["id"])) {
+			$factur = new Reporte();
+          	$id=$_GET["id"];
+
+          	$factur->setCodigoFactura($id);
+          	$factura = $factur->getFacturaId($id);
+          	$servicio = $factur->getFacturaServicioById($id);
+          	$producto=$factur->getFacturaProductoById($id);
+
+          	 ob_start(); // Recoge todo el contenido de un include.
+            require_once 'views/modules/Reportes/Invoice.php'; 
+            $html = ob_get_clean();
+
+            $mpdf = new \Mpdf\Mpdf();
+
+            $mpdf->WriteHTML($html);
+
+            $mpdf->Output();
+          	
+          	/*$this->view('Reportes/Invoice', 
+          		['servicio' => $servicio_find,
+          		'producto' => $producto_find,
+          		'factura' => $factura_find
+          	]);*/
+			
+			}
+		}
 
 	}
 ?>

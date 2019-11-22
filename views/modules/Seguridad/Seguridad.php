@@ -30,13 +30,13 @@
                     </a>
                 </div>
                 <div class="col s12 m6">
-                    <a href="<?php echo Helpers::url('',''); ?>" class="btn-app red">
+                    <a href="<?php echo Helpers::url('Seguridad','roles'); ?>" class="btn-app red">
                         <i class="icon-supervisor_account"></i>
-                        <span>Mostrar Roles</span>
+                        <span>Gestionar Roles</span>
                     </a>
                 </div>
                 <div class="col s12 m6">
-                    <a href="<?php echo Helpers::url('',''); ?>" class="btn-app orange">
+                    <a href="<?php echo Helpers::url('Seguridad','permissions'); ?>" class="btn-app orange">
                         <i class="icon-transfer_within_a_station"></i>
                         <span>Mostrar Permisos</span>
                     </a>

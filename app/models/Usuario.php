@@ -2,12 +2,12 @@
 	class Usuario extends BaseModel {
 		// Atributos
 		private $table;
-		private $nick_usuario;
-		private $nombre_usuario;
-		private $apellido_usuario;
-		private $email_usuario;
-		private $contrasenia_usuario;
-		private $id_rol;
+		private $nickUsuario;
+		private $nombreUsuario;
+		private $apellidoUsuario;
+		private $emailUsuario;
+		private $contraseniaUsuario;
+		private $idRol;
 
 		// Métodos
 		public function __construct() {
@@ -16,68 +16,74 @@
 		}
 
 		public function getNickUsuario() {
- 			return $this->nick_usuario;
+ 			return $this->nickUsuario;
 		}
 
 		public function getNombreUsuario() {
- 			return $this->nombre_usuario;
+ 			return $this->nombreUsuario;
 		}
 
 		public function getApellidoUsuario() {
- 			return $this->apellido_usuario;
+ 			return $this->apellidoUsuario;
 		}
 
 		public function getEmailUsuario() {
- 			return $this->email_usuario;
+ 			return $this->emailUsuario;
 		}
 
 		public function getContraseniaUsuario() {
- 			return $this->contrasenia_usuario;
+ 			return $this->contraseniaUsuario;
 		}
 
 		public function getIdRol() {
- 			return $this->id_rol;
+ 			return $this->idRol;
 		}
 
-		public function setNickUsuario($nick_usuario) {
-			$this->nick_usuario = $nick_usuario;
+		public function setNickUsuario($nickUsuario) {
+			$this->nickUsuario = $nickUsuario;
 		}
 
-		public function setNombreUsuario($nombre_usuario) {
-			$this->nombre_usuario = $nombre_usuario;
+		public function setNombreUsuario($nombreUsuario) {
+			$this->nombreUsuario = $nombreUsuario;
 		}
 
-		public function setApellidoUsuario($apellido_usuario) {
-			$this->apellido_usuario = $apellido_usuario;
+		public function setApellidoUsuario($apellidoUsuario) {
+			$this->apellidoUsuario = $apellidoUsuario;
 		}
 
-		public function setEmailUsuario($email_usuario) {
-			$this->email_usuario = $email_usuario;
+		public function setEmailUsuario($emailUsuario) {
+			$this->emailUsuario = $emailUsuario;
 		}
 
-		public function setContraseniaUsuario($contrasenia_usuario) {
-			$this->contrasenia_usuario = $contrasenia_usuario;
+		public function setContraseniaUsuario($contraseniaUsuario) {
+			$this->contraseniaUsuario = $contraseniaUsuario;
 		}
 
-		public function setIdRol($id_rol) {
-			$this->id_rol = $id_rol;
+		public function setIdRol($idRol) {
+			$this->idRol = $idRol;
+		}
+
+		public function setContraseniaEncriptada ($contraseniaUsuario) {
+			$this->contraseniaUsuario = password_hash($contraseniaUsuario, PASSWORD_DEFAULT, array('cost'=>12));
 		}
 
 		public function insert() {
+			// $this->registerBiracora(USUARIOS,REGISTRAR);			
 			$query = "INSERT INTO $this->table (nick_usuario,nombre_usuario,apellido_usuario,email_usuario,contrasenia_usuario,id_rol) VALUES (:nick_usuario,:nombre_usuario,:apellido_usuario,:email_usuario,:contrasenia_usuario,:id_rol) "; // COnsulta SQL
 			$result = $this->db()->prepare($query); // Prepara la consulta SQL
 			// Limpia los parametros
-			$result->bindParam(':nick_usuario',$this->nick_usuario);
-			$result->bindParam(':nombre_usuario',$this->nombre_usuario);
-			$result->bindParam(':apellido_usuario',$this->apellido_usuario);
-			$result->bindParam(':email_usuario',$this->email_usuario);
-			$result->bindParam(':contrasenia_usuario',$this->contrasenia_usuario);
-			$result->bindParam(':id_rol',$this->id_rol);
+			$result->bindParam(':nick_usuario',$this->nickUsuario);
+			$result->bindParam(':nombre_usuario',$this->nombreUsuario);
+			$result->bindParam(':apellido_usuario',$this->apellidoUsuario);
+			$result->bindParam(':email_usuario',$this->emailUsuario);
+			$result->bindParam(':contrasenia_usuario',$this->contraseniaUsuario);
+			$result->bindParam(':id_rol',$this->idRol);
 			$save = $result->execute(); // Ejecuta la consulta
 			return $save;
 		}
 
 		public function update() {
+			// $this->registerBiracora(USUARIOS,ACTUALIZAR);			
 			$query = "UPDATE $this->table SET 
 						nick_usuario = :nick_usuario, nombre_usuario = :nombre_usuario,
 						apellido_usuario = :apellido_usuario, email_usuario = :email_usuario,
@@ -85,25 +91,25 @@
 						WHERE nick_usuario = :nick_usuario";
 			$result = $this->db()->prepare($query); // Prepara la consulta SQL
 			// Limpia los parametros
-			$result->bindParam(':nick_usuario',$this->nick_usuario);
-			$result->bindParam(':nombre_usuario',$this->nombre_usuario);
-			$result->bindParam(':apellido_usuario',$this->apellido_usuario);
-			$result->bindParam(':email_usuario',$this->email_usuario);
-			$result->bindParam(':contrasenia_usuario',$this->contrasenia_usuario);
-			$result->bindParam(':id_rol',$this->id_rol);
+			$result->bindParam(':nick_usuario',$this->nickUsuario);
+			$result->bindParam(':nombre_usuario',$this->nombreUsuario);
+			$result->bindParam(':apellido_usuario',$this->apellidoUsuario);
+			$result->bindParam(':email_usuario',$this->emailUsuario);
+			$result->bindParam(':contrasenia_usuario',$this->contraseniaUsuario);
+			$result->bindParam(':id_rol',$this->idRol);
 			$update = $result->execute(); // Ejecuta la consulta
 			return $update;
 		}
 
 		public function delete() {
-			$query = "DELETE FROM $this->table WHERE nick_usuario = :nick_usuario"; // Consulta SQL
-			$result = $this->db()->prepare($query); // Prepara la consulta SQL
-			$result->bindParam(':nick_usuario',$this->nick_usuario);
-			$delete = $result->execute(); // Ejecuta la consulta
+			// $this->registerBiracora(USUARIOS,ELIMINAR);			
+			$query = "DELETE FROM $this->table WHERE nick_usuario = '$this->nickUsuario'"; // Consulta SQL
+			$delete = $this->db()->query($query); 
 			return $delete;
 		}
 
 		public function getAll() {
+			// $this->registerBiracora(USUARIOS,CONSULTAR);			
 			$sql = "SELECT * FROM $this->table";
             $query = $this->db()->query($sql);
             if($query){ // Evalua la cansulta
@@ -119,8 +125,9 @@
             return $resultSet; // Finalmente retornla el arreglo con los elementos.
 		}
 
-		public function getOne($nick_usuario) {
-			$sql = "SELECT * FROM $this->table WHERE nick_usuario = '$nick_usuario'"; // Consulta SQL
+		public function getOne($nickUsuario) {
+			// $this->registerBiracora(USUARIOS,CONSULTAR);						
+			$sql = "SELECT * FROM $this->table WHERE nick_usuario = '$nickUsuario'"; // Consulta SQL
 			$query = $this->db()->query($sql); // Ejecuta la consulta SQL
             if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
                 $register = $row; // Lo almacena en $register
@@ -129,11 +136,11 @@
 		}
 
 		public function login() {
-			$query = "SELECT * FROM $this->table WHERE nick_usuario = '$this->nick_usuario'"; // Consulta SQL
+			$query = "SELECT * FROM $this->table WHERE nick_usuario = '$this->nickUsuario'"; // Consulta SQL
 			$login = $this->db()->query($query); // Ejecuta la consulta SQL directamente
 			if($login && $login->rowCount() == 1) { // Si existe un registro...
 				if($usuario = $login->fetch(PDO::FETCH_OBJ)) { 
-					$verify = password_verify($this->contrasenia_usuario,$usuario->contrasenia_usuario); // Verifica la contraseña
+					$verify = password_verify($this->contraseniaUsuario,$usuario->contrasenia_usuario); // Verifica la contraseña
                     if($verify){ // Si la verificacion es exitosa
                         $register = $usuario;
                     }

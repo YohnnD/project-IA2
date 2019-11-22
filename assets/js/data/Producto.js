@@ -1,40 +1,30 @@
 var url = "http://localhost/project-ia2/Producto/";
 $(document).ready(function(){
+    
     // Registrar
     $('#register').submit(function(e) {
         e.preventDefault();
-        // Getting form data
         var nombre_producto = $('#nombre_producto').val();
-        var descripcion_producto = $('#descripcion_producto').val();
-        var tipo_producto = $('#tipo_producto').val();
-        var modelo_producto = $('#modelo_producto').val();
-        var precio_producto = $('#precio_producto').val();
-        var stock_min_producto = $('#stock_min_producto').val();
-        var stock_max_producto = $('#stock_max_producto').val();
-        var talla = $('#talla').val();
-        var stock_pro_talla = $('#stock_pro_talla').val();
-
-        // Sending data by AJAX
+        var formData = new FormData(this); // Creating FormData object.
+        var image = $('#img_producto')[0].files[0]; // Getting file input data
+        // if (image == null || image == undefined) {
+        //     image = null;
+        // }
+        formData.append('file',image);
+        // Sending data by Ajax
         $.ajax({
             method: "POST",
-            dataType: "json",
-            data: {
-                    nombre_producto: nombre_producto,
-                    descripcion_producto: descripcion_producto,
-                    tipo_producto: tipo_producto,
-                    modelo_producto: modelo_producto,
-                    precio_producto: precio_producto,
-                    stock_min_producto: stock_min_producto,
-                    stock_max_producto: stock_max_producto,
-                    talla: talla,
-                    stock_pro_talla: stock_pro_talla
-                },
+            data: formData,
             url: url + "register",
+            contentType: false,
+            cache: false,
+            processData:false,
             beforeSend: function() {
-                console.log("Sending data...");
+                console.log('Sending data');
+                $('#register :input').attr('disabled', 'disabled');
             },
-            success: function(data) {
-                console.log(data);
+            success: function (resp) {
+                console.log(resp);
                 swal({
                     title: "¡Bien hecho!",
                     text: "Se ha registrado el producto '" + nombre_producto + "' exitosamente.",
@@ -50,6 +40,105 @@ $(document).ready(function(){
                 })
                 .then(redirect => {
                     location.href = url + "index";
+                });
+            },
+            error: function (err) {
+                console.log(err);
+                swal({
+                    title: "¡Oh no!",
+                    text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                    icon: "error",
+                    button: {
+                        text: "Aceptar",
+                        visible: true,
+                        value: true,
+                        className: "green",
+                        closeModal: true
+                    }
+                });
+            }
+        })
+    });
+
+    // File type validation
+    $('#img_producto').change(function() {
+        var file = this.files[0];
+        var mimetype = file.type;
+        var match = ["image/jpeg", "image/png", "image/jpg"];
+        if(!((mimetype == match[0]) || (mimetype == match[1]) || (mimetype == match[2]))){
+            swal({
+                text: "Por favor, elige una imagen con formato compatible. (JPG/JPEG/PNG)",
+                icon: "warning",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+            $(this).val('');
+            return false;
+        }
+    });
+
+    // Modificar
+    $('#modify').click(function(e) {
+        $('#update :input').removeAttr('disabled','disabled');
+        // $("#nick_usuario").removeAttr("disabled", "disabled");
+        // $("#nombre_usuario").removeAttr("disabled", "disabled");
+        // $("#apellido_usuario").removeAttr("disabled", "disabled");
+        // $("#email_usuario").removeAttr("disabled", "disabled");
+        // $("#contrasenia_usuario").removeAttr("disabled", "disabled");
+        // $("#id_rol").removeAttr("readonly", "false");
+        $('.btn.disabled').removeClass('disabled');
+        $(".select-wrapper").removeClass('disabled');
+        $('select').formSelect();
+        $('#modify-btn').hide();
+        $('#delete-btn').hide();
+        $('#update-btn').show();
+        // $('#passwordUsuario').removeAttr('disabled', 'disabled');
+
+    });
+
+
+    // Actualizar
+    $('#update').submit(function(e) {
+        e.preventDefault();
+        var nombre_producto = $('#nombre_producto').val();
+        var formData = new FormData(this); // Creating FormData object.
+        var image = $('#img_producto')[0].files[0]; // Getting file input data
+        formData.append('file',image);
+
+        // Sending data by AJAX
+        $.ajax({
+            method: "POST",
+            data: formData,
+            url: url + "update",
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend: function() {
+                console.log('Sending data');
+                $('#update :input').attr('disabled', 'disabled');
+            },
+            success: function(resp) {
+                console.log(resp);
+                swal({
+                    title: "¡Bien hecho!",
+                    text: "Se ha modificado el producto '" + nombre_producto + "' exitosamente.",
+                    icon: "success",
+                    button: {
+                        text: "Aceptar",
+                        visible: true,
+                        value: true,
+                        className: "green",
+                        closeModal: true
+                    },
+                    timer: 3000
+                })
+                .then(redirect => {
+                    // location.href = url + "index";
                 })
             },
             error: function(err) {
@@ -70,16 +159,13 @@ $(document).ready(function(){
         });
     });
 
-    // Modificar
-
-
-    // Actualizar
-
-
+    
     // Eliminar
     $('#delete').click(function (){
+        var codigo_producto = $('#codigo_producto').val();
+        var nombre_producto = $('#nombre_producto').val();
         swal({
-            title: "Eliminar Producto",
+            title: "Eliminar Producto '" + nombre_producto + "'", 
             text: "¿Esta seguro que desea eliminar este producto? Si lo hace, no podrá revertir los cambios.",
             icon: "warning",
             buttons: {
@@ -98,5 +184,109 @@ $(document).ready(function(){
                 }
             }
         })
+        .then(promise => {
+            if(promise) {
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {
+                        codigo_producto: codigo_producto
+                    },
+                    url: url + "delete",
+                    beforeSend: function() {
+                        console.log('Sending data...');
+                    },
+                    success: function(data) {
+                        console.log(data);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+                swal({
+                    title: "Eliminación exitosa",
+                    text: "Se ha eliminado el producto exitosamente.",
+                    icon: "success",
+                    // timer: 3000,
+                    buttons: {
+                        confirm: {
+                            text: "¡Listo!",
+                            className: "green"
+                        }
+                    }
+                })
+                .then(exit => {
+                    location.href = url + "index";
+                });
+            }
+            else {
+                swal({
+                    text: "No se ha eliminado el producto",
+                    icon: "info",
+                    buttons: {
+                        confirm: {
+                            text: "¡Esta bien!",
+                            className: "blue"
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    function getTallas() {
+        return $.ajax({
+            method: 'GET',
+            dataType: 'json',
+            data: {},
+            url: url + 'getAllTallas',
+            beforeSend: function() {
+                $('select.id_talla').html('<option>Cargando...</option>');
+                console.log('It works');
+            },
+            success: function(resp) {
+                var tallas = "<option disabled selected>Elige una opción</option>";
+                if(resp === null) {
+                    tallas = "<option disabled selected>No hay registros</option>";
+                }
+                else{
+                    resp.forEach(function(talla,i){
+                        tallas += `<option value="${ talla.id_talla }">${ talla.nombre_talla }</option>`;
+                    });
+                }
+                $('select.id_talla').html(tallas);
+                $('select').formSelect();
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
+
+    getTallas();
+
+    // Add talla
+    $('#btn-add-talla').click(function() {
+        // $('#add-talla').id('');
+        var tallas = getTallas();
+        var template = ` 
+            <div class="input-field col s12 m5" id="">
+                    <i class="icon-straighten prefix"></i>
+                    <select name="id_talla[]" id="id_talla" class="id_talla" required>
+                        <option value="${ tallas.id_talla }">${ tallas.nombre_talla }</option>
+                    </select>
+                    <label>Talla</label>
+                </div>
+                <div class="input-field col s10 m5">
+                    <i class="icon-call_made prefix"></i>
+                    <input type="number" name="stock_pro_talla[]" id="stock_pro_talla" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números. Mínimo 24" required>
+                    <label>Cantidad por Talla</label>
+                </div>
+                <div class="input-field col s2 center-align" id="add-talla">
+                    <a href="#!" class="btn btn-floating a2-green waves-effect waves-light" id="btn-add-talla"><i class="icon-add"></i></a>
+                </div>
+        `;
+        $('#add-talla').after(template);
+        $('select').formSelect();
     });
 });

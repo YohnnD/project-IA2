@@ -29,7 +29,7 @@
                     <h4 class="center-align">Servicios Disponibles</h4>
                 </div>
                 <div class="col s12">
-                    <table class="striped centered responsive-table">
+                    <table class="striped centered responsive-table" id="Servicio">
                         <thead>
                             <tr>
                                 <th>Servicio</th>
@@ -40,42 +40,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ($servicios as $value):?>
+                                
+                            
                             <tr>
-                                <td>Confección Textil</td>
-                                <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem, praesentium?</td>
-                                <td>$ 5.00</td>
-                                <td>Metros</td>
+                                <td><?php echo $value['nombre_servicio']?></td>
+                                <td><?php echo $value['descripcion_servicio']?></td>
+                                <td><?php echo $value['precio_servicio']?></td>
+                                <td><?php echo $value['unidad_medida']?></td>
                                 <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
+                                    <a href="<?php echo Helpers::url('Servicio','details');?>/<?php echo $value['id_servicio'];?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Serigrafía</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, debitis.</td>
-                                <td>$ 3.50</td>
-                                <td>???</td>
-                                <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Sublimación</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, in?</td>
-                                <td>$ 6.30</td>
-                                <td>???</td>
-                                <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Diseño Gráfico</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, in?</td>
-                                <td>$ 10.00</td>
-                                <td>???</td>
-                                <td>
-                                    <a href="" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
-                            </tr>
+
+                        <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>
@@ -88,6 +66,7 @@
 
 
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>

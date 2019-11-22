@@ -1,13 +1,54 @@
 var ventasChart = document.querySelector("#ventas");
+var gananciasChart = document.querySelector("#ganancias");
+const url='http://localhost/project-IA2/Home/';
+
+$('document').ready(function () {
+
+    $.ajax({
+        method: "GET",
+        url: url + 'ingreso',
+        dataType: 'json',
+
+        beforeSend: function () {
+            console.log('hola2');
+        },
+        success: function (data) {
+            console.log('hola3');
+            console.log(data);
+                estadistica(data);
+        },
+        error: function (e) {
+            console.log('hola4');
+            console.log(e);
+
+        }
+
+
+    });
+});
+
+function estadistica(data){
+
 var ventas = new Chart(ventasChart, {
     type: "line", // Tipo de chart
     data: { // Incluye lo referente a datos
         "labels": [ // Etiquetas para la leyenda
-            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
         ],
         "datasets": [{ // Sets de datos que tendra la chart
             "label": "Ventas",
-            "data": [65, 59, 80, 81, 56, 92, 40, 0, 0, 0, 0, 0, 0],
+            "data": [data["enero"],
+                    data["febrero"][0]['ventas'],
+                    data["marzo"],
+                    data["abril"][0]['ventas'],
+                    data["mayo"],
+                    data["junio"],
+                    data["julio"],
+                    data["agosto"],
+                    data["septiembre"],
+                    data["octubre"][0]['ventas'],
+                    data["noviembre"],
+                    data["diciembre"],],
             "fill": false,
             "borderColor": "rgb(75, 192, 192)",
             "lineTension": 0.1
@@ -25,14 +66,16 @@ var ventas = new Chart(ventasChart, {
     }
 });
 
-var gananciasChart = document.querySelector("#ganancias");
+}
+
+/*
 var ganancias = new Chart(gananciasChart, {
     type: "pie",
     data: {
         "labels": ["Enero", "Febrero", "Marzo", "Abril"],
         "datasets": [{
             "label": "Ganancias",
-            "data": [40, 20, 55, 70],
+            "data": [430, 20, 55, 70],
             "backgroundColor": [
                 "#e91e63",
                 "#9c27b0",
@@ -52,9 +95,11 @@ var ganancias = new Chart(gananciasChart, {
         }
     }
 });
+*/
 
 $(document).ready(function() {
      $('.timer').countTo({
          speed: 2000
      });
 });
+
