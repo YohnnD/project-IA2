@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
-    <title>Inicio - Inversiones A2</title>
+    <title>Estadisticas - Inversiones A2</title>
 </head>
 <body>
     <!-- Header -->

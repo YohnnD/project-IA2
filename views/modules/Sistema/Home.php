@@ -63,7 +63,7 @@
                     </a>
                 </div>
                 <div class="col s12 m3">
-                    <a href="<?php echo Helpers::url('Reporte','index'); ?>" class="btn-app cyan">
+                    <a href="<?php echo Helpers::url('Reporte','reporteIndex'); ?>" class="btn-app cyan">
                         <i class="icon-report"></i>
                         <span class="truncate">Reportes</span>
                     </a>
