@@ -232,6 +232,25 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#Material').DataTable({
+        "pageLength": 12,
+        "language": {
+            "search": "Buscar:  ",
+            "lengthMenu": "",
+            "zeroRecords": "Upps, no hay datos para mostrar",
+            "info": "Pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "No existe el material",
+            "infoFiltered": "(Filtro De _MAX_ Resultado)",
+            "paginate": {
+                "first": "<i class='icon-first_page'></i>",
+                "last": "<i class='icon-last_page'></i>",
+                "next": "<i class='icon-navigate_next'></i>",
+                "previous": "<i class='icon-navigate_before'></i>"
+            },
+        }
+    });
+
 });
 
 function buscar(){
