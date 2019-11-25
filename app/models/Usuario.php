@@ -85,7 +85,7 @@
 		public function update() {
 			// $this->registerBiracora(USUARIOS,ACTUALIZAR);			
 			$query = "UPDATE $this->table SET 
-						nick_usuario = :nick_usuario, nombre_usuario = :nombre_usuario,
+						 nombre_usuario = :nombre_usuario,
 						apellido_usuario = :apellido_usuario, email_usuario = :email_usuario,
 						contrasenia_usuario = :contrasenia_usuario, id_rol = :id_rol 
 						WHERE nick_usuario = :nick_usuario";

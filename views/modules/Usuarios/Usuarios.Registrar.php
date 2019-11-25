@@ -83,10 +83,16 @@
                 <div class="input-field col s12">
                     <i class="icon-assistant prefix"></i>
                     <select name="id_rol" id="id_rol">
+
                         <option value="null" disabled selected>Elige un rol</option>
-                        <option value="1">Superusuario</option>
-                        <option value="2">Administrador</option>
-                        <option value="3">Operador</option>
+
+                        <?php if(!is_null($roles)):?>
+                            <?php foreach ($roles as $rol):?>
+                                <option value="<?php echo $rol->id_rol;?>"><?php echo $rol->nombre_rol;?></option>
+                            <?php endforeach;?>
+                        <?php else:?>
+                            <option value="null" disabled selected>Sin roles aún registrados.</option>
+                        <?php endif?>
                     </select>
                     <label for="id_rol">Rol</label>
                 </div>

@@ -209,13 +209,6 @@ INSERT INTO modulos VALUES(default, 'SEGURIDAD');
 INSERT INTO modulos VALUES(default, 'MANTENIMIENTO');
 
 
-CREATE TABLE IF NOT EXISTS rol_modulos (
-
-    id_rol                   INT            NOT NULL,
-    id_modulo                INT            NOT NULL,
-
-    PRIMARY KEY (id_rol, id_modulo)
-);
 
 CREATE TABLE IF NOT EXISTS permisos(
 
@@ -226,12 +219,13 @@ CREATE TABLE IF NOT EXISTS permisos(
     PRIMARY KEY (id_permiso)
 );
 
-CREATE TABLE IF NOT EXISTS rol_permisos (
+CREATE TABLE IF NOT EXISTS rol_permisos_modulos (
 
     id_rol                   INT            NOT NULL,
     id_permiso               INT            NOT NULL,
+    id_modulo                INT            NOT NULL,
 
-    PRIMARY KEY (id_rol, id_permiso)
+    PRIMARY KEY (id_rol, id_permiso,id_modulo)
 );
 
 
@@ -247,8 +241,7 @@ ALTER TABLE    mat_servicios   ADD CONSTRAINT    Fkmaterial       FOREIGN KEY   
 ALTER TABLE    mat_servicios   ADD CONSTRAINT    Fkpedido         FOREIGN KEY    (id_servicio)       REFERENCES    servicios(id_servicio)           ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    factura_ventas  ADD CONSTRAINT    Fkpedido         FOREIGN KEY    (codigo_pedido)     REFERENCES    pedidos(codigo_pedido)           ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    bitacoras       ADD CONSTRAINT    Fkusuario        FOREIGN KEY    (nick_usuario)      REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    rol_permisos    ADD CONSTRAINT    Fkroles          FOREIGN KEY    (id_rol)            REFERENCES    roles(id_rol)                    ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    rol_permisos    ADD CONSTRAINT    Fkpermiso        FOREIGN KEY    (id_permiso)        REFERENCES    permisos(id_permiso)             ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    rol_modulos     ADD CONSTRAINT    Fkrol            FOREIGN KEY    (id_rol)            REFERENCES    roles(id_rol)                    ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    rol_modulos     ADD CONSTRAINT    Fkmodulo         FOREIGN KEY    (id_modulo)         REFERENCES    modulos(id_modulo)               ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    rol_permisos_modulos    ADD CONSTRAINT    Fkroles          FOREIGN KEY    (id_rol)            REFERENCES    roles(id_rol)                    ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    rol_permisos_modulos    ADD CONSTRAINT    Fkpermiso        FOREIGN KEY    (id_permiso)        REFERENCES    permisos(id_permiso)             ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkmodulo         FOREIGN KEY    (id_modulo)         REFERENCES    modulos(id_modulo)               ON UPDATE CASCADE ON DELETE CASCADE;
 

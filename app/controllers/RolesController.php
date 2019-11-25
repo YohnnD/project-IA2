@@ -1,36 +1,93 @@
 <?php
-	class RolesController extends BaseController {
-		public function __construct() {
-			parent::__construct();
-		}
 
-		public function index() {
-			$this->view('Seguridad/Roles');            
-		}
+class RolesController extends BaseController
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-		public function create() {
-			$this->view('Roles/Roles.Registrar');            
-			
-		}
+    public function index()
+    {
+        $this->view('Seguridad/Roles');
+    }
 
-		public function getAll() {
-			
-		}
+    public function create()
+    {
+        $rol = new Rol();
+        $permisos = $rol->getPermisos();
+        $modulos = $rol->getModule();
+        $this->view('Roles/Roles.Registrar', ['permisos' => $permisos, 'modulos' => $modulos]);
 
-		public function register() {
+    }
 
-		}
+    public function getAll()
+    {    $rol = new Rol();
+        $roles=$rol->getAll();
+        $this->view('Roles/Roles.Consultar', ['roles'=>$roles]);
+    }
 
-		public function update() {
+    public function register()
+    {
+        $rol = new Rol();
+        $nombre_rol = $_POST['nombre_rol'];
+        $descripcion_rol = $_POST['descripcion_rol'];
 
-		}
+        $rol->setNombreRol($nombre_rol);
+        $rol->setDescripcionRol($descripcion_rol);
+        $rol->save();
 
-		public function delete() {
+        $rol_insert = $rol->getByIdLast();
+
+
+        $modules = $_POST['modules'];
+        $permisos = $_POST["permisos"];
+
+        for ($i = 0; $i < count($modules); $i++) {
+            for ($j = 0; $j < count($permisos[$modules[$i]]); $j++) {
+
+
+                $rol->saveRolPermisoModule($rol_insert->id_rol,$modules[$i],$permisos[$modules[$i]][$j]);
+
+                //echo "Modulo:" . $modules[$i] . "<br>";
+                //echo "Permisos:" . $permisos[$modules[$i]][$j] . "<br>";
+            }
+
 
         }
-        
-        public function getBy() {
 
-        }
-	}
+        return $this->redirect('Roles','getAll');
+    }
+
+    public function update()
+    {
+
+    }
+
+    public function delete()
+    {
+
+    }
+
+    public function getBy(){
+        $id=$_GET['id'];
+        $rol = new Rol();
+        $rol->setIdRol($id);
+        $rol_find=$rol->getBy();
+        $modules_find=$rol->getByModule();
+        $permisos_find=$rol->getByPermisos();
+        $modulos=$rol->getModule();
+        $permisos=$rol->getPermisos();
+
+
+        $this->view('Roles/Roles.Detalles', [
+            'rol_find' => $rol_find,
+            'module_find' => $modules_find,
+            'permisos_find'=>$permisos_find,
+            'modulos'=>$modulos,
+            'permisos'=>$permisos,
+        ]);
+    }
+}
+
 ?>

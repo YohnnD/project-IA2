@@ -17,12 +17,37 @@
 		}
 
 		public function roles() {
-			$this->view('Seguridad/Roles');			
+		    $rol=new Rol();
+		    $permisos=$rol->getPermisos();
+		    $modulos=$rol->getModule();
+			$this->view('Seguridad/Roles');
 		}
 
 		public function permissions() {
+
+
+
+
+
 			$this->view('Seguridad/Permisos');			
 
 		}
+
+		public function store(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
 	}
 ?>

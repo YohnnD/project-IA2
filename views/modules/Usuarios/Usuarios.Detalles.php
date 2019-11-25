@@ -88,9 +88,15 @@
                                     <i class="icon-assistant prefix"></i>
                                     <select name="id_rol" id="id_rol" disabled>
                                         <option value="" disabled>Elige un rol</option>
-                                        <option value="1" <?= $usuario->id_rol == "1" ? 'selected' : '' ?>>Superusuario</option>
-                                        <option value="2" <?= $usuario->id_rol == "2" ? 'selected' : '' ?>>Administrador</option>
-                                        <option value="3" <?= $usuario->id_rol == "3" ? 'selected' : '' ?>>Operador</option>
+                                        <?php foreach ($roles as $rol):?>
+                                            <?php if($usuario->id_rol==$rol->id_rol):?>
+                                                <option value="<?php echo $rol->id_rol;?>" selected> <?php echo $rol->nombre_rol;?></option>
+                                                <?php else:?>
+                                                <option value="<?php echo $rol->id_rol;?>"> <?php echo $rol->nombre_rol;?></option>
+                                                <?php endif;?>
+                                        <?php endforeach;?>
+
+
                                     </select>
                                     <label for="id_rol">Rol</label>
                                 </div>

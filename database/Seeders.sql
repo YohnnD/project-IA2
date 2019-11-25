@@ -1,11 +1,11 @@
 ﻿-- CLIENTES
 
-INSERT INTO 	clientes 		VALUES ('27210326','V-', 'Angel Serrano'    , 'Esclavo que hizo el registro' , 'Sarare'         , '04120531200'  ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27085898','V-', 'Yohnneiber Diaz'  , 'Lider'                        , 'Norte'          , '0424'		 ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27317920','V-', 'Jhon Moran'       , 'Hitler y Teatrero'      		 , '5 de julio'     , '0424'		 ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('28286639','V-', 'Andres Melendez'  , 'Lacayo'      				 , 'Cerrito Blanco' , '0424'		 ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27198456','V-', 'Veronica Quintero', 'Emprendedora'				 , 'Santa Elena'    , '0412'		 ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27212503','V-', 'Gabriel Oropeza'  , 'Misterioso'  			     , 'Calle 48'       , '0424'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27210326','V', 'Angel Serrano'    , 'Esclavo que hizo el registro' , 'Sarare'         , '04120531200'  ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27085898','V', 'Yohnneiber Diaz'  , 'Lider'                        , 'Norte'          , '0424'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27317920','V', 'Jhon Moran'       , 'Hitler y Teatrero'      		 , '5 de julio'     , '0424'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('28286639','V', 'Andres Melendez'  , 'Lacayo'      				 , 'Cerrito Blanco' , '0424'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27198456','V', 'Veronica Quintero', 'Emprendedora'				 , 'Santa Elena'    , '0412'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27212503','V', 'Gabriel Oropeza'  , 'Misterioso'  			     , 'Calle 48'       , '0424'		 ,'UPTAEB');
 
 -- PEDIDOS
 

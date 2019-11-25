@@ -28,7 +28,7 @@
                 <h4 class="center-align">Listado de Pedidos</h4>
             </div>
             <div class="col s12">
-                <table class="responsive-table centered striped">
+                <table class="responsive-table centered striped" id="pedidos">
                     <thead>
                     <tr>
                         <th>Código</th>
@@ -64,6 +64,7 @@
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Pedido.js"></script>
 </body>
 </html>

@@ -17,7 +17,48 @@
 
     <!-- Main Container -->
     <main>
-        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s12 breadcrumb-nav left-align">
+                    <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
+                    <a href="<?php echo Helpers::url('Cliente','index'); ?>" class="breadcrumb">Gestionar Roles</a>
+                    <a href="<?php echo Helpers::url('Cliente','getAll'); ?>" class="breadcrumb">Consultar Roles</a>
+                </div>
+                <div class="col s12 center-align">
+                    <h4>Consultar Roles</h4>
+                </div>
+                <div class="col s12">
+                    <table class="responsive-table highlight centered">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Detalles</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php if(!is_null($roles)):?>
+                            <?php foreach ($roles as $rol):?>
+                                <tr>
+                                    <td><?php echo $rol->nombre_rol;?></td>
+                                    <td><?php echo $rol->descripcion_rol;?></td>
+                                    <td><a href="<?php echo Helpers::url('Roles','getBy')."/".$rol->id_rol; ?>" class="btn btn-small btn-floating blue waves-effect waves-light"><i class="icon-find_in_page"></i></a></td>
+                                </tr>
+                            <?php endforeach;?>
+                        <?php else:?>
+                            <tr>
+                                <td colspan="6"><h5 class="center-align">Todavia no registras un rol.</h5></td>
+                            </tr>
+
+                        <?php endif?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
     </main>
 
     <!-- Footer -->
