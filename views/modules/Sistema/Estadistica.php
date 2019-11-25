@@ -112,7 +112,7 @@
                 </div>
                 <div class="col s12 m12">
                     <ul class="collection with-header">
-                        <li class="collection-header"><h5><i class="icon-local_mall"></i>  Productos Vendidos</h5></li> 
+                        <li class="collection-header"><h5><i class="icon-local_mall"></i>  Productos Mas Vendidos Anuales</h5></li> 
                         <?php if($producto==null){  ?>
                             <li class="collection-item">
                             
@@ -139,7 +139,7 @@
 
                 <div class="col s12 m12">
                     <ul class="collection with-header">
-                        <li class="collection-header"><h5><i class="icon-local_atm"></i>  Servicios Vendidos</h5></li> 
+                        <li class="collection-header"><h5><i class="icon-local_atm"></i>  Servicios Mas Vendidos Anuales</h5></li> 
                         <?php if($servicio==null){  ?>
                             <li class="collection-item">
                             

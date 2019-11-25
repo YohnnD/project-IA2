@@ -4,7 +4,6 @@
 
 		public function __construct() {
 			parent::__construct();
-
 		}
 
 		public function producto(){
@@ -69,7 +68,8 @@
 						return $result=null;
 					}
 
-						}
+			}
+
 		public function cliente(){
 
 			$cliente=$this->db()->query("SELECT to_char(fecha_actu_bitacora, 'MM/YYYY') AS mes, count(*) AS registro  FROM bitacoras WHERE accion_bitacora = 'REGISTRAR' AND modulo_bitacora='CLIENTES' GROUP BY mes");
@@ -272,8 +272,11 @@
 				'noviembre'	=>$resultNoviembre,
 				'diciembre'	=>$resultDiciembre
 			);
+		}
 
+		public function registrarBitacora(){
 
+			$this->registerBitacora(ESTADISTICAS, VISUALIZAR);
 		}
 
 		public function ganancia(){
