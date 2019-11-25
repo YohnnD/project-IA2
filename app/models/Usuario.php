@@ -67,7 +67,7 @@
 			$this->contraseniaUsuario = password_hash($contraseniaUsuario, PASSWORD_DEFAULT, array('cost'=>12));
 		}
 
-		public function insert() {
+		public function save() {
 			// $this->registerBiracora(USUARIOS,REGISTRAR);			
 			$query = "INSERT INTO $this->table (nick_usuario,nombre_usuario,apellido_usuario,email_usuario,contrasenia_usuario,id_rol) VALUES (:nick_usuario,:nombre_usuario,:apellido_usuario,:email_usuario,:contrasenia_usuario,:id_rol) "; // COnsulta SQL
 			$result = $this->db()->prepare($query); // Prepara la consulta SQL

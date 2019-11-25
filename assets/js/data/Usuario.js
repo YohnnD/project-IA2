@@ -1,4 +1,4 @@
-var url = "http://localhost/mdc-git/project-ia2/Usuario/";
+var url = "http://localhost/project-IA2/Usuario/";
 
 $(document).ready(function(){
     // Registrar

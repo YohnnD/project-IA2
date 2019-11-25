@@ -127,7 +127,7 @@
 			$this->stockProTalla = $stockProTalla;
 		}
 
-		public function insert() {
+		public function save() {
 			// $this->registerBiracora(PRODUCTOS,REGISTRAR);
 			$query = "INSERT INTO $this->table
 						(codigo_producto,
@@ -154,7 +154,7 @@
 			return $save;
 		}
 
-		public function insertTallas() {
+		public function saveTallas() {
 			$query = "INSERT INTO pro_tallas (codigo_producto,id_talla,stock_pro_talla) VALUES 
 						(:codigo_producto,:id_talla,:stock_pro_talla)";
 			$result = $this->db()->prepare($query); // Prepara la consulta.

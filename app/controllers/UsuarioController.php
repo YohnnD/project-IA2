@@ -42,7 +42,7 @@
 					$usuario->setEmailUsuario($emailUsuario);
 					$usuario->setContraseniaEncriptada($contraseniaUsuario);
 					$usuario->setIdRol($idRol);
-					$data = $usuario->insert();
+					$data = $usuario->save();
 					$this->sendAjax($data);
 				}
 			}
