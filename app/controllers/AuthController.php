@@ -17,15 +17,11 @@
 				$usuarioSession = $usuario->login();
 				if($usuarioSession && is_object($usuarioSession)) { // Si se definio el usuario y es un objeto
 					// Setea los datos de la sesión.
-					// $_SESSION['identified'] = Helpers::isIdentified();
-					$_SESSION['nick_usuario'] = $usuarioSession->nick_usuario;
-					$_SESSION['nombre_usuario'] = $usuarioSession->nombre_usuario;
-					$_SESSION['apellido_usuario'] = $usuarioSession->apellido_usuario;
-					$_SESSION['email_usuario'] = $usuarioSession->email_usuario;
-					$_SESSION['contrasenia_usuario'] = $usuarioSession->contrasenia_usuario;
-					$_SESSION['id_rol'] = $usuarioSession->id_rol;
+					$_SESSION['user_auth'] = $usuarioSession;
 					$_SESSION['error'] = false;
 					$_SESSION['message'] = "Log in successfully";
+					// $_SESSION['permissions'] = 
+					// $this->registerBiracora(LOGIN, LOGIN);									
 					$this->redirect('Home','index');
 				}
 				else {

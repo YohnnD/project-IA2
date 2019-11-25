@@ -85,7 +85,7 @@
 		public function update() {
 			// $this->registerBiracora(USUARIOS,ACTUALIZAR);			
 			$query = "UPDATE $this->table SET 
-						 nombre_usuario = :nombre_usuario,
+						nombre_usuario = :nombre_usuario,
 						apellido_usuario = :apellido_usuario, email_usuario = :email_usuario,
 						contrasenia_usuario = :contrasenia_usuario, id_rol = :id_rol 
 						WHERE nick_usuario = :nick_usuario";
@@ -110,7 +110,7 @@
 
 		public function getAll() {
 			// $this->registerBiracora(USUARIOS,CONSULTAR);			
-			$sql = "SELECT * FROM $this->table";
+			$sql = "SELECT * FROM $this->table INNER JOIN roles ON roles.id_rol = usuarios.id_rol";
             $query = $this->db()->query($sql);
             if($query){ // Evalua la cansulta
                 if($query->rowCount() != 0) { // Si existe al menos un registro...
@@ -153,6 +153,42 @@
 				$register = null;
 			}
 			return $register;
+		}
+
+		public function checkNickUsuario() {
+			// $this->registerBiracora(PRODUCTOS, CONSULTAR);			
+			$sql = "SELECT nick_usuario FROM $this->table 
+					WHERE nick_usuario = '$this->nickUsuario'";
+			$query = $this->db()->query($sql);
+			if($query){
+                if($query->rowCount() != 0){
+                    if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
+                        $register = $row; // Lo almacena en $register
+                    }
+                }
+                else{
+                    $register = null;
+                }
+            }
+            return $register; // Y finalmente, lo retorna.
+		}
+
+		public function checkEmailUsuario() {
+			// $this->registerBiracora(PRODUCTOS, CONSULTAR);			
+			$sql = "SELECT email_usuario FROM $this->table 
+					WHERE email_usuario = '$this->emailUsuario'";
+			$query = $this->db()->query($sql);
+			if($query){
+                if($query->rowCount() != 0){
+                    if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
+                        $register = $row; // Lo almacena en $register
+                    }
+                }
+                else{
+                    $register = null;
+                }
+            }
+            return $register; // Y finalmente, lo retorna.
 		}
 
 		public function changePassword() {

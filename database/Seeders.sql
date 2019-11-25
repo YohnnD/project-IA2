@@ -81,3 +81,10 @@ INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '2' , 1 );
 INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '3' , 1 );
 INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '1' , 1 );
 INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000001' , '2' , 1 );
+
+INSERT INTO 	permisos 	VALUES (1 , 'REGISTRAR' , 'El usuario tendrá permiso para registrar en el módulo.' );
+INSERT INTO 	permisos 	VALUES (2 , 'CONSULTAR' , 'El usuario tendrá permiso para consultar registros en el módulo.' );
+INSERT INTO 	permisos 	VALUES (3 , 'ACTUALIZAR' , 'El usuario tendrá permiso para actualizar registros en el módulo.' );
+INSERT INTO 	permisos 	VALUES (4 , 'ELIMINAR' , 'El usuario tendrá permiso para eliminar registros en el módulo.' );
+INSERT INTO 	permisos 	VALUES (5 , 'VER DETALLES' , 'El usuario tendrá permiso para ver detalles de registros del módulo.');
+INSERT INTO 	permisos 	VALUES (6 , 'REPORTES' , 'El usuario tendrá permiso para acceder a los reportes del sistema.');

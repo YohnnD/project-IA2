@@ -27,15 +27,9 @@
                     <h4>Enlaces rápidos</h4>
                 </div> -->
                 <div class="col s12 m3">
-                    <a href="<?php echo Helpers::url('Usuario','index'); ?>" class="btn-app blue">
-                        <i class="icon-group_add"></i>
-                        <span class="truncate">Gestionar Usuarios</span>
-                    </a>
-                </div>
-                <div class="col s12 m3">
                     <a href="<?php echo Helpers::url('Producto','index'); ?>" class="btn-app green">
                         <i class="icon-loyalty"></i>
-                        <span class="truncate">Gestionar Producto Terminado</span>
+                        <span class="truncate">Gestionar Producto</span>
                     </a>
                 </div>
                 <div class="col s12 m3">
@@ -68,6 +62,14 @@
                         <span class="truncate">Reportes</span>
                     </a>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m3">
+                    <a href="<?php echo Helpers::url('Usuario','index'); ?>" class="btn-app blue">
+                        <i class="icon-group_add"></i>
+                        <span class="truncate">Gestionar Usuarios</span>
+                    </a>
+                </div>
                 <div class="col s12 m3">
                     <a href="<?php echo Helpers::url('Seguridad','index'); ?>" class="btn-app green">
                         <i class="icon-security"></i>
@@ -81,7 +83,7 @@
                     </a>
                 </div>
             </div>
-            
+        </div>
     </main>
 
     <!-- Footer -->

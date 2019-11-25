@@ -28,11 +28,12 @@
         </div>
     </div>
     <div class="container-fluid">
-        <form action="<?php echo Helpers::url('Roles', 'register'); ?>" method="post" class="card">
+        <form action="<?php echo Helpers::url('Roles', 'update'); ?>" method="post" class="card">
             <div class="card-header center-align">
                 <h5>Registrar Rol</h5>
             </div>
             <div class="card-content row">
+                <input type="hidden" name="id_rol" value="<?php echo $rol_find->id_rol ?>">
                 <div class="input-field col s12 m6">
                     <i class="icon-assignment prefix"></i>
                     <input type="text" name="nombre_rol" id="nombre_rol" class="validate"  value="<?php  echo $rol_find->nombre_rol;?>"  readonly required>
@@ -114,7 +115,12 @@
                     </tbody>
                 </table>
             </div>
-
+            <div class="card-footer center-align">
+                <button type="submit" class="btn green waves-effect waves-light">
+                    <i class="icon-send right"></i>
+                    Actualizar
+                </button>
+            </div>
         </form>
     </div>
 </main>

@@ -5,6 +5,7 @@
         private $nombreRol;
         private $descripcionRol;
 
+
 		// Métodos
 		public function __construct() {
 			$this->table = 'roles';            
@@ -46,7 +47,18 @@
 
 
         public function update() {
-
+            // $this->registerBiracora(USUARIOS,ACTUALIZAR);            
+            $query = "UPDATE $this->table SET 
+                        nombre_rol = :nombre_rol,
+                        descripcion_rol = :descripcion_rol
+                        WHERE id_rol = :id_rol";
+            $result = $this->db()->prepare($query); // Prepara la consulta SQL
+            // Limpia los parametros
+            $result->bindParam(':id_rol',$this->idRol);
+            $result->bindParam(':nombre_rol',$this->nombreRol);
+            $result->bindParam(':descripcion_rol',$this->descripcionRol);
+            $update = $result->execute(); // Ejecuta la consulta
+            return $update;
         }
 
         public function delete() {
@@ -170,7 +182,26 @@
             return $save;
         }
 
+        public function updateRolPermisoModule($id_rol,$id_modulo,$id_permiso) {
+            // $this->registerBiracora(USUARIOS,ACTUALIZAR);            
+            $query = "UPDATE rol_permisos_modulos SET 
+                        id_permiso = :id_permiso,
+                        id_modulo = :id_modulo 
+                        WHERE id_rol = :id_rol";
+            $result = $this->db()->prepare($query); // Prepara la consulta SQL
+            $result->bindParam(':id_rol',$id_rol);
+            $result->bindParam(':id_permiso',$id_permiso);
+            $result->bindParam(':id_modulo',$id_modulo);
+            $update = $result->execute(); // Ejecuta la consulta
+            return $update;
+        }
 
-
+ 
+        public function deleteRolPermisoModule($id_rol,$id_modulo,$id_permiso) {
+            // $this->registerBiracora(USUARIOS,ELIMINAR);          
+            $query = "DELETE FROM rol_permisos_modulos WHERE id_rol = '$id_rol'"; // Consulta SQL
+            $delete = $this->db()->query($query); 
+            return $delete;
+        }
 	}
 ?>

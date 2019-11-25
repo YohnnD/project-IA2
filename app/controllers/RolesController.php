@@ -52,16 +52,32 @@ class RolesController extends BaseController
                 //echo "Modulo:" . $modules[$i] . "<br>";
                 //echo "Permisos:" . $permisos[$modules[$i]][$j] . "<br>";
             }
-
-
         }
 
         return $this->redirect('Roles','getAll');
     }
 
-    public function update()
-    {
-
+    public function update(){
+        $rol = new Rol();
+        $id_rol = $_POST['id_rol'];
+        $nombre_rol = $_POST['nombre_rol'];
+        $descripcion_rol = $_POST['descripcion_rol'];
+        $rol->update();
+        $modules = $_POST['modules'];
+        $permisos = $_POST["permisos"];
+        $rol->setIdRol($id_rol);
+        $rol_db = $rol->getBy();
+        foreach ($modules as $module) {
+            foreach ($permisos[$module] as $array => $permiso) {
+                $rol->deleteRolPermisoModule($id_rol,$module,$permiso);
+            }
+        }
+        foreach ($modules as $module) {
+            foreach ($permisos[$module] as $array => $permiso) {
+                $rol->saveRolPermisoModule($id_rol,$module,$permiso);
+            }
+        }
+        return $this->redirect('Roles','getAll');
     }
 
     public function delete()
