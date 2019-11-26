@@ -16,6 +16,7 @@
 				$usuario->setContraseniaUsuario($_POST['contrasenia_usuario']);
 				$usuarioSession = $usuario->login();
 				if($usuarioSession && is_object($usuarioSession)) { // Si se definio el usuario y es un objeto
+					$_SESSION['nick_usuario'] = $usuarioSession->nick_usuario;
 					// Setea los datos de la sesión.
 					$_SESSION['user_auth'] = $usuarioSession;
 					$_SESSION['error'] = false;
