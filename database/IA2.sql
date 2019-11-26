@@ -225,7 +225,6 @@ CREATE TABLE IF NOT EXISTS permisos(
     PRIMARY KEY (id_permiso)
 );
 
-<<<<<<< HEAD
 INSERT INTO 	permisos 	VALUES (1 , 'REGISTRAR'     , 'El usuario tendrá permiso para registrar en el módulo.' );
 INSERT INTO 	permisos 	VALUES (2 , 'CONSULTAR'     , 'El usuario tendrá permiso para consultar registros en el módulo.' );
 INSERT INTO 	permisos 	VALUES (3 , 'ACTUALIZAR'    , 'El usuario tendrá permiso para actualizar registros en el módulo.' );
@@ -233,15 +232,6 @@ INSERT INTO 	permisos 	VALUES (4 , 'ELIMINAR'      , 'El usuario tendrá permiso
 INSERT INTO 	permisos 	VALUES (5 , 'VER DETALLES'  , 'El usuario tendrá permiso para ver detalles de registros del módulo.');
 INSERT INTO 	permisos 	VALUES (6 , 'REPORTES'      , 'El usuario tendrá permiso para acceder a los reportes del sistema.');
 INSERT INTO 	permisos 	VALUES (7 , 'CONFIGURACION' , 'El usuario tendrá permiso para acceder a los modulos de mantenimiento y seguridad del sistema.');
-=======
-
-INSERT INTO     permisos    VALUES (1 , 'REGISTRAR' , 'El usuario tendrá permiso para registrar en el módulo.' );
-INSERT INTO     permisos    VALUES (2 , 'CONSULTAR' , 'El usuario tendrá permiso para consultar registros en el módulo.' );
-INSERT INTO     permisos    VALUES (3 , 'ACTUALIZAR' , 'El usuario tendrá permiso para actualizar registros en el módulo.' );
-INSERT INTO     permisos    VALUES (4 , 'ELIMINAR' , 'El usuario tendrá permiso para eliminar registros en el módulo.' );
-INSERT INTO     permisos    VALUES (5 , 'VER DETALLES' , 'El usuario tendrá permiso para ver detalles de registros del módulo.');
-INSERT INTO     permisos    VALUES (6 , 'REPORTES' , 'El usuario tendrá permiso para acceder a los reportes del sistema.');
->>>>>>> c202cdcdc46b40dd55ffdef6919d131887a3db09
 
 
 CREATE TABLE IF NOT EXISTS rol_permisos_modulos (
