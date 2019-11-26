@@ -10,31 +10,46 @@
 
 		public function login() {
 			if($_POST) { // Si se enviaron datos por post
-				$usuario = new Usuario(); // Instancia del objeto usuario
+				$usuario = new Usuario(); // Instancia del objeto 
+				$rol = new ROl();
 				// Se setean los datos
 				$usuario->setNickUsuario($_POST['nick_usuario']);
 				$usuario->setContraseniaUsuario($_POST['contrasenia_usuario']);
 				$usuarioSession = $usuario->login();
 				if($usuarioSession && is_object($usuarioSession)) { // Si se definio el usuario y es un objeto
+<<<<<<< HEAD
 					$_SESSION['nick_usuario'] = $usuarioSession->nick_usuario;
 					// Setea los datos de la sesión.
 					$_SESSION['user_auth'] = $usuarioSession;
+=======
+					
+					$idRol = $usuarioSession->id_rol;
+					$PermisosXModulos = $rol->getPermisosXModulosByRol($idRol);
+					$_SESSION['nick_usuario'] = $usuarioSession->nick_usuario;
+					$_SESSION['user'] = $usuarioSession;
+					$_SESSION['authenticated'] = true;
+					$_SESSION['permissions'] = $PermisosXModulos;
+
+>>>>>>> c202cdcdc46b40dd55ffdef6919d131887a3db09
 					$_SESSION['error'] = false;
 					$_SESSION['message'] = "Log in successfully";
 					// $_SESSION['permissions'] = 
-					// $this->registerBiracora(LOGIN, LOGIN);									
+					// $this->registerBiracora(LOGIN, LOGIN);	
+					$usuario->registerBitacora(USUARIOS,INICIAR_SESION);
 					$this->redirect('Home','index');
 				}
 				else {
 					$_SESSION['error'] = true;
-					$_SESSION['message'] = "Error log in";
-					$this->redirect('Error', 'error404');
+					$_SESSION['message'] = "Sus credenciales son incorrectas. Por favor, intente de nuevo.";
+					$this->redirect('Auth', 'index');
 				}
 			}
 		}
 
 		public function logout() {
 			if(isset($_SESSION)) {
+				$usuario = new Usuario();
+				$usuario->registerBitacora(LOGOUT,CERRAR_SESION);
 				session_destroy();
 				$this->redirect();
 			}
