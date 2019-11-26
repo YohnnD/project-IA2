@@ -101,7 +101,7 @@ $(document).ready(function () {
                         },
                         timer: 3000
                     }).then(redirect => {
-                        location.href = "http://localhost/project-ia2-master/Servicio/getMateriales";
+                        location.href = "http://localhost/project-IA2/Servicio/getMateriales";
                     });
                 }
             },
@@ -129,7 +129,7 @@ $(document).ready(function () {
         console.log('holaa');
         var cantidad = $('#cantidad').val();
         var id = $('#id_material').val();
-        var idServicio = $('#id_servicio').val();
+       
 
         $.ajax({
             method: "POST",
@@ -138,8 +138,7 @@ $(document).ready(function () {
             url: "http://localhost/project-IA2/Servicio/saveMaterial",
             data: {
                 cantidad: cantidad,
-                id: id,
-                idServicio: idServicio
+                id: id              
             },
             // url: "",
             beforeSend: function () {

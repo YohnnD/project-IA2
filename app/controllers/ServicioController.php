@@ -102,16 +102,14 @@ class ServicioController extends BaseController {
         $materiales = new Servicio();
         $valor = $materiales->getMaterial();
         if (!empty($_GET['id'])) {
-            $idServicio = $_GET['id'];
+            $_SESSION['servicio']=$_GET['id'];
             $this->view('Servicios/Servicios.addMateriales', array(
-                'materiales' => $valor,
-                'idServicio' => $idServicio
+                'materiales' => $valor
             ));
         } else {
-            $idServicio = 0;
+            $_SESSION['servicio']=0;
             $this->view('Servicios/Servicios.addMateriales', array(
-                'materiales' => $valor,
-                'idServicio' => $idServicio
+                'materiales' => $valor
             ));
         }
     }
@@ -132,32 +130,19 @@ class ServicioController extends BaseController {
     }
 
     public function searchMateriales() {
-        $search = $_GET['id'];
-        $parameter = explode("-", $search);
-        $idServicio = $parameter[0];
-        $idMaterial = $parameter[1];
-        if ($idServicio == 0) {
+        $idMaterial = $_GET['id'];
             $materiales = new Servicio();
             $respuesta = $materiales->searchMaterial($idMaterial);
 
             $this->view('Servicios/Servicios.addMateriales.Servicio', array(
-                'materiales' => $respuesta
-            ));
-        } else {
-            $materiales = new Servicio();
-            $respuesta = $materiales->searchMaterial($idMaterial);
-
-            $this->view('Servicios/Servicios.addMateriales.Servicio', array(
-                'materiales' => $respuesta,
-                'idServicio' => $idServicio
-            ));
-        }
+                'materiales' => $respuesta 
+            ));   
     }
 
     public function saveMaterial() {
         $idMaterial = $_POST['id'];
         $cantidad = $_POST['cantidad'];
-        $idServicio = $_POST['idServicio'];
+        $idServicio = $_SESSION['servicio'];
 
         if ($idServicio == 0) {
             $Servicio = new Servicio();

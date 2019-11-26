@@ -50,11 +50,11 @@
 					$producto->setStockMinProducto($stockMinProducto);
 					$producto->setStockProducto($stockProducto);
 					$producto->setImgProducto(Helpers::saveImage($imgProducto,'productos'));
-					$dataProducto = $producto->insert();
+					$dataProducto = $producto->save();
 					for ($i = 0; $i < count($stockProTalla); $i++) {
 						$producto->setIdTalla($idTalla[$i]);
 						$producto->setStockProTalla($stockProTalla[$i]);
-						$dataTallas = $producto->insertTallas();
+						$dataTallas = $producto->saveTallas();
 						if(is_object($dataTallas)){
 			            	break;
 							$this->sendAjax($dataTallas);

@@ -42,7 +42,7 @@
                             <tr>
                                 <td><?php echo $value->nombre_material?></td>
                                 <td>
-                                    <a href="<?php echo Helpers::url('Servicio','searchMateriales');?>/<?php echo $idServicio.'-'.$value->id_material?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-add"></i></a>
+                                    <a href="<?php echo Helpers::url('Servicio','searchMateriales');?>/<?php echo $value->id_material?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-add"></i></a>
                                 </td>
                             </tr>
 

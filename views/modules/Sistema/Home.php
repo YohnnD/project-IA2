@@ -34,6 +34,7 @@
                 </div>
                 <?php endif; ?>
                 <?php if(isset($_SESSION['permissions']) && $_SESSION['permissions']['id_modulo'] == 2): ?>
+
                 <div class="col s12 m3">
                     <a href="<?php echo Helpers::url('Producto','index'); ?>" class="btn-app green">
                         <i class="icon-loyalty"></i>

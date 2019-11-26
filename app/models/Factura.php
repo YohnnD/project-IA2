@@ -156,7 +156,6 @@ class Factura extends BaseModel {
                 if ($producto && $producto->rowCount() != 0) {// Evalua la cansulta 
                     while ($rowProduc = $producto->fetchAll()) {
                         $rowProducto[] = $rowProduc;
-                       
                     }
                 } else { // 
                     $rowProducto = 0;
@@ -166,10 +165,6 @@ class Factura extends BaseModel {
             $rowProducto = 0;
         }
 
-        var_dump($rowProducto);
-        die();
-        
-         
 
         if (!is_null($rowFactura)) {
 

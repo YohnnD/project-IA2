@@ -20,7 +20,6 @@
 					
 					$idRol = $usuarioSession->id_rol;
 					$PermisosXModulos = $rol->getPermisosXModulosByRol($idRol);
-					// Setea los datos de la sesión.
 					$_SESSION['nick_usuario'] = $usuarioSession->nick_usuario;
 					$_SESSION['user'] = $usuarioSession;
 					$_SESSION['authenticated'] = true;

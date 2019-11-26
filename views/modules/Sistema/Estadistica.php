@@ -19,7 +19,7 @@
     <main>
         <div class="container-fluid">
             
-            <h4 class="black-text" style="margin-left:20px;">Estadistica</h4>
+            <h4 class="black-text" style="margin-left:20px;"><i class="icon-equalizer small"></i> Estadistica</h4>
 
             <div class="divider"></div>
             <!-- Widgets -->
@@ -31,10 +31,19 @@
                             <i class="icon-group_add"></i>
                         </div>
                         <div class="widget-stats-content">
-                            <span class="widget-stats-title">Clientes Registrados</span>
-                            <?php foreach($cliente as $clientes): ?>
-                            <span class="timer widget-stats-number" data-from="0" data-to="<?php echo $clientes->total ?>"></span>
-                            <?php endforeach; ?>
+                            <span class="widget-stats-title">Clientes Registrados al Mes</span>
+                            
+                                <?php
+                                    $fecha = date('m/Y');  
+                                        foreach($cliente as $clientes):
+                                            if($clientes->mes == $fecha):
+                                ?>
+                                                <span class="timer widget-stats-number" data-from="0" data-to="<?php echo $clientes->registro; ?>"></span>
+                                <?php 
+                                            endif;        
+                                        endforeach;
+                                ?>
+
                         </div>
                     </div> 
                 </div>
@@ -45,10 +54,17 @@
                             <i class="icon-equalizer"></i>
                         </div>
                         <div class="widget-stats-content">
-                            <span class="widget-stats-title">Ventas facturadas</span>
-                            <?php foreach($factura as $facturas): ?>
-                            <span class="widget-stats-number"><?php echo $facturas->total ?></span>
-                            <?php endforeach; ?>
+                            <span class="widget-stats-title">Ventas facturadas al Mes</span>
+                                <?php
+                                    $fecha = date('m/Y');  
+                                        foreach($factura as $facturas):
+                                            if($facturas->mes == $fecha):
+                                ?>
+                                                <span class="timer widget-stats-number" data-from="0" data-to="<?php echo $facturas->registro; ?>"></span>
+                                <?php 
+                                            endif;        
+                                        endforeach;
+                                ?>
                         </div>
                     </div> 
                 </div>
@@ -62,31 +78,30 @@
                         </div>
                     </div>
                 </div>
-                <!--<div class="col s12 m12 xl6">
+                <div class="col s12 m12 xl6">
                     <div class="card">
                         <div class="card-content">
                             <canvas id="ganancias"></canvas>
                         </div>
                     </div>
-                </div>-->
+                </div>
             </div>
             <!-- Row para tablas -->
             <div class="row">
-                <div class="col s12 m4">
+                <div class="col s12 m12">
                     <ul class="collection with-header">
-                        <li class="collection-header"><h4>Pedidos Pendientes</h4></li>
+                        <li class="collection-header"><h5><i class="icon-event_note"></i>  Pedidos Pendientes</h5></li>
                         <?php if($pedido==null){  ?>
                             <li class="collection-item">
                             
                             <div> 
-                                <span class="title"></b>No hay Pedidos En Proceso</span><br>
-                                
+                                <span class="title"></b>No hay Pedidos En Proceso</span><br>                          
                             </div>
                         </li>
                         <?php }else{foreach($pedido as $pedidos): ?>
                         <li class="collection-item">
                             
-                            <span class="new badge red" data-badge-caption="Pendiente"></span>
+                            <a href="<?php echo Helpers::url('Pedido','details')."/".$pedidos->codigo_pedido; ?>"><span class="new badge red icon-touch_app small" data-badge-caption="Pendiente || Ver Pedido"></span></a>
                             <span class="title"><b>Cliente: </b> <?php echo $pedidos->nombre_cliente; ?></span><br>
                             <span class=""><b>Contacto: </b><?php echo $pedidos->telefono_cliente; ?></span><br>
                             <span class=""><b>Fecha Entrega: </b><?php echo $pedidos->fecha_entrega_pedido; ?></span>
@@ -95,9 +110,9 @@
                         <?php endforeach;}?>
                     </ul>
                 </div>
-                <div class="col s12 m4">
+                <div class="col s12 m12">
                     <ul class="collection with-header">
-                        <li class="collection-header"><h4>Productos Vendidos</h4></li> 
+                        <li class="collection-header"><h5><i class="icon-local_mall"></i>  Productos Mas Vendidos Anuales</h5></li> 
                         <?php if($producto==null){  ?>
                             <li class="collection-item">
                             
@@ -122,9 +137,9 @@
                     </ul>
                 </div>
 
-                <div class="col s12 m4">
+                <div class="col s12 m12">
                     <ul class="collection with-header">
-                        <li class="collection-header"><h4>Sevicios Vendidos</h4></li> 
+                        <li class="collection-header"><h5><i class="icon-local_atm"></i>  Servicios Mas Vendidos Anuales</h5></li> 
                         <?php if($servicio==null){  ?>
                             <li class="collection-item">
                             

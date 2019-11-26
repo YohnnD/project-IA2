@@ -67,8 +67,8 @@
 			$this->contraseniaUsuario = password_hash($contraseniaUsuario, PASSWORD_DEFAULT, array('cost'=>12));
 		}
 
-		public function insert() {
-			$this->registerBitacora(USUARIOS,REGISTRAR);			
+		public function save() {
+			$this->registerBitacora(USUARIOS,REGISTRAR);	
 			$query = "INSERT INTO $this->table (nick_usuario,nombre_usuario,apellido_usuario,email_usuario,contrasenia_usuario,id_rol) VALUES (:nick_usuario,:nombre_usuario,:apellido_usuario,:email_usuario,:contrasenia_usuario,:id_rol) "; // COnsulta SQL
 			$result = $this->db()->prepare($query); // Prepara la consulta SQL
 			// Limpia los parametros
@@ -109,7 +109,7 @@
 		}
 
 		public function getAll() {
-			$this->registerBitacora(USUARIOS,CONSULTAR);			
+			$this->registerBitacora(USUARIOS,CONSULTAR);
 			$sql = "SELECT * FROM $this->table INNER JOIN roles ON roles.id_rol = usuarios.id_rol";
             $query = $this->db()->query($sql);
             if($query){ // Evalua la cansulta
@@ -156,7 +156,6 @@
 		}
 
 		public function checkNickUsuario() {
-			// $this->registerBitacora(PRODUCTOS, CONSULTAR);			
 			$sql = "SELECT nick_usuario FROM $this->table 
 					WHERE nick_usuario = '$this->nickUsuario'";
 			$query = $this->db()->query($sql);
@@ -174,7 +173,6 @@
 		}
 
 		public function checkEmailUsuario() {
-			// $this->registerBitacora(PRODUCTOS, CONSULTAR);			
 			$sql = "SELECT email_usuario FROM $this->table 
 					WHERE email_usuario = '$this->emailUsuario'";
 			$query = $this->db()->query($sql);
