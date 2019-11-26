@@ -27,7 +27,7 @@
                 <div class="col s12 m6">
                     <a href="<?php echo Helpers::url('Roles', 'create'); ?>" class="btn-app indigo">
                         <i class="icon-person_pin"></i>
-                        <span>Registrar Rol</span>
+                        <span>Registrar Rol y Permisos</span>
                     </a>
                 </div>
                 <div class="col s12 m6">
@@ -37,7 +37,7 @@
                     </a>
                 </div>
                 <div class="col s12 m6">
-                    <a href="<?php echo Helpers::url('Roles', 'getAll'); ?>" class="btn-app orange">
+                    <a href="<?php echo Helpers::url('Permiso', 'getAll'); ?>" class="btn-app orange">
                         <i class="icon-record_voice_over"></i>
                         <span>Ver Permisos</span>
                     </a>

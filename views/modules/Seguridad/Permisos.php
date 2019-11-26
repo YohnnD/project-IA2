@@ -17,7 +17,38 @@
 
     <!-- Main Container -->
     <main>
-        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s12 breadcrumb-nav left-align">
+                    <a href="<?php echo Helpers::url('Home', 'index'); ?>" class="breadcrumb">Inicio</a>
+                    <a href="<?php echo Helpers::url('Seguridad', 'index'); ?>" class="breadcrumb">Seguridad</a>
+                    <a href="<?php echo Helpers::url('Seguridad', 'roles'); ?>" class="breadcrumb">Gestionar Roles y Permisos</a>
+                    <a href="<?php echo Helpers::url('Permiso', 'getAll'); ?>" class="breadcrumb">Ver Permisos</a>
+                </div>
+                <div class="col s12">
+                    <?php if($allPermisos == null): ?>
+                    <h5 class="center-align">No hay registros para mostrar.</h5>
+                    <?php else: ?>
+                    <table class="centered highlight">
+                        <thead>
+                            <tr>
+                                <th>Permiso</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($allPermisos as $permiso): ?>
+                            <tr>
+                                <td><?php echo $permiso->nombre_permiso ?></td>
+                                <td><?php echo $permiso->descripcion_permiso ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->

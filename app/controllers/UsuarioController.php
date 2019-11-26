@@ -96,5 +96,21 @@
 				$this->sendAjax($data);
 			}
 		}
+
+		public function checkNickUsuario() {
+			$nickUsuario = $this->input('nick_usuario', true, 'string');
+    		$usuario = new Usuario();
+    		$usuario->setNickUsuario($nickUsuario);
+   			$response = $usuario->checkNickUsuario();
+    		$this->sendAjax($response); 
+    	}
+
+    	public function checkEmailUsuario() {
+			$emailUsuario = $this->input('email_usuario', true, 'string');
+    		$usuario = new Usuario();
+    		$usuario->setEmailUsuario($emailUsuario);
+   			$response = $usuario->checkEmailUsuario();
+    		$this->sendAjax($response); 
+    	}
 	}
 ?>

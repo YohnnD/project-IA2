@@ -5,6 +5,7 @@
         private $nombreRol;
         private $descripcionRol;
 
+
 		// Métodos
 		public function __construct() {
 			$this->table = 'roles';            
@@ -36,6 +37,7 @@
         }
 
         public function save() {
+            $this->registerBitacora(ROLES_PERMISOS,REGISTRAR);            
             $query = "INSERT INTO roles (nombre_rol, descripcion_rol) VALUES (:nombre_rol,:descripcion_rol) "; // COnsulta SQL
             $result = $this->db()->prepare($query); // Prepara la consulta SQL
             $result->bindParam(':nombre_rol',$this->nombreRol);
@@ -46,7 +48,18 @@
 
 
         public function update() {
-
+            // $this->registerBiracora(USUARIOS,ACTUALIZAR);            
+            $query = "UPDATE $this->table SET 
+                        nombre_rol = :nombre_rol,
+                        descripcion_rol = :descripcion_rol
+                        WHERE id_rol = :id_rol";
+            $result = $this->db()->prepare($query); // Prepara la consulta SQL
+            // Limpia los parametros
+            $result->bindParam(':id_rol',$this->idRol);
+            $result->bindParam(':nombre_rol',$this->nombreRol);
+            $result->bindParam(':descripcion_rol',$this->descripcionRol);
+            $update = $result->execute(); // Ejecuta la consulta
+            return $update;
         }
 
         public function delete() {
@@ -170,7 +183,42 @@
             return $save;
         }
 
+        public function updateRolPermisoModule($id_rol,$id_modulo,$id_permiso) {
+            // $this->registerBiracora(USUARIOS,ACTUALIZAR);            
+            $query = "UPDATE rol_permisos_modulos SET 
+                        id_permiso = :id_permiso,
+                        id_modulo = :id_modulo 
+                        WHERE id_rol = :id_rol";
+            $result = $this->db()->prepare($query); // Prepara la consulta SQL
+            $result->bindParam(':id_rol',$id_rol);
+            $result->bindParam(':id_permiso',$id_permiso);
+            $result->bindParam(':id_modulo',$id_modulo);
+            $update = $result->execute(); // Ejecuta la consulta
+            return $update;
+        }
 
+ 
+        public function deleteRolPermisoModule($id_rol,$id_modulo,$id_permiso) {
+            // $this->registerBiracora(USUARIOS,ELIMINAR);          
+            $query = "DELETE FROM rol_permisos_modulos WHERE id_rol = '$id_rol'"; // Consulta SQL
+            $delete = $this->db()->query($query); 
+            return $delete;
+        }
 
+        public function getPermisosXModulosByRol($id_rol) {
+            $sql = "SELECT id_modulo,id_permiso FROM rol_permisos_modulos WHERE id_rol = '$id_rol'";
+            $query = $this->db()->query($sql);
+            if($query){ // Evalua la cansulta
+                if($query->rowCount() != 0) { // Si existe al menos un registro...
+                    while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
+                        $resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
+                    }
+                }
+                else{ // Sino...
+                    $resultSet = null; // Almacena null
+                }
+            }
+            return $resultSet; // Finalmente retornla el arreglo con los elementos.
+        }
 	}
 ?>

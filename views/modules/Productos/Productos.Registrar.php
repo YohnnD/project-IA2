@@ -58,21 +58,17 @@
                 </div>
                 <div class="input-field col s12 m6 xl4">
                     <i class="icon-compare prefix"></i>
-                    <select name="modelo_producto" id="modelo_producto" required>
-                        <option value="" disabled selected>Elije el modelo</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                    </select>
+                    <input type="text" name="modelo_producto" id="modelo_producto">
                     <label for="modelo_producto">Modelo del Producto</label>
                 </div>
                 <div class="input-field col s12 m6 xl4">
                     <i class="icon-monetization_on prefix"></i>
-                    <input type="number" name="costo_producto" id="costo_producto" class="validate" min="0" pattern="[0-9]+" title="Solo puede usar números." required>
+                    <input type="number" name="costo_producto" id="costo_producto" class="validate" min="0" pattern="[0-9]+" title="Solo puede usar números." min="0" required>
                     <label for="costo_producto">Costo</label>
                 </div>
                 <div class="input-field col s12 m6 xl4">
                     <i class="icon-monetization_on prefix"></i>
-                    <input type="number" name="precio_producto" id="precio_producto" class="validate" min="0" pattern="[0-9]+" title="Solo puede usar números." required>
+                    <input type="number" name="precio_producto" id="precio_producto" class="validate" min="0" pattern="[0-9]+" title="Solo puede usar números." min="0" required>
                     <label for="precio_producto">Precio</label>
                 </div>
                 <div class="input-field col s12 m6 xl4">
@@ -101,18 +97,21 @@
                 </div>
                 <div class="input-field col s12 m5" id="">
                     <i class="icon-straighten prefix"></i>
-                    <select name="id_talla[]" id="id_talla" class="id_talla" required>
+                    <select name="list_id_talla" id="list_id_talla" class="list_id_talla" required>
 
                     </select>
-                    <label for="id_talla">Talla</label>
+                    <label for="list_id_talla">Talla</label>
                 </div>
                 <div class="input-field col s10 m5">
                     <i class="icon-call_made prefix"></i>
-                    <input type="number" name="stock_pro_talla[]" id="stock_pro_talla" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números. Mínimo 24" required>
-                    <label for="stock_pro_talla">Cantidad por Talla</label>
+                    <input type="number" name="list_stock_pro_talla" id="list_stock_pro_talla" class="validate" pattern="[0-9]+" title="Solo puede usar números." min="1" required>
+                    <label for="list_stock_pro_talla">Cantidad por Talla</label>
                 </div>
                 <div class="input-field col s2 center-align" id="add-talla">
                     <a href="#!" class="btn btn-floating a2-green waves-effect waves-light" id="btn-add-talla"><i class="icon-add"></i></a>
+                </div>
+                <div id="list_tallas">
+                    
                 </div>
                 <div class="input-field col s12 center-align">
                     <button type="submit" class="btn waves-effect waves-light a2-green">

@@ -66,11 +66,7 @@
                             </div>
                             <div class="input-field col s12 m6 xl4">
                                 <i class="icon-compare prefix"></i>
-                                <select name="modelo_producto" id="modelo_producto" required disabled>
-                                    <option value="" disabled>Elije el modelo</option>
-                                    <option value="1" <?= $producto->modelo_producto == "1" ? 'selected' : '' ?>>Option 1</option>
-                                    <option value="2" <?= $producto->modelo_producto == "2" ? 'selected' : '' ?>>Option 2</option>
-                                </select>
+                                <input type="text" name="modelo_producto" id="modelo_producto" value="<?= $producto->modelo_producto ?>" required disabled>
                                 <label for="modelo_producto">Modelo del Producto</label>
                                 
                             </div>
@@ -112,7 +108,7 @@
                             <div class="input-field col s12 m6">
                                 <i class="icon-straighten prefix"></i>
                                 <?php $_tallas = Helpers::getTallas(); ?>
-                                <select name="talla[]" id="talla" required disabled>
+                                <select name="id_talla[]" id="talla" required disabled>
                                     <option value="null" disabled selected>Elije la talla</option>
                                     <?php foreach ($_tallas as $_talla) : ?> 
                                     <option value="<?php echo $_talla->id_talla; ?>" <?php echo $_talla->id_talla == $talla->id_talla ? 'selected' : ''; ?>><?php echo $_talla->nombre_talla; ?></option>
@@ -122,7 +118,7 @@
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="icon-call_made prefix"></i>
-                                <input type="number" name="stock_pro_talla[]" id="stock_pro_talla" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números. Mínimo 24" value="<?php echo $talla->stock_pro_talla; ?>" required disabled>
+                                <input type="number" name="stock_pro_talla[]" id="stock_pro_talla" class="validate" min="1" pattern="[0-9]+" title="Solo puede usar números. Mínimo 24" value="<?php echo $talla->stock_pro_talla; ?>" required disabled>
                                 <label for="stock_pro_talla">Cantidad por Talla</label>
                             </div>
                             <?php endforeach; ?>

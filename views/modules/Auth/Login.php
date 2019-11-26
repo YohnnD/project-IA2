@@ -22,6 +22,11 @@
                             <h5>Inciar Sesión</h5>
                         </div>
                         <div class="card-content row">
+                            <?php if($_SESSION): ?>
+                                <div class="col s12 alert alert-danger">
+                                    <?php echo $_SESSION['message']; ?>
+                                </div>
+                            <?php endif; ?>
                             <div class="input-field col s12">
                                 <i class="icon-account_circle prefix"></i>
                                 <input name="nick_usuario" class="validate" id="nick_usuario" type="text">
