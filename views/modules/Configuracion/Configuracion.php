@@ -41,12 +41,6 @@
                         <span>Gestionar Materiales</span>
                     </a>
                 </div>
-                <div class="col s12 m6">
-                    <a href="<?php echo Helpers::url('Articulo','index'); ?>" class="btn-app light-blue">
-                        <i class="icon-content_cut"></i>
-                        <span>Gestionar Artículos</span>
-                    </a>
-                </div>
             </div>
         </div>
     </main>

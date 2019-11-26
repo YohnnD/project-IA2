@@ -28,8 +28,8 @@
                 <div class="col s12">
                     <h4 class="center-align">Materiales Disponibles</h4>
                 </div>
-                <div class="col s12">
-                    <table class="centered highlight responsive-table">
+                <div class="col s12" style="padding:30px">
+                    <table class="centered highlight responsive-table" id="Material">
                         <thead>
                             <tr>
                                 <th>Material</th>
@@ -74,6 +74,7 @@
 
 
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>

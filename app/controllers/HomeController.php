@@ -25,13 +25,13 @@
 
 			$get= new Estadistica();
 
-			
-
 			$producto=$get->producto();	
 			$pedido=$get->pedido();
 			$servicio=$get->servicio();
 			$cliente=$get->cliente();
 			$factura=$get->factura();
+			
+			// $get->registrarBitacora();
 		
 			$this->view('Sistema/Estadistica',[	'producto'=>$producto,
 												'pedido'=>$pedido,

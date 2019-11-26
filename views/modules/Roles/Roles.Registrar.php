@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="container-fluid">
-            <form action="" method="post" class="card">
+            <form action="<?php echo Helpers::url('Roles', 'register'); ?>" method="post" class="card">
                 <div class="card-header center-align">
                     <h5>Registrar Rol</h5>
                 </div>
@@ -51,123 +51,42 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ($modulos as $modulo):?>
                             <tr>
                                 <td>
                                     <p>
                                         <label>
-                                            <input type="checkbox" id="" name=""/>
-                                            <span>Gestionar Usuario</span>
+                                            <input type="checkbox" id="" name="modules[]" value="<?php echo $modulo->id_modulo;?>"/>
+                                            <span> <?php  echo $modulo->nombre_modulo;?></span>
                                         </label>
                                     </p>
                                 </td>
                                 <td>
                                     <div class="input-field col s12 m6 left-align">
+                                    <?php foreach ($permisos as $permiso):?>
                                         <p>
                                             <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Registrar</span>
+                                                <input type="checkbox" id="" name="permisos[<?php echo $modulo->id_modulo;?>][]" value=" <?php  echo $permiso->id_permiso;?>" />
+                                                <span> <?php  echo $permiso->nombre_permiso;?></span>
                                             </label>
                                         </p>
-                                        <p>
-                                            <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Consultar</span>
-                                            </label>
-                                        </p>
-                                        <p>
-                                            <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Modificar</span>
-                                            </label>
-                                        </p>
-                                        <p>
-                                            <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Eliminar</span>
-                                            </label>
-                                        </p>
+                                    <?php endforeach;?>
                                     </div>
-                                </td>
-                            </tr>   
-                            <tr>
-                                <td>
-                                    <p>
-                                        <label>
-                                            <input type="checkbox" id="" name=""/>
-                                            <span>Gestionar Usuario</span>
-                                        </label>
-                                    </p>
-                                </td>
-                                <td>
-                                    <div class="input-field col s12 m6 left-align">
-                                        <p>
-                                            <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Registrar</span>
-                                            </label>
-                                        </p>
-                                        <p>
-                                            <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Consultar</span>
-                                            </label>
-                                        </p>
-                                        <p>
-                                            <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Modificar</span>
-                                            </label>
-                                        </p>
-                                        <p>
-                                            <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Eliminar</span>
-                                            </label>
-                                        </p>
-                                    </div>
+
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <p>
-                                        <label>
-                                            <input type="checkbox" id="" name=""/>
-                                            <span>Gestionar Usuario</span>
-                                        </label>
-                                    </p>
-                                </td>
-                                <td>
-                                    <div class="input-field col s12 m6 left-align">
-                                        <p>
-                                            <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Registrar</span>
-                                            </label>
-                                        </p>
-                                        <p>
-                                            <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Consultar</span>
-                                            </label>
-                                        </p>
-                                        <p>
-                                            <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Modificar</span>
-                                            </label>
-                                        </p>
-                                        <p>
-                                            <label>
-                                                <input type="checkbox" id="" name=""/>
-                                                <span>Eliminar</span>
-                                            </label>
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>                   
+                            <?php endforeach;?>
+
                         </tbody>
                     </table>
+                    <div class="input-field col s12 center-align">
+                        <button type="submit" class="btn a2-green waves-effect waves-light col s12">
+                            <i class="icon-send right"></i>
+                            Registrar
+                        </button>
+                    </div>
                 </div>
+
             </form>
         </div>
     </main>

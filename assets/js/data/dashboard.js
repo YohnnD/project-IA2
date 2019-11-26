@@ -37,18 +37,18 @@ var ventas = new Chart(ventasChart, {
         ],
         "datasets": [{ // Sets de datos que tendra la chart
             "label": "Ventas",
-            "data": [data["enero"],
-                    data["febrero"][0]['ventas'],
-                    data["marzo"],
-                    data["abril"][0]['ventas'],
-                    data["mayo"],
-                    data["junio"],
-                    data["julio"],
-                    data["agosto"],
-                    data["septiembre"],
-                    data["octubre"][0]['ventas'],
-                    data["noviembre"],
-                    data["diciembre"],],
+            "data": [data ["enero"]       [0]['ventas'],
+                     data ["febrero"]     [0]['ventas'],
+                     data ["marzo"]       [0]['ventas'],
+                     data ["abril"]       [0]['ventas'],
+                     data ["mayo"]        [0]['ventas'],
+                     data ["junio"]       [0]['ventas'],
+                     data ["julio"]       [0]['ventas'],
+                     data ["agosto"]      [0]['ventas'],
+                     data ["septiembre"]  [0]['ventas'],
+                     data ["octubre"]     [0]['ventas'],
+                     data ["noviembre"]   [0]['ventas'],
+                     data ["diciembre"]   [0]['ventas'],],
             "fill": false,
             "borderColor": "rgb(75, 192, 192)",
             "lineTension": 0.1
@@ -68,7 +68,7 @@ var ventas = new Chart(ventasChart, {
 
 }
 
-/*
+
 var ganancias = new Chart(gananciasChart, {
     type: "pie",
     data: {
@@ -95,7 +95,7 @@ var ganancias = new Chart(gananciasChart, {
         }
     }
 });
-*/
+
 
 $(document).ready(function() {
      $('.timer').countTo({

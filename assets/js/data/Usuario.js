@@ -1,4 +1,4 @@
-var url = "http://localhost/project-ia2/Usuario/";
+var url = "http://localhost/project-IA2/Usuario/";
 
 $(document).ready(function(){
     // Registrar
@@ -250,4 +250,134 @@ $(document).ready(function(){
             });
         }
     });
+
+    $('#nick_usuario').blur(function() {
+        var nick_usuario = $('#nick_usuario').val();
+        $.ajax({
+            method: "POST",
+            dataType: 'json',
+            data: { nick_usuario: nick_usuario },
+            url: url + "checkNickUsuario",
+            beforeSend: function() {
+                console.log('Send data');
+                $('#register :input').attr('disabled','disabled');
+            },
+            success: function(resp) {
+                console.log(resp);
+                if(resp){
+                    swal({
+                        title: "Información",
+                        text: "El nick '" + nick_usuario + "' ya se encuentra registrado en el sistema.",
+                        icon: "info",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        }
+                    });
+                    $('#nick_usuario').val('');
+                }
+                $('#register :input').removeAttr('disabled','');
+            },
+            error: function(err) {
+                console.log(err);
+                swal({
+                    title: "¡Oh no!",
+                    text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                    icon: "error",
+                    button: {
+                        text: "Aceptar",
+                        visible: true,
+                        value: true,
+                        className: "green",
+                        closeModal: true
+                    }
+                });
+            }
+        });
+    });
+
+    $('#email_usuario').blur(function() {
+        var email_usuario = $('#email_usuario').val();
+        $.ajax({
+            method: "POST",
+            dataType: 'json',
+            data: { email_usuario: email_usuario },
+            url: url + "checkEmailUsuario",
+            beforeSend: function() {
+                console.log('Send data');
+                $('#register :input').attr('disabled','disabled');
+            },
+            success: function(resp) {
+                console.log(resp);
+                if(resp){
+                    swal({
+                        title: "Información",
+                        text: "El E-mail '" + email_usuario + "' ya se encuentra registrado en el sistema.",
+                        icon: "info",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        }
+                    });
+                    $('#email_usuario').val('');
+                }
+                $('#register :input').removeAttr('disabled','');
+            },
+            error: function(err) {
+                console.log(err);
+                swal({
+                    title: "¡Oh no!",
+                    text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                    icon: "error",
+                    button: {
+                        text: "Aceptar",
+                        visible: true,
+                        value: true,
+                        className: "green",
+                        closeModal: true
+                    }
+                });
+            }
+        });
+    });
+
+    $('#usuarios-table').DataTable({
+            responsive: true,
+            "scrollX": true,
+            "pageLength": 10,
+            language: {
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "<i class='icon-navigate_next'></i>",
+                    "sPrevious": "<i class='icon-navigate_before'></i>"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                "buttons": {
+                    "copy": "Copiar",
+                    "colvis": "Visibilidad"
+                }
+            }
+        });
 });

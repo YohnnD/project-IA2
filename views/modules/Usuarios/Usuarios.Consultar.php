@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/datatables.css">
     <title>Consultar Usuarios - Inversiones A2</title>
 </head>
 <body>
@@ -31,7 +32,7 @@
                     <?php if($allUsuarios == null): ?>
                     <h4 class="center-align">No hay usuarios para mostrar.</h4>
                     <?php else: ?>
-                    <table class="centered responsive-table highlight">
+                    <table class="centered highlight" style="width: 100%" id="usuarios-table">
                         <thead>
                             <tr>
                                 <th>Usuario</th>
@@ -49,7 +50,7 @@
                                 <td><?php echo $usuario->nick_usuario; ?></td>
                                 <td><?php echo $usuario->nombre_usuario . " " . $usuario->apellido_usuario; ?></td>
                                 <td><?php echo $usuario->email_usuario; ?></td>
-                                <td><?php echo $usuario->id_rol; ?></td>
+                                <td><?php echo $usuario->nombre_rol; ?></td>
                                 <td><a href="<?php echo Helpers::url('Usuario','details'); ?>/<?php echo $usuario->nick_usuario; ?>" class="btn btn-small a2-green waves-effect waves-light"><i class="icon-pageview"></i></a></td>
                             </tr>
                         <?php endforeach; ?>
@@ -68,6 +69,7 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Usuario.js"></script>
 </body>
 </html>

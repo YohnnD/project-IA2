@@ -1,4 +1,4 @@
-var url = "http://localhost/project-ia2/Producto/";
+var url = "http://localhost/project-IA2/Producto/";
 $(document).ready(function(){
     
     // Registrar
@@ -107,8 +107,6 @@ $(document).ready(function(){
         e.preventDefault();
         var nombre_producto = $('#nombre_producto').val();
         var formData = new FormData(this); // Creating FormData object.
-        var image = $('#img_producto')[0].files[0]; // Getting file input data
-        formData.append('file',image);
 
         // Sending data by AJAX
         $.ajax({
@@ -234,8 +232,8 @@ $(document).ready(function(){
         });
     });
 
-    function getTallas() {
-        return $.ajax({
+
+    $.ajax({
             method: 'GET',
             dataType: 'json',
             data: {},
@@ -254,39 +252,133 @@ $(document).ready(function(){
                         tallas += `<option value="${ talla.id_talla }">${ talla.nombre_talla }</option>`;
                     });
                 }
-                $('select.id_talla').html(tallas);
+                $('select.list_id_talla').html(tallas);
                 $('select').formSelect();
             },
             error: function(err) {
                 console.log(err);
             }
         });
-    }
 
-    getTallas();
+    // function getTallas() {
+    //     return 
+    // }
+
+    // getTallas();
 
     // Add talla
     $('#btn-add-talla').click(function() {
-        // $('#add-talla').id('');
-        var tallas = getTallas();
+        var id_talla = $('#list_id_talla').val();
+        var nombre_talla = $('#list_id_talla option:selected').text();
+        var stock_pro_talla = $('#list_stock_pro_talla').val();
+
         var template = ` 
-            <div class="input-field col s12 m5" id="">
+            <div>
+                <input type="hidden" name="id_talla[]" value="${ id_talla }">
+                <div class="input-field col s5 m5">
                     <i class="icon-straighten prefix"></i>
-                    <select name="id_talla[]" id="id_talla" class="id_talla" required>
-                        <option value="${ tallas.id_talla }">${ tallas.nombre_talla }</option>
-                    </select>
-                    <label>Talla</label>
+                    <input id="name_id_talla" type="text" name="name_id_talla" value="${ nombre_talla }" class="disabled validate" readonly>
+                    <label for="name_id_talla">Talla</label>
                 </div>
-                <div class="input-field col s10 m5">
+                <div class="input-field col s5 m5">
                     <i class="icon-call_made prefix"></i>
-                    <input type="number" name="stock_pro_talla[]" id="stock_pro_talla" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números. Mínimo 24" required>
-                    <label>Cantidad por Talla</label>
+                    <input type="number" name="stock_pro_talla[]" id="stock_pro_talla" class="disabled " value="${ stock_pro_talla }" readonly>
+                    <label for="stock_pro_talla">Cantidad por Talla</label>
                 </div>
-                <div class="input-field col s2 center-align" id="add-talla">
-                    <a href="#!" class="btn btn-floating a2-green waves-effect waves-light" id="btn-add-talla"><i class="icon-add"></i></a>
+                <div class="input-field col s2 center-align">
+                    <a href="#!" class="btn btn-floating red waves-effect waves-light remove">
+                        <i class="icon-close"></i>
+                    </a>
                 </div>
+            </div>
         `;
-        $('#add-talla').after(template);
-        $('select').formSelect();
+        $('#list_tallas').append(template);
+        M.updateTextFields();
+        $('.remove').click(function() {
+            $(this).parent().parent().text('');
+        });
     });
+
+
+    $('#codigo_producto').blur(function() {
+        var codigo_producto = $('#codigo_producto').val();
+        $.ajax({
+            method: "POST",
+            dataType: 'json',
+            data: { codigo_producto: codigo_producto },
+            url: url + "checkCodigoProducto",
+            beforeSend: function() {
+                console.log('Send data');
+                $('#register :input').attr('disabled','disabled');
+            },
+            success: function(resp) {
+                console.log(resp);
+                if(resp){
+                    swal({
+                        title: "Información",
+                        text: "El producto ya se encuentra registrado en el sistema.",
+                        icon: "info",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        }
+                    });
+                    $('#codigo_producto').val('');
+                }
+                $('#register :input').removeAttr('disabled','');
+            },
+            error: function(err) {
+                console.log(err);
+                swal({
+                    title: "¡Oh no!",
+                    text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                    icon: "error",
+                    button: {
+                        text: "Aceptar",
+                        visible: true,
+                        value: true,
+                        className: "green",
+                        closeModal: true
+                    }
+                });
+            }
+        });
+    });
+
+    $('#productos-table').DataTable({
+            responsive: true,
+            "scrollX": true,
+            "pageLength": 10,
+            language: {
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "<i class='icon-navigate_next'></i>",
+                    "sPrevious": "<i class='icon-navigate_before'></i>"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                "buttons": {
+                    "copy": "Copiar",
+                    "colvis": "Visibilidad"
+                }
+            }
+        });
 });

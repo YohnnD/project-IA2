@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/datatables.css">
     <title>Ver Productos - Inversiones A2</title>
 </head>
 <body>
@@ -31,7 +32,7 @@
                     <?php if($allProductos == null): ?>
                         <h4 class="center-align">No hay productos para mostrar.</h4>
                     <?php else: ?>
-                        <table class="centered highlight responsive-table">
+                        <table class="centered highlight" id="productos-table" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>Código</th>
@@ -71,6 +72,7 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Producto.js"></script>
 </body>
 </html>

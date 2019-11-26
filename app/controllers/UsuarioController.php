@@ -9,7 +9,9 @@
 		}
 
 		public function create() {
-			$this->view('Usuarios/Usuarios.Registrar');
+            $rol = new Rol();
+            $roles=$rol->getAll();
+			$this->view('Usuarios/Usuarios.Registrar',['roles'=>$roles]);
 		}
 
 		public function getAll() {
@@ -40,7 +42,7 @@
 					$usuario->setEmailUsuario($emailUsuario);
 					$usuario->setContraseniaEncriptada($contraseniaUsuario);
 					$usuario->setIdRol($idRol);
-					$data = $usuario->insert();
+					$data = $usuario->save();
 					$this->sendAjax($data);
 				}
 			}
@@ -48,10 +50,12 @@
 
 		public function details() {
 			if(isset($_GET['id'])) {
+                $rol = new Rol();
+                $roles=$rol->getAll();
 				$nickUsuario = $_GET['id'];
 				$usuario = new Usuario();
 				$register = $usuario->getOne($nickUsuario);
-				$this->view('Usuarios/Usuarios.Detalles', ['usuario' => $register]);
+				$this->view('Usuarios/Usuarios.Detalles', ['usuario' => $register,'roles'=>$roles]);
 			}
 		}
 
@@ -92,5 +96,21 @@
 				$this->sendAjax($data);
 			}
 		}
+
+		public function checkNickUsuario() {
+			$nickUsuario = $this->input('nick_usuario', true, 'string');
+    		$usuario = new Usuario();
+    		$usuario->setNickUsuario($nickUsuario);
+   			$response = $usuario->checkNickUsuario();
+    		$this->sendAjax($response); 
+    	}
+
+    	public function checkEmailUsuario() {
+			$emailUsuario = $this->input('email_usuario', true, 'string');
+    		$usuario = new Usuario();
+    		$usuario->setEmailUsuario($emailUsuario);
+   			$response = $usuario->checkEmailUsuario();
+    		$this->sendAjax($response); 
+    	}
 	}
 ?>
