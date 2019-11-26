@@ -43,7 +43,7 @@
                 <label for="tipo_documento_cliente">Tipo</label>
             </div>
             <div class="input-field col s9 m4 xl4">
-                <input type="text" name="cedula_cliente" id="cedula_cliente" class="validate" minlength="5" maxlength="15" pattern="[VvJjEe0-9]+" title="Solo puede usar números del 0-9 y V, J ó E" required>
+                <input type="number" name="cedula_cliente" id="cedula_cliente" class="validate"  minlength="5" maxlength="15" pattern="[VvJjEe0-9]+" title="Solo puede usar números del 0-9 y V, J ó E" required>
                 <label for="cedula_cliente">Documento de Identidad</label>
             </div>
             <div class="input-field col s12 m6 xl6">

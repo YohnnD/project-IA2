@@ -17,6 +17,7 @@
 				$usuarioSession = $usuario->login();
 				if($usuarioSession && is_object($usuarioSession)) { // Si se definio el usuario y es un objeto
 					// Setea los datos de la sesión.
+                    $_SESSION['nick_usuario']=$usuarioSession->nick_usuario;
 					$_SESSION['user_auth'] = $usuarioSession;
 					$_SESSION['error'] = false;
 					$_SESSION['message'] = "Log in successfully";
