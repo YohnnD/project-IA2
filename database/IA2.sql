@@ -187,6 +187,10 @@ CREATE TABLE IF NOT EXISTS roles(
     PRIMARY KEY (id_rol)
 );
 
+INSERT INTO roles VALUES(1, 'SuperUsuario'    , 'Tiene acceso a todo el sistema');
+INSERT INTO roles VALUES(2, 'Administrador'   , 'Tiene acceso a parcial al sistema');
+INSERT INTO roles VALUES(3, 'Usuario'         , 'Tiene limitado al sistema');
+
 CREATE TABLE IF NOT EXISTS modulos(
 
     id_modulo               SERIAL         NOT NULL,
@@ -195,18 +199,20 @@ CREATE TABLE IF NOT EXISTS modulos(
     PRIMARY KEY (id_modulo)
 );
 
-INSERT INTO modulos VALUES(default, 'USUARIOS');
-INSERT INTO modulos VALUES(default, 'PRODUCTOS');
-INSERT INTO modulos VALUES(default, 'PEDIDOS');
-INSERT INTO modulos VALUES(default, 'CLIENTES');
-INSERT INTO modulos VALUES(default, 'SERVICIOS');
-INSERT INTO modulos VALUES(default, 'FACTURAS');
-INSERT INTO modulos VALUES(default, 'REPORTES');
-INSERT INTO modulos VALUES(default, 'TELAS');
-INSERT INTO modulos VALUES(default, 'MATERIALES');
-INSERT INTO modulos VALUES(default, 'ESTADISTICAS');
-INSERT INTO modulos VALUES(default, 'SEGURIDAD');
-INSERT INTO modulos VALUES(default, 'MANTENIMIENTO');
+INSERT INTO modulos VALUES(1, 'USUARIOS');
+INSERT INTO modulos VALUES(2, 'PRODUCTOS');
+INSERT INTO modulos VALUES(3, 'PEDIDOS');
+INSERT INTO modulos VALUES(4, 'CLIENTES');
+INSERT INTO modulos VALUES(5, 'SERVICIOS');
+INSERT INTO modulos VALUES(6, 'FACTURAS');
+INSERT INTO modulos VALUES(7, 'REPORTES');
+INSERT INTO modulos VALUES(8, 'TELAS');
+INSERT INTO modulos VALUES(9, 'MATERIALES');
+INSERT INTO modulos VALUES(10, 'ESTADISTICAS');
+INSERT INTO modulos VALUES(11, 'SEGURIDAD');
+INSERT INTO modulos VALUES(12, 'MANTENIMIENTO');
+INSERT INTO modulos VALUES(13, 'NOTIFICACIONES');
+
 
 
 
@@ -219,13 +225,13 @@ CREATE TABLE IF NOT EXISTS permisos(
     PRIMARY KEY (id_permiso)
 );
 
-
-INSERT INTO     permisos    VALUES (1 , 'REGISTRAR' , 'El usuario tendrá permiso para registrar en el módulo.' );
-INSERT INTO     permisos    VALUES (2 , 'CONSULTAR' , 'El usuario tendrá permiso para consultar registros en el módulo.' );
-INSERT INTO     permisos    VALUES (3 , 'ACTUALIZAR' , 'El usuario tendrá permiso para actualizar registros en el módulo.' );
-INSERT INTO     permisos    VALUES (4 , 'ELIMINAR' , 'El usuario tendrá permiso para eliminar registros en el módulo.' );
-INSERT INTO     permisos    VALUES (5 , 'VER DETALLES' , 'El usuario tendrá permiso para ver detalles de registros del módulo.');
-INSERT INTO     permisos    VALUES (6 , 'REPORTES' , 'El usuario tendrá permiso para acceder a los reportes del sistema.');
+INSERT INTO 	permisos 	VALUES (1 , 'REGISTRAR'     , 'El usuario tendrá permiso para registrar en el módulo.' );
+INSERT INTO 	permisos 	VALUES (2 , 'CONSULTAR'     , 'El usuario tendrá permiso para consultar registros en el módulo.' );
+INSERT INTO 	permisos 	VALUES (3 , 'ACTUALIZAR'    , 'El usuario tendrá permiso para actualizar registros en el módulo.' );
+INSERT INTO 	permisos 	VALUES (4 , 'ELIMINAR'      , 'El usuario tendrá permiso para eliminar registros en el módulo.' );
+INSERT INTO 	permisos 	VALUES (5 , 'VER DETALLES'  , 'El usuario tendrá permiso para ver detalles de registros del módulo.');
+INSERT INTO 	permisos 	VALUES (6 , 'REPORTES'      , 'El usuario tendrá permiso para acceder a los reportes del sistema.');
+INSERT INTO 	permisos 	VALUES (7 , 'CONFIGURACION' , 'El usuario tendrá permiso para acceder a los modulos de mantenimiento y seguridad del sistema.');
 
 
 CREATE TABLE IF NOT EXISTS rol_permisos_modulos (
@@ -236,6 +242,142 @@ CREATE TABLE IF NOT EXISTS rol_permisos_modulos (
 
     PRIMARY KEY (id_rol, id_permiso,id_modulo)
 );
+
+--SuperUsuario
+
+--Usuario
+INSERT INTO rol_permisos_modulos VALUES(1,1,1);
+INSERT INTO rol_permisos_modulos VALUES(1,2,1);
+INSERT INTO rol_permisos_modulos VALUES(1,3,1);
+INSERT INTO rol_permisos_modulos VALUES(1,4,1);
+INSERT INTO rol_permisos_modulos VALUES(1,5,1);
+
+--Producto
+INSERT INTO rol_permisos_modulos VALUES(1,1,2);
+INSERT INTO rol_permisos_modulos VALUES(1,2,2);
+INSERT INTO rol_permisos_modulos VALUES(1,3,2);
+INSERT INTO rol_permisos_modulos VALUES(1,4,2);
+INSERT INTO rol_permisos_modulos VALUES(1,5,2);
+
+--Pedido
+INSERT INTO rol_permisos_modulos VALUES(1,1,3);
+INSERT INTO rol_permisos_modulos VALUES(1,2,3);
+INSERT INTO rol_permisos_modulos VALUES(1,3,3);
+INSERT INTO rol_permisos_modulos VALUES(1,4,3);
+INSERT INTO rol_permisos_modulos VALUES(1,5,3);
+
+--Cliente
+INSERT INTO rol_permisos_modulos VALUES(1,1,4);
+INSERT INTO rol_permisos_modulos VALUES(1,2,4);
+INSERT INTO rol_permisos_modulos VALUES(1,3,4);
+INSERT INTO rol_permisos_modulos VALUES(1,4,4);
+INSERT INTO rol_permisos_modulos VALUES(1,5,4);
+
+--Servicio
+INSERT INTO rol_permisos_modulos VALUES(1,1,5);
+INSERT INTO rol_permisos_modulos VALUES(1,2,5);
+INSERT INTO rol_permisos_modulos VALUES(1,3,5);
+INSERT INTO rol_permisos_modulos VALUES(1,4,5);
+INSERT INTO rol_permisos_modulos VALUES(1,5,5);
+
+--Factura
+INSERT INTO rol_permisos_modulos VALUES(1,2,6);
+INSERT INTO rol_permisos_modulos VALUES(1,3,6);
+
+--Reporte
+INSERT INTO rol_permisos_modulos VALUES(1,6,7);
+
+--Tela
+INSERT INTO rol_permisos_modulos VALUES(1,1,8);
+INSERT INTO rol_permisos_modulos VALUES(1,2,8);
+INSERT INTO rol_permisos_modulos VALUES(1,3,8);
+INSERT INTO rol_permisos_modulos VALUES(1,4,8);
+INSERT INTO rol_permisos_modulos VALUES(1,5,8);
+
+--Materiales
+INSERT INTO rol_permisos_modulos VALUES(1,1,9);
+INSERT INTO rol_permisos_modulos VALUES(1,2,9);
+INSERT INTO rol_permisos_modulos VALUES(1,3,9);
+INSERT INTO rol_permisos_modulos VALUES(1,4,9);
+INSERT INTO rol_permisos_modulos VALUES(1,5,9);
+
+--Estadistica
+INSERT INTO rol_permisos_modulos VALUES(1,2,10);
+
+--Seguridad
+INSERT INTO rol_permisos_modulos VALUES(1,7,11);
+
+--Mantenimiento
+INSERT INTO rol_permisos_modulos VALUES(1,7,12);
+
+--Notificaciones
+INSERT INTO rol_permisos_modulos VALUES(1,2,13);
+
+--Administrador
+
+--Usuario
+INSERT INTO rol_permisos_modulos VALUES(2,1,1);
+INSERT INTO rol_permisos_modulos VALUES(2,2,1);
+INSERT INTO rol_permisos_modulos VALUES(2,3,1);
+INSERT INTO rol_permisos_modulos VALUES(2,5,1);
+
+--Producto
+INSERT INTO rol_permisos_modulos VALUES(2,1,2);
+INSERT INTO rol_permisos_modulos VALUES(2,2,2);
+INSERT INTO rol_permisos_modulos VALUES(2,3,2);
+INSERT INTO rol_permisos_modulos VALUES(2,5,2);
+
+--Pedido
+INSERT INTO rol_permisos_modulos VALUES(2,1,3);
+INSERT INTO rol_permisos_modulos VALUES(2,2,3);
+INSERT INTO rol_permisos_modulos VALUES(2,3,3);
+INSERT INTO rol_permisos_modulos VALUES(2,1,6);
+INSERT INTO rol_permisos_modulos VALUES(2,5,3);
+
+--Cliente
+INSERT INTO rol_permisos_modulos VALUES(2,1,4);
+INSERT INTO rol_permisos_modulos VALUES(2,2,4);
+INSERT INTO rol_permisos_modulos VALUES(2,3,4);
+INSERT INTO rol_permisos_modulos VALUES(2,5,4);
+
+--Servicio
+INSERT INTO rol_permisos_modulos VALUES(2,1,5);
+INSERT INTO rol_permisos_modulos VALUES(2,2,5);
+INSERT INTO rol_permisos_modulos VALUES(2,3,5);
+INSERT INTO rol_permisos_modulos VALUES(2,5,5);
+
+--Factura
+INSERT INTO rol_permisos_modulos VALUES(2,2,6);
+INSERT INTO rol_permisos_modulos VALUES(2,3,6);
+
+--Reporte
+INSERT INTO rol_permisos_modulos VALUES(2,6,7);
+
+--Tela
+INSERT INTO rol_permisos_modulos VALUES(2,1,8);
+INSERT INTO rol_permisos_modulos VALUES(2,2,8);
+INSERT INTO rol_permisos_modulos VALUES(2,3,8);
+INSERT INTO rol_permisos_modulos VALUES(2,5,8);
+
+--Materiales
+INSERT INTO rol_permisos_modulos VALUES(2,1,9);
+INSERT INTO rol_permisos_modulos VALUES(2,2,9);
+INSERT INTO rol_permisos_modulos VALUES(2,3,9);
+INSERT INTO rol_permisos_modulos VALUES(2,5,9);
+
+--Notificaciones
+INSERT INTO rol_permisos_modulos VALUES(2,2,13);
+
+--Usuario Comùn
+
+--Producto
+
+INSERT INTO rol_permisos_modulos VALUES(3,2,2);
+
+--Pedido
+
+INSERT INTO rol_permisos_modulos VALUES(3,2,3);
+
 
 
 ALTER TABLE    pedidos                  ADD CONSTRAINT    Fkdocumento      FOREIGN KEY    (cedula_cliente)    REFERENCES    clientes(cedula_cliente)         ON UPDATE CASCADE ON DELETE CASCADE;

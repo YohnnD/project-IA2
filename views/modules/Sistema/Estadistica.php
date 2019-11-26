@@ -71,24 +71,24 @@
             </div>
             <!-- Row para gráficos -->
             <div class="row">
-                <div class="col s12 m12 xl6">
+                <div class="col s12 m12 xl12">
                     <div class="card">
                         <div class="card-content">
                             <canvas id="ventas"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m12 xl6">
+                <!-- <div class="col s12 m12 xl12">
                     <div class="card">
                         <div class="card-content">
                             <canvas id="ganancias"></canvas>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- Row para tablas -->
             <div class="row">
-                <div class="col s12 m12">
+                <div class="col s12 m6">
                     <ul class="collection with-header">
                         <li class="collection-header"><h5><i class="icon-event_note"></i>  Pedidos Pendientes</h5></li>
                         <?php if($pedido==null){  ?>
@@ -110,7 +110,7 @@
                         <?php endforeach;}?>
                     </ul>
                 </div>
-                <div class="col s12 m12">
+                <div class="col s12 m6">
                     <ul class="collection with-header">
                         <li class="collection-header"><h5><i class="icon-local_mall"></i>  Productos Mas Vendidos Anuales</h5></li> 
                         <?php if($producto==null){  ?>
@@ -126,11 +126,11 @@
                         <li class="collection-item">
                             
                             <div> 
+                            <a href="<?php echo Helpers::url('Producto','details')."/".$productos->codigo_producto; ?>"><span class="new badge blue icon-touch_app small" data-badge-caption="Ver Producto"></span></a>
                                 <span class="title"><b>Producto: </b><?php echo $productos->nombre_producto ?></span><br>
                                 <span><b>Codigo: </b><?php echo $productos->codigo_producto; ?></span><br>
                                 <span><b>Precio: </b><?php echo $productos->precio_producto; ?></span><br>
                                 <span><b>Ventas por Pedidos: </b><?php echo $productos->total; ?></span>
-                                <!-- <a href="#!" class="secondary-content" style="font-size:28px"><i class="icon-find_in_page"></i></a> -->
                             </div>
                         </li>
                             <?php endforeach;}?>
@@ -154,11 +154,11 @@
                         <li class="collection-item">
                             
                             <div> 
+                                <a href="<?php echo Helpers::url('Servicio','details')."/".$servicios->id_servicio; ?>"><span class="new badge green icon-touch_app small" data-badge-caption="Ver Servicio"></span></a>
                                 <span class="title"><b>Servicio: </b><?php echo $servicios->nombre_servicio ?></span><br>
                                 <span><b>Descripción: </b><?php echo $servicios->descripcion_servicio; ?></span><br>
                                 <span><b>Precio: </b><?php echo $servicios->precio_servicio; ?></span><br>
                                 <span><b>Ventas por Pedidos: </b><?php echo $servicios->total; ?></span>
-                                <!-- <a href="#!" class="secondary-content" style="font-size:28px"><i class="icon-find_in_page"></i></a> -->
                             </div>
                         </li>
                             <?php endforeach;}?>
