@@ -77,6 +77,7 @@ class RolesController extends BaseController
                 $rol->saveRolPermisoModule($id_rol,$module,$permiso);
             }
         }
+        $rol->registerBitacora(ROLES_PERMISOS,ACTUALIZAR);
         return $this->redirect('Roles','getAll');
     }
 

@@ -170,6 +170,13 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response !== null) {
+                    swal({
+                        title: "¡Bien hecho!",
+                        text: "Cliente encontrado con éxito.",
+                        icon: "success",
+                        timer: 3000
+                    });
+
                     $('#cedula_cliente').val(response.cedula_cliente);
                     $('#nombre_cliente').val(response.nombre_cliente);
                     $('#representante_cliente').val(response.representante_cliente);
@@ -420,6 +427,7 @@ $(document).ready(function () {
                         }
 
                     });
+                    $('input.autocomplete').click();
                 }
             },
             error: function (err) {
@@ -716,22 +724,26 @@ $(document).ready(function () {
         })
     });
 
-    $('#pedidos').DataTable({
-        "pageLength": 5,
-        "language": {
-            "search": "Buscar:  ",
-            "lengthMenu": "",
-            "zeroRecords": "Upps, No Se Encontraron Datos",
-            "info": "Pagina _PAGE_ de _PAGES_",
-            "infoEmpty": "No Hay Registro Para Mostrar",
-            "infoFiltered": "(Filtro De _MAX_ Resultado)",
-            "paginate": {
-                "first": "<i class='icon-first_page'></i>",
-                "last": "<i class='icon-last_page'></i>",
-                "next": "<i class='icon-navigate_next'></i>",
-                "previous": "<i class='icon-navigate_before'></i>"
-            },
-        }
-    });
+
+    if($('#pedidos').val()!=undefined){
+        $('#pedidos').DataTable({
+            "pageLength": 5,
+            "language": {
+                "search": "Buscar:  ",
+                "lengthMenu": "",
+                "zeroRecords": "Upps, No Se Encontraron Datos",
+                "info": "Pagina _PAGE_ de _PAGES_",
+                "infoEmpty": "No Hay Registro Para Mostrar",
+                "infoFiltered": "(Filtro De _MAX_ Resultado)",
+                "paginate": {
+                    "first": "<i class='icon-first_page'></i>",
+                    "last": "<i class='icon-last_page'></i>",
+                    "next": "<i class='icon-navigate_next'></i>",
+                    "previous": "<i class='icon-navigate_before'></i>"
+                },
+            }
+        });
+    }
+
 
 });

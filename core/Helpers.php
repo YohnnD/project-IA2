@@ -60,6 +60,12 @@ class Helpers{//clases donde se añaden metodos que se necesiten en la vista
         $tallas = $producto->getAllTallas();
         return $tallas;
     }
+
+    public function hasPermissions($module,$permission) {
+        if(isset($_SESSION['permissions'])){
+            
+        }
+    }
 }
 
 

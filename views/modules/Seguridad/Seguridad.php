@@ -26,7 +26,7 @@
                 <div class="col s12 m6">
                     <a href="<?php echo Helpers::url('Seguridad','bitacora'); ?>" class="btn-app green">
                         <i class="icon-format_list_bulleted"></i>
-                        <span>Historial</span>
+                        <span>Bitacora</span>
                     </a>
                 </div>
                 <div class="col s12 m6">

@@ -128,7 +128,7 @@
 		}
 
 		public function save() {
-			// $this->registerBiracora(PRODUCTOS,REGISTRAR);
+			$this->registerBitacora(PRODUCTOS,REGISTRAR);
 			$query = "INSERT INTO $this->table
 						(codigo_producto,
 						nombre_producto,descripcion_producto,tipo_producto,
@@ -166,7 +166,7 @@
 		}
 
 		public function update() {
-			// $this->registerBiracora(PRODUCTOS,ACTUALIZAR);
+			$this->registerBitacora(PRODUCTOS,ACTUALIZAR);
 			$query = "UPDATE $this->table SET
 						-- codigo_producto = :codigo_producto, 
 						nombre_producto = :nombre_producto,
@@ -204,14 +204,14 @@
 		}
 
 		public function delete() {
-			// $this->registerBiracora(PRODUCTOS,ELIMINAR);			
+			$this->registerBitacora(PRODUCTOS,ELIMINAR);			
 			$query = "DELETE FROM $this->table WHERE codigo_producto = '$this->codigoProducto'"; // Consulta SQL
 			$delete = $this->db()->query($query); // Prepara la consulta SQL
 			return $delete;
 		}
 
 		public function getAll() {
-			// $this->registerBiracora(PRODUCTOS,CONSULTAR);			
+			$this->registerBitacora(PRODUCTOS,CONSULTAR);			
 			$sql = "SELECT * FROM $this->table";
             $query = $this->db()->query($sql);
             if($query){ // Evalua la cansulta
@@ -228,7 +228,7 @@
 		}
 
 		public function getOne($codigoProducto) {
-			// $this->registerBiracora(PRODUCTOS, CONSULTAR);			
+			$this->registerBitacora(PRODUCTOS, DETALLES);			
 			$sql = "SELECT * FROM $this->table AS pro
 					WHERE pro.codigo_producto = '$codigoProducto'";
 			$query = $this->db()->query($sql);
@@ -289,7 +289,6 @@
 		}
 
 		public function checkCodigoProducto() {
-			// $this->registerBiracora(PRODUCTOS, CONSULTAR);			
 			$sql = "SELECT codigo_producto FROM $this->table 
 					WHERE codigo_producto = '$this->codigoProducto'";
 			$query = $this->db()->query($sql);

@@ -37,6 +37,7 @@
         }
 
         public function save() {
+            $this->registerBitacora(ROLES_PERMISOS,REGISTRAR);            
             $query = "INSERT INTO roles (nombre_rol, descripcion_rol) VALUES (:nombre_rol,:descripcion_rol) "; // COnsulta SQL
             $result = $this->db()->prepare($query); // Prepara la consulta SQL
             $result->bindParam(':nombre_rol',$this->nombreRol);
@@ -202,6 +203,22 @@
             $query = "DELETE FROM rol_permisos_modulos WHERE id_rol = '$id_rol'"; // Consulta SQL
             $delete = $this->db()->query($query); 
             return $delete;
+        }
+
+        public function getPermisosXModulosByRol($id_rol) {
+            $sql = "SELECT id_modulo,id_permiso FROM rol_permisos_modulos WHERE id_rol = '$id_rol'";
+            $query = $this->db()->query($sql);
+            if($query){ // Evalua la cansulta
+                if($query->rowCount() != 0) { // Si existe al menos un registro...
+                    while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
+                        $resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
+                    }
+                }
+                else{ // Sino...
+                    $resultSet = null; // Almacena null
+                }
+            }
+            return $resultSet; // Finalmente retornla el arreglo con los elementos.
         }
 	}
 ?>

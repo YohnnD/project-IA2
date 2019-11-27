@@ -68,7 +68,7 @@
 		}
 
 		public function save() {
-			// $this->registerBiracora(USUARIOS,REGISTRAR);			
+			$this->registerBitacora(USUARIOS,REGISTRAR);	
 			$query = "INSERT INTO $this->table (nick_usuario,nombre_usuario,apellido_usuario,email_usuario,contrasenia_usuario,id_rol) VALUES (:nick_usuario,:nombre_usuario,:apellido_usuario,:email_usuario,:contrasenia_usuario,:id_rol) "; // COnsulta SQL
 			$result = $this->db()->prepare($query); // Prepara la consulta SQL
 			// Limpia los parametros
@@ -83,7 +83,7 @@
 		}
 
 		public function update() {
-			// $this->registerBiracora(USUARIOS,ACTUALIZAR);			
+			$this->registerBitacora(USUARIOS,ACTUALIZAR);			
 			$query = "UPDATE $this->table SET 
 						nombre_usuario = :nombre_usuario,
 						apellido_usuario = :apellido_usuario, email_usuario = :email_usuario,
@@ -102,14 +102,14 @@
 		}
 
 		public function delete() {
-			// $this->registerBiracora(USUARIOS,ELIMINAR);			
+			$this->registerBitacora(USUARIOS,ELIMINAR);			
 			$query = "DELETE FROM $this->table WHERE nick_usuario = '$this->nickUsuario'"; // Consulta SQL
 			$delete = $this->db()->query($query); 
 			return $delete;
 		}
 
 		public function getAll() {
-			// $this->registerBiracora(USUARIOS,CONSULTAR);			
+			$this->registerBitacora(USUARIOS,CONSULTAR);
 			$sql = "SELECT * FROM $this->table INNER JOIN roles ON roles.id_rol = usuarios.id_rol";
             $query = $this->db()->query($sql);
             if($query){ // Evalua la cansulta
@@ -126,7 +126,7 @@
 		}
 
 		public function getOne($nickUsuario) {
-			// $this->registerBiracora(USUARIOS,CONSULTAR);						
+			$this->registerBitacora(USUARIOS,DETALLES);						
 			$sql = "SELECT * FROM $this->table WHERE nick_usuario = '$nickUsuario'"; // Consulta SQL
 			$query = $this->db()->query($sql); // Ejecuta la consulta SQL
             if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
@@ -156,7 +156,6 @@
 		}
 
 		public function checkNickUsuario() {
-			// $this->registerBiracora(PRODUCTOS, CONSULTAR);			
 			$sql = "SELECT nick_usuario FROM $this->table 
 					WHERE nick_usuario = '$this->nickUsuario'";
 			$query = $this->db()->query($sql);
@@ -174,7 +173,6 @@
 		}
 
 		public function checkEmailUsuario() {
-			// $this->registerBiracora(PRODUCTOS, CONSULTAR);			
 			$sql = "SELECT email_usuario FROM $this->table 
 					WHERE email_usuario = '$this->emailUsuario'";
 			$query = $this->db()->query($sql);
@@ -193,6 +191,23 @@
 
 		public function changePassword() {
 			
+		}
+
+		public function getBitacora() {
+			$this->registerBitacora(BITACORA,CONSULTAR);			
+			$sql = "SELECT * FROM bitacoras ORDER BY hora_actu_bitacora DESC";
+            $query = $this->db()->query($sql);
+            if($query){ // Evalua la cansulta
+                if($query->rowCount() != 0) { // Si existe al menos un registro...
+                    while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
+                        $resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
+                    }
+                }
+                else{ // Sino...
+                    $resultSet = null; // Almacena null
+                }
+            }
+            return $resultSet; // Finalmente retornla el arreglo con los elementos.
 		}
 	}
 ?>

@@ -94,7 +94,11 @@
 
 
 
-                                        <p>
+                                        <p class="<?php if(($modulo->nombre_modulo == 'ESTADISTICAS' && $permiso->nombre_permiso != 'CONSULTAR') || ($modulo->nombre_modulo == 'REPORTES' && $permiso->nombre_permiso != 'REPORTES') || ($modulo->nombre_modulo == 'SEGURIDAD' && $permiso->nombre_permiso != 'CONFIGURACIÓN') || ($modulo->nombre_modulo == 'MANTENIMIENTO' && $permiso->nombre_permiso != 'CONFIGURACIÓN')){ echo 'hide'; } elseif(($modulo->nombre_modulo == 'USUARIOS' || $modulo->nombre_modulo == 'PRODUCTOS' || 
+                                             $modulo->nombre_modulo == 'CLIENTES' || $modulo->nombre_modulo == 'PEDIDOS' || 
+                                             $modulo->nombre_modulo == 'SERVICIOS' || $modulo->nombre_modulo == 'FACTURAS' || 
+                                             $modulo->nombre_modulo == 'TELAS' || $modulo->nombre_modulo == 'MATERIALES') &&
+                                            ($permiso->nombre_permiso == 'CONFIGURACIÓN' || $permiso->nombre_permiso == 'REPORTES')) { echo 'hide'; } ?>">
                                             <label>
                                                 <?php if($band):?>
                                                 <input type="checkbox" id="" name="permisos[<?php echo $modulo->id_modulo;?>][]" value=" <?php  echo $permiso->id_permiso;?>" checked/>

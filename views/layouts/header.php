@@ -27,7 +27,7 @@
         <!-- Sidenav menu -->
         <ul class="sidenav sidenav-fixed show-on-large" id="sidenav-menu">
             <li><a href="" class="logo-container">IA2</a></li>
-            <li><a href="#!" class="waves-effect waves-black"><i class="icon-person left"></i><?php echo $_SESSION['user_auth']->nick_usuario; ?></a></li>
+            <li><a href="#!" class="waves-effect waves-black"><i class="icon-person left"></i><?php echo $_SESSION['user']->nick_usuario; ?></a></li>
             <li class="divider"></li>
             <li class="hide-on-large-only"><a href="<?php echo Helpers::url('Home','index'); ?>" class="waves-effect waves-black"><i class="icon-home left"></i>Inicio</a></li>
             <li class="hide-on-large-only"><a href="<?php echo Helpers::url('Home','account'); ?>"><i class="icon-account_box"></i> Cuenta</a></li>

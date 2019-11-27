@@ -9,7 +9,11 @@
 		}
 
 		public function bitacora() {
-			$this->view('Seguridad/Bitacora');
+			$usuario = new Usuario();
+			$bitacoras = $usuario->getBitacora();
+			$this->view('Seguridad/Bitacora', [
+				'bitacoras' => $bitacoras
+			]);
 		}
 
 		public function modules() {
