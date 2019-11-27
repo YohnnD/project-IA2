@@ -55,11 +55,11 @@ class Helpers{//clases donde se añaden metodos que se necesiten en la vista
         }
     }
 
-    public static function getTallas() {
-        $producto = new Producto();
-        $tallas = $producto->getAllTallas();
-        return $tallas;
-    }
+    // public static function getTallas() {
+    //     $producto = new Producto();
+    //     $tallas = $producto->getAllTallas();
+    //     return $tallas;
+    // }
 
     public static function hasPermissions($module,$permission=null,$route=null,$nameModule=null) {
         /*Funcion para la verificación de los permisos:
