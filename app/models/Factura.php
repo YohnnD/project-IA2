@@ -90,6 +90,7 @@ class Factura extends BaseModel {
     }
 
     public function getOne() {
+        $this->registerBitacora(FACTURAs,DETALLES);
 
         $rowProducto = 0;
 
@@ -236,12 +237,12 @@ $rowProducto=[];
                 );
             }
         }
-        /* var_dump($row);
-          die(); */
+       
         return $row;
     }
 
     public function anular() {
+        $this->registerBitacora(FACTURAS,ACTUALIZAR);
         $sql = "UPDATE $this->table SET status_factura=false WHERE codigo_factura=:codigo_factura";
 
         $result = $this->db()->prepare($sql);
