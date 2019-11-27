@@ -59,7 +59,7 @@
                                         <textarea name="descripcion_tela" id="descripcion_tela" cols="30" rows="10" class="materialize-textarea" disabled ><?php echo $result->descripcion_tela?></textarea>
                                         <label for="descripcion_tela">Descripción</label>
                                     </div>
-
+                            <?php if (Helpers::hasPermissions('8','3')): ?>
                             <div class="col s12 m6 center-align">
                                 <button type="button" class="btn blue waves-effect waves-light col s12" name="edit" id="edit">
                                     <i class="icon-redo right"></i>
@@ -67,7 +67,8 @@
                                     <i class="icon-redo left"></i>
                                 </button>
                             </div> 
-
+                            <?php endif; ?>
+                            <?php if (Helpers::hasPermissions('8','4')): ?>
                             <div class="col s12 m6 center-align">
                                 <button type="button" class="btn red waves-effect waves-light col s12" name="delete" id="delete">
                                     <i class="icon-remove right"></i>
@@ -75,6 +76,8 @@
                                     <i class="icon-remove left"></i>
                                 </button>
                             </div> 
+                            <?php endif; ?>
+
                             
                             <div class="col s12 m6 center-aling">
                                 <a href="<?php echo Helpers::url('Tela','details')."/".$result->id_tela; ?>" style="display: none" class="btn green waves-effect waves-light col s12" name="back" id="back">

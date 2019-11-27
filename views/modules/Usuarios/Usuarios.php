@@ -23,18 +23,22 @@
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                     <a href="<?php echo Helpers::url('Usuario','index'); ?>" class="breadcrumb">Gestionar Usuarios</a>
                 </div>
+                <?php if (Helpers::hasPermissions('1','1')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Usuario','create'); ?>" class="btn-app green">
                         <i class="icon-person_add"></i>
                         <span>Registrar Usuario</span>
                     </a>
                 </div>
+                <?php endif; ?>
+                <?php if (Helpers::hasPermissions('1','2')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Usuario','getAll'); ?>" class="btn-app orange">
                         <i class="icon-contacts"></i>
                         <span>Consultar Usuarios</span>
                     </a>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </main>

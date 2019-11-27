@@ -38,7 +38,9 @@
                                 <th>Descripción</th>
                                 <th>U. Medida</th>
                                 <th>Tipo</th>
+                                <?php if (Helpers::hasPermissions('8','5')): ?>
                                 <th>Detalles</th>
+                                <?php endif; ?>
                             </tr>
                         </thead>
 
@@ -56,9 +58,11 @@
                                 <td><?php echo $tela->descripcion_tela; ?></td>
                                 <td><?php echo $tela->unidad_med_tela; ?></td>
                                 <td><?php echo $tela->tipo_tela; ?></td>
+                                <?php if (Helpers::hasPermissions('8','5')): ?>
                                 <td>
                                     <a href="<?php echo Helpers::url('Tela','details')."/".$tela->id_tela?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
                                 </td>
+                                <?php endif; ?>
                             </tr>  
                             <?php endforeach; } ?>                     
                         </tbody>                                

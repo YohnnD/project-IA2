@@ -365,8 +365,8 @@ var url = "http://localhost/project-IA2/Usuario/";
                 "sInfoThousands":  ",",
                 "sLoadingRecords": "Cargando...",
                 "oPaginate": {
-                    "sFirst":    "Primero",
-                    "sLast":     "Último",
+                    "sFirst":    "<i class='icon-first_page'></i>",
+                    "sLast":     "<i class='icon-last_page'></i>",
                     "sNext":     "<i class='icon-navigate_next'></i>",
                     "sPrevious": "<i class='icon-navigate_before'></i>"
                 },

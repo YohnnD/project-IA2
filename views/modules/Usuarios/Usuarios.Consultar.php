@@ -40,7 +40,9 @@
                                 <th>Nombre</th>
                                 <th>E-mail</th>
                                 <th>Rol</th>
+                                <?php if (Helpers::hasPermissions('1','5')): ?>
                                 <th>Detalles</th>
+                                <?php endif; ?>
                                 <!-- <th></th>
                                 <th></th> -->
                             </tr>
@@ -52,7 +54,9 @@
                                 <td><?php echo $usuario->nombre_usuario . " " . $usuario->apellido_usuario; ?></td>
                                 <td><?php echo $usuario->email_usuario; ?></td>
                                 <td><?php echo $usuario->nombre_rol; ?></td>
+                                <?php if (Helpers::hasPermissions('1','5')): ?>
                                 <td><a href="<?php echo Helpers::url('Usuario','details'); ?>/<?php echo $usuario->nick_usuario; ?>" class="btn btn-small a2-green waves-effect waves-light"><i class="icon-pageview"></i></a></td>
+                                <?php endif; ?>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>

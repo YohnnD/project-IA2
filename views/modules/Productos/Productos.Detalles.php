@@ -123,6 +123,7 @@
                                 <label for="stock_pro_talla">Cantidad por Talla</label>
                             </div>
                             <?php endforeach; ?>
+                            <?php if (Helpers::hasPermissions('2','3')): ?>
                             <div class="col s12 m6 center-align" id="modify-btn">
                                 <a id="modify" class="btn blue waves-effect waves-light col s12">
                                     <i class="icon-update left"></i>                        
@@ -130,7 +131,9 @@
                                     <i class="icon-update right"></i>
                                 </a>
                             </div>
+                            <?php endif; ?>
                             <!-- <br class="show-on-down-only"> -->
+                            <?php if (Helpers::hasPermissions('2','4')): ?>
                             <div class="col s12 m6 center-align" id="delete-btn">
                                 <a id="delete" class="btn red waves-effect waves-light col s12">
                                     <i class="icon-remove left"></i>                        
@@ -138,6 +141,7 @@
                                     <i class="icon-remove right"></i>
                                 </a>
                             </div>
+                            <?php endif; ?>
                             <div class="col s12 center-align" style="display: none" id="update-btn">
                                 <button type="submit" class="btn green waves-effect waves-light col s12">
                                     Actualizar

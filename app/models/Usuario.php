@@ -127,7 +127,7 @@
 
 		public function getOne($nickUsuario) {
 			$this->registerBitacora(USUARIOS,DETALLES);						
-			$sql = "SELECT * FROM $this->table WHERE nick_usuario = '$nickUsuario'"; // Consulta SQL
+			$sql = "SELECT * FROM $this->table INNER JOIN roles ON roles.id_rol = usuarios.id_rol WHERE usuarios.nick_usuario = '$nickUsuario'"; // Consulta SQL
 			$query = $this->db()->query($sql); // Ejecuta la consulta SQL
             if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
                 $register = $row; // Lo almacena en $register
