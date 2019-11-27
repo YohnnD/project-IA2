@@ -20,7 +20,7 @@
                 <div class="col s12 m8 offset-m2 animated bounceInDown">
                     <form action="<?php echo Helpers::url('Auth', 'login'); ?>" method="post" class="card bg-light-opacity-8">
                         <div class="card-header center-align">
-                            <h5>Inciar Sesión</h5>
+                            <h5>Iniciar Sesión</h5>
                         </div>
                         <div class="card-content row">
                             <?php if($_SESSION): ?>

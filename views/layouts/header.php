@@ -17,9 +17,8 @@
                 </li>
                 <!-- User dropdown trigger -->
                 <ul class="dropdown-content" id="user-dropdown">
-		        	<li><a href="<?php echo Helpers::url('Home','account'); ?>"><i class="icon-account_box"></i>Cuenta</a></li>
-		        	<li><a href="<?php echo Helpers::url('Home','settings'); ?>"><i class="icon-settings"></i>Configuración</a></li>
-		        	<li class="divider"></li>
+		        	<!-- <li><a href="<?php //echo Helpers::url('Home','account'); ?>"><i class="icon-account_box"></i>Cuenta</a></li>
+		        	<li><a href="<?php// echo Helpers::url('Home','settings'); ?>"><i class="icon-settings"></i>Configuración</a></li> -->		        	
 		        	<li><a href="<?php echo Helpers::url('Auth','logout'); ?>"><i class="icon-exit_to_app"></i>Cerrar Sesión</a></li>
 		        </ul>
             </ul>
@@ -88,9 +87,9 @@
             <?php endif; ?>
 
 
-            <?php if (Helpers::hasPermissions('12')): ?>
-            <li><a href="<?php echo Helpers::url('Mantenimiento','index'); ?>"><i class="icon-perm_data_setting left"></i>Mantenimiento</a></li>
-            <?php endif; ?>
+            <!-- <?php // if (Helpers::hasPermissions('12')): ?>
+            <li><a href="<?php //echo Helpers::url('Mantenimiento','index'); ?>"><i class="icon-perm_data_setting left"></i>Mantenimiento</a></li>
+            <?php// endif; ?> -->
             <!-- <li><a href=""><i class="icon-event_available left"></i></a></li> -->
         </ul>
     </nav>
