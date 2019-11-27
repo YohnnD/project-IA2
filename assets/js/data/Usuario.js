@@ -1,6 +1,6 @@
-var url = "http://localhost/project-IA2/Usuario/";
 
 $(document).ready(function(){
+var url = "http://localhost/project-IA2/Usuario/";
     // Registrar
     $('#register').submit(function(e) {
         e.preventDefault(); // Disable submit event

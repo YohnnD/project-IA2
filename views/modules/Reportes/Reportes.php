@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Reportes - Inversiones A2</title>
 </head>
 <body>
@@ -23,37 +24,33 @@
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                     <a href="<?php echo Helpers::url('Reporte','reportesIndex'); ?>" class="breadcrumb">Reportes</a>
                 </div>
-                <div class="col s12 m4">
+                <div class="col s12 m4 animated bounceIn">
                     <a href="<?php echo Helpers::url('Reporte','getAllPedido'); ?>" class="btn-app pink">
                         <i class="icon-assignment"></i>
                         <span>Reporte de Pedidos</span>
                     </a>
                 </div>
-                <div class="col s12 m4">
+                <div class="col s12 m4 animated bounceIn">
                     <a href="<?php echo Helpers::url('Reporte','getAllProducto'); ?>" class="btn-app green">
                         <i class="icon-style"></i>
                         <span>Reporte de Productos</span>
                     </a>
                 </div>
-                <div class="col s12 m4">
+                <div class="col s12 m4 animated bounceIn">
                     <a href="<?php echo Helpers::url('Reporte','index'); ?>" class="btn-app red">
                         <i class="icon-receipt"></i>
                         <span>Reporte de Facturas</span>
                     </a>
                 </div>
-            </div>
-
-        <div class="row">
-            <div class="col s12 m4">
+                <div class="col s12 m4 animated bounceIn">
                     <a href="<?php echo Helpers::url('Home','dashboard'); ?>" class="btn-app blue">
-                        <i class="icon-receipt"></i>
+                        <i class="icon-multiline_chart"></i>
                         <span>Visualizar Estadistica</span>
                     </a>
+                </div>
             </div>
         </div>
-
-    </div>
-</main>
+    </main>
 
     <!-- Footer -->
     <?php require_once "views/layouts/footer.php"; ?>

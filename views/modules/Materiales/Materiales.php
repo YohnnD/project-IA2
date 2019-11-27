@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Materiales - Inversiones A2</title>
 </head>
 <body>
@@ -24,13 +25,13 @@
                     <a href="<?php echo Helpers::url('Configuracion','index'); ?>" class="breadcrumb">Configuración</a>
                     <a href="<?php echo Helpers::url('Material','index'); ?>" class="breadcrumb">Gestionar Materiales</a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Material','create'); ?>" class="btn-app indigo">
                         <i class="icon-playlist_add"></i>
                         <span>Registrar Material</span>
                     </a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Material','getAll'); ?>" class="btn-app deep-orange">
                         <i class="icon-view_quilt"></i>
                         <span>Consultar Materiales</span>

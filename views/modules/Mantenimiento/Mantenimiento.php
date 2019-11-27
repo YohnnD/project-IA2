@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Mantenimiento - Inversiones A2</title>
 </head>
 <body>
@@ -23,13 +24,13 @@
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                     <a href="<?php echo Helpers::url('Mantenimiento','index'); ?>" class="breadcrumb">Mantenimiento</a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Mantenimiento','createBackup'); ?>" class="btn-app deep-purple">
                         <i class="icon-storage"></i>
                         <span>Generar Respaldo</span>
                     </a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Mantenimiento','systemRestore'); ?>" class="btn-app pink">
                         <i class="icon-settings_backup_restore"></i>
                         <span>Restaurar Sistema</span>

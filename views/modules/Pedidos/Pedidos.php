@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Pedidos - Inversiones A2</title>
 </head>
 <body>
@@ -23,13 +24,13 @@
                 <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                 <a href="<?php echo Helpers::url('Pedido','index'); ?>" class="breadcrumb">Gestionar Pedidos</a>
             </div>
-            <div class="col s12 m6">
+            <div class="col s12 m6 animated bounceIn">
                 <a href="<?php echo Helpers::url('Pedido','create'); ?>" class="btn-app orange">
                     <i class="icon-add_shopping_cart"></i>
                     <span>Registrar Pedido</span>
                 </a>
             </div>
-            <div class="col s12 m6">
+            <div class="col s12 m6 animated bounceIn">
                 <a href="<?php echo Helpers::url('Pedido','getAll'); ?>" class="btn-app pink">
                     <i class="icon-chrome_reader_mode"></i>
                     <span>Consultar Pedidos</span>

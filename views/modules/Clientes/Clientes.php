@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Gestionar Clientes - Inversiones A2</title>
 </head>
 <body>
@@ -23,13 +24,13 @@
                 <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                 <a href="<?php echo Helpers::url('Cliente','index'); ?>" class="breadcrumb">Gestionar Clientes</a>
             </div>
-            <div class="col s12 m6">
+            <div class="col s12 m6 animated bounceIn">
                 <a href="<?php echo Helpers::url('Cliente','create'); ?>" class="btn-app orange">
                     <i class="icon-person_add"></i>
                     <span>Registrar Cliente</span>
                 </a>
             </div>
-            <div class="col s12 m6">
+            <div class="col s12 m6 animated bounceIn">
                 <a href="<?php echo Helpers::url('Cliente','getAll'); ?>" class="btn-app pink">
                     <i class="icon-recent_actors"></i>
                     <span>Consultar Clientes</span>

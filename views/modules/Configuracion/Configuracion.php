@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ animated bounceIn<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Configuraciones - Inversiones A2</title>
 </head>
 <body>
@@ -23,19 +24,19 @@
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                     <a href="<?php echo Helpers::url('Configuracion','index'); ?>" class="breadcrumb">Configuración</a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Servicio','index'); ?>" class="btn-app red">
                         <i class="icon-star"></i>
                         <span>Gestionar Servicios</span>
                     </a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Tela','index'); ?>" class="btn-app indigo">
                         <i class="icon-layers"></i>
                         <span>Gestionar Telas</span>
                     </a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Material','index'); ?>" class="btn-app orange">
                         <i class="icon-streetview"></i>
                         <span>Gestionar Materiales</span>
