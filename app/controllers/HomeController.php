@@ -31,7 +31,7 @@
 			$cliente=$get->cliente();
 			$factura=$get->factura();
 			
-			// $get->registrarBitacora();
+			$get->registrarBitacora();
 		
 			$this->view('Sistema/Estadistica',[	'producto'=>$producto,
 												'pedido'=>$pedido,

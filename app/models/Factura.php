@@ -90,6 +90,7 @@ class Factura extends BaseModel {
     }
 
     public function getOne() {
+        $this->registerBitacora(FACTURAs,DETALLES);
 
         $rowProducto = 0;
 
@@ -146,8 +147,9 @@ class Factura extends BaseModel {
         }
 
       
-
+$rowProducto=[];
         if ($rowProPedido !== 0) {
+
             for ($i = 0; $i < $proPedido->rowCount(); $i++) {
                
                 $codigo = $rowProPedido[$i]->codigo_producto;
@@ -155,8 +157,10 @@ class Factura extends BaseModel {
 
                 if ($producto && $producto->rowCount() != 0) {// Evalua la cansulta 
                     while ($rowProduc = $producto->fetchAll()) {
-                        $rowProducto[] = $rowProduc;
-                    }
+                        
+                        $rowProducto+=array($i=>$rowProduc);  
+                         
+                   }
                 } else { // 
                     $rowProducto = 0;
                 }
@@ -164,7 +168,7 @@ class Factura extends BaseModel {
         } else { // 
             $rowProducto = 0;
         }
-
+  
 
         if (!is_null($rowFactura)) {
 
@@ -233,12 +237,12 @@ class Factura extends BaseModel {
                 );
             }
         }
-        /* var_dump($row);
-          die(); */
+       
         return $row;
     }
 
     public function anular() {
+        $this->registerBitacora(FACTURAS,ACTUALIZAR);
         $sql = "UPDATE $this->table SET status_factura=false WHERE codigo_factura=:codigo_factura";
 
         $result = $this->db()->prepare($sql);

@@ -22,9 +22,10 @@
                 <div class="col s12 breadcrumb-nav left-align">
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                     <a href="<?php echo Helpers::url('Factura','FactuIndex'); ?>" class="breadcrumb">Facturación de Ventas</a>
+                    <a href="<?php echo Helpers::url('Factura','setDolar'); ?>" class="breadcrumb">Facturación en Bolivares</a>
                 </div>
                 <div class="col s12">
-                    <h4 class="center-align">Listado de Facturas</h4>
+                    <h4 class="center-align">Precio del Dolar</h4>
                 </div>
                 <?php if (empty($allFactura)){ ?>
                         <h2 class="center-align">No Hay Ninguna Factura Registrada Aún.</h2>
@@ -32,36 +33,36 @@
                
                 <div class="col s12">
                     <?php }else ?>
-                    <table class="responsive-table centered striped">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Cliente</th>
-                                <th>Estado</th>
-                                <th>Fecha de Factura</th>
-                                <th>Fecha de Entrega</th>
-                                <th>Dolares</th>
-                                <th>Bolivares</th>
-                            </tr>
-                        </thead>
+                   
                         
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card-panel">
+        <span>
+            <?php foreach ($allFactura as $factura): ?> 
+        <form action="<?php echo Helpers::url('Reporte','facturaBolivares')."/".$factura->codigo_factura?>" method="post">
+        <input type="hidden" name="id" value="<?php echo $factura->codigo_factura?>"> 
+            
+          <div class="input-field">                     
+          <i class="icon-attach_money prefix"></i>
+          <input type="number" id="dolar" name="dolar" value="" class="validate">
+          <label for="dolar">Precio Dolar</label>
+          </div>
+        <div>
+            <button type="submit" class="btn-large waves-effect waves-light green"><i class="icon-money_off"></i>Imprimir PDF</a></button>
+            
+        </div>
+        </form>       
+                           
+        <?php endforeach;?>
+        
+        </span>
+      </div>
+    </div>
+  </div>
                             
-                        <tbody>
-                         <?php foreach ($allFactura as $factura): ?>   
-                            <tr>
-                                <td><?php echo $factura->codigo_factura?></td>
-                                <td><?php echo $factura->nombre_cliente?></td>
-                                <td><?php echo $factura->status_pedido?></td>
-                                <td><?php echo $factura->fecha_factura?></td>
-                                <td><?php echo $factura->fecha_entrega_pedido?></td>
-                                <td><a href="<?php echo Helpers::url('Reporte','facturaById')."/".$factura->codigo_factura?>" class="btn btn-floating green waves-effect waves-light"><i class="icon-monetization_on"></i></a></td>
-                                <td>
-                                    <a href="<?php echo Helpers::url('Reporte','setDolar')."/".$factura->codigo_factura?>" class="btn btn-floating amber waves-effect waves-light"><i class="icon-money_off"></i></a></td> 
-                           ?>
-                            </tr>
-                        <?php endforeach;?>
-                        </tbody>
-                    </table>
+                     
+                         
                 </div>
             </div>
         </div>
