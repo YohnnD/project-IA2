@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Inversiones A2 - Iniciar Sesión</title>
 </head>
 <body class="login-view login-background">
@@ -16,7 +17,7 @@
     <main>
         <div class="container">
             <div class="row">
-                <div class="col s12 m8 offset-m2">
+                <div class="col s12 m8 offset-m2 animated bounceInDown">
                     <form action="<?php echo Helpers::url('Auth', 'login'); ?>" method="post" class="card bg-light-opacity-8">
                         <div class="card-header center-align">
                             <h5>Inciar Sesión</h5>

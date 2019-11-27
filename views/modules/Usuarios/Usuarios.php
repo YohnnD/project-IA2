@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Gestionar Usuarios - Inversiones A2</title>
 </head>
 <body>
@@ -22,13 +23,13 @@
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                     <a href="<?php echo Helpers::url('Usuario','index'); ?>" class="breadcrumb">Gestionar Usuarios</a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Usuario','create'); ?>" class="btn-app green">
                         <i class="icon-person_add"></i>
                         <span>Registrar Usuario</span>
                     </a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Usuario','getAll'); ?>" class="btn-app orange">
                         <i class="icon-contacts"></i>
                         <span>Consultar Usuarios</span>

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/errors.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Error 404 - Inversiones A2</title>
 </head>
 <body class="grey">

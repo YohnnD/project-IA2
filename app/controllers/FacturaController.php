@@ -33,7 +33,8 @@
 
 			$this->view('Facturacion/Facturacion.Detalles',array(
 				'detalles'=>$result,
-				'status'=>$status_factura
+				'status'=>$status_factura,
+				'StatusFactura'=>$result['Factura']->status_factura
 			));
 		}
 
@@ -49,20 +50,5 @@
 			$this->sendAjax($result);
 		}
 
-		public function register() {
-
-		}
-
-		public function create() {
-
-		}
-
-		public function update() {
-
-		}
-
-		public function delete() {
-
-		}
 	}
 ?>

@@ -725,7 +725,8 @@ $(document).ready(function () {
     });
 
 
-    if($('#pedidos').val()!=undefined){
+
+    if($('#pedidos').val()!==undefined){
         $('#pedidos').DataTable({
             "pageLength": 5,
             "language": {

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/datatables.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Consultar Clientes - Inversiones A2</title>
 </head>
 <body>

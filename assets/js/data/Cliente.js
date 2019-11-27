@@ -250,22 +250,26 @@ $(document).ready(function () {
         })
     });
 
-    $('#clientes').DataTable({
-        "pageLength": 5,
-        "language": {
-            "search": "Buscar:  ",
-            "lengthMenu": "",
-            "zeroRecords": "Upps, No Se Encontraron Datos",
-            "info": "Pagina _PAGE_ de _PAGES_",
-            "infoEmpty": "No Hay Registro Para Mostrar",
-            "infoFiltered": "(Filtro De _MAX_ Resultado)",
-            "paginate": {
-                "first": "<i class='icon-first_page'></i>",
-                "last": "<i class='icon-last_page'></i>",
-                "next": "<i class='icon-navigate_next'></i>",
-                "previous": "<i class='icon-navigate_before'></i>"
-            },
-        }
-    });
+    if($('#clientes').val()!==undefined){
+        $('#clientes').DataTable({
+            "pageLength": 5,
+            "language": {
+                "search": "Buscar:  ",
+                "lengthMenu": "",
+                "zeroRecords": "Upps, No Se Encontraron Datos",
+                "info": "Pagina _PAGE_ de _PAGES_",
+                "infoEmpty": "No Hay Registro Para Mostrar",
+                "infoFiltered": "(Filtro De _MAX_ Resultado)",
+                "paginate": {
+                    "first": "<i class='icon-first_page'></i>",
+                    "last": "<i class='icon-last_page'></i>",
+                    "next": "<i class='icon-navigate_next'></i>",
+                    "previous": "<i class='icon-navigate_before'></i>"
+                },
+            }
+        });
+    }
+
+
 
 });

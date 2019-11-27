@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Productos - Inversiones A2</title>
 </head>
 <body>
@@ -23,13 +24,13 @@
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                     <a href="<?php echo Helpers::url('Producto','index'); ?>" class="breadcrumb">Gestionar Productos</a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Producto','create'); ?>" class="btn-app red">
                         <i class="icon-assignment_ind"></i>
                         <span>Registrar Producto</span>
                     </a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Producto','getAll'); ?>" class="btn-app blue">
                         <i class="icon-style"></i>
                         <span>Ver Productos</span>

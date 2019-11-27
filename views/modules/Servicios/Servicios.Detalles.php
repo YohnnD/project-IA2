@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Detalles - Inversiones A2</title>
 </head>
 <body>
@@ -68,28 +69,39 @@
                     <input type="text" name="unidad_medida" id="unidad_medida" value="<?php echo $resul->nombre_material?>" disabled>
                     <label for="unidad_medida">Material</label>
                 </div>
-                <div class="input-field col s12 m6 xl6">
+                <div class="input-field col s12 m4 xl4 ">
                     <i class="icon-open_with prefix"></i>
                     <input type="text" name="unidad_medida" id="unidad_medida" value="<?php echo $resul->cant_mat_servicio?>" disabled>
                     <label for="unidad_medida">Cantidad</label>
                 </div>
+                <div class="input-field col s12 m2 l2 " >
+                    <a href="<?php echo Helpers::url('Servicio','deleteMaterial');?>/<?php echo $resul->id_material?>" class="btn red waves-effect waves-light col s12 materiales" disabled>
+                        <i class="icon-delete right"></i>
+                    </a>
+                </div>
                 <?php endforeach;endif;?>
                 <div class="input-field col s12 m6 center-align">
-                    <a href="#!" class="btn blue waves-effect waves-light col s12" id="modify">
+                    <a href="#" class=" materiales btn blue waves-effect waves-light col s12" id="modify">
                         <i class="icon-update right"></i>
                         Modificar
                     </a>
                 </div>
                 <div class="input-field col s12 m6 center-align">
-                    <a href="#!" class="btn red waves-effect waves-light col s12" id="delete">
+                    <a href="#" class="btn red waves-effect waves-light col s12" id="delete">
                         <i class="icon-delete right"></i>
                         Eliminar
                     </a>                
                 </div>
-                <div class="input-field col s12 m12 center-align">
-                    <a href="<?php echo Helpers::url('Servicio','getMateriales');?>/<?php echo $value['id_servicio']?>" class="btn blue waves-effect waves-light col s12" id="addMaterial">
+                <div class="input-field col s12 m6 center-align">
+                    <a href="<?php echo Helpers::url('Servicio','getMateriales');?>/<?php echo $value['id_servicio']?>" class="btn green waves-effect waves-light col s12" id="addMaterial">
                         <i class="icon-add right"></i>
                         Añadir Material
+                    </a>
+                </div>
+                <div class="input-field col s12 m6 center-align">
+                    <a href="#" class="btn red waves-effect waves-light col s12" id="deleteMaterial">
+                        <i class="icon-delete right"></i>
+                        Eliminar Material
                     </a>
                 </div>
             </form>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Gestionar Roles y Permisos - Inversiones A2</title>
 </head>
 <body>
@@ -24,19 +25,19 @@
                     <a href="<?php echo Helpers::url('Seguridad', 'index'); ?>" class="breadcrumb">Seguridad</a>
                     <a href="<?php echo Helpers::url('Seguridad', 'roles'); ?>" class="breadcrumb">Gestionar Roles y Permisos</a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Roles', 'create'); ?>" class="btn-app indigo">
                         <i class="icon-person_pin"></i>
                         <span>Registrar Rol y Permisos</span>
                     </a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Roles', 'getAll'); ?>" class="btn-app cyan">
                         <i class="icon-playlist_add_check"></i>
                         <span>Ver Roles</span>
                     </a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Permiso', 'getAll'); ?>" class="btn-app orange">
                         <i class="icon-record_voice_over"></i>
                         <span>Ver Permisos</span>

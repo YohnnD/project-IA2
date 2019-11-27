@@ -29,11 +29,9 @@
           <h2 class="name">
             <?php echo date('d/m/Y');?></h2>
         </div>
-
         <div id="invoice">
-          <h1>Pedidos</h1>
+          <h1>Entregas Realizadas</h1>
         </div>
-        
       </div>
       <?php if (empty($allPedido)){ ?>
       <h2 class="center-align">No Hay Ningún Pedido Registrado Aún.</h2>
@@ -50,7 +48,7 @@
         </thead>
         <tbody>
           <?php foreach ($allPedido as $pedido): ?>
-            <?php if($pedido->status_pedido == 'Terminado' || $pedido->status_pedido == 'En proceso' || $pedido->status_pedido == 'terminado' || $pedido->status_pedido == 'en proceso' || $pedido->status_pedido == 'En Proceso' ):?>
+            <?php if($pedido->status_pedido == 'Entregado' || $pedido->status_pedido == 'entregado'):?>
           <tr>
             <td class="no"><?php echo $pedido->codigo_pedido?></td>
             <td class="desc">
@@ -61,7 +59,7 @@
             <td class="total"><?php echo $pedido->status_pedido?></td>
             
           </tr>
-          <?php elseif($pedido->status_pedido == 'Entregado' || $pedido->status_pedido == 'entregado'): ?>
+          <?php elseif($pedido->status_pedido == 'Terminado' || $pedido->status_pedido == 'En proceso' || $pedido->status_pedido == 'terminado' || $pedido->status_pedido == 'en proceso' || $pedido->status_pedido == 'En Proceso'): ?>
                 <?php endif; ?>
           
           <?php endforeach;?>

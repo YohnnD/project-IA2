@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <title>Telas - Inversiones A2</title>
 </head>
 <body>
@@ -24,13 +25,13 @@
                     <a href="<?php echo Helpers::url('Configuracion','index'); ?>" class="breadcrumb">Configuración</a>
                     <a href="<?php echo Helpers::url('Tela','index'); ?>" class="breadcrumb">Gestionar Telas</a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Tela','create'); ?>" class="btn-app teal">
                         <i class="icon-enhanced_encryption"></i>
                         <span>Registrar Tela</span>
                     </a>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Tela','getAll'); ?>" class="btn-app pink">
                         <i class="icon-content_copy"></i>
                         <span>Consultar Telas</span>
