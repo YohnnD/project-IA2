@@ -38,7 +38,9 @@
                                 <th>Descripción</th>
                                 <th>Precio</th>
                                 <th>U. Medida</th>
+                                <?php if (Helpers::hasPermissions('5','5')): ?>
                                 <th>Detalles</th>
+                                <?php endif; ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,9 +52,11 @@
                                 <td><?php echo $value['descripcion_servicio']?></td>
                                 <td><?php echo $value['precio_servicio']?></td>
                                 <td><?php echo $value['unidad_medida']?></td>
+                                <?php if (Helpers::hasPermissions('5','5')): ?>
                                 <td>
                                     <a href="<?php echo Helpers::url('Servicio','details');?>/<?php echo $value['id_servicio'];?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
                                 </td>
+                                <?php endif; ?>
                             </tr>
 
                         <?php endforeach ?>

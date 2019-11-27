@@ -25,18 +25,22 @@
                     <a href="<?php echo Helpers::url('Configuracion','index'); ?>" class="breadcrumb">Configuración</a>
                     <a href="<?php echo Helpers::url('Servicio','index'); ?>" class="breadcrumb">Gestionar Servicios</a>
                 </div>
+                <?php if (Helpers::hasPermissions('5','1')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Servicio','create'); ?>" class="btn-app green">
                         <i class="icon-control_point"></i>
                         <span>Registrar Servicio</span>
                     </a>
                 </div>
+                <?php endif; ?>
+                <?php if (Helpers::hasPermissions('5','2')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Servicio','getAll'); ?>" class="btn-app blue">
                         <i class="icon-apps"></i>
                         <span>Consultar Servicios</span>
                     </a>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </main>

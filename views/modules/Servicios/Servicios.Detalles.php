@@ -80,30 +80,38 @@
                     </a>
                 </div>
                 <?php endforeach;endif;?>
+                <?php if (Helpers::hasPermissions('5','3')): ?>
                 <div class="input-field col s12 m6 center-align">
                     <a href="#" class=" materiales btn blue waves-effect waves-light col s12" id="modify">
                         <i class="icon-update right"></i>
                         Modificar
                     </a>
                 </div>
+                <?php endif; ?>
+                <?php if (Helpers::hasPermissions('5','4')): ?>
                 <div class="input-field col s12 m6 center-align">
                     <a href="#" class="btn red waves-effect waves-light col s12" id="delete">
                         <i class="icon-delete right"></i>
                         Eliminar
                     </a>                
                 </div>
+                <?php endif; ?>
+                <?php if (Helpers::hasPermissions('9','1')): ?>
                 <div class="input-field col s12 m6 center-align">
                     <a href="<?php echo Helpers::url('Servicio','getMateriales');?>/<?php echo $value['id_servicio']?>" class="btn green waves-effect waves-light col s12" id="addMaterial">
                         <i class="icon-add right"></i>
                         Añadir Material
                     </a>
                 </div>
+                <?php endif; ?>
+                <?php if (Helpers::hasPermissions('9','4')): ?>
                 <div class="input-field col s12 m6 center-align">
                     <a href="#" class="btn red waves-effect waves-light col s12" id="deleteMaterial">
                         <i class="icon-delete right"></i>
                         Eliminar Material
                     </a>
                 </div>
+                <?php endif; ?>
             </form>
         </div>
     </main>

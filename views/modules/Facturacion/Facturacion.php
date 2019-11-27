@@ -24,12 +24,14 @@
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                     <a href="<?php echo Helpers::url('Factura','index'); ?>" class="breadcrumb">Facturación de Ventas</a>
                 </div>
+                <?php if (Helpers::hasPermissions('6','2')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Factura','getAll'); ?>" class="btn-app green darken-3">
                         <i class="icon-playlist_add_check"></i>
                         <span>Consultar Facturas</span>
                     </a>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </main>
