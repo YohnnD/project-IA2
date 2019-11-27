@@ -71,15 +71,13 @@
 			}
 
 		public function cliente(){
-
-			$cliente=$this->db()->query("SELECT to_char(fecha_actu_bitacora, 'MM/YYYY') AS mes, count(*) AS registro  FROM bitacoras WHERE accion_bitacora = 'REGISTRAR' AND modulo_bitacora='CLIENTES' GROUP BY mes");
+		$cliente=$this->db()->query("SELECT to_char(fecha_actu_bitacora, 'MM/YYYY') AS mes, count(*) AS registro  FROM bitacoras WHERE accion_bitacora = 'REGISTRAR' AND modulo_bitacora='CLIENTES' GROUP BY mes");
 			
 			if($cliente->rowCount()>=1){
 
 				while($fila=$cliente->fetch(PDO::FETCH_OBJ)){
 					$result[]=$fila;
 				}
-				
 				return $result;
 			}
 				else{
@@ -104,7 +102,7 @@
 
 			}
 				else{
-					return $result=null;
+					return $result=0;
 				}
 
 		}
@@ -276,7 +274,7 @@
 
 		public function registrarBitacora(){
 
-			$this->registerBitacora(ESTADISTICAS, VISUALIZAR);
+			$this->registerBitacora(ESTADISTICAS, CONSULTAR);
 		}
 
 		public function ganancia(){
