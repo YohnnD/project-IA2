@@ -146,8 +146,9 @@ class Factura extends BaseModel {
         }
 
       
-
+$rowProducto=[];
         if ($rowProPedido !== 0) {
+
             for ($i = 0; $i < $proPedido->rowCount(); $i++) {
                
                 $codigo = $rowProPedido[$i]->codigo_producto;
@@ -155,8 +156,10 @@ class Factura extends BaseModel {
 
                 if ($producto && $producto->rowCount() != 0) {// Evalua la cansulta 
                     while ($rowProduc = $producto->fetchAll()) {
-                        $rowProducto[] = $rowProduc;
-                    }
+                        
+                        $rowProducto+=array($i=>$rowProduc);  
+                         
+                   }
                 } else { // 
                     $rowProducto = 0;
                 }
@@ -164,7 +167,7 @@ class Factura extends BaseModel {
         } else { // 
             $rowProducto = 0;
         }
-
+  
 
         if (!is_null($rowFactura)) {
 

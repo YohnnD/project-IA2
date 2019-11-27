@@ -116,7 +116,7 @@ class Servicio extends BaseModel {
         $sql = "UPDATE $this->table SET nombre_servicio=:nombre_servicio,descripcion_servicio=:descripcion_servicio,precio_servicio=:precio_servicio,costo_servicio= :costo_servicio,unidad_medida=:unidad_medida WHERE id_servicio=:id_servicio";
 
         $result = $this->db()->prepare($sql);
-        $result->bindParam(':nombre_servicio', $this->nombre_servicio);
+        $result->bindParam(':nombre_servicio', $this->nombre_Servicio);
         $result->bindParam(':descripcion_servicio', $this->descripcion_servicio);
         $result->bindParam(':precio_servicio', $this->precio_servicio);
         $result->bindParam(':costo_servicio', $this->costo_servicio);
@@ -222,6 +222,12 @@ class Servicio extends BaseModel {
         }
 
         return $resulSet;
+    }
+
+    public function deleteMaterial() {
+        $delete = $this->db()->query("DELETE FROM mat_servicios WHERE id_material = '$this->id_servicio'");
+
+        return $delete;
     }
 
 }

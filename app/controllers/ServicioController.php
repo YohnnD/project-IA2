@@ -161,6 +161,19 @@ class ServicioController extends BaseController {
         }
     }
 
+    public function deleteMaterial()
+    {
+        $id=$_GET['id'];
+
+        $servicio= new Servicio();
+        $servicio->setIdServicio($id);
+        $respuesta=$servicio->deleteMaterial();
+
+        $this->redirect('Servicio','getAll');  
+    }
+
+
+
 }
 
 ?>

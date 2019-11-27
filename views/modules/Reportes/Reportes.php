@@ -21,12 +21,18 @@
             <div class="row">
                 <div class="col s12 breadcrumb-nav left-align">
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
-                    <a href="<?php echo Helpers::url('Reporte','reportesIndex'); ?>" class="breadcrumb">Reportes</a>
+                    <a href="<?php echo Helpers::url('Factura','reportesIndex'); ?>" class="breadcrumb">Reportes</a>
                 </div>
                 <div class="col s12 m4">
                     <a href="<?php echo Helpers::url('Reporte','getAllPedido'); ?>" class="btn-app pink">
                         <i class="icon-assignment"></i>
                         <span>Reporte de Pedidos</span>
+                    </a>
+                </div>
+                <div class="col s12 m4">
+                    <a href="<?php echo Helpers::url('Reporte','getAllEntrega'); ?>" class="btn-app blue darken-1">
+                        <i class="icon-assignment"></i>
+                        <span>Reporte de Entregas</span>
                     </a>
                 </div>
                 <div class="col s12 m4">
@@ -36,24 +42,14 @@
                     </a>
                 </div>
                 <div class="col s12 m4">
-                    <a href="<?php echo Helpers::url('Reporte','index'); ?>" class="btn-app red">
+                    <a href="<?php echo Helpers::url('Reporte','FactuIndex'); ?>" class="btn-app red">
                         <i class="icon-receipt"></i>
                         <span>Reporte de Facturas</span>
                     </a>
                 </div>
             </div>
-
-        <div class="row">
-            <div class="col s12 m4">
-                    <a href="<?php echo Helpers::url('Home','dashboard'); ?>" class="btn-app blue">
-                        <i class="icon-receipt"></i>
-                        <span>Visualizar Estadistica</span>
-                    </a>
-            </div>
         </div>
-
-    </div>
-</main>
+    </main>
 
     <!-- Footer -->
     <?php require_once "views/layouts/footer.php"; ?>

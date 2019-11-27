@@ -32,7 +32,6 @@
                         </div>
                         <div class="input-field col s12 m6 xl6">
                             <i class="icon-stars prefix"></i>
-                            <input type="hidden" name="id" id="id_servicio" value="<?php echo $idServicio?>" disabled>
                             <input type="hidden" name="id" id="id_material" value="<?php echo $value['id_material'] ?>" disabled>
                             <input type="text"disabled name="nombre_material" id="nombre_material" value="<?php echo $value['nombre_material'] ?>" disabled>
                             <label for="nombre_material">Material</label>

@@ -1,3 +1,4 @@
+var deleteMaterial=false;
 $(document).ready(function () {
 
     $('#unidad_medida').attr('disabled', 'disabled');
@@ -122,6 +123,32 @@ $(document).ready(function () {
             }
         });
     });
+
+    if (deleteMaterial==false) {
+        $('#deleteMaterial').on('click',function(event) {
+       
+            $('.materiales').removeAttr('disabled','');
+           // $(this).addAttr('disabled','disabled');
+            deleteMaterial=true;
+                
+
+        });
+    }
+
+    //if (deleteMaterial==true){
+      //  $('#deleteMaterial').on('click',function(event) {
+        //    console.log('hola');
+          //      console.log(deleteMaterial);
+       
+      //      $('.materiales').addAttr('disabled','disabled');
+        //    $(this).text('Eliminar Materiales');
+          //  deleteMaterial=false;
+
+        //});
+    //}
+
+        
+    
 
     // Registrar material
     $('#MaterialServi').on('submit', function (e) {

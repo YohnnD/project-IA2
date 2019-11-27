@@ -11,15 +11,17 @@
         <img src="<?php echo BASE_URL; ?>assets/images/brand-logo.jpg">
       </div>
       <div id="company">
-        <h1 class="name">Inversiones A2</h1>
-        <div>Carrera 18 esp. Calle 36 C.C. San Juan Local N°7 </div>
+      <h1 class="name">Inversiones A2</h1>
+        <div>Carrera 18 esp. Calle 36 C.C San Juan Local N°7 </div>
         <div>04145030244 - 04149517382</div>
         <div>@A2VZLA</div>
         <div>inversionesa2@gmail.com</div>
+
       </div>
       </div>
     </header>
     <main>
+
       
      <div id="details" class="clearfix">
         <div id="client">
@@ -63,9 +65,7 @@
       </table>
       
     </main>
-    <footer>
-      Si Desea algun producto de la Lista contactar con la empresa o visita nuestras redes sociales.
-      Feliz Día
-    </footer>
+    
+  
   </body>
 </html>
