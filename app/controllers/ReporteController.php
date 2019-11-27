@@ -1,7 +1,6 @@
 <?php
 	class ReporteController extends BaseController {
 		public function __construct() {
-            require_once 'vendor/autoload.php';
 			parent::__construct();
 		}
 

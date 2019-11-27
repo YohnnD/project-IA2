@@ -90,7 +90,7 @@ class Factura extends BaseModel {
     }
 
     public function getOne() {
-        $this->registerBitacora(FACTURAs,DETALLES);
+        $this->registerBitacora(FACTURAS,DETALLES);
 
         $rowProducto = 0;
 

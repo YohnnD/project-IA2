@@ -160,7 +160,7 @@
                         <input type="text" name="total" id="total" value="<?php echo $montoProducto + $montoServicio ?> $" disabled>
                         <label for="total">Total a Pagar:</label>
                     </div>
-
+                <?php if (Helpers::hasPermissions('6','3')): ?>
                 <?php if($StatusFactura):?>
                     <div class="input-field col s12 m12 center-align">
                         <a href="#!" class="btn red waves-effect waves-light col s12" id="anular">
@@ -175,6 +175,7 @@
                             Anular
                         </a>                
                     </div>
+                <?php endif?>
                 <?php endif?>
                 </form>
             </div>
