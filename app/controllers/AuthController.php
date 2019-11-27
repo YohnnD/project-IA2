@@ -17,20 +17,12 @@
 				$usuario->setContraseniaUsuario($_POST['contrasenia_usuario']);
 				$usuarioSession = $usuario->login();
 				if($usuarioSession && is_object($usuarioSession)) { // Si se definio el usuario y es un objeto
-<<<<<<< HEAD
-					$_SESSION['nick_usuario'] = $usuarioSession->nick_usuario;
-					// Setea los datos de la sesión.
-					$_SESSION['user_auth'] = $usuarioSession;
-=======
-					
 					$idRol = $usuarioSession->id_rol;
 					$PermisosXModulos = $rol->getPermisosXModulosByRol($idRol);
 					$_SESSION['nick_usuario'] = $usuarioSession->nick_usuario;
 					$_SESSION['user'] = $usuarioSession;
 					$_SESSION['authenticated'] = true;
 					$_SESSION['permissions'] = $PermisosXModulos;
-
->>>>>>> c202cdcdc46b40dd55ffdef6919d131887a3db09
 					$_SESSION['error'] = false;
 					$_SESSION['message'] = "Log in successfully";
 					// $_SESSION['permissions'] = 
