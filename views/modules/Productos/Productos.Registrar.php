@@ -106,7 +106,6 @@
                 <div class="input-field col s10 m5">
                     <i class="icon-call_made prefix"></i>
                     <input type="number" name="list_stock_pro_talla" id="list_stock_pro_talla" class="validate" pattern="[0-9]+" title="Solo puede usar números." min="1" required>
-                    <input type="number" name="list_stock_pro_talla" id="list_stock_pro_talla" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números." min="1" required>
                     <label for="list_stock_pro_talla">Cantidad por Talla</label>
                 </div>
                 <div class="input-field col s2 center-align" id="add-talla">
