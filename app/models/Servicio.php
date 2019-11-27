@@ -70,6 +70,7 @@ class Servicio extends BaseModel {
     }
 
     public function save() {
+        $this->registerBitacora(SERVICIOS,REGISTRAR);
         $sql = "INSERT INTO $this->table
         		(nombre_servicio,descripcion_servicio,precio_servicio,costo_servicio,unidad_medida) VALUES (:nombreServicio,:descripcionServicio,:precioServicio,:costoServicio,:unidadMedida)";
 
@@ -88,6 +89,7 @@ class Servicio extends BaseModel {
     }
 
     public function getAll() {
+        $this->registerBitacora(SERVICIOS,CONSULTAR);
         $query = $this->db()->query("SELECT * FROM $this->table");
 
         if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
@@ -100,7 +102,7 @@ class Servicio extends BaseModel {
     }
 
     public function getOne() {
-
+        $this->registerBitacora(SERVICIOS,DETALLES);
         $query = $this->db()->query("SELECT * FROM $this->table WHERE id_servicio = '$this->id_servicio'");
 
         if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
@@ -113,10 +115,11 @@ class Servicio extends BaseModel {
     }
 
     public function update() {
+        $this->registerBitacora(SERVICIOS,ACTUALIZAR);
         $sql = "UPDATE $this->table SET nombre_servicio=:nombre_servicio,descripcion_servicio=:descripcion_servicio,precio_servicio=:precio_servicio,costo_servicio= :costo_servicio,unidad_medida=:unidad_medida WHERE id_servicio=:id_servicio";
 
         $result = $this->db()->prepare($sql);
-        $result->bindParam(':nombre_servicio', $this->nombre_servicio);
+        $result->bindParam(':nombre_servicio', $this->nombre_Servicio);
         $result->bindParam(':descripcion_servicio', $this->descripcion_servicio);
         $result->bindParam(':precio_servicio', $this->precio_servicio);
         $result->bindParam(':costo_servicio', $this->costo_servicio);
@@ -129,6 +132,7 @@ class Servicio extends BaseModel {
     }
 
     public function delete() {
+        $this->registerBitacora(SERVICIOS,ELIMINAR);
         $delete = $this->db()->query("DELETE FROM $this->table WHERE id_servicio = '$this->id_servicio'");
 
         return $delete;
@@ -162,6 +166,7 @@ class Servicio extends BaseModel {
     }
 
     public function saveMaterial($idMateriales, $cantidad) {
+        $this->registerBitacora(SERVICIOS,ACTUALIZAR);
         if ($this->id_servicio == 0) {
             $query = $this->db()->query('select id_servicio from servicios order by id_servicio desc');
 
@@ -222,6 +227,13 @@ class Servicio extends BaseModel {
         }
 
         return $resulSet;
+    }
+
+    public function deleteMaterial() {
+        $this->registerBitacora(SERVICIOS,ACTUALIZAR);
+        $delete = $this->db()->query("DELETE FROM mat_servicios WHERE id_material = '$this->id_servicio'");
+
+        return $delete;
     }
 
 }

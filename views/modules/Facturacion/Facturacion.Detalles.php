@@ -116,26 +116,36 @@
 
                     <?php endif; ?>
 
-                    <?php $montoProducto = 0; ?>
+                    <?php $montoProducto = 0;?>
                     <?php if ($detalles['ProPedidos'] !== 0): ?>
 
-                        <?php for ($i = 0; $i < $detalles['RowProPedido']; $i++): ?>
-                    
-                            <div class="input-field col s12 m6 xl6">
+                        <?php for ($i = 0; $i < $detalles['RowProPedido']; $i++):?>
+
+                            <div class="input-field col s12 m4 xl4">
                                 <i class="icon-open_with prefix"></i>
-                                <input type="text" name="name_producto" id="name_producto" value="<?php echo $detalles['Producto'][$i]->nombre_producto ?>" disabled>
+                                <input type="text" name="name_producto" id="name_producto" value="<?php echo $detalles['Producto'][$i][0]['nombre_producto']?>" disabled>
                                 <label for="name_producto">Producto</label>
+                            </div>
+                            <div class="input-field col s12 m4 xl4">
+                                <i class="icon-open_with prefix"></i>
+                                <input type="text" name="name_producto" id="name_producto" value="<?php echo $detalles['ProPedidos'][$i]->cant_pro_pedido?>" disabled>
+                                <label for="name_producto">Cantidad</label>
+                            </div>
+                            <div class="input-field col s12 m4 xl4">
+                                <i class="icon-open_with prefix"></i>
+                                <input type="text" name="name_producto" id="name_producto" value="<?php echo $detalles['Producto'][$i][0]['precio_producto']?> $" disabled>
+                                <label for="name_producto">Precio</label>
                             </div>
 
                             <?php
-                                    var_dump($detalles['ProPedidos'][0]->cant_pro_pedido);
-                            $monto1 = $detalles['Producto']->precio_producto * $detalles['ProPedidos']->cant_pro_pedido;
+                                     
+                            $monto1 = $detalles['Producto'][$i][0]['precio_producto'] * $detalles['ProPedidos'][$i]->cant_pro_pedido;
 
                             $montoProducto += $monto1;
                             ?>
 
                         <?php endfor; ?>
-                        <div class="input-field col s12 m6 xl6">
+                        <div class="input-field col s12 m12 xl12">
                             <i class="icon-open_with prefix"></i>
                             <input type="text" name="total" id="total" value="<?php echo $montoProducto ?> $" disabled>
                             <label for="total">Total a Pagar Por Producto:</label>
@@ -145,18 +155,27 @@
 
 
                     <?php endif; ?>
-                    <div class="input-field col s12 m6 xl6">
+                    <div class="input-field col s12 m12 xl12">
                         <i class="icon-open_with prefix"></i>
                         <input type="text" name="total" id="total" value="<?php echo $montoProducto + $montoServicio ?> $" disabled>
                         <label for="total">Total a Pagar:</label>
                     </div>
 
+                <?php if($StatusFactura):?>
                     <div class="input-field col s12 m12 center-align">
                         <a href="#!" class="btn red waves-effect waves-light col s12" id="anular">
                             <i class="icon-delete right"></i>
                             Anular
                         </a>                
                     </div>
+                <?php else:?>
+                    <div class="input-field col s12 m12 center-align">
+                        <a href="#!" class="btn red waves-effect waves-light col s12" id="anular" disabled>
+                            <i class="icon-delete right"></i>
+                            Anular
+                        </a>                
+                    </div>
+                <?php endif?>
                 </form>
             </div>
         </main>

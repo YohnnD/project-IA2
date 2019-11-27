@@ -9,10 +9,12 @@ class ClienteController extends BaseController {
     }
 
     public function create() {
+        Helpers::hasPermissions('4','1',true,'Cliente');
         $this->view('Clientes/Clientes.Registrar');
     }
 
     public function getAll() {
+        Helpers::hasPermissions('4','2',true,'Cliente');
         $cliente= new Cliente();
         $clientes=$cliente->getAll();
         $this->view('Clientes/Clientes.Consultar',["clientes"=>$clientes]);
@@ -49,6 +51,7 @@ class ClienteController extends BaseController {
     }
 
     public function details() {
+        Helpers::hasPermissions('5','2',true,'Cliente');
         $cedula=$_GET['id'];
         $cliente= new Cliente();
         $cliente->setCedulaCliente($cedula);
