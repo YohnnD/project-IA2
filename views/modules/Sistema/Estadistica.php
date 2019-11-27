@@ -35,15 +35,35 @@
                             <span class="widget-stats-title">Clientes Registrados al Mes</span>
                             
                                 <?php
-                                    $fecha = date('m/Y');  
+                                $count1=0;
+                                $count2=0;
+                                    $fecha = date('m/Y');
+                                    
+                                    $count1=0;
+                                    $count2=0;
+                                    error_reporting(0);
                                         foreach($cliente as $clientes):
-                                            if($clientes->mes == $fecha):
-                                ?>
-                                                <span class="timer widget-stats-number" data-from="0" data-to="<?php echo $clientes->registro; ?>"></span>
-                                <?php 
-                                            endif;        
+                                            if($clientes->mes==$fecha){
+                                                $band=true;
+                                            }else{
+                                                $band=false;
+                                            }
+
+                                            if($band == false):?>
+                                            
+                                            <?php $band=true;?>
+                                        <?php else:
+                                            if($band==true):
+                                                $count2+=$clientes->registro;
+                                            ?>
+                                                <span class="timer widget-stats-number" data-from="0" data-to=""><?php echo $count2?></span>
+                                        <?php 
+                                            endif;
+                                        endif;        
                                         endforeach;
-                                ?>
+                                        if($count2 == 0):?>
+                                            <span class="timer widget-stats-number" data-from="0" data-to="0"><?php echo $count2 ?></span>
+                                        <?php endif?>
 
                         </div>
                     </div> 
@@ -57,15 +77,34 @@
                         <div class="widget-stats-content">
                             <span class="widget-stats-title">Ventas facturadas al Mes</span>
                                 <?php
-                                    $fecha = date('m/Y');  
+                                    $fecha = date('m/Y');
+                
+                                   ?>
+                                    <?php 
+                                    $count1=0;
+                                    $count2=0;
                                         foreach($factura as $facturas):
-                                            if($facturas->mes == $fecha):
-                                ?>
-                                                <span class="timer widget-stats-number" data-from="0" data-to="<?php echo $facturas->registro; ?>"></span>
-                                <?php 
-                                            endif;        
+                                            if($facturas->mes==$fecha){
+                                                $band=true;
+                                            }else{
+                                                $band=false;
+                                            }
+
+                                            if($band == false):?>
+                                            
+                                            <?php $band=true;?>
+                                        <?php else:
+                                            if($band==true):
+                                                $count2+=$facturas->registro;
+                                            ?>
+                                                <span class="timer widget-stats-number" data-from="0" data-to=""><?php echo $count2?></span>
+                                        <?php 
+                                            endif;
+                                        endif;        
                                         endforeach;
-                                ?>
+                                        if($count2 == 0):?>
+                                            <span class="timer widget-stats-number" data-from="0" data-to="0"><?php echo $count2 ?></span>
+                                        <?php endif?>
                         </div>
                     </div> 
                 </div>

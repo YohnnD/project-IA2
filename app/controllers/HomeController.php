@@ -30,8 +30,12 @@
 			$servicio=$get->servicio();
 			$cliente=$get->cliente();
 			$factura=$get->factura();
-			
 			$get->registrarBitacora();
+
+			if($cliente==null){
+				$cliente=0;
+			}
+			
 		
 			$this->view('Sistema/Estadistica',[	'producto'=>$producto,
 												'pedido'=>$pedido,
