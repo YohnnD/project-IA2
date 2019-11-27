@@ -61,10 +61,50 @@ class Helpers{//clases donde se añaden metodos que se necesiten en la vista
         return $tallas;
     }
 
-    public function hasPermissions($module,$permission) {
+    public static function hasPermissions($module,$permission=null,$route=null,$nameModule=null) {
+        /*Funcion para la verificación de los permisos:
+         * module:numero de modulo de registro en base de datos (OBLIGATORIO)
+         * permission:numero de permisos en el registro en base de datos(OPCIONAL)
+         *  route:parametro true se indica para el bloqueo de la ruta bool (OPCIONAL)
+         * nameModule:Nombre de modulo se utiliza para la redireccion al index
+         *
+         * Objetivo:si solo se pasa el parametro module, verifica que el modulo sea del usuario
+         *          si se le pasan los 2 parametros,verifica que el modulo sea del usaurio y tenga ese permiso
+         *          si le pasan 3 y 4 parametros, si el modulo y ese permiso no le pertenece al usuario lo redirege al
+         *          home de cada modulo
+         *
+         *          retorna true=SI tiene permiso.
+         *                   false=NO tiene permiso.
+         * */
+
+
+
+
+
+        $band=false;
         if(isset($_SESSION['permissions'])){
-            
+            for($i=0;$i<count($_SESSION['permissions']);$i++){
+               if(is_null($permission)){
+                   if($_SESSION['permissions'][$i]->id_modulo==$module){
+                       $band=true;
+                       break;
+                   }
+               }else{
+
+                   if($_SESSION['permissions'][$i]->id_modulo==$module&&$_SESSION['permissions'][$i]->id_permiso==$permission){
+                       $band=true;
+                       break;
+                   }
+               }
+
+            }
+
+            if(!is_null($route)&& !$band){
+                header('Location:'.BASE_URL.$nameModule."/index");
+            }
         }
+
+        return $band;
     }
 }
 

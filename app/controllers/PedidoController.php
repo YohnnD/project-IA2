@@ -16,14 +16,15 @@ class PedidoController extends BaseController
 
     public function create()
     {
+        Helpers::hasPermissions('3','1',true,'Pedido');
         $pedido = new Pedido();
         $services = $pedido->getServices();
-
         $this->view('Pedidos/Pedidos.Registrar', ['services' => $services]);
     }
 
     public function getAll()
     {
+        Helpers::hasPermissions('3','2',true,'Pedido');
         $pedido = new Pedido();
         $pedidos = $pedido->getAll();
         $this->view('Pedidos/Pedidos.Consultar', ['pedidos' => $pedidos]);
@@ -51,6 +52,8 @@ class PedidoController extends BaseController
 
     public function details()
     {
+
+        Helpers::hasPermissions('3','5',true,'Pedido');
         $codigoPedido = $_GET['id'];
         $pedido = new Pedido();
         $pedido->setCodigoPedido($codigoPedido);

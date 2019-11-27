@@ -23,18 +23,24 @@
                 <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                 <a href="<?php echo Helpers::url('Pedido','index'); ?>" class="breadcrumb">Gestionar Pedidos</a>
             </div>
+
+            <?php if (Helpers::hasPermissions('3','1')): ?>
             <div class="col s12 m6">
                 <a href="<?php echo Helpers::url('Pedido','create'); ?>" class="btn-app orange">
                     <i class="icon-add_shopping_cart"></i>
                     <span>Registrar Pedido</span>
                 </a>
             </div>
+            <?php endif; ?>
+
+            <?php if (Helpers::hasPermissions('3','2')): ?>
             <div class="col s12 m6">
                 <a href="<?php echo Helpers::url('Pedido','getAll'); ?>" class="btn-app pink">
                     <i class="icon-chrome_reader_mode"></i>
                     <span>Consultar Pedidos</span>
                 </a>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </main>

@@ -36,29 +36,61 @@
             <li class="hide-on-large-only"><a href="<?php echo Helpers::url('Auth','logout'); ?>"><i class="icon-exit_to_app"></i>Cerrar Sesión</a></li>
             <li class="divider hide-on-large-only"></li>
             <li><a href="#!" class="subheader"><i class="icon-dashboard left"></i>Módulos:</a></li>
+            <?php if (Helpers::hasPermissions('2')): ?>
             <li><a href="<?php echo Helpers::url('Producto','index'); ?>"><i class="icon-loyalty left"></i>Gestionar Productos</a></li>
+            <?php endif; ?>
+            <?php if (Helpers::hasPermissions('4')): ?>
             <li><a href="<?php echo Helpers::url('Cliente','index'); ?>"><i class="icon-contact_phone left"></i>Gestionar Clientes</a></li>
+            <?php endif; ?>
+
+            <?php if (Helpers::hasPermissions('3')): ?>
             <li><a href="<?php echo Helpers::url('Pedido','index'); ?>"><i class="icon-library_books left"></i>Gestionar Pedidos</a></li>
+            <?php endif; ?>
+
+            <?php if (Helpers::hasPermissions('6')): ?>
             <li><a href="<?php echo Helpers::url('Factura','index'); ?>"><i class="icon-event_available left"></i>Facturación de Ventas</a></li>
+            <?php endif; ?>
+            <?php if (Helpers::hasPermissions('5') || Helpers::hasPermissions('8') || Helpers::hasPermissions('9')): ?>
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
                     <li class="bold">
                         <a href="#!" class="collapsible-header"><i class="icon-build left" style="margin-left:15px;"></i>Configuración <i class="icon-arrow_drop_down right"></i></a>
                         <div class="collapsible-body">
                             <ul>
+                                <?php if (Helpers::hasPermissions('5')): ?>
                                 <li><a href="<?php echo Helpers::url('Servicio','index'); ?>"><i class="icon-star left"></i>Gestionar Servicios</a></li>
+                                <?php endif; ?>
+
+                                <?php if (Helpers::hasPermissions('8')): ?>
                                 <li><a href="<?php echo Helpers::url('Tela','index'); ?>"><i class="icon-layers left"></i>Gestionar Telas</a></li>
+                                <?php endif; ?>
+
+                                <?php if (Helpers::hasPermissions('9')): ?>
                                 <li><a href="<?php echo Helpers::url('Material','index'); ?>"><i class="icon-streetview left"></i>Gestionar Materiales</a></li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </li>
+            <?php endif ?>
+
+            <?php if (Helpers::hasPermissions('7')): ?>
             <li><a href="<?php echo Helpers::url('Reporte','Reporteindex'); ?>"><i class="icon-report left"></i>Gestionar Reportes</a></li>
+            <?php endif; ?>
             <li class="divider"></li>
+            <?php if (Helpers::hasPermissions('1')): ?>
             <li><a href="<?php echo Helpers::url('Usuario','index'); ?>"><i class="icon-group_add left"></i>Gestionar Usuarios</a></li>
+            <?php endif; ?>
+
+            <?php if (Helpers::hasPermissions('11')): ?>
             <li><a href="<?php echo Helpers::url('Seguridad','index'); ?>"><i class="icon-security left"></i>Seguridad</a></li>
-            <li><a href="<?php echo Helpers::url('Mantenimiento','index'); ?>"><i class="icon-perm_data_setting left"></i>Mantenimiento</a></li>            
+            <?php endif; ?>
+
+
+            <?php if (Helpers::hasPermissions('12')): ?>
+            <li><a href="<?php echo Helpers::url('Mantenimiento','index'); ?>"><i class="icon-perm_data_setting left"></i>Mantenimiento</a></li>
+            <?php endif; ?>
             <!-- <li><a href=""><i class="icon-event_available left"></i></a></li> -->
         </ul>
     </nav>

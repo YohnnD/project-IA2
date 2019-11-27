@@ -25,6 +25,10 @@
 					$_SESSION['authenticated'] = true;
 					$_SESSION['permissions'] = $PermisosXModulos;
 
+
+
+
+
 					$_SESSION['error'] = false;
 					$_SESSION['message'] = "Log in successfully";
 					// $_SESSION['permissions'] = 

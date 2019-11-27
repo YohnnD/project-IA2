@@ -5,7 +5,7 @@
 		}
 
 		public function index() {
-			
+            //var_dump($_SESSION['permissions'][1]);
 
 			$this->view('Sistema/Home');
 			
