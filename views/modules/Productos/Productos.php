@@ -24,18 +24,22 @@
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                     <a href="<?php echo Helpers::url('Producto','index'); ?>" class="breadcrumb">Gestionar Productos</a>
                 </div>
+                <?php if (Helpers::hasPermissions('2','1')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Producto','create'); ?>" class="btn-app red">
                         <i class="icon-assignment_ind"></i>
                         <span>Registrar Producto</span>
                     </a>
                 </div>
+                <?php endif; ?>
+                <?php if (Helpers::hasPermissions('2','1')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Producto','getAll'); ?>" class="btn-app blue">
                         <i class="icon-style"></i>
                         <span>Ver Productos</span>
                     </a>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </main>

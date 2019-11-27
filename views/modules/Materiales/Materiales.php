@@ -25,18 +25,22 @@
                     <a href="<?php echo Helpers::url('Configuracion','index'); ?>" class="breadcrumb">Configuración</a>
                     <a href="<?php echo Helpers::url('Material','index'); ?>" class="breadcrumb">Gestionar Materiales</a>
                 </div>
+                <?php if (Helpers::hasPermissions('9','1')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Material','create'); ?>" class="btn-app indigo">
                         <i class="icon-playlist_add"></i>
                         <span>Registrar Material</span>
                     </a>
                 </div>
+                <?php endif; ?>
+                <?php if (Helpers::hasPermissions('9','2')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Material','getAll'); ?>" class="btn-app deep-orange">
                         <i class="icon-view_quilt"></i>
                         <span>Consultar Materiales</span>
                     </a>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </main>

@@ -24,21 +24,9 @@
             <div class="col s12 breadcrumb-nav left-align">
                 <a href="#!" class="breadcrumb">Inicio</a>
             </div>
-            <!-- <div class="col s12">
-                <h4>Enlaces rápidos</h4>
-            </div> -->
-            <?php if ($_SESSION): ?>
-                <div class="col s12">
-                    <div class="alert alert-success">
-                        <?php var_dump($_SESSION); ?>
-                    </div>
-                </div>
-            <?php endif; ?>
-
-
             <?php if (Helpers::hasPermissions('2')): ?>
 
-                <div class="col s12 m3">
+                <div class="col s12 m3 animated bounceIn">
                     <a href="<?php echo Helpers::url('Producto', 'index'); ?>" class="btn-app green">
                         <i class="icon-loyalty"></i>
                         <span class="truncate">Gestionar Producto</span>
@@ -50,7 +38,7 @@
 
 
             <?php if (Helpers::hasPermissions('4')): ?>
-                <div class="col s12 m3">
+                <div class="col s12 m3 animated bounceIn">
                     <a href="<?php echo Helpers::url('Cliente', 'index'); ?>" class="btn-app purple">
                         <i class="icon-contact_phone"></i>
                         <span class="truncate">Gestionar Clientes</span>
@@ -59,7 +47,7 @@
             <?php endif; ?>
 
             <?php if (Helpers::hasPermissions('3')): ?>
-                <div class="col s12 m3">
+                <div class="col s12 m3 animated bounceIn">
                     <a href="<?php echo Helpers::url('Pedido', 'index'); ?>" class="btn-app">
                         <i class="icon-library_books"></i>
                         <span class="truncate">Gestionar Pedidos</span>
@@ -67,7 +55,7 @@
                 </div>
             <?php endif; ?>
             <?php if (Helpers::hasPermissions('6')): ?>
-                <div class="col s12 m3">
+                <div class="col s12 m3 animated bounceIn">
                     <a href="<?php echo Helpers::url('Factura', 'index'); ?>" class="btn-app red">
                         <i class="icon-event_available"></i>
                         <span class="truncate">Facturación de Ventas</span>
@@ -75,7 +63,7 @@
                 </div>
             <?php endif; ?>
             <?php if (Helpers::hasPermissions('5') || Helpers::hasPermissions('8') || Helpers::hasPermissions('9')): ?>
-                <div class="col s12 m3">
+                <div class="col s12 m3 animated bounceIn">
                     <a href="<?php echo Helpers::url('Configuracion', 'index'); ?>" class="btn-app yellow">
                         <i class="icon-build"></i>
                         <span class="truncate">Configuración</span>
@@ -83,7 +71,7 @@
                 </div>
             <?php endif ?>
             <?php if (Helpers::hasPermissions('7')): ?>
-                <div class="col s12 m3">
+                <div class="col s12 m3 animated bounceIn">
                     <a href="<?php echo Helpers::url('Reporte', 'reporteIndex'); ?>" class="btn-app cyan">
                         <i class="icon-report"></i>
                         <span class="truncate">Reportes</span>
@@ -93,7 +81,7 @@
         </div>
         <div class="row">
             <?php if (Helpers::hasPermissions('1')): ?>
-                <div class="col s12 m3">
+                <div class="col s12 m3 animated bounceIn">
                     <a href="<?php echo Helpers::url('Usuario', 'index'); ?>" class="btn-app blue">
                         <i class="icon-group_add"></i>
                         <span class="truncate">Gestionar Usuarios</span>
@@ -101,7 +89,7 @@
                 </div>
             <?php endif; ?>
             <?php if (Helpers::hasPermissions('11')): ?>
-                <div class="col s12 m3">
+                <div class="col s12 m3 animated bounceIn">
                     <a href="<?php echo Helpers::url('Seguridad', 'index'); ?>" class="btn-app green">
                         <i class="icon-security"></i>
                         <span class="truncate">Seguridad</span>
@@ -109,7 +97,7 @@
                 </div>
             <?php endif; ?>
             <?php if (Helpers::hasPermissions('12')): ?>
-                <div class="col s12 m3">
+                <div class="col s12 m3 animated bounceIn">
                     <a href="<?php echo Helpers::url('Mantenimiento', 'index'); ?>" class="btn-app orange">
                         <i class="icon-perm_data_setting"></i>
                         <span class="truncate">Mantenimiento</span>

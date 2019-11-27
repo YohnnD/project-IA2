@@ -31,14 +31,16 @@
                     <h4 class="center-align">Materiales Disponibles</h4>
                 </div>
                 <div class="col s12" style="padding:30px">
-                    <table class="centered highlight responsive-table" id="Material">
+                    <table class="centered highlight" style="width: 100%" id="Material">
                         <thead>
                             <tr>
                                 <th>Material</th>
                                 <th>Descripción</th>
                                 <th>Cant. Disponible</th>
                                 <th>Precio</th>
+                                <?php if (Helpers::hasPermissions('9','5')): ?>
                                 <th>Detalles</th>
+                                <?php endif; ?>
                             </tr>
                         </thead>
 
@@ -51,17 +53,17 @@
                        
                         <tbody>   
                             <?php }else foreach($query as $material): ?> 
-
                             <tr>
                                 <td><?php echo $material->nombre_material; ?> </td>
                                 <td><?php echo $material->descripcion_material; ?></td>
                                 <td><?php echo $material->unidad_material; ?></td>
                                 <td><?php echo "$".$material->precio_material; ?></td>
+                                <?php if (Helpers::hasPermissions('9','5')): ?>
                                 <td>
                                     <a href="<?php echo Helpers::url('Material','details')."/".$material->id_material?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
                                 </td>
+                                <?php endif; ?>
                             </tr> 
-
                             <?php endforeach; ?> 
                                    
                         </tbody>

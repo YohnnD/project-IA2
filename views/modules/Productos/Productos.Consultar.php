@@ -42,7 +42,9 @@
                                     <th>Costo</th>
                                     <th>Precio</th>
                                     <th>Cant. Disp</th>
+                                    <?php if (Helpers::hasPermissions('2','5')): ?>
                                     <th>Detalles</th>
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,7 +56,9 @@
                                     <td><?php echo $producto->costo_producto; ?>$</td>
                                     <td><?php echo $producto->precio_producto; ?>$</td>
                                     <td><?php echo $producto->stock_max_producto; ?></td>
+                                    <?php if (Helpers::hasPermissions('2','5')): ?>
                                     <td><a href="<?php echo Helpers::url('Producto','details'); ?>/<?php echo $producto->codigo_producto; ?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-find_in_page"></i></a></td>
+                                    <?php endif; ?>
                                 </tr>
                                 <?php endforeach; ?>        
                             </tbody>

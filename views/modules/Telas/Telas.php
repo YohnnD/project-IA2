@@ -25,18 +25,22 @@
                     <a href="<?php echo Helpers::url('Configuracion','index'); ?>" class="breadcrumb">Configuración</a>
                     <a href="<?php echo Helpers::url('Tela','index'); ?>" class="breadcrumb">Gestionar Telas</a>
                 </div>
+                <?php if (Helpers::hasPermissions('8','1')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Tela','create'); ?>" class="btn-app teal">
                         <i class="icon-enhanced_encryption"></i>
                         <span>Registrar Tela</span>
                     </a>
                 </div>
+                <?php endif; ?>
+                <?php if (Helpers::hasPermissions('8','2')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Tela','getAll'); ?>" class="btn-app pink">
                         <i class="icon-content_copy"></i>
                         <span>Consultar Telas</span>
                     </a>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </main>
