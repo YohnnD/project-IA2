@@ -328,15 +328,15 @@ class Pedido extends BaseModel
 
     public function saveServiPedido()
     {
-
-        $sql = "INSERT INTO servi_pedidos(codigo_pedido, id_servicio,cantidad_prenda, cantidad_medida,id_tela) 
-                  VALUES(:codigo_pedido,:id_servicio,:cantidad_prenda,:cantidad_medida,:id_tela)";
+        $sql = "INSERT INTO servi_pedidos(codigo_pedido, id_servicio,cantidad_prenda, cantidad_medida,id_tela,precio_servi_pedido) 
+                  VALUES(:codigo_pedido,:id_servicio,:cantidad_prenda,:cantidad_medida,:id_tela,:precio_servi_pedido)";
         $query = $this->db()->prepare($sql);
         $query->bindValue(':codigo_pedido', $this->codigoPedido);
         $query->bindValue(':id_servicio', $this->idServicio);
         $query->bindValue(':id_tela', $this->idTela);
         $query->bindValue(':cantidad_prenda', $this->cantidadPrenda);
         $query->bindValue(':cantidad_medida', $this->cantidadMedida);
+        $query->bindValue(':precio_servi_pedido', $this->precioServiPedido);
         $save = $query->execute();
         return $save;
     }
@@ -390,10 +390,11 @@ class Pedido extends BaseModel
     }
 
 
-    public function getAll()
-    {
+    public function getAll(){
         $this->registerBitacora(PEDIDOS, CONSULTAR);
-        $sql = "SELECT * FROM pedidos INNER JOIN clientes ON pedidos.cedula_cliente = clientes.cedula_cliente ORDER BY codigo_pedido DESC;";
+        $sql = "SELECT * FROM pedidos INNER JOIN 
+                              clientes ON pedidos.cedula_cliente = clientes.cedula_cliente 
+                                  ORDER BY codigo_pedido DESC;";
         $query = $this->db()->query($sql);
         if ($query->rowCount() >= 1) {
             while ($row = $query->fetch(PDO::FETCH_OBJ)) {
@@ -483,11 +484,13 @@ class Pedido extends BaseModel
 
     public function saveProPredido()
     {
-        $sql = "INSERT INTO pro_pedidos(codigo_pedido, codigo_producto, cant_pro_pedido) VALUES(:codigo_pedido,:codigo_producto,:cant_pro_pedido)";
+        $sql = "INSERT INTO pro_pedidos(codigo_pedido, codigo_producto, cant_pro_pedido,precio_pro_pedido) 
+                      VALUES(:codigo_pedido,:codigo_producto,:cant_pro_pedido,:precio_pro_pedido)";
         $query = $this->db()->prepare($sql);
         $query->bindValue(':codigo_pedido', $this->codigoPedido);
         $query->bindValue(':codigo_producto', $this->codigoProducto);
         $query->bindValue(':cant_pro_pedido', $this->cantidadPrenda);
+        $query->bindValue(':precio_pro_pedido', $this->precioServiPedido);
         $save = $query->execute();
 
 

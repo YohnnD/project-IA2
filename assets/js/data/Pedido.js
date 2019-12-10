@@ -50,7 +50,7 @@ $(document).ready(function () {
                             <div class="input-field col s12 m4">
                                 <i class="icon-star_border prefix"></i>
                                 <input type="number" name="precio_servicio_${name_str}" id="precio_servicio_${name_str}"
-                                       class="validate" pattern="[0-9]+" title="Solo puede usar números." value="${price_service}" disabled>
+                                       class="validate" pattern="[0-9]+" title="Solo puede usar números." value="${price_service}">
                                 <label for="cantidad_prenda_${name_str}">Precio Servicio</label>
                             </div>
                              
@@ -109,6 +109,7 @@ $(document).ready(function () {
                 codigo_pedido: document.querySelector('#codigo_pedido').value,
                 cant_prenda: document.querySelector('#cantidad_prenda_' + servicios_seleted[i]).value,
                 cant_medida: document.querySelector('#cantidad_medida_' + servicios_seleted[i]).value,
+                precio_servicio:document.querySelector('#precio_servicio_' + servicios_seleted[i]).value,
                 id_tela: $('#id_tela_' + servicios_seleted[i]).val()
             });
         }
@@ -518,6 +519,8 @@ $(document).ready(function () {
         var codigo_productos=[];
         var cant_pro_pedida=[];
         var id_tallas=[];
+        var precio=[];
+
 
         $('.codigo_producto').each(function () {
             codigo_productos.push($(this).val());
@@ -531,6 +534,10 @@ $(document).ready(function () {
             id_tallas.push($(this).val());
         });
 
+        $('.precio').each(function () {
+            precio.push($(this).val());
+        });
+
 
            var codigo_pedido = document.querySelector('#codigo_pedido').value
 
@@ -538,7 +545,11 @@ $(document).ready(function () {
         $.ajax({
             method: "POST",
             dataType: "json",
-            data: { codigo_producto:codigo_productos, cant_pro_pedida:cant_pro_pedida,codigo_pedido:codigo_pedido,id_talla:id_tallas},
+            data: { codigo_producto:codigo_productos, cant_pro_pedida:cant_pro_pedida,
+                codigo_pedido:codigo_pedido,
+                id_talla:id_tallas,
+                precio:precio,
+            },
             url: url+"Pedido/registerProducto",
             beforeSend: function () {
                 console.log("Sending data...");
@@ -678,14 +689,14 @@ $(document).ready(function () {
                                        <th>${producto[i].nombre_producto}</th>
                                        <th>${producto[i].nombre_talla}</th>
                                        <th><input type="number" name="cant_producto_pedido[]" class="col s4 m4 center cant_producto_pedido calc" value=""></th>
-                                       <th><input type="number" name="precio[]" class="col s4 m4 center precio calc" value="${producto[i].precio_producto}" readonly></th>
+                                       <th><input type="number" name="precio[]" class="col s4 m4 center precio calc" value="${producto[i].precio_producto}"></th>
                                        <th><button type="button" class="delete-product btn red "><i class="icon-delete"></button></th>
                                        <input type="hidden"  name="id_talla[]" class="id_talla" value="${producto[i].id_talla}">
                                    </tr>
                                    
-           
+         
                      
-                     `;
+            `;
                 $('#product-list').append(texto);
                 $('.delete-product').click(function () {
                     $(this).parent().parent().text("");
@@ -742,7 +753,8 @@ $(document).ready(function () {
                     "next": "<i class='icon-navigate_next'></i>",
                     "previous": "<i class='icon-navigate_before'></i>"
                 },
-            }
+            },
+            "aaSorting": [],
         });
     }
 
