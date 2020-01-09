@@ -27,12 +27,11 @@
                 <div class="col s12">
                     <h4 class="center-align">Listado de Facturas</h4>
                 </div>
-                <?php if (empty($allFactura)){ ?>
+                <?php if ($allFactura == null): ?>
                         <h2 class="center-align">No Hay Ninguna Factura Registrada Aún.</h2>
                     <!-- Cards -->
-               
                 <div class="col s12">
-                    <?php }else ?>
+                    <?php else: ?>
                     <table class="responsive-table centered striped">
                         <thead>
                             <tr>
@@ -63,6 +62,7 @@
                         <?php endforeach;?>
                         </tbody>
                     </table>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

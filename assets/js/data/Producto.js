@@ -136,7 +136,7 @@ $(document).ready(function(){
                     timer: 3000
                 })
                 .then(redirect => {
-                    // location.href = url + "index";
+                    location.href = url + "index";
                 })
             },
             error: function(err) {
