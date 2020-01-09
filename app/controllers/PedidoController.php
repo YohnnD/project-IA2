@@ -90,6 +90,7 @@ class PedidoController extends BaseController
             $pedido->setCodigoPedido($serviPedido['codigo_pedido']);
             $pedido->setCantidadPrenda($serviPedido['cant_prenda']);
             $pedido->setCantidadMedida($serviPedido['cant_medida']);
+            $pedido->setPrecioServiPedido($serviPedido['precio_servicio']);
             $pedido->setIdTela($serviPedido['id_tela']);
             $save = $pedido->saveServiPedido();
         }
@@ -147,6 +148,7 @@ class PedidoController extends BaseController
     {
         $codigo_producto = $this->input('codigo_producto');
         $cant_pro_pedida = $this->input('cant_pro_pedida');
+        $precio_pro=$this->input('precio');
         $codigo_pedido = $this->input('codigo_pedido');
         $id_talla = $this->input('id_talla');
 
@@ -168,6 +170,7 @@ class PedidoController extends BaseController
                 $pedido->setCodigoProducto($codigo_producto[$i]);
                 $pedido->setCodigoPedido($codigo_pedido);
                 $pedido->setCantidadPrenda($cant_pro_pedida[$i]);
+                $pedido->setPrecioServiPedido($precio_pro[$i]);
                 $pedido->setIdTallas($id_talla[$i]);
                 $save = $pedido->saveProPredido();
             }

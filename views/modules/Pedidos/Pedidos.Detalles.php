@@ -32,7 +32,7 @@
                         <h4 class="center-align">PEDIDO</h4>
                     </div>
 
-                    <div class="input-field col s12 m4">
+                    <div class="input-field col s12 m6">
                         <i class="icon-person prefix"></i>
                         <input type="text" name="cedula_cliente" id="cedula_cliente" class="validate" minlength="5"
                                maxlength="15" pattern="[VvJjEe0-9]+"
@@ -40,16 +40,17 @@
                                value="<?php echo $pedido->cedula_cliente; ?>" required readonly>
                         <label for="cedula_cliente">Cedula o RIF del Cliente</label>
                     </div>
-                    <div class="input-field col s12 m4">
+
+
+                    <div class="input-field col s12 m6">
                         <i class="icon-person prefix"></i>
                         <input type="text" name="nombre_cliente" id="nombre_cliente" class="validate" minlength="5"
-                               maxlength="15" pattern="[VvJjEe0-9]+"
-                               title="Solo puede usar números del 0-9 y V, J ó E" required disabled
+                               maxlength="15" pattern="[VvJjEe0-9]+" title="Solo puede usar números del 0-9 y V, J ó E" required disabled
                                value="<?php echo $pedido->nombre_cliente; ?>">
                         <label for="nombre_cliente">Nombre</label>
                     </div>
 
-                    <div class="input-field col s12 m4">
+                    <div class="input-field col s12 m6">
                         <i class="icon-person prefix"></i>
                         <input type="text" name="representante_cliente" id="representante_cliente" class="validate"
                                minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
@@ -57,6 +58,15 @@
                                value="<?php echo $pedido->representante_cliente; ?>" disabled>
                         <label for="representante_cliente" >Representante</label>
                     </div>
+
+
+                <div class="input-field col s12 m6">
+                    <i class="icon-phone prefix"></i>
+                    <input type="text" name="phone" id="phone" class="validate"  pattern="[VvJjEe0-9]+"
+                           title="Solo puede usar números del 0-9 y V, J ó E" required
+                           value="<?php echo $pedido->telefono_cliente; ?>" disabled>
+                    <label for="phone" >Teléfono</label>
+                </div
             </div>
             <div class="col s12">
                 <div class="divider"></div>
@@ -87,6 +97,7 @@
 
 
                 <div class="input-field col s12 m6">
+                    <i class="icon-message prefix"></i>
                     <select name="status_pedido" id="status_pedido">
                         <option value="null" selected>Selecione una opción</option>
                         <option value="En Proceso" <?php if($pedido->status_pedido==='En Proceso'): echo "selected"; endif; ?> >En Proceso</option>

@@ -36,15 +36,15 @@ INSERT INTO 	telas 			VALUES (default, 'Tonela Estampada', '' , 'Mts' , 'Lana'  
 
 -- SERVI_PEDIDOS
 
-INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000001', 2 , 1 , 24 , 0);
-INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000002', 3 , 1 , 24 , 2);
-INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000002', 1 , 1 , 5  , 0);
-INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000002', 2 , 1 , 1  , 0);
-INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000005', 1 , 3 , 20 , 0);
-INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000005', 2 , 3 , 15 , 0);
-INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000005', 3 , 3 , 10 , 2);
-INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000003', 2 , 2 , 12 , 0);
-INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000004', 1 , 1 , 40 , 0);
+INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000001', 2 , 1 , 24 , 0,10);
+INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000002', 3 , 1 , 24 , 2,10);
+INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000002', 1 , 1 , 5  , 0,5);
+INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000002', 2 , 1 , 1  , 0,10);
+INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000005', 1 , 3 , 20 , 0,10);
+INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000005', 2 , 3 , 15 , 0,5);
+INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000005', 3 , 3 , 10 , 2,10);
+INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000003', 2 , 2 , 12 , 0,50);
+INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000004', 1 , 1 , 40 , 0,5);
 
 -- MATERIALES
 
@@ -76,8 +76,8 @@ INSERT INTO 	pro_tallas 		VALUES ( '3' , 5 , 20 );
 
 -- PRO_PEDIDOS
 
-INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000001' , '3' , 5 );
-INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '2' , 1 );
-INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '3' , 1 );
-INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '1' , 1 );
-INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000001' , '2' , 1 );
+INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000001' , '3' , 5 ,5);
+INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '2' , 1 ,5);
+INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '3' , 1 ,5);
+INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '1' , 1, 5);
+INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000001' , '2' , 1 ,5);
