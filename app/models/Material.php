@@ -85,7 +85,7 @@
 
 					$register [] = $row; // Guardando los registros en un array
 				}
-			
+
 			}else{
 				$register = null; // Devolvemos un null si la condicion no se cumple
 			}
