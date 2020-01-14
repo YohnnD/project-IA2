@@ -9,7 +9,7 @@
 
         <testsuite name="Modelos">
             <file>tests/app/models/ClienteTest.php</file>
-            <!-- <file>tests/app/models/PedidoTest.php</file>-->
+             <file>tests/app/models/PedidoTest.php</file>
          </testsuite>
      </testsuites>
  </phpunit>
