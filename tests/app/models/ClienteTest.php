@@ -7,7 +7,7 @@ require 'core/BaseModel.php';
 require 'app/models/Cliente.php';
 require 'config/actions.php';
 require 'config/modules.php';
-$_SESSION['nick_usuario']='YohnnD';
+$_SESSION['nick_usuario']='codeslator';
 
 class ClienteTest extends TestCase{
 
