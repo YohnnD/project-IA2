@@ -56,7 +56,7 @@
                                 <td><?php echo $usuario->email_usuario; ?></td>
                                 <td><?php echo $usuario->nombre_rol; ?></td>
                                 <?php if (Helpers::hasPermissions('1','5')): ?>
-                                <td><a href="<?php echo Helpers::url('Usuario','details'); ?>/<?php echo $usuario->nick_usuario; ?>" class="btn btn-small a2-green waves-effect waves-light"><i class="icon-pageview"></i></a></td>
+                                <td><a href="<?php echo Helpers::url('Usuario','details'); ?>/<?php echo $usuario->nick_usuario; ?>" class="btn btn-small green darken-2 waves-effect waves-light"><i class="icon-pageview"></i></a></td>
                                 <?php endif; ?>
                             </tr>
                         <?php endforeach; ?>
