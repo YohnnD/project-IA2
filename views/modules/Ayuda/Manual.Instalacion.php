@@ -11,37 +11,26 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
-    <title>Pedidos - Inversiones A2</title>
+    <title>Ayuda - Inversiones A2</title>
 </head>
+
 <body>
 <!-- Header -->
 <?php require_once "views/layouts/header.php"; ?>
-
 <!-- Main Container -->
 <main>
     <div class="container-fluid">
         <div class="row">
             <div class="col s12 breadcrumb-nav left-align">
                 <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
-                <a href="<?php echo Helpers::url('Pedido','index'); ?>" class="breadcrumb">Gestionar Pedidos</a>
+                <a href="<?php echo Helpers::url('Ayuda','index'); ?>" class="breadcrumb">Ayuda</a>
+                <a href="<?php echo Helpers::url('Ayuda','system'); ?>" class="breadcrumb">Manual del Instalación</a>
             </div>
-            <?php if (Helpers::hasPermissions('3','1')): ?>
-            <div class="col s12 m6 animated bounceIn">
-                <a href="<?php echo Helpers::url('Pedido','create'); ?>" class="btn-app orange">
-                    <i class="icon-add_shopping_cart"></i>
-                    <span>Registrar Pedido</span>
-                </a>
-            </div>
-            <?php endif; ?>
 
-            <?php if (Helpers::hasPermissions('3','2')): ?>
-            <div class="col s12 m6 animated bounceIn">
-                <a href="<?php echo Helpers::url('Pedido','getAll'); ?>" class="btn-app pink">
-                    <i class="icon-chrome_reader_mode"></i>
-                    <span>Consultar Pedidos</span>
-                </a>
+            <div class="col s12 m12 animated bounceIn">
+                <iframe id="iframe" name="iframe" src="<?php echo BASE_URL; ?>assets/docs/MANUAL_INSTALACION_IA2.pdf" width="100%" height="700px" style="margin-bottom: 10px;"></iframe>
             </div>
-            <?php endif; ?>
+
         </div>
     </div>
 </main>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
-    <title>Pedidos - Inversiones A2</title>
+    <title>Ayuda - Inversiones A2</title>
 </head>
 <body>
 <!-- Header -->
@@ -23,25 +23,29 @@
         <div class="row">
             <div class="col s12 breadcrumb-nav left-align">
                 <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
-                <a href="<?php echo Helpers::url('Pedido','index'); ?>" class="breadcrumb">Gestionar Pedidos</a>
+                <a href="<?php echo Helpers::url('Ayuda','index'); ?>" class="breadcrumb">Ayuda</a>
             </div>
-            <?php if (Helpers::hasPermissions('3','1')): ?>
-            <div class="col s12 m6 animated bounceIn">
-                <a href="<?php echo Helpers::url('Pedido','create'); ?>" class="btn-app orange">
-                    <i class="icon-add_shopping_cart"></i>
-                    <span>Registrar Pedido</span>
-                </a>
-            </div>
-            <?php endif; ?>
 
-            <?php if (Helpers::hasPermissions('3','2')): ?>
-            <div class="col s12 m6 animated bounceIn">
-                <a href="<?php echo Helpers::url('Pedido','getAll'); ?>" class="btn-app pink">
-                    <i class="icon-chrome_reader_mode"></i>
-                    <span>Consultar Pedidos</span>
-                </a>
-            </div>
-            <?php endif; ?>
+                <div class="col s12 m6 animated bounceIn">
+                    <a href="<?php echo Helpers::url('Ayuda','user'); ?>" class="btn-app green">
+                        <i class="icon-local_laundry_service"></i>
+                        <span>Manual de Usuario</span>
+                    </a>
+                </div>
+
+                <div class="col s12 m6 animated bounceIn">
+                    <a href="<?php echo Helpers::url('Ayuda','installed'); ?>" class="btn-app blue">
+                        <i class="icon-library_books"></i>
+                        <span>Manual de Instalación</span>
+                    </a>
+                </div>
+
+                <div class="col s12 m6 animated bounceIn">
+                    <a href="<?php echo Helpers::url('Ayuda','system'); ?>" class="btn-app red">
+                        <i class="icon-personal_video"></i>
+                        <span>Manual del Sistema</span>
+                    </a>
+                </div>
         </div>
     </div>
 </main>

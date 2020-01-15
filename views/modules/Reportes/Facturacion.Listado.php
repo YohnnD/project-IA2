@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Consultar Pedidos - Inversiones A2</title>
 </head>
 <body>
@@ -27,11 +28,12 @@
                 <div class="col s12">
                     <h4 class="center-align">Listado de Facturas</h4>
                 </div>
-                <?php if ($allFactura == null): ?>
+                <?php if (empty($allFactura)){ ?>
                         <h2 class="center-align">No Hay Ninguna Factura Registrada Aún.</h2>
                     <!-- Cards -->
+               
                 <div class="col s12">
-                    <?php else: ?>
+                    <?php }else ?>
                     <table class="responsive-table centered striped">
                         <thead>
                             <tr>
@@ -62,7 +64,6 @@
                         <?php endforeach;?>
                         </tbody>
                     </table>
-                    <?php endif; ?>
                 </div>
             </div>
         </div>
