@@ -33,8 +33,6 @@ class PedidoTest extends TestCase{
         $this->pedido->setIdTallas('1');
 
 
-
-
         //codigo Producto
         $this->pedido->setCodigoProducto('1');
         $this->pedido->setCantidadPrenda(2);
