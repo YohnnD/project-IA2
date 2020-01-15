@@ -1,6 +1,7 @@
 <?php
 
-class Servicio extends BaseModel {
+class Servicio extends BaseModel
+{
 
     // Atributos
     private $id_servicio;
@@ -13,7 +14,8 @@ class Servicio extends BaseModel {
     private $table2;
 
     // Métodos
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->table = "servicios";
         $this->table2 = "materiales";
@@ -21,56 +23,69 @@ class Servicio extends BaseModel {
 
     // Getters & Setters
 
-    public function getIdServicio() {
+    public function getIdServicio()
+    {
         return $this->id_servicio;
     }
 
-    public function getNombreServicio() {
+    public function getNombreServicio()
+    {
         return $this->nombre_servicio;
     }
 
-    public function getUnidadMedida() {
+    public function getUnidadMedida()
+    {
         return $this->unidad_medida;
     }
 
-    public function getDescripcion() {
+    public function getDescripcion()
+    {
         return $this->descripcion_servicio;
     }
 
-    public function getPrecio() {
+    public function getPrecio()
+    {
         return $this->precio_servicio;
     }
 
-    public function getCosto() {
+    public function getCosto()
+    {
         return $this->costo_servicio;
     }
 
-    public function setIdServicio($idServicio) {
+    public function setIdServicio($idServicio)
+    {
         $this->id_servicio = $idServicio;
     }
 
-    public function setNombreServicio($nombreServicio) {
+    public function setNombreServicio($nombreServicio)
+    {
         $this->nombre_Servicio = $nombreServicio;
     }
 
-    public function setUnidadMedida($unidadMedida) {
+    public function setUnidadMedida($unidadMedida)
+    {
         $this->unidad_medida = $unidadMedida;
     }
 
-    public function setDescripcion($descripcion) {
+    public function setDescripcion($descripcion)
+    {
         $this->descripcion_servicio = $descripcion;
     }
 
-    public function setCosto($costo) {
+    public function setCosto($costo)
+    {
         $this->costo_servicio = $costo;
     }
 
-    public function setPrecio($precio) {
+    public function setPrecio($precio)
+    {
         $this->precio_servicio = $precio;
     }
 
-    public function save() {
-        $this->registerBitacora(SERVICIOS,REGISTRAR);
+    public function save()
+    {
+        $this->registerBitacora(SERVICIOS, REGISTRAR);
         $sql = "INSERT INTO $this->table
         		(nombre_servicio,descripcion_servicio,precio_servicio,costo_servicio,unidad_medida) VALUES (:nombreServicio,:descripcionServicio,:precioServicio,:costoServicio,:unidadMedida)";
 
@@ -88,8 +103,9 @@ class Servicio extends BaseModel {
         return $respuesta;
     }
 
-    public function getAll() {
-        $this->registerBitacora(SERVICIOS,CONSULTAR);
+    public function getAll()
+    {
+        $this->registerBitacora(SERVICIOS, CONSULTAR);
         $query = $this->db()->query("SELECT * FROM $this->table");
 
         if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
@@ -101,8 +117,9 @@ class Servicio extends BaseModel {
         return $row;
     }
 
-    public function getOne() {
-        $this->registerBitacora(SERVICIOS,DETALLES);
+    public function getOne()
+    {
+        $this->registerBitacora(SERVICIOS, DETALLES);
         $query = $this->db()->query("SELECT * FROM $this->table WHERE id_servicio = '$this->id_servicio'");
 
         if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
@@ -114,8 +131,9 @@ class Servicio extends BaseModel {
         return $row;
     }
 
-    public function update() {
-        $this->registerBitacora(SERVICIOS,ACTUALIZAR);
+    public function update()
+    {
+        $this->registerBitacora(SERVICIOS, ACTUALIZAR);
         $sql = "UPDATE $this->table SET nombre_servicio=:nombre_servicio,descripcion_servicio=:descripcion_servicio,precio_servicio=:precio_servicio,costo_servicio= :costo_servicio,unidad_medida=:unidad_medida WHERE id_servicio=:id_servicio";
 
         $result = $this->db()->prepare($sql);
@@ -131,14 +149,16 @@ class Servicio extends BaseModel {
         return $update;
     }
 
-    public function delete() {
-        $this->registerBitacora(SERVICIOS,ELIMINAR);
+    public function delete()
+    {
+        $this->registerBitacora(SERVICIOS, ELIMINAR);
         $delete = $this->db()->query("DELETE FROM $this->table WHERE id_servicio = '$this->id_servicio'");
 
         return $delete;
     }
 
-    public function getMaterial() {
+    public function getMaterial()
+    {
         $materiales = $this->db()->query("SELECT *FROM materiales");
 
         if ($materiales->rowCount() >= 1) {
@@ -152,10 +172,11 @@ class Servicio extends BaseModel {
         return $resulSet;
     }
 
-    public function verificarServicio() {
-       
+    public function verificarServicio()
+    {
+
         $servicio = $this->db()->query("SELECT * FROM servicios where nombre_servicio='$this->nombre_Servicio'");
-        
+
         if ($servicio && $servicio->rowCount() !== 0) {
             $respuesta = true;
         } else {
@@ -165,10 +186,11 @@ class Servicio extends BaseModel {
         return $respuesta;
     }
 
-    public function saveMaterial($idMateriales, $cantidad) {
-        $this->registerBitacora(SERVICIOS,ACTUALIZAR);
+    public function saveMaterial($idMateriales, $cantidad)
+    {
+        $this->registerBitacora(SERVICIOS, ACTUALIZAR);
         if ($this->id_servicio == 0) {
-            $query = $this->db()->query('select id_servicio from servicios order by id_servicio desc');
+            $query = $this->db()->query('SELECT id_servicio FROM servicios ORDER BY id_servicio DESC');
 
             if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
                 $row = $query->fetchAll();
@@ -202,7 +224,8 @@ class Servicio extends BaseModel {
         }
     }
 
-    public function searchMaterial($search) {
+    public function searchMaterial($search)
+    {
         $query = $this->db()->query("SELECT * FROM materiales where id_material='$search'");
 
         if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
@@ -214,7 +237,8 @@ class Servicio extends BaseModel {
         return $row;
     }
 
-    public function getMaterialByServi($id) {
+    public function getMaterialByServi($id)
+    {
 
         $materialServi = $this->db()->query("SELECT * FROM materiales inner join mat_servicios on mat_servicios.id_material=materiales.id_material where mat_servicios.id_servicio='$id'");
 
@@ -229,13 +253,17 @@ class Servicio extends BaseModel {
         return $resulSet;
     }
 
-    public function deleteMaterial() {
-        $this->registerBitacora(SERVICIOS,ACTUALIZAR);
+    public function deleteMaterial()
+    {
+        $this->registerBitacora(SERVICIOS, ACTUALIZAR);
         $delete = $this->db()->query("DELETE FROM mat_servicios WHERE id_material = '$this->id_servicio'");
+        if ($delete) {
+            return true;
+        } else {
+            return false;
+        }
 
-        return $delete;
     }
-
 }
 
 ?>
