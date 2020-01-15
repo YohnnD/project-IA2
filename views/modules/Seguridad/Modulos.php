@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
-    <title> - Inversiones A2</title>
+    <title>Ver Módulos - Inversiones A2</title>
 </head>
 <body>
     <!-- Header -->
