@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/datatables.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title> - Inversiones A2</title>
 </head>
 <body>
@@ -46,13 +47,13 @@
                                 <td><?php echo $value['codigo_factura']?></td>
                                 <td><?php echo $value['fecha_factura']?></td>
                                 <td><?php echo $value['modo_pago_factura']?></td>
-                                <td><?php echo $value['porcentaje_venta_factura']?>%</td>
-                                <!-- <?php //if (Helpers::hasPermissions('6','5')): ?> -->
+                                <td><?php echo $value['porcentaje_venta_factura']?></td>
+                                <?php if (Helpers::hasPermissions('6','5')): ?>
                                 <td>
                                     <a href="<?php echo Helpers::url('Factura','details');?>/<?php echo $value['codigo_factura'];?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
                                 </td>
                             </tr>
-                            <?php //endif; ?>
+                            <?php endif; ?>
                         <?php endforeach ?>
                         </tbody>
                     </table>

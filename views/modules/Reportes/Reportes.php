@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Reportes - Inversiones A2</title>
 </head>
 <body>
@@ -43,7 +44,7 @@
                     </a>
                 </div>
                 <div class="col s12 m4 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Reporte','FactuIndex'); ?>" class="btn-app red">
+                    <a href="<?php echo Helpers::url('Reporte','index'); ?>" class="btn-app red">
                         <i class="icon-receipt"></i>
                         <span>Reporte de Facturas</span>
                     </a>
