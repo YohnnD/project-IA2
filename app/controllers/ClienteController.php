@@ -67,8 +67,8 @@ class ClienteController extends BaseController {
         $direccionCliente=$this->input('direccion_cliente');
         $telefonoCliente=$this->input('telefono_cliente');
         $representanteCliente=$this->input('telefono_cliente');
-
         $cliente= new Cliente();
+
         $cliente->setCedulaCliente($cedulaCliente);
         $cliente->setTipoDocumentoCliente('R');
         $cliente->setNombreCliente($nombreCliente);

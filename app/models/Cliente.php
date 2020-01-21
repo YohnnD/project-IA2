@@ -159,7 +159,12 @@ class Cliente extends BaseModel{
         $this->registerBitacora(CLIENTES,ELIMINAR);
         $sql="DELETE FROM clientes WHERE cedula_cliente='$this->cedulaCliente'";
         $register=$this->db()->query($sql);
-        return $register;
+        if($register){
+            return true;
+        }else{
+            return false;
+        }
+
 
     }
 

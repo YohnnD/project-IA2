@@ -116,7 +116,7 @@
                     
                 </div>
                 <div class="input-field col s12 center-align">
-                    <button type="submit" class="btn waves-effect waves-light a2-green">
+                    <button type="submit" class="btn waves-effect waves-light green darken-2">
                         Registrar 
                         <i class="icon-save right"></i>
                     </button>
