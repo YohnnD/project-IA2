@@ -28,8 +28,8 @@
                     <a href="<?php echo Helpers::url('Factura','getAll'); ?>" class="breadcrumb">Consultar Facturas</a>
                 </div>
                 <div class="col s12">
-
                     <h4 class="center-align">Facturas de ventas</h4>
+
                 </div>
                 <div class="col s12">
                     <table class="striped centered responsive-table" id="Factura">
