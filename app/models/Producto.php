@@ -176,16 +176,16 @@
 						stock_min_producto = :stock_min_producto, stock_producto = :stock_producto
 						WHERE codigo_producto = :codigo_producto";
 			$result = $this->db()->prepare($query); // Prepara la consulta.
-			$result->bindParam(':codigo_producto', $this->codigoProducto);
-			$result->bindParam(':nombre_producto', $this->nombreProducto);
-			$result->bindParam(':descripcion_producto', $this->descripcionProducto);
-			$result->bindParam(':tipo_producto', $this->tipoProducto);
-			$result->bindParam(':modelo_producto', $this->modeloProducto);
-			$result->bindParam(':costo_producto', $this->costoProducto);
-			$result->bindParam(':precio_producto', $this->precioProducto);
-			$result->bindParam(':stock_max_producto', $this->stockMaxProducto);
-			$result->bindParam(':stock_min_producto', $this->stockMinProducto);
-			$result->bindParam(':stock_producto', $this->stockProducto);
+			$result->bindValue(':codigo_producto', $this->codigoProducto);
+			$result->bindValue(':nombre_producto', $this->nombreProducto);
+			$result->bindValue(':descripcion_producto', $this->descripcionProducto);
+			$result->bindValue(':tipo_producto', $this->tipoProducto);
+			$result->bindValue(':modelo_producto', $this->modeloProducto);
+			$result->bindValue(':costo_producto', $this->costoProducto);
+			$result->bindValue(':precio_producto', $this->precioProducto);
+			$result->bindValue(':stock_max_producto', $this->stockMaxProducto);
+			$result->bindValue(':stock_min_producto', $this->stockMinProducto);
+			$result->bindValue(':stock_producto', $this->stockProducto);
 			$save = $result->execute(); // Ejecuta la consulta
 			return $save;
 		}

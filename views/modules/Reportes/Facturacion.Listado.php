@@ -27,14 +27,20 @@
                 </div>
                 <div class="col s12">
                     <h4 class="center-align">Listado de Facturas</h4>
-                </div>
-                <?php if (empty($allFactura)){ ?>
-                        <h2 class="center-align">No Hay Ninguna Factura Registrada Aún.</h2>
+                    <?php if (empty($allFactura)){ ?>
+
+                <h2 class="center-align">No Hay Ninguna Factura Registrada Aún.</h2>
                     <!-- Cards -->
                
-                <div class="col s12">
                     <?php }else ?>
-                    <table class="responsive-table centered striped">
+                </div>
+               
+
+
+
+
+
+                 <table class="responsive-table centered striped">
                         <thead>
                             <tr>
                                 <th>Código</th>
@@ -59,14 +65,21 @@
                                 <td><a href="<?php echo Helpers::url('Reporte','facturaById')."/".$factura->codigo_factura?>" class="btn btn-floating green waves-effect waves-light"><i class="icon-monetization_on"></i></a></td>
                                 <td>
                                     <a href="<?php echo Helpers::url('Reporte','setDolar')."/".$factura->codigo_factura?>" class="btn btn-floating amber waves-effect waves-light"><i class="icon-money_off"></i></a></td> 
-                           ?>
+                           
                             </tr>
                         <?php endforeach;?>
+
                         </tbody>
                     </table>
+
+
+
+
+
+
+
                 </div>
             </div>
-        </div>
     </main>
 
     <!-- Footer -->

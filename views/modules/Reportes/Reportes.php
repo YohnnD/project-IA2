@@ -44,7 +44,7 @@
                     </a>
                 </div>
                 <div class="col s12 m4 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Reporte','index'); ?>" class="btn-app red">
+                    <a href="<?php echo Helpers::url('Reporte','FactuIndex'); ?>" class="btn-app red">
                         <i class="icon-receipt"></i>
                         <span>Reporte de Facturas</span>
                     </a>

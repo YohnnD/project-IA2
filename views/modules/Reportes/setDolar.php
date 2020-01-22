@@ -43,7 +43,7 @@
             <?php foreach ($allFactura as $factura): ?> 
         <form action="<?php echo Helpers::url('Reporte','facturaBolivares')."/".$factura->codigo_factura?>" method="post">
         <input type="hidden" name="id" value="<?php echo $factura->codigo_factura?>"> 
-            
+            <?php endforeach;?>
           <div class="input-field">                     
           <i class="icon-attach_money prefix"></i>
           <input type="number" id="dolar" name="dolar" value="" class="validate">
@@ -55,7 +55,7 @@
         </div>
         </form>       
                            
-        <?php endforeach;?>
+        
         
         </span>
       </div>

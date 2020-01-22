@@ -1,26 +1,26 @@
 ﻿-- CLIENTES
 
-INSERT INTO 	clientes 		VALUES ('27210326','V', 'Angel Serrano'    , 'Esclavo que hizo el registro' , 'Sarare'         , '04120531200'  ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27085898','V', 'Yohnneiber Diaz'  , 'Lider'                        , 'Norte'          , '0424'		 ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27317920','V', 'Jhon Moran'       , 'Hitler y Teatrero'      		 , '5 de julio'     , '0424'		 ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('28286639','V', 'Andres Melendez'  , 'Lacayo'      				 , 'Cerrito Blanco' , '0424'		 ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27198456','V', 'Veronica Quintero', 'Emprendedora'				 , 'Santa Elena'    , '0412'		 ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27212503','V', 'Gabriel Oropeza'  , 'Misterioso'  			     , 'Calle 48'       , '0424'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27210326','V', 'Angel Serrano'    , 'Estudiante de Informática' , 'Sarare'         , '04120531200'  ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27085898','V', 'Yohnneiber Diaz'  , 'Estudiante de Informática'                        , 'Barrio el jebe sector, propatria'          , '04241585586'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27317920','V', 'Jhon Moran'       , 'Estudiante de Informática'      		 , '5 de julio'     , '0424'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('28286639','V', 'Andres Melendez'  , 'Estudiante de Informática'      				 , 'Cerrito Blanco, a lado de la licoreria' , '04241234567' ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27198456','V', 'Veronica Quintero', 'Estudiante de Informática'				 , 'Santa Elena'    , '0412123457'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27212503','V', 'Gabriel Oropeza'  , 'Estudiante de Informática'  			     , 'Calle 48'       , '04241234567'		 ,'UPTAEB');
 
 -- PEDIDOS
 
-INSERT INTO 	pedidos 		VALUES	('P-0000001','27210326','Facturado' ,'','01-11-2019', '19-11-2019');
-INSERT INTO 	pedidos 		VALUES	('P-0000002','27085898','Facturado' ,'','01-11-2019', '19-11-2019');
-INSERT INTO 	pedidos 		VALUES	('P-0000003','27317920','En Proceso','','01-11-2019', '19-11-2019');
+INSERT INTO 	pedidos 		VALUES	('P-0000001','27210326','Entregado' ,'','20-1-2020', '22-1-2020');
+INSERT INTO 	pedidos 		VALUES	('P-0000002','27085898','Facturado' ,'','20-1-2020', '22-1-2020');
+INSERT INTO 	pedidos 		VALUES	('P-0000003','27317920','En Proceso','','22-1-2020', '23-1-2020');
 INSERT INTO 	pedidos 		VALUES	('P-0000004','28286639','Cancelado' ,'','01-11-2019', '19-11-2019');
-INSERT INTO 	pedidos 		VALUES	('P-0000005','27198456','En Proceso','','01-11-2019', '19-11-2019');
+INSERT INTO 	pedidos 		VALUES	('P-0000005','27198456','En Proceso','','22-1-2020', '23-1-2020');
 INSERT INTO 	pedidos 		VALUES	('P-0000006','27212503','Facturado' ,'','01-11-2019', '19-11-2019');
 
 -- FACTURA
 
-INSERT INTO 	factura_ventas 	VALUES	('1','P-0000001','27-10-2019', 'Punto'         , true  , 12);
-INSERT INTO 	factura_ventas 	VALUES	('2','P-0000002','28-02-2019', 'Pago Movil'    , false ,  3);
-INSERT INTO 	factura_ventas 	VALUES	('3','P-0000003','03-04-2019', 'Transferencia' , true  ,  3);
+INSERT INTO 	factura_ventas 	VALUES	('1','P-0000001','20-1-2020', 'Punto'         , true  , 12);
+INSERT INTO 	factura_ventas 	VALUES	('2','P-0000002','20-1-20200', 'Pago Movil'    , false ,  3);
+INSERT INTO 	factura_ventas 	VALUES	('3','P-0000003','22-1-2020', 'Transferencia' , true  ,  3);
 
 -- SERVICIOS
 
@@ -30,9 +30,19 @@ INSERT INTO 	servicios 		VALUES (default , 'Serigrafia'        , '' , 'Color'  ,
 
 -- TELAS
 
-INSERT INTO 	telas 			VALUES (default, 'Rayon'           , '' , 'Mts' , 'Algodón'   );
-INSERT INTO 	telas 			VALUES (default, 'Tonela'          , '' , 'Cm'  , 'Sintetico' );
-INSERT INTO 	telas 			VALUES (default, 'Tonela Estampada', '' , 'Mts' , 'Lana'      );
+INSERT INTO 	telas 			VALUES (default, 'Rayón'           , '' , 'Mts' , 'Algodón'   );
+INSERT INTO 	telas 			VALUES (default, 'Tonela'          , '' , 'Kg'  , 'Sintetico' );
+INSERT INTO 	telas 			VALUES (default, 'Tonela Estampada', '' , 'Mts' , 'Algodon');
+INSERT INTO 	telas 			VALUES (default, 'Popelina', '' , 'Mts' , 'Algodon');
+INSERT INTO 	telas 			VALUES (default, 'Micro Durazno', '' , 'Mts' , 'Algodon');
+INSERT INTO 	telas 			VALUES (default, 'Crochet', '' , 'Mts' , 'Sintetico');
+INSERT INTO 	telas 			VALUES (default, 'Gabardina', '' , 'Mts' , 'Algodon');
+INSERT INTO 	telas 			VALUES (default, 'Licra', '' , 'Mts' , 'Sintetico');
+
+
+
+
+
 
 -- SERVI_PEDIDOS
 
@@ -51,6 +61,10 @@ INSERT INTO 	servi_pedidos 	VALUES (default, 'P-0000004', 1 , 1 , 40 , 0,5);
 INSERT INTO 	materiales 		VALUES (default, 'Tijeras' , '' , '10'  , 2    );
 INSERT INTO 	materiales 		VALUES (default, 'Hilos'   , '' , '100' , 1.50 );
 INSERT INTO 	materiales 		VALUES (default, 'Agujas'  , '' , '10'  , 1    );
+INSERT INTO 	materiales 		VALUES (default, 'Botones Pequeños'  , '' , '10'  , 1    );
+INSERT INTO 	materiales 		VALUES (default, 'Botones Grande'  , '' , '10'  , 1    );
+INSERT INTO 	materiales 		VALUES (default, 'Cadenas'  , '' , '10'  , 2    );
+INSERT INTO 	materiales 		VALUES (default, 'Pintura '  , '' , '10'  , 2    );
 
 -- MAT_SERVICIOS
 
@@ -64,9 +78,9 @@ INSERT INTO 	mat_servicios 	VALUES ( 3 , 1 , 0 );
 
 -- PRODUCTOS
 
-INSERT INTO 	productos 		VALUES ( '1' , 'Camisa'   , 'Estampada'  , '-F' , ' ' , 10 , 20 , 5  , 100 , 5 , ' ' );
-INSERT INTO 	productos 		VALUES ( '2' , 'Pantalón' , 'Blue Jeans' , '-U' , ' ' , 20 , 40 , 10 , 100 , 5 , ' ' );
-INSERT INTO 	productos 		VALUES ( '3' , 'Sudadera' , 'Negra'      , '-M' , ' ' , 15 , 30 , 20 , 100 , 5 , ' ' );
+INSERT INTO 	productos 		VALUES ( '1' , 'Camisa'   , 'Estampada'  , 'ma' , ' ' , 10 , 20 , 24  , 100 , 24, 'camisa.jpg' );
+INSERT INTO 	productos 		VALUES ( '2' , 'Pantalón' , 'Blue Jeans' , 'fe' , ' ' , 20 , 40 , 25 , 100 , 24 , 'pantalon.png' );
+INSERT INTO 	productos 		VALUES ( '3' , 'Suerter' , 'Negro'      , 'ux' , ' ' , 15 , 30 , 25 , 100 , 24 , 'sueter.png' );
 
 -- PRO_TALLAS
 

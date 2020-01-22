@@ -66,7 +66,7 @@
             <?php endif; ?>
             <?php if (Helpers::hasPermissions('5') || Helpers::hasPermissions('8') || Helpers::hasPermissions('9')): ?>
                 <div class="col s12 m3 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Configuracion', 'index'); ?>" class="btn-app yellow">
+                    <a href="<?php echo Helpers::url('Configuracion', 'index'); ?>" class="btn-app yellow darken-4">
                         <i class="icon-build"></i>
                         <span class="truncate">Configuración</span>
                     </a>

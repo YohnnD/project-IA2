@@ -48,7 +48,7 @@
         </thead>
         <tbody>
           <?php foreach ($allPedido as $pedido): ?>
-            <?php if($pedido->status_pedido == 'Entregado' || $pedido->status_pedido == 'entregado'):?>
+            <?php if($pedido->status_pedido == 'Entregado' || $pedido->status_pedido == 'entregado'){?>
           <tr>
             <td class="no"><?php echo $pedido->codigo_pedido?></td>
             <td class="desc">
@@ -59,8 +59,9 @@
             <td class="total"><?php echo $pedido->status_pedido?></td>
             
           </tr>
-          <?php elseif($pedido->status_pedido == 'Terminado' || $pedido->status_pedido == 'En proceso' || $pedido->status_pedido == 'terminado' || $pedido->status_pedido == 'en proceso' || $pedido->status_pedido == 'En Proceso'): ?>
-                <?php endif; ?>
+          <?php }else?>
+            <h3 class="center-align">No Hay Ningún Pedido Entregado</h3>
+
           
           <?php endforeach;?>
           
