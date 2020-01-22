@@ -72,7 +72,7 @@ $(document).ready(function () {
     // Registrar
     $('#register').on('submit', function (e) {
         e.preventDefault();
-        console.log('holaa');
+        var nombre_servicio=$('#nombre_servicio').val()
 
         $.ajax({
             method: "POST",
@@ -91,7 +91,7 @@ $(document).ready(function () {
                 if (data == true) {
                     swal({
                         title: "¡Bien hecho!",
-                        text: "Se ha registrado el servicio " + nombre_servicio + " exitosamente.",
+                        text: "Se ha registrado el servicio exitosamente.",
                         icon: "success",
                         button: {
                             text: "Aceptar",
@@ -126,11 +126,11 @@ $(document).ready(function () {
 
     if (deleteMaterial==false) {
         $('#deleteMaterial').on('click',function(event) {
-       
+
             $('.materiales').removeAttr('disabled','');
            // $(this).addAttr('disabled','disabled');
             deleteMaterial=true;
-                
+
 
         });
     }
@@ -139,7 +139,7 @@ $(document).ready(function () {
       //  $('#deleteMaterial').on('click',function(event) {
         //    console.log('hola');
           //      console.log(deleteMaterial);
-       
+
       //      $('.materiales').addAttr('disabled','disabled');
         //    $(this).text('Eliminar Materiales');
           //  deleteMaterial=false;
@@ -147,8 +147,8 @@ $(document).ready(function () {
         //});
     //}
 
-        
-    
+
+
 
     // Registrar material
     $('#MaterialServi').on('submit', function (e) {
@@ -156,7 +156,7 @@ $(document).ready(function () {
         console.log('holaa');
         var cantidad = $('#cantidad').val();
         var id = $('#id_material').val();
-       
+
 
         $.ajax({
             method: "POST",
@@ -165,7 +165,7 @@ $(document).ready(function () {
             url: "http://localhost/project-IA2/Servicio/saveMaterial",
             data: {
                 cantidad: cantidad,
-                id: id              
+                id: id
             },
             // url: "",
             beforeSend: function () {
@@ -275,9 +275,8 @@ $(document).ready(function () {
                                     closeModal: true
                                 },
                                 timer: 3000
-                            })
-                                    .then(redirect => {
-                                        location.href = "http://localhost/project-IA2/Servicio/getAll";
+                            }).then(redirect => {
+                                        location.reload();
                                     });
 
                         }

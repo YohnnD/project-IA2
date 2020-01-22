@@ -207,7 +207,11 @@
 			$this->registerBitacora(PRODUCTOS,ELIMINAR);			
 			$query = "DELETE FROM $this->table WHERE codigo_producto = '$this->codigoProducto'"; // Consulta SQL
 			$delete = $this->db()->query($query); // Prepara la consulta SQL
-			return $delete;
+			if($delete){
+	            return true;
+	        }else{
+	            return false;
+	        }
 		}
 
 		public function getAll() {
@@ -292,17 +296,22 @@
 			$sql = "SELECT codigo_producto FROM $this->table 
 					WHERE codigo_producto = '$this->codigoProducto'";
 			$query = $this->db()->query($sql);
-			if($query){
-                if($query->rowCount() != 0){
-                    if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
-                        $register = $row; // Lo almacena en $register
-                    }
-                }
-                else{
-                    $register = null;
-                }
-            }
-            return $register; // Y finalmente, lo retorna.
+			// if($query){
+   //              if($query->rowCount() != 0){
+   //                  if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
+   //                      $register = $row; // Lo almacena en $register
+   //                  }
+   //              }
+   //              else{
+   //                  $register = null;
+   //              }
+   //          }
+   //          return $register; // Y finalmente, lo retorna.
+			if($query->rowCount()>=1){
+	            return true;
+	        }else{
+	            return false;
+	        }
 		}
 	}
 ?>
