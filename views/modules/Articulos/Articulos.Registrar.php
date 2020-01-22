@@ -48,7 +48,7 @@
                     <label for="modelo_articulo">Modelo del Artículo</label>
                 </div>
                 <div class="input-field col s12 m6 center-align">
-                    <button type="submit" class="btn a2-green waves-effect waves-light col s12">
+                    <button type="submit" class="btn green darken-2 waves-effect waves-light col s12">
                         Registrar
                         <i class="icon-send right"></i>
                     </button>                    

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Registrar Material - Inversiones A2</title>
 </head>
 <body>
@@ -54,7 +55,7 @@
                     <label for="descripcion_material">Descripción</label>
                 </div>
                 <div class="input-field col s12 center-align">
-                    <button type="submit" class="btn a2-green waves-effect waves-light col s12" name="registrar" >
+                    <button type="submit" class="btn green darken-2 waves-effect waves-light col s12" name="registrar" >
                         Registrar
                         <i class="icon-send right"></i>
                     </button>

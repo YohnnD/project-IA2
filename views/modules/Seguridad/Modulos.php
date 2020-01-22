@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
-    <title> - Inversiones A2</title>
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
+    <title>Ver Módulos - Inversiones A2</title>
 </head>
 <body>
     <!-- Header -->

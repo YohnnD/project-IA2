@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Registrar Producto - Inversiones A2</title>
 </head>
 <body>
@@ -116,7 +117,7 @@
                     
                 </div>
                 <div class="input-field col s12 center-align">
-                    <button type="submit" class="btn waves-effect waves-light a2-green">
+                    <button type="submit" class="btn waves-effect waves-light green darken-2">
                         Registrar 
                         <i class="icon-save right"></i>
                     </button>

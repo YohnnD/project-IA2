@@ -9,7 +9,9 @@
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
+        <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
+        <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
+
         <title>Registrar Servicio - Inversiones A2</title>
     </head>
     <body>
@@ -61,7 +63,7 @@
                     </div>
 
                     <div class="input-field col s12 center-align">
-                        <button type="submit" class="btn a2-green waves-light waves-effect col s12">
+                        <button type="submit" class="btn green darken-2 waves-light waves-effect col s12">
                             Registrar
                             <i class="icon-send right"></i>
                         </button>

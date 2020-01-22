@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/styles.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Registrar Pedido - Inversiones A2</title>
 </head>
 
@@ -104,7 +105,7 @@
 
 
                         <div class="input-field col s12 center-align">
-                            <button type="submit" class="btn a2-green waves-effect waves-light col s12">
+                            <button type="submit" class="btn green darken-2 waves-effect waves-light col s12">
                                 <i class="icon-send right"></i>
                                 SIGUIENTE(1/4)
                             </button>
@@ -145,7 +146,7 @@
                         </div>
 
                         <div class="input-field col s12 m6">
-                            <button type="button" class="btn a2-green waves-effect waves-light col s12"
+                            <button type="button" class="btn green darken-2 waves-effect waves-light col s12"
                                     id="add-services">
                                 <i class="icon-add right"></i>
                                 Añadir
@@ -159,7 +160,7 @@
 
 
                         <div class="input-field col s12 center-align">
-                            <button type="submit" class="btn a2-green waves-effect waves-light col s12">
+                            <button type="submit" class="btn green darken-2 waves-effect waves-light col s12">
                                 <i class="icon-send right"></i>
                                 SIGUIENTE(2/4)
                             </button>
@@ -196,7 +197,7 @@
                             </tbody>
                         </table>
                         <div class="input-field col s12 center-align">
-                            <button type="submit" class="btn a2-green waves-effect waves-light col s12">
+                            <button type="submit" class="btn green darken-2 waves-effect waves-light col s12">
                                 <i class="icon-send right"></i>
                                 SIGUIENTE(3/4)
                             </button>
@@ -252,7 +253,7 @@
                   </div>
 
                     <div class="input-field col s12 center-align">
-                        <button type="submit" class="btn a2-green waves-effect waves-light col s12">
+                        <button type="submit" class="btn green darken-2 waves-effect waves-light col s12">
                             <i class="icon-send right"></i>
                             TERMINAR(3/4)
                         </button>

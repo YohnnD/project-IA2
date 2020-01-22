@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Registrar Cliente - Inversiones A2</title>
 </head>
 <body>
@@ -73,7 +74,7 @@
                 <label for="representante_cliente">Representante</label>
             </div>
             <div class="input-field col s12 center-align">
-                <button type="submit" class="btn a2-green waves-effect waves-light col s12">
+                <button type="submit" class="btn green darken-2 waves-effect waves-light col s12">
                     <i class="icon-send right"></i>
                     Registrar
                 </button>

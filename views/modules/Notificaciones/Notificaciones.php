@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
-    <title>Notificaciones - Inversiones A2</title>
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
+
 
 </head>
 <body>
