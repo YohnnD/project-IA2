@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="input-field col s12 center-align">
-                        <button type="submit" class="btn green darken-2 waves-light waves-effect col s12">
+                        <button type="submit" class="btn a2-green waves-light waves-effect col s12">
                             Registrar
                             <i class="icon-send right"></i>
                         </button>
