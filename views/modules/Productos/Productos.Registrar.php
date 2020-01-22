@@ -24,6 +24,7 @@
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                     <a href="<?php echo Helpers::url('Producto','index'); ?>" class="breadcrumb">Gestionar Productos</a>
                     <a href="<?php echo Helpers::url('Producto','create'); ?>" class="breadcrumb">Registrar Producto</a>
+
                 </div>
             </div>
         </div>
