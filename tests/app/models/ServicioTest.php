@@ -18,7 +18,7 @@ class ServicioTest extends TestCase
     {
         $this->servicio = new Servicio();
 
-        $this->servicio->setIdServicio(3);
+        $this->servicio->setIdServicio(13);
         $this->servicio->setNombreServicio('Bordado');
         $this->servicio->setDescripcion('Bordado rumano');
         $this->servicio->setUnidadMedida('CM');
@@ -47,7 +47,7 @@ class ServicioTest extends TestCase
 
     public function testGetBy()
     {
-        $result = $this->servicio->getOne(21);
+        $result = $this->servicio->getOne(1);
         $this->assertIsArray($result);
     }
 
@@ -85,7 +85,7 @@ class ServicioTest extends TestCase
 
     public function testGetMaterialByServi()
     {
-        $result = $this->servicio->getMaterialByServi(2);
+        $result = $this->servicio->getMaterialByServi(1);
         $this->assertIsArray($result);
     }
 
