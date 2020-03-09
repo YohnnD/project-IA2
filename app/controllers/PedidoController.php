@@ -3,14 +3,11 @@
 class PedidoController extends BaseController
 {
 
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
     }
 
-    public function index()
-    {
-
+    public function index(){
         $this->view('Pedidos/Pedidos');
     }
 
@@ -39,6 +36,7 @@ class PedidoController extends BaseController
         $fechaEntregaPedido = $this->input('fecha_entrega_pedido');
         $statusPedido = $this->input('status_pedido');
         $descripcionPedido = $this->input('descripcion_pedido');
+
         $pedido->setCedulaCliente($cedulaCliente);
         $pedido->setFechaEntregaPedido($fechaEntregaPedido);
         $pedido->setFechaPedido($fechaPedido);
@@ -46,6 +44,7 @@ class PedidoController extends BaseController
         $pedido->setStatusPedido("En Proceso");
         $pedido->setDescripcionPedido($descripcionPedido);
         $pedido->save();
+
         $response = $codigoPedido;
         $this->sendAjax($response);
     }

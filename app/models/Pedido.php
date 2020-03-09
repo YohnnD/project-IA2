@@ -458,6 +458,13 @@ class Pedido extends BaseModel
 
             $queryPedido = $this->db()->query("DELETE FROM pedidos WHERE codigo_pedido='$this->codigoPedido'");
 
+          if($queryPedido){
+              return true ;
+          }else{
+              return false;
+          }
+
+
             return $queryPedido;
         }
     }
@@ -501,6 +508,11 @@ class Pedido extends BaseModel
         $query = $this->db()->query($sql);
 
 
+        if($query){
+            $query=true;
+        }else{
+            $query=false;
+        }
 
         return $query;
     }

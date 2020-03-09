@@ -47,12 +47,12 @@
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="icon-monetization_on prefix"></i>
-                        <input type="text" name="costo_servicio" id="costo_servicio" class="validate" pattern="[0-9]+" title="Solo puede usar números." required>
+                        <input type="text" name="costo_servicio" id="costo_servicio" class="validate" pattern="[0-9.,]+" title="Solo puede usar números." required>
                         <label for="costo_servicio">Costo</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="icon-attach_money prefix"></i>
-                        <input type="text" name="precio_servicio" id="precio_servicio" class="validate" pattern="[0-9]+" title="Solo puede usar números." required>
+                        <input type="text" name="precio_servicio" id="precio_servicio" class="validate" pattern="[0-9.,]+" title="Solo puede usar números." required>
                         <label for="precio_servicio">Precio</label>
                     </div>
                     
@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="input-field col s12 center-align">
-                        <button type="submit" class="btn green darken-2 waves-light waves-effect col s12">
+                        <button type="submit" class="btn green darken-4 waves-light waves-effect col s12">
                             Registrar
                             <i class="icon-send right"></i>
                         </button>
