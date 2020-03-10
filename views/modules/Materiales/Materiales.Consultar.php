@@ -35,7 +35,7 @@
                         </div>
                         <div class="card-content row">
                             <div class="col s12" style="padding:30px">
-                                <table class="centered highlight" style="width: 100%" id="Material">
+                                <table class="centered striped" style="width: 100%" id="Material">
                                     <thead>
                                         <tr>
                                             <th>Material</th>
@@ -48,28 +48,22 @@
                                         </tr>
                                     </thead>
 
-                                    <?php if(empty($query)){ ?>
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="5"><p>No hay datos registrados</p></td>
-                                        </tr>
-                                    </tbody>
-                                   
+                                    <?php if($query != null): ?>
                                     <tbody>   
-                                        <?php }else foreach($query as $material): ?> 
-                                        <tr>
-                                            <td><?php echo $material->nombre_material; ?> </td>
-                                            <td><?php echo $material->descripcion_material; ?></td>
-                                            <td><?php echo $material->unidad_material; ?></td>
-                                            <td><?php echo "$".$material->precio_material; ?></td>
-                                            <?php if (Helpers::hasPermissions('9','5')): ?>
-                                            <td>
-                                                <a href="<?php echo Helpers::url('Material','details')."/".$material->id_material?>" class="btn btn-floating pink-gradient waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                            </td>
-                                            <?php endif; ?>
-                                        </tr> 
-                                        <?php endforeach; ?> 
-                                               
+                                        <?php foreach($query as $material): ?>
+                                            <tr>
+                                                <td><?php echo $material->nombre_material; ?> </td>
+                                                <td><?php echo $material->descripcion_material; ?></td>
+                                                <td><?php echo $material->unidad_material; ?></td>
+                                                <td><?php echo "$".$material->precio_material; ?></td>
+                                                <?php if (Helpers::hasPermissions('9','5')): ?>
+                                                <td>
+                                                    <a href="<?php echo Helpers::url('Material','details')."/".$material->id_material?>" class="btn btn-floating pink-gradient waves-effect effect-light"><i class="icon-pageview"></i></a>
+                                                </td>
+                                                <?php endif; ?>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>

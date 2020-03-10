@@ -739,24 +739,73 @@ $(document).ready(function () {
 
     if($('#pedidos').val()!==undefined){
         $('#pedidos').DataTable({
-            "pageLength": 5,
+            "responsive": true,
+            "scrollX": true,
+            "pageLength": 10,
             "language": {
-                "search": "Buscar:  ",
-                "lengthMenu": "",
-                "zeroRecords": "Upps, No Se Encontraron Datos",
-                "info": "Pagina _PAGE_ de _PAGES_",
-                "infoEmpty": "No Hay Registro Para Mostrar",
-                "infoFiltered": "(Filtro De _MAX_ Resultado)",
-                "paginate": {
-                    "first": "<i class='icon-first_page'></i>",
-                    "last": "<i class='icon-last_page'></i>",
-                    "next": "<i class='icon-navigate_next'></i>",
-                    "previous": "<i class='icon-navigate_before'></i>"
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "No hay pedidos registrados",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "<i class='icon-navigate_next'></i>",
+                    "sPrevious": "<i class='icon-navigate_before'></i>"
                 },
-            },
-            "aaSorting": [],
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                "buttons": {
+                    "copy": "Copiar",
+                    "colvis": "Visibilidad"
+                }
+            }
         });
     }
+
+    $('#facturaPedidos').DataTable({
+        "responsive": true,
+        "scrollX": true,
+        "pageLength": 10,
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "No hay pedidos registrados",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "<i class='icon-navigate_next'></i>",
+                "sPrevious": "<i class='icon-navigate_before'></i>"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            "buttons": {
+                "copy": "Copiar",
+                "colvis": "Visibilidad"
+            }
+        }
+    });
 
 
 });

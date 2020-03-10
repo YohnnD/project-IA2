@@ -50,12 +50,12 @@
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="icon-exposure_plus_1 prefix"></i>
-                                <input type="text" name="unidad_material" id="unidad_material" value="<?php echo $result->unidad_material?>" required disabled>
+                                <input type="text" name="unidad_material" id="unidad_material" class="validate text-validate" value="<?php echo $result->unidad_material?>" required disabled>
                                 <label for="unidad_material">Unidades</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="icon-attach_money prefix"></i>
-                                <input type="text" name="precio_material" id="precio_material" pattern="[0-9.]+" title="Solo puedes usar números y puntos." value="<?php echo $result->precio_material?>" required disabled>
+                                <input type="text" name="precio_material" id="precio_material" class="validate number-only-float" pattern="[0-9.]+" title="Solo puedes usar números y puntos." value="<?php echo $result->precio_material?>" required disabled>
                                 <label for="precio_material">Precio del Material</label>
                             </div>
                             <div class="input-field col s12 m6">
@@ -116,6 +116,7 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Material.js"></script>
 </body>
 

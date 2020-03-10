@@ -340,6 +340,7 @@
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Pedido.js"></script>
 </body>
 </html>

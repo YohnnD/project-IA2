@@ -45,12 +45,12 @@
                                 <label for="tipo_documento_cliente">Tipo</label>
                             </div>
                             <div class="input-field col s6 m4 xl4">
-                                <input type="number" name="cedula_cliente" id="cedula_cliente" class="validate"  minlength="5" maxlength="15" pattern="[VvJjEe0-9]+" title="Solo puede usar números del 0-9 y V, J ó E" required>
+                                <input type="text" name="cedula_cliente" id="cedula_cliente" class="validate number-date"  minlength="5" maxlength="15" pattern="[VvJjEe0-9]+" title="Solo puede usar números del 0-9 y V, J ó E" required>
                                 <label for="cedula_cliente">Documento de Identidad</label>
                             </div>
                             <div class="input-field col s12 m6 xl6">
                                 <i class="icon-account_circle prefix"></i>
-                                <input type="text" name="nombre_cliente" id="nombre_cliente" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z ' ']+" title="Escribe el nombre del cliente. max(30)" required>
+                                <input type="text" name="nombre_cliente" id="nombre_cliente" class="validate text-validate" minlength="5" maxlength="30" pattern="[A-Za-z ' ']+" title="Escribe el nombre del cliente. max(30)" required>
                                 <label for="nombre_cliente">Nombre del Cliente</label>
                             </div>
                             <div class="input-field col s12 m6 xl6">
@@ -65,12 +65,12 @@
                             </div>
                             <div class="input-field col s12 m6 xl6">
                                 <i class="icon-contact_phone prefix"></i>
-                                <input type="text" name="telefono_cliente" id="telefono_cliente" class="validate" minlength="10" maxlength="20" pattern="[0-9+]+" title="Solo puede usar números y el signo +." required>
+                                <input type="text" name="telefono_cliente" id="telefono_cliente" class="validate number-date" minlength="10" maxlength="20" pattern="[0-9+]+" title="Solo puede usar números y el signo +." required>
                                 <label for="telefono_cliente">Teléfono del Cliente</label>
                             </div>
                             <div class="input-field col s12 m6 xl6">
                                 <i class="icon-person prefix"></i>
-                                <input type="text" name="representante_cliente" id="representante_cliente" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z' ']+" title="Solo puede usar letras." required>
+                                <input type="text" name="representante_cliente" id="representante_cliente" class="validate text-validate" minlength="5" maxlength="30" pattern="[A-Za-z' ']+" title="Solo puede usar letras." required>
                                 <label for="representante_cliente">Representante</label>
                             </div>
                         </div>
@@ -95,6 +95,7 @@
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Cliente.js"></script>
 </body>

@@ -44,7 +44,7 @@
                             <div class="card-content row">
                                 <div class="input-field col s12 m6">
                                     <i class="icon-label prefix"></i>
-                                    <input id="codigo_producto" type="text" name="codigo_producto" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z0-9]+" title="Escribe el codigo del producto. max(30)" value="<?php echo $producto->codigo_producto; ?>" required disabled>
+                                    <input id="codigo_producto" type="text" name="codigo_producto" class="validate code-only" minlength="5" maxlength="30" pattern="[A-Za-z0-9]+" title="Escribe el codigo del producto. max(30)" value="<?php echo $producto->codigo_producto; ?>" required disabled>
                                     <label for="codigo_producto">Código del Producto</label>
                                 </div>
                                 <div class="input-field col s12 m6">
@@ -75,12 +75,12 @@
                                 </div>
                                 <div class="input-field col s12 m6 xl4">
                                     <i class="icon-monetization_on prefix"></i>
-                                    <input type="number" name="costo_producto" id="costo_producto" class="validate" min="0" pattern="[0-9]+" title="Solo puede usar números." value="<?php echo $producto->costo_producto; ?>" required disabled>
+                                    <input type="text" name="costo_producto" id="costo_producto" class="validate number-only-float" min="0" pattern="[0-9]+" title="Solo puede usar números." value="<?php echo $producto->costo_producto; ?>" required disabled>
                                     <label for="costo_producto">Costo</label>
                                 </div>
                                 <div class="input-field col s12 m6 xl4">
                                     <i class="icon-monetization_on prefix"></i>
-                                    <input type="number" name="precio_producto" id="precio_producto" class="validate" min="0" pattern="[0-9]+" title="Solo puede usar números." value="<?php echo $producto->precio_producto; ?>" required disabled>
+                                    <input type="text" name="precio_producto" id="precio_producto" class="validate number-only-float" min="0" pattern="[0-9]+" title="Solo puede usar números." value="<?php echo $producto->precio_producto; ?>" required disabled>
                                     <label for="precio_producto">Precio</label>
                                 </div>
                                 <div class="input-field col s12 m6 xl4">
@@ -171,6 +171,7 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Producto.js"></script>
 </body>
 </html>

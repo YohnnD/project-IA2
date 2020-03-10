@@ -35,7 +35,7 @@
                         </div>
                         <div class="card-content row">
                             <div class="col s12" style="padding:30px">
-                                <table class="centered highlight responsive-table" id="Tela">
+                                <table class="centered striped" id="Tela" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th>Tela</th>
@@ -47,28 +47,22 @@
                                             <?php endif; ?>
                                         </tr>
                                     </thead>
-
-                                <?php if(empty($query)){ ?>
                                     <tbody>
-                                        <tr>
-                                            <td colspan="5"><p>No hay datos registrados</p></td> 
-                                        </tr>                 
-                                    </tbody>
-                        
-                                    <tbody>
-                                    <?php } else{ foreach($query as $tela):?>                 
-                                        <tr>
-                                            <td><?php echo $tela->nombre_tela; ?></td>
-                                            <td><?php echo $tela->descripcion_tela; ?></td>
-                                            <td><?php echo $tela->unidad_med_tela; ?></td>
-                                            <td><?php echo $tela->tipo_tela; ?></td>
-                                            <?php if (Helpers::hasPermissions('8','5')): ?>
-                                            <td>
-                                                <a href="<?php echo Helpers::url('Tela','details')."/".$tela->id_tela?>" class="btn btn-floating pink-gradient waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                            </td>
-                                            <?php endif; ?>
-                                        </tr>  
-                                        <?php endforeach; } ?>                     
+                                    <?php if($query != null): ?>
+                                        <?php foreach($query as $tela):?>
+                                            <tr>
+                                                <td><?php echo $tela->nombre_tela; ?></td>
+                                                <td><?php echo $tela->descripcion_tela; ?></td>
+                                                <td><?php echo $tela->unidad_med_tela; ?></td>
+                                                <td><?php echo $tela->tipo_tela; ?></td>
+                                                <?php if (Helpers::hasPermissions('8','5')): ?>
+                                                <td>
+                                                    <a href="<?php echo Helpers::url('Tela','details')."/".$tela->id_tela?>" class="btn btn-floating pink-gradient waves-effect effect-light"><i class="icon-pageview"></i></a>
+                                                </td>
+                                                <?php endif; ?>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </tbody>                                
                                 </table>
                             </div>

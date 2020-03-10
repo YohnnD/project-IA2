@@ -254,5 +254,6 @@
 
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Pedido.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
 </body>
 </html>

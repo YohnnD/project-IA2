@@ -1,11 +1,11 @@
 ﻿-- CLIENTES
 
-INSERT INTO 	clientes 		VALUES ('27210326','V', 'Angel Serrano'    , 'Estudiante de Informática' , 'Sarare'         , '04120531200'  ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27085898','V', 'Yohnneiber Diaz'  , 'Estudiante de Informática'                        , 'Barrio el jebe sector, propatria'          , '04241585586'		 ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27317920','V', 'Jhon Moran'       , 'Estudiante de Informática'      		 , '5 de julio'     , '0424'		 ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('28286639','V', 'Andres Melendez'  , 'Estudiante de Informática'      				 , 'Cerrito Blanco, a lado de la licoreria' , '04241234567' ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27198456','V', 'Veronica Quintero', 'Estudiante de Informática'				 , 'Santa Elena'    , '0412123457'		 ,'UPTAEB');
-INSERT INTO 	clientes 		VALUES ('27212503','V', 'Gabriel Oropeza'  , 'Estudiante de Informática'  			     , 'Calle 48'       , '04241234567'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27210326','V', 'Angel Serrano'    , 'Estudiante de Informática' , 'Sarare' , '04120531200'  ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27085898','V', 'Yohnneiber Diaz'  , 'Estudiante de Informática' , 'Barrio el jebe sector, propatria'          , '04241585586'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27317920','V', 'Jhon Moran'       , 'Estudiante de Informática' , '5 de julio'     , '0424'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('28286639','V', 'Andres Melendez'  , 'Estudiante de Informática' , 'Cerrito Blanco, a lado de la licoreria' , '04241234567' ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27198456','V', 'Veronica Quintero', 'Estudiante de Informática' , 'Santa Elena'    , '0412123457'		 ,'UPTAEB');
+INSERT INTO 	clientes 		VALUES ('27212503','V', 'Gabriel Oropeza'  , 'Estudiante de Informática' , 'Calle 48'       , '04241234567'		 ,'UPTAEB');
 
 -- PEDIDOS
 
@@ -30,18 +30,14 @@ INSERT INTO 	servicios 		VALUES (default , 'Serigrafia'        , '' , 'Color'  ,
 
 -- TELAS
 
-INSERT INTO 	telas 			VALUES (default, 'Rayón'           , '' , 'Mts' , 'Algodón'   );
-INSERT INTO 	telas 			VALUES (default, 'Tonela'          , '' , 'Kg'  , 'Sintetico' );
-INSERT INTO 	telas 			VALUES (default, 'Tonela Estampada', '' , 'Mts' , 'Algodon');
-INSERT INTO 	telas 			VALUES (default, 'Popelina', '' , 'Mts' , 'Algodon');
-INSERT INTO 	telas 			VALUES (default, 'Micro Durazno', '' , 'Mts' , 'Algodon');
-INSERT INTO 	telas 			VALUES (default, 'Crochet', '' , 'Mts' , 'Sintetico');
-INSERT INTO 	telas 			VALUES (default, 'Gabardina', '' , 'Mts' , 'Algodon');
-INSERT INTO 	telas 			VALUES (default, 'Licra', '' , 'Mts' , 'Sintetico');
-
-
-
-
+INSERT INTO 	telas 			VALUES (default, 'Rayón'           	, '' , 'Mts' , 'Algodón'   );
+INSERT INTO 	telas 			VALUES (default, 'Tonela'          	, '' , 'Kg'  , 'Sintetico' );
+INSERT INTO 	telas 			VALUES (default, 'Tonela Estampada'	, '' , 'Mts' , 'Algodon');
+INSERT INTO 	telas 			VALUES (default, 'Popelina'			, '' , 'Mts' , 'Algodon');
+INSERT INTO 	telas 			VALUES (default, 'Micro Durazno'	, '' , 'Mts' , 'Algodon');
+INSERT INTO 	telas 			VALUES (default, 'Crochet'			, '' , 'Mts' , 'Sintetico');
+INSERT INTO 	telas 			VALUES (default, 'Gabardina'		, '' , 'Mts' , 'Algodon');
+INSERT INTO 	telas 			VALUES (default, 'Licra'			, '' , 'Mts' , 'Sintetico');
 
 
 -- SERVI_PEDIDOS
@@ -78,9 +74,9 @@ INSERT INTO 	mat_servicios 	VALUES ( 3 , 1 , 0 );
 
 -- PRODUCTOS
 
-INSERT INTO 	productos 		VALUES ( '1' , 'Camisa'   , 'Estampada'  , 'ma' , ' ' , 10 , 20 , 24  , 100 , 24, 'camisa.jpg' );
-INSERT INTO 	productos 		VALUES ( '2' , 'Pantalón' , 'Blue Jeans' , 'fe' , ' ' , 20 , 40 , 25 , 100 , 24 , 'pantalon.png' );
-INSERT INTO 	productos 		VALUES ( '3' , 'Suerter' , 'Negro'      , 'ux' , ' ' , 15 , 30 , 25 , 100 , 24 , 'sueter.png' );
+INSERT INTO 	productos 		VALUES ( '1' , 'Camisa'   , 'Estampada'  	, 'ma' , ' ' , 10 , 20 , 24 , 100 , 24 , 'camisa.jpg' );
+INSERT INTO 	productos 		VALUES ( '2' , 'Pantalón' , 'Blue Jeans' 	, 'fe' , ' ' , 20 , 40 , 25 , 100 , 24 , 'pantalon.png' );
+INSERT INTO 	productos 		VALUES ( '3' , 'Suerter'  , 'Negro'      	, 'ux' , ' ' , 15 , 30 , 25 , 100 , 24 , 'sueter.png' );
 
 -- PRO_TALLAS
 

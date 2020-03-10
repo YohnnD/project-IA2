@@ -43,12 +43,12 @@
                                 </select>
                             </div>
                             <div class="input-field col s9 m4 xl4">
-                                <input type="text" name="documento_identidad" id="documento_identidad" value="<?php echo $cliente->cedula_cliente; ?>" disabled>
+                                <input type="text" name="documento_identidad" id="documento_identidad" class="validate number-date" value="<?php echo $cliente->cedula_cliente; ?>" disabled>
                                 <label for="documento_identidad">Documento de Identidad</label>
                             </div>
                             <div class="input-field col s12 m6 xl6">
                                 <i class="icon-account_circle prefix"></i>
-                                <input type="text" name="nombre_cliente" id="nombre_cliente" value="<?php echo $cliente->nombre_cliente; ?>" disabled>
+                                <input type="text" name="nombre_cliente" id="nombre_cliente" class="validate text-validate" value="<?php echo $cliente->nombre_cliente; ?>" disabled>
                                 <label for="nombre_cliente">Nombre del Cliente</label>
                             </div>
                             <div class="input-field col s12 m6 xl6">
@@ -63,12 +63,12 @@
                             </div>
                             <div class="input-field col s12 m6 xl6">
                                 <i class="icon-contact_phone prefix"></i>
-                                <input type="text" name="telefono_cliente" id="telefono_cliente" value="<?php echo $cliente->telefono_cliente; ?>" disabled>
+                                <input type="text" name="telefono_cliente" id="telefono_cliente" class="validate number-date" value="<?php echo $cliente->telefono_cliente; ?>" disabled>
                                 <label for="telefono_cliente">Teléfono del Cliente</label>
                             </div>
                             <div class="input-field col s12 m6 xl6">
                                 <i class="icon-person prefix"></i>
-                                <input type="text" name="representante_cliente" id="representante_cliente" value="<?php echo $cliente->representante_cliente; ?>" disabled required>
+                                <input type="text" name="representante_cliente" id="representante_cliente" class="validate text-validate" value="<?php echo $cliente->representante_cliente; ?>" disabled required>
                                 <label for="representante_cliente">Representante</label>
                             </div>                
                         </div>
@@ -106,6 +106,7 @@
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Cliente.js"></script>
 </body>
 </html>

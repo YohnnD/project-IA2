@@ -41,12 +41,12 @@
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="icon-exposure_plus_1 prefix"></i>
-                                    <input type="text" name="unidad_material" id="unidad_material" minlength="1" maxlength="5" required>
+                                    <input type="text" name="unidad_material" id="unidad_material" class="validate text-validate" minlength="1" maxlength="5" required>
                                     <label for="unidad_material">Unidades</label>
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="icon-attach_money prefix"></i>
-                                    <input type="text" name="precio_material" id="precio_material" pattern="[0-9.]+" title="Solo puedes usar números y puntos." required>
+                                    <input type="text" name="precio_material" id="precio_material" pattern="[0-9.]+" class="validate number-only-float" title="Solo puedes usar números y puntos." required>
                                     <label for="precio_material">Precio del Material</label>
                                 </div>
                                 <div class="input-field col s12 m6">
@@ -57,9 +57,8 @@
                             </div>
                             <div class="card-footer center-align">
                                 <button type="submit" class="btn btn-large btn-rounded green-gradient waves-effect waves-light" name="registrar" >
-                                    <i class="icon-save left"></i>
-                                    Registrar
                                     <i class="icon-save right"></i>
+                                    Registrar
                                 </button>
                             </div>
                         </div>
@@ -77,6 +76,7 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Material.js"></script>
 </body>
 </html>

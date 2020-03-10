@@ -45,7 +45,7 @@
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="icon-straighten prefix"></i>
-                                <input type="text" name="unidad_med_tela" id="unidad_med_tela" class="validate" minlength="1" maxlength="3" required>
+                                <input type="text" name="unidad_med_tela" id="unidad_med_tela" class="validate text-validate" minlength="1" maxlength="3" required>
                                 <label for="unidad_med_tela">Unidad de Medida</label>
                             </div>
                             <div class="input-field col s12 m6">
@@ -80,6 +80,7 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Tela.js"></script>
 </body>
 </html>

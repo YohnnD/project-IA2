@@ -21,7 +21,7 @@
     <main>
         <div class="container-fluid">
             
-            <h4 class="black-text" style="margin-left:20px;"><i class="icon-equalizer small"></i> Estadistica</h4>
+            <h4 class="black-text" style="margin-left:20px;"> Estadisticas Inversiones A2</h4>
 
             <div class="divider"></div>
             <!-- Widgets -->

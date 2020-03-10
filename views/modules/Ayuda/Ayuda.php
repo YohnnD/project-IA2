@@ -27,21 +27,21 @@
             </div>
 
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Ayuda','user'); ?>" class="btn-app green">
+                    <a href="<?php echo Helpers::url('Ayuda','user'); ?>" class="btn-app green-gradient">
                         <i class="icon-local_laundry_service"></i>
                         <span>Manual de Usuario</span>
                     </a>
                 </div>
 
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Ayuda','installed'); ?>" class="btn-app blue">
+                    <a href="<?php echo Helpers::url('Ayuda','installed'); ?>" class="btn-app blue-gradient">
                         <i class="icon-library_books"></i>
                         <span>Manual de Instalación</span>
                     </a>
                 </div>
 
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Ayuda','system'); ?>" class="btn-app red">
+                    <a href="<?php echo Helpers::url('Ayuda','system'); ?>" class="btn-app red-gradient">
                         <i class="icon-personal_video"></i>
                         <span>Manual del Sistema</span>
                     </a>

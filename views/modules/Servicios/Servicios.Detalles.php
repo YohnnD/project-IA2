@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ class="validate text-validate"<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,18 +44,18 @@
                                     </div>
                                     <div class="input-field col s12 m6 xl6">
                                         <i class="icon-attach_money prefix"></i>
-                                        <input type="text" name="precio_servicio" id="precio_servicio" value="<?php echo $value['precio_servicio']?>" disabled>
+                                        <input type="text" name="precio_servicio" id="precio_servicio" class="validate number-only-float" value="<?php echo $value['precio_servicio']?>" disabled>
                                         <label for="precio_servicio">Precio del Servicio</label>
                                     </div>
                                     <div class="input-field col s12 m6 xl6">
                                         <i class="icon-monetization_on prefix"></i>
-                                        <input type="text" name="costo_servicio" id="costo_servicio" value="<?php echo $value['costo_servicio']?>" disabled>
+                                        <input type="text" name="costo_servicio" id="costo_servicio" class="validate number-only-float" value="<?php echo $value['costo_servicio']?>" disabled>
                                         <label for="costo_servicio">Costo del Servicio</label>
                                     </div>
                                     <div class="input-field col s12 m6 xl6">
                                         <i class="icon-open_with prefix"></i>
-                                        <input type="text" name="unidad_medida" id="unidad_medida" value="<?php echo $value['unidad_medida']?>" disabled>
-                                        <label for="unidad_medida">Und de Medida</label>
+                                        <input type="text" name="unidad_medida" id="unidad_medida"  value="<?php echo $value['unidad_medida']?>" disabled>
+                                        <label for="unidad_medida">Unidad de Medida</label>
                                     </div>
                                     
                                     <div class="input-field col s12 m12 xl12">
@@ -139,6 +139,7 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/servicio.js"></script>
 </body>
 </html>

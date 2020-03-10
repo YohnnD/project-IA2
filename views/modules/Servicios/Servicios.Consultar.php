@@ -35,7 +35,7 @@
                         </div>
                         <div class="card-content row">
                             <div class="col s12">
-                                <table class="striped centered responsive-table" id="Servicio">
+                                <table class="centered striped" style="width: 100%" id="Servicio">
                                     <thead>
                                         <tr>
                                             <th>Servicio</th>
@@ -48,22 +48,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php if($servicios != null): ?>
                                         <?php foreach ($servicios as $value):?>
-                                            
-                                        
-                                        <tr>
-                                            <td><?php echo $value['nombre_servicio']?></td>
-                                            <td><?php echo $value['descripcion_servicio']?></td>
-                                            <td><?php echo $value['precio_servicio']?></td>
-                                            <td><?php echo $value['unidad_medida']?></td>
-                                            <?php if (Helpers::hasPermissions('5','5')): ?>
-                                            <td>
-                                                <a href="<?php echo Helpers::url('Servicio','details');?>/<?php echo $value['id_servicio'];?>" class="btn btn-floating pink-gradient waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                            </td>
-                                            <?php endif; ?>
-                                        </tr>
+                                            <tr>
+                                                <td><?php echo $value['nombre_servicio']?></td>
+                                                <td><?php echo $value['descripcion_servicio']?></td>
+                                                <td><?php echo $value['precio_servicio']?></td>
+                                                <td><?php echo $value['unidad_medida']?></td>
+                                                <?php if (Helpers::hasPermissions('5','5')): ?>
+                                                <td>
+                                                    <a href="<?php echo Helpers::url('Servicio','details');?>/<?php echo $value['id_servicio'];?>" class="btn btn-floating pink-gradient waves-effect effect-light"><i class="icon-pageview"></i></a>
+                                                </td>
+                                                <?php endif; ?>
+                                            </tr>
 
-                                    <?php endforeach ?>
+                                        <?php endforeach ?>
+                                    <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>

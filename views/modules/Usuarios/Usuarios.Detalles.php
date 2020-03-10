@@ -46,12 +46,12 @@
                                 </div> -->
                                 <div class="input-field col s12 m6">
                                     <i class="icon-person_pin prefix"></i>
-                                    <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate" minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->nombre_usuario; ?>" required disabled>
+                                    <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate text-validate" minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->nombre_usuario; ?>" required disabled>
                                     <label for="nombre_usuario" >Nombre del Usuario</label>
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="icon-person_pin prefix"></i>
-                                    <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate"  minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->apellido_usuario; ?>" required disabled>
+                                    <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate text-validate"  minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->apellido_usuario; ?>" required disabled>
                                     <label for="apellido_usuario">Apellido del Usuario</label>
                                 </div>
                                 <!-- <div class="input-field col s12 m6 xl4">
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="icon-person_pin prefix"></i>
-                                    <input type="text" name="nick_usuario" id="nick_usuario" class="validate" value="<?php echo $usuario->nick_usuario; ?>" required disabled>
+                                    <input type="text" name="nick_usuario" id="nick_usuario" class="validate code-only" value="<?php echo $usuario->nick_usuario; ?>" required disabled>
                                     <label for="nick_usuario">Nick del Usuario</label>
                                 </div>
                                 <div class="input-field col s12">
@@ -145,6 +145,7 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Usuario.js"></script>
 </body>
 </html>

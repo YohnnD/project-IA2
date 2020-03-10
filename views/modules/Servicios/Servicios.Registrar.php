@@ -42,17 +42,17 @@
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="icon-open_with prefix"></i>
-                                    <input type="text" name="unidad_medida" id="unidad_medida" required>
+                                    <input type="text" name="unidad_medida" id="unidad_medida" class="validate text-validate" required>
                                     <label for="unidad_medida">Unidad de Medida</label>
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="icon-monetization_on prefix"></i>
-                                    <input type="text" name="costo_servicio" id="costo_servicio" class="validate" pattern="[0-9.,]+" title="Solo puede usar números." required>
+                                    <input type="text" name="costo_servicio" id="costo_servicio" class="validate number-only-float" pattern="[0-9.,]+" title="Solo puede usar números." required>
                                     <label for="costo_servicio">Costo</label>
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="icon-attach_money prefix"></i>
-                                    <input type="text" name="precio_servicio" id="precio_servicio" class="validate" pattern="[0-9.,]+" title="Solo puede usar números." required>
+                                    <input type="text" name="precio_servicio" id="precio_servicio" class="validate number-only-float" pattern="[0-9.,]+" title="Solo puede usar números." required>
                                     <label for="precio_servicio">Precio</label>
                                 </div>
                                 
@@ -64,7 +64,6 @@
                             </div>
                             <div class="card-footer center-align">
                                 <button type="submit" class="btn btn-large green-gradient waves-light waves-effect">
-                                    <i class="icon-save left"></i>
                                     Registrar
                                     <i class="icon-save right"></i>
                                 </button>   
@@ -85,6 +84,7 @@
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+        <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Servicio.js"></script>
     </body>
 </html>

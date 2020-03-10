@@ -34,7 +34,7 @@
                     </div>
                     <div class="card-content row">
                         <div class="col s12">
-                            <table class="responsive-table highlight centered" id="clientes">
+                            <table class="highlight centered" id="clientes" style="width: 100%">
                                 <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -57,11 +57,6 @@
                                             <td><a href="<?php echo Helpers::url('Cliente','details')."/".$cliente->cedula_cliente; ?>" class="btn btn-floating pink-gradient waves-effect waves-light"><i class="icon-find_in_page"></i></a></td>
                                         </tr>
                                     <?php endforeach;?>
-                                <?php else:?>
-                                    <tr>
-                                        <td colspan="6"><h5 class="center-align">Todavia no registras un cliente.</h5></td>
-                                    </tr>
-
                                 <?php endif?>
                                 </tbody>
                             </table>
