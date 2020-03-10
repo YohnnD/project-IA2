@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/style.css">
   </head>
-  <body>
+  <body class="grey lighten-4">
     <header class="clearfix">
       <div id="logo">
         <img src="<?php echo BASE_URL; ?>assets/images/brand-logo.jpg">

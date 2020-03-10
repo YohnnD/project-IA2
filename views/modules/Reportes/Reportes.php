@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Reportes - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -26,31 +26,31 @@
                     <a href="<?php echo Helpers::url('Factura','reportesIndex'); ?>" class="breadcrumb">Reportes</a>
                 </div>
                 <div class="col s12 m4 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Reporte','getAllPedido'); ?>" class="btn-app pink">
+                    <a href="<?php echo Helpers::url('Reporte','getAllPedido'); ?>" class="btn-app pink-gradient">
                         <i class="icon-assignment"></i>
                         <span>Reporte de Pedidos</span>
                     </a>
                 </div>
                 <div class="col s12 m4 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Reporte','getAllEntrega'); ?>" class="btn-app blue darken-1">
+                    <a href="<?php echo Helpers::url('Reporte','getAllEntrega'); ?>" class="btn-app blue-gradient">
                         <i class="icon-assignment"></i>
                         <span>Reporte de Entregas</span>
                     </a>
                 </div>
                 <div class="col s12 m4 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Reporte','getAllProducto'); ?>" class="btn-app green">
+                    <a href="<?php echo Helpers::url('Reporte','getAllProducto'); ?>" class="btn-app green-gradient">
                         <i class="icon-style"></i>
                         <span>Reporte de Productos</span>
                     </a>
                 </div>
                 <div class="col s12 m4 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Reporte','FactuIndex'); ?>" class="btn-app red">
+                    <a href="<?php echo Helpers::url('Reporte','FactuIndex'); ?>" class="btn-app red-gradient">
                         <i class="icon-receipt"></i>
                         <span>Reporte de Facturas</span>
                     </a>
                 </div>
                 <div class="col s12 m4 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Home','dashboard'); ?>" class="btn-app blue">
+                    <a href="<?php echo Helpers::url('Home','dashboard'); ?>" class="btn-app orange-gradient">
                         <i class="icon-multiline_chart"></i>
                         <span>Visualizar Estadistica</span>
                     </a>

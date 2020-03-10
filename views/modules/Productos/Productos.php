@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Productos - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -27,7 +27,7 @@
                 </div>
                 <?php if (Helpers::hasPermissions('2','1')): ?>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Producto','create'); ?>" class="btn-app red">
+                    <a href="<?php echo Helpers::url('Producto','create'); ?>" class="btn-app red-gradient">
                         <i class="icon-assignment_ind"></i>
                         <span>Registrar Producto</span>
                     </a>
@@ -35,7 +35,7 @@
                 <?php endif; ?>
                 <?php if (Helpers::hasPermissions('2','1')): ?>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Producto','getAll'); ?>" class="btn-app blue">
+                    <a href="<?php echo Helpers::url('Producto','getAll'); ?>" class="btn-app blue-gradient">
                         <i class="icon-style"></i>
                         <span>Ver Productos</span>
                     </a>

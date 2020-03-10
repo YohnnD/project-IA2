@@ -8,19 +8,20 @@
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-gradient.css">
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/material-components.css">
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
+        <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/datatables.css">
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
         <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
 
         <title>Detalles - Inversiones A2</title>
     </head>
-    <body>
+    <body class="grey lighten-4">
         <!-- Header -->
         <?php require_once "views/layouts/header.php"; ?>
 
         <!-- Main Container -->
         <main>
-            <div class="container">
+            <div class="container-fluid">
                 <form action="" id="MaterialServi" class="row">
                     <div class="col s12 breadcrumb-nav left-align">
                         <a href="<?php echo Helpers::url('Home', 'index'); ?>" class="breadcrumb">Inicio</a>

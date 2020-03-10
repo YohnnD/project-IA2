@@ -13,14 +13,14 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Detalles - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
     <!-- Main Container -->
     <main>
-        <div class="container">
-            <form action="" class="row">
+        <div class="container-fluid">
+            <div class="row">
                 <div class="col s12 breadcrumb-nav left-align">
                     <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
                     <a href="<?php echo Helpers::url('Configuracion','index'); ?>" class="breadcrumb">Configuración</a>
@@ -28,92 +28,106 @@
                     <a href="<?php echo Helpers::url('Servicio','create'); ?>" class="breadcrumb">Consultar Servicios</a>
                     <!--<a href="<?php echo Helpers::url('Servicio','create'); ?>" class="breadcrumb">Detalles</a>-->
                 </div>
-                <?php foreach($detalles as $value):?>
-                <div class="col s12">
-                    <h4 class="center-align">Detalles del Servicio</h4>
+                <div class="col s12 m10 offset-m1">
+                    <form action="" method="post">
+                        <div class="card">
+                            <div class="card-header center-align">
+                                <h4>Detalles del Servicio</h4>
+                            </div>
+                            <div class="card-content row" style="margin-bottom: 0">
+                                <?php foreach($detalles as $value):?>
+                                    <div class="input-field col s12 m6 xl6">
+                                        <i class="icon-stars prefix"></i>
+                                        <input type="hidden" name="id_servicio" id="id_servicio" value="<?php echo $value['id_servicio']?>" disabled>
+                                        <input type="text" name="nombre_servicio" id="nombre_servicio" value="<?php echo $value['nombre_servicio']?>" disabled>
+                                        <label for="nombre_servicio">Nombre Del Servicio</label>
+                                    </div>
+                                    <div class="input-field col s12 m6 xl6">
+                                        <i class="icon-attach_money prefix"></i>
+                                        <input type="text" name="precio_servicio" id="precio_servicio" value="<?php echo $value['precio_servicio']?>" disabled>
+                                        <label for="precio_servicio">Precio del Servicio</label>
+                                    </div>
+                                    <div class="input-field col s12 m6 xl6">
+                                        <i class="icon-monetization_on prefix"></i>
+                                        <input type="text" name="costo_servicio" id="costo_servicio" value="<?php echo $value['costo_servicio']?>" disabled>
+                                        <label for="costo_servicio">Costo del Servicio</label>
+                                    </div>
+                                    <div class="input-field col s12 m6 xl6">
+                                        <i class="icon-open_with prefix"></i>
+                                        <input type="text" name="unidad_medida" id="unidad_medida" value="<?php echo $value['unidad_medida']?>" disabled>
+                                        <label for="unidad_medida">Und de Medida</label>
+                                    </div>
+                                    
+                                    <div class="input-field col s12 m12 xl12">
+                                        <i class="icon-description prefix"></i>
+                                        <textarea name="descripcion" id="descripcion_servicio" cols="30" rows="10" class="materialize-textarea" disabled><?php echo $value['descripcion_servicio']?></textarea>
+                                        <label for="descripcion">Descripción</label>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="card-header center-align">
+                                <h4>Materiales</h4>
+                            </div>
+                            <div class="card-content row" style="margin-bottom: 0">
+                                <?php if(!empty($materiales)): 
+                                 foreach ($materiales as $resul):?>
+                                    <div class="input-field col s12 m6 xl6">
+                                        <i class="icon-map prefix"></i>
+                                        <input type="text" name="unidad_medida" id="unidad_medida" value="<?php echo $resul->nombre_material?>" disabled>
+                                        <label for="unidad_medida">Material</label>
+                                    </div>
+                                    <div class="input-field col s12 m4 xl4 ">
+                                        <i class="icon-open_with prefix"></i>
+                                        <input type="text" name="unidad_medida" id="unidad_medida" value="<?php echo $resul->cant_mat_servicio?>" disabled>
+                                        <label for="unidad_medida">Cantidad</label>
+                                    </div>
+                                    <div class="input-field col s12 m2 l2 " >
+                                        <a href="<?php echo Helpers::url('Servicio','deleteMaterial');?>/<?php echo $resul->id_material?>" class="btn red waves-effect waves-light col s12 materiales" disabled>
+                                            <i class="icon-delete right"></i>
+                                        </a>
+                                    </div>
+                                <?php endforeach; endif; ?>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row" style="margin-bottom: 0">
+                                    <?php if (Helpers::hasPermissions('5','3')): ?>
+                                    <div class="col s12 m6 center-align" style="margin-bottom: 1rem">
+                                        <a href="#" class=" materiales btn blue-gradient waves-effect waves-light col s12" id="modify">
+                                            <i class="icon-update right"></i>
+                                            Modificar
+                                        </a>
+                                    </div>
+                                    <?php endif; ?>
+                                    <?php if (Helpers::hasPermissions('5','4')): ?>
+                                    <div class="col s12 m6 center-align" style="margin-bottom: 1rem">
+                                        <a href="#" class="btn red-gradient waves-effect waves-light col s12" id="delete">
+                                            <i class="icon-delete right"></i>
+                                            Eliminar
+                                        </a>                
+                                    </div>
+                                    <?php endif; ?>
+                                    <?php if (Helpers::hasPermissions('9','1')): ?>
+                                    <div class="col s12 m6 center-align">
+                                        <a href="<?php echo Helpers::url('Servicio','getMateriales');?>/<?php echo $value['id_servicio']?>" class="btn green-gradient waves-effect waves-light col s12" id="addMaterial">
+                                            <i class="icon-add right"></i>
+                                            Añadir Material
+                                        </a>
+                                    </div>
+                                    <?php endif; ?>
+                                    <?php if (Helpers::hasPermissions('9','4')): ?>
+                                    <div class="col s12 m6 center-align">
+                                        <a href="#" class="btn red-gradient waves-effect waves-light col s12" id="deleteMaterial">
+                                            <i class="icon-delete right"></i>
+                                            Eliminar Material
+                                        </a>
+                                    </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="input-field col s12 m6 xl6">
-                    <i class="icon-stars prefix"></i>
-                    <input type="hidden" name="id_servicio" id="id_servicio" value="<?php echo $value['id_servicio']?>" disabled>
-                    <input type="text" name="nombre_servicio" id="nombre_servicio" value="<?php echo $value['nombre_servicio']?>" disabled>
-                    <label for="nombre_servicio">Nombre Del Servicio</label>
-                </div>
-                <div class="input-field col s12 m6 xl6">
-                    <i class="icon-attach_money prefix"></i>
-                    <input type="text" name="precio_servicio" id="precio_servicio" value="<?php echo $value['precio_servicio']?>" disabled>
-                    <label for="precio_servicio">Precio del Servicio</label>
-                </div>
-                <div class="input-field col s12 m6 xl6">
-                    <i class="icon-monetization_on prefix"></i>
-                    <input type="text" name="costo_servicio" id="costo_servicio" value="<?php echo $value['costo_servicio']?>" disabled>
-                    <label for="costo_servicio">Costo del Servicio</label>
-                </div>
-                <div class="input-field col s12 m6 xl6">
-                    <i class="icon-open_with prefix"></i>
-                    <input type="text" name="unidad_medida" id="unidad_medida" value="<?php echo $value['unidad_medida']?>" disabled>
-                    <label for="unidad_medida">Und de Medida</label>
-                </div>
-                
-                <div class="input-field col s12 m12 xl12">
-                    <i class="icon-description prefix"></i>
-                    <textarea name="descripcion" id="descripcion_servicio" cols="30" rows="10" class="materialize-textarea" disabled><?php echo $value['descripcion_servicio']?></textarea>
-                    <label for="descripcion">Descripción</label>
-                </div>
-                
-            <?php endforeach?>
-            <h5 class="center">Materiales</h5>
-                <hr>
-             <?php if(!empty($materiales)): 
-             foreach ($materiales as $resul):?>
-                <div class="input-field col s12 m6 xl6">
-                    <i class="icon-map prefix"></i>
-                    <input type="text" name="unidad_medida" id="unidad_medida" value="<?php echo $resul->nombre_material?>" disabled>
-                    <label for="unidad_medida">Material</label>
-                </div>
-                <div class="input-field col s12 m4 xl4 ">
-                    <i class="icon-open_with prefix"></i>
-                    <input type="text" name="unidad_medida" id="unidad_medida" value="<?php echo $resul->cant_mat_servicio?>" disabled>
-                    <label for="unidad_medida">Cantidad</label>
-                </div>
-                <div class="input-field col s12 m2 l2 " >
-                    <a href="<?php echo Helpers::url('Servicio','deleteMaterial');?>/<?php echo $resul->id_material?>" class="btn red waves-effect waves-light col s12 materiales" disabled>
-                        <i class="icon-delete right"></i>
-                    </a>
-                </div>
-                <?php endforeach;endif;?>
-                <?php if (Helpers::hasPermissions('5','3')): ?>
-                <div class="input-field col s12 m6 center-align">
-                    <a href="#" class=" materiales btn blue waves-effect waves-light col s12" id="modify">
-                        <i class="icon-update right"></i>
-                        Modificar
-                    </a>
-                </div>
-                <?php endif; ?>
-                <?php if (Helpers::hasPermissions('5','4')): ?>
-                <div class="input-field col s12 m6 center-align">
-                    <a href="#" class="btn red waves-effect waves-light col s12" id="delete">
-                        <i class="icon-delete right"></i>
-                        Eliminar
-                    </a>                
-                </div>
-                <?php endif; ?>
-                <?php if (Helpers::hasPermissions('9','1')): ?>
-                <div class="input-field col s12 m6 center-align">
-                    <a href="<?php echo Helpers::url('Servicio','getMateriales');?>/<?php echo $value['id_servicio']?>" class="btn green waves-effect waves-light col s12" id="addMaterial">
-                        <i class="icon-add right"></i>
-                        Añadir Material
-                    </a>
-                </div>
-                <?php endif; ?>
-                <?php if (Helpers::hasPermissions('9','4')): ?>
-                <div class="input-field col s12 m6 center-align">
-                    <a href="#" class="btn red waves-effect waves-light col s12" id="deleteMaterial">
-                        <i class="icon-delete right"></i>
-                        Eliminar Material
-                    </a>
-                </div>
-                <?php endif; ?>
-            </form>
+            </div>
         </div>
     </main>
 

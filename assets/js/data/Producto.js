@@ -91,7 +91,7 @@ $(document).ready(function(){
         // $("#email_usuario").removeAttr("disabled", "disabled");
         // $("#contrasenia_usuario").removeAttr("disabled", "disabled");
         // $("#id_rol").removeAttr("readonly", "false");
-        $('.btn.disabled').removeClass('disabled');
+        $('.btn.disabled').removeClass('disabled').removeClass('purple').addClass('purple-gradient');
         $(".select-wrapper").removeClass('disabled');
         $('select').formSelect();
         $('#modify-btn').hide();
@@ -253,7 +253,7 @@ $(document).ready(function(){
                     });
                 }
                 $('select.list_id_talla').html(tallas);
-                $('select').formSelect();
+                jQuery('select').formSelect();
             },
             error: function(err) {
                 console.log(err);
@@ -349,14 +349,14 @@ $(document).ready(function(){
     });
 
     $('#productos-table').DataTable({
-            responsive: true,
+            "responsive": true,
             "scrollX": true,
             "pageLength": 10,
-            language: {
+            "language": {
                 "sProcessing":     "Procesando...",
                 "sLengthMenu":     "Mostrar _MENU_ registros",
                 "sZeroRecords":    "No se encontraron resultados",
-                "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
                 "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
                 "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
                 "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",

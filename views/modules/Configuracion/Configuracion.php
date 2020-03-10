@@ -1,4 +1,4 @@
- animated bounceIn<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Configuraciones - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -26,19 +26,19 @@
                     <a href="<?php echo Helpers::url('Configuracion','index'); ?>" class="breadcrumb">Configuración</a>
                 </div>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Servicio','index'); ?>" class="btn-app red">
+                    <a href="<?php echo Helpers::url('Servicio','index'); ?>" class="btn-app deep-purple-gradient">
                         <i class="icon-star"></i>
                         <span>Gestionar Servicios</span>
                     </a>
                 </div>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Tela','index'); ?>" class="btn-app indigo">
+                    <a href="<?php echo Helpers::url('Tela','index'); ?>" class="btn-app light-blue-gradient">
                         <i class="icon-layers"></i>
                         <span>Gestionar Telas</span>
                     </a>
                 </div>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Material','index'); ?>" class="btn-app orange">
+                    <a href="<?php echo Helpers::url('Material','index'); ?>" class="btn-app orange-gradient">
                         <i class="icon-streetview"></i>
                         <span>Gestionar Materiales</span>
                     </a>

@@ -25,8 +25,12 @@
                         </div>
                         <div class="card-content row">
                             <?php if($_SESSION): ?>
-                                <div class="col s12 alert alert-danger">
-                                    <?php echo $_SESSION['message']; ?>
+                                <div class="col s12">
+                                    <div class="message message-danger">
+                                        <div class="message-body">
+                                            <strong><?php echo $_SESSION['message']; ?></strong>
+                                        </div>
+                                    </div>
                                 </div>
                             <?php endif; ?>
                             <div class="input-field col s12">

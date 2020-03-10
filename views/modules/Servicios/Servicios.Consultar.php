@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Servicios - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -29,40 +29,46 @@
                     <a href="<?php echo Helpers::url('Servicio','create'); ?>" class="breadcrumb">Consultar Servicios</a>
                 </div>
                 <div class="col s12">
-                    <h4 class="center-align">Servicios Disponibles</h4>
-                </div>
-                <div class="col s12">
-                    <table class="striped centered responsive-table" id="Servicio">
-                        <thead>
-                            <tr>
-                                <th>Servicio</th>
-                                <th>Descripción</th>
-                                <th>Precio</th>
-                                <th>U. Medida</th>
-                                <?php if (Helpers::hasPermissions('5','5')): ?>
-                                <th>Detalles</th>
-                                <?php endif; ?>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($servicios as $value):?>
-                                
-                            
-                            <tr>
-                                <td><?php echo $value['nombre_servicio']?></td>
-                                <td><?php echo $value['descripcion_servicio']?></td>
-                                <td><?php echo $value['precio_servicio']?></td>
-                                <td><?php echo $value['unidad_medida']?></td>
-                                <?php if (Helpers::hasPermissions('5','5')): ?>
-                                <td>
-                                    <a href="<?php echo Helpers::url('Servicio','details');?>/<?php echo $value['id_servicio'];?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
-                                </td>
-                                <?php endif; ?>
-                            </tr>
+                    <div class="card">
+                        <div class="card-header center-align">
+                            <h4 class="center-align">Servicios Disponibles</h4>
+                        </div>
+                        <div class="card-content row">
+                            <div class="col s12">
+                                <table class="striped centered responsive-table" id="Servicio">
+                                    <thead>
+                                        <tr>
+                                            <th>Servicio</th>
+                                            <th>Descripción</th>
+                                            <th>Precio</th>
+                                            <th>U. Medida</th>
+                                            <?php if (Helpers::hasPermissions('5','5')): ?>
+                                            <th>Detalles</th>
+                                            <?php endif; ?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($servicios as $value):?>
+                                            
+                                        
+                                        <tr>
+                                            <td><?php echo $value['nombre_servicio']?></td>
+                                            <td><?php echo $value['descripcion_servicio']?></td>
+                                            <td><?php echo $value['precio_servicio']?></td>
+                                            <td><?php echo $value['unidad_medida']?></td>
+                                            <?php if (Helpers::hasPermissions('5','5')): ?>
+                                            <td>
+                                                <a href="<?php echo Helpers::url('Servicio','details');?>/<?php echo $value['id_servicio'];?>" class="btn btn-floating pink-gradient waves-effect effect-light"><i class="icon-pageview"></i></a>
+                                            </td>
+                                            <?php endif; ?>
+                                        </tr>
 
-                        <?php endforeach ?>
-                        </tbody>
-                    </table>
+                                    <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,7 +79,7 @@
 
 
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>

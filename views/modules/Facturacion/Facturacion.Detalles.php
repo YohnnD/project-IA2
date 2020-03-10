@@ -13,7 +13,7 @@
         <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
         <title>Detalles - Inversiones A2</title>
     </head>
-    <body>
+    <body class="grey lighten-4">
         <!-- Header -->
         <?php require_once "views/layouts/header.php"; ?>
 
@@ -187,7 +187,7 @@
 
 
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
-        <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.js"></script>
+        <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.min.js"></script>
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>

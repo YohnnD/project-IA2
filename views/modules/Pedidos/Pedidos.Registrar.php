@@ -16,7 +16,7 @@
 </head>
 
 
-<body>
+<body class="grey lighten-4">
 <!-- Header -->
 <?php require_once "views/layouts/header.php"; ?>
 
@@ -29,6 +29,73 @@
                 <a href="<?php echo Helpers::url('Pedido', 'index'); ?>" class="breadcrumb">Gestionar Pedidos</a>
                 <a href="<?php echo Helpers::url('Pedido', 'create'); ?>" class="breadcrumb">Registrar Pedido</a>
             </div>
+            <!-- <div class="col s12 m10 offset-m1">
+                <div class="card">
+                    <ul id="tabs-swipe-demo" class="tabs center-align">
+                        <li class="tab col m3" id="one-tabs" ><a class="active" href="#one">PEDIDO-CLIENTE</a></li>
+                        <li class="tab col m3 disabled" id="two-tabs" ><a href="#two" >SERVICIOS</a></li>
+                        <li class="tab col m3 disabled" id="three-tabs" ><a href="#three" >PRODUCTOS</a></li>
+                        <li class="tab col m3 disabled" id="four-tabs" ><a href="#four"  class="four">PAGOS</a></li>
+                    </ul>
+                    Tab 1
+                    <div id="one">
+                        <div class="card-header center-align">
+                            <h4>Pedido - Cliente</h4>
+                        </div>
+                        <div class="card-content row">
+                            <form method="get" action="" class="row" id="form-consul-client">
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-person prefix"></i>
+                                    <input type="text" name="cedula_cliente" id="cedula_cliente" class="validate" minlength="5"
+                                           maxlength="15" pattern="[VvJjEe0-9]+"
+                                           title="Solo puede usar números del 0-9 y V, J ó E" required>
+                                    <label for="cedula_cliente">Cedula o RIF del Cliente</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-person prefix"></i>
+                                    <input type="text" name="nombre_cliente" id="nombre_cliente" class="validate" minlength="5"
+                                           maxlength="15" pattern="[VvJjEe0-9]+"
+                                           title="Solo puede usar números del 0-9 y V, J ó E" required disabled>
+                                    <label for="nombre_cliente">Nombre</label>
+                                </div>
+            
+                                <div class="input-field col s12 m12">
+                                    <i class="icon-person prefix"></i>
+                                    <input type="text" name="representante_cliente" id="representante_cliente" class="validate"
+                                           minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
+                                           title="Solo puede usar números del 0-9 y V, J ó E" required disabled>
+                                    <label for="representante_cliente">Representante</label>
+                                </div>
+                            </form>
+                            <form method="get" action="" class="row" id="form-pedido">
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-insert_invitation prefix"></i>
+                                    <input type="text" name="fecha_pedido" id="fecha_pedido" class="datepicker">
+                                    <label for="fecha_pedido">Fecha del Pedido</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-event_available prefix"></i>
+                                    <input type="text" name="fecha_entrega_pedido" id="fecha_entrega_pedido" class="datepicker">
+                                    <label for="fecha_entrega_pedido">Fecha de Entrega</label>
+                                </div>
+                                <div class="input-field col s12 m12">
+                                    <i class="icon-description prefix"></i>
+                                    <textarea name="descripcion_pedido" id="descripcion_pedido"
+                                              class="materialize-textarea"></textarea>
+                                    <label for="descripcion_pedido">Descripción</label>
+                                </div>
+                                <input type="hidden" name="codigo_pedido" id="codigo_pedido" value="">
+                            </form>
+                        </div>
+                        <div class="card-footer center-align">
+                            <button type="submit" class="btn green darken-2 waves-effect waves-light col s12">
+                                <i class="icon-send right"></i>
+                                SIGUIENTE(1/4)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </div>
     </div>
 

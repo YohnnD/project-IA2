@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Registrar Rol - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
 <!-- Header -->
 <?php require_once "views/layouts/header.php"; ?>
 
@@ -122,7 +122,7 @@
                 </table>
             </div>
             <div class="card-footer center-align">
-                <button type="submit" class="btn green waves-effect waves-light">
+                <button type="submit" class="btn btn-large btn-rounded green-gradient waves-effect waves-light">
                     <i class="icon-send right"></i>
                     Actualizar
                 </button>

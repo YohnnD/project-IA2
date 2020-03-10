@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Telas - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -28,7 +28,7 @@
                 </div>
                 <?php if (Helpers::hasPermissions('8','1')): ?>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Tela','create'); ?>" class="btn-app teal">
+                    <a href="<?php echo Helpers::url('Tela','create'); ?>" class="btn-app teal-gradient">
                         <i class="icon-enhanced_encryption"></i>
                         <span>Registrar Tela</span>
                     </a>
@@ -36,7 +36,7 @@
                 <?php endif; ?>
                 <?php if (Helpers::hasPermissions('8','2')): ?>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Tela','getAll'); ?>" class="btn-app pink">
+                    <a href="<?php echo Helpers::url('Tela','getAll'); ?>" class="btn-app pink-gradient">
                         <i class="icon-content_copy"></i>
                         <span>Consultar Telas</span>
                     </a>

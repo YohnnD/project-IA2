@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Estadisticas - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php" ?>
 
@@ -29,7 +29,7 @@
             <div class="row" style="margin-top:20px;">
                 <div class="col s12 m6">
                     <div class="widget bootstrap-widget stats">
-                        <div class="widget-stats-icon red white-text">
+                        <div class="widget-stats-icon red-gradient white-text">
                             <i class="icon-group_add"></i>
                         </div>
                         <div class="widget-stats-content">
@@ -72,7 +72,7 @@
                 
                 <div class="col s12 m6">
                     <div class="widget bootstrap-widget stats">
-                        <div class="widget-stats-icon blue white-text">
+                        <div class="widget-stats-icon blue-gradient white-text">
                             <i class="icon-equalizer"></i>
                         </div>
                         <div class="widget-stats-content">

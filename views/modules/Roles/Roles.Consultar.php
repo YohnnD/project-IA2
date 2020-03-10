@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title> - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -27,34 +27,40 @@
                     <a href="<?php echo Helpers::url('Cliente','getAll'); ?>" class="breadcrumb">Consultar Roles</a>
                 </div>
                 <div class="col s12 center-align">
-                    <h4>Consultar Roles</h4>
-                </div>
-                <div class="col s12">
-                    <table class="responsive-table highlight centered">
-                        <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Detalles</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php if(!is_null($roles)):?>
-                            <?php foreach ($roles as $rol):?>
-                                <tr>
-                                    <td><?php echo $rol->nombre_rol;?></td>
-                                    <td><?php echo $rol->descripcion_rol;?></td>
-                                    <td><a href="<?php echo Helpers::url('Roles','getBy')."/".$rol->id_rol; ?>" class="btn btn-small btn-floating blue waves-effect waves-light"><i class="icon-find_in_page"></i></a></td>
-                                </tr>
-                            <?php endforeach;?>
-                        <?php else:?>
-                            <tr>
-                                <td colspan="6"><h5 class="center-align">Todavia no registras un rol.</h5></td>
-                            </tr>
+                    <div class="card">
+                        <div class="card-header center-align">
+                            <h4>Consultar Roles</h4>
+                        </div>
+                        <div class="card-content row">
+                            <div class="col s12">
+                                <table class="responsive-table highlight centered">
+                                    <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Detalles</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php if(!is_null($roles)):?>
+                                        <?php foreach ($roles as $rol):?>
+                                            <tr>
+                                                <td><?php echo $rol->nombre_rol;?></td>
+                                                <td><?php echo $rol->descripcion_rol;?></td>
+                                                <td><a href="<?php echo Helpers::url('Roles','getBy')."/".$rol->id_rol; ?>" class="btn btn-floating pink-gradient waves-effect waves-light"><i class="icon-find_in_page"></i></a></td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    <?php else:?>
+                                        <tr>
+                                            <td colspan="6"><h5 class="center-align">Todavia no registras un rol.</h5></td>
+                                        </tr>
 
-                        <?php endif?>
-                        </tbody>
-                    </table>
+                                    <?php endif?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

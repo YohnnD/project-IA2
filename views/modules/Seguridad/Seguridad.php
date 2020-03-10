@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Seguridad - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -26,19 +26,19 @@
                     <a href="<?php echo Helpers::url('Seguridad','index'); ?>" class="breadcrumb">Seguridad</a>
                 </div>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Seguridad','bitacora'); ?>" class="btn-app green">
+                    <a href="<?php echo Helpers::url('Seguridad','bitacora'); ?>" class="btn-app green-gradient">
                         <i class="icon-format_list_bulleted"></i>
                         <span>Bitacora</span>
                     </a>
                 </div>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Seguridad','roles'); ?>" class="btn-app red">
+                    <a href="<?php echo Helpers::url('Seguridad','roles'); ?>" class="btn-app red-gradient">
                         <i class="icon-supervisor_account"></i>
                         <span>Gestionar Roles y Permisos</span>
                     </a>
                 </div>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Modulo','getAll'); ?>" class="btn-app indigo">
+                    <a href="<?php echo Helpers::url('Modulo','getAll'); ?>" class="btn-app indigo-gradient">
                         <i class="icon-apps"></i>
                         <span>Mostrar Módulos</span>
                     </a>

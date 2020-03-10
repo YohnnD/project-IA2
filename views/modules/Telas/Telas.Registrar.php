@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Registrar Tela - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -32,37 +32,41 @@
         <div class="container">
             <form action="" method="post" class="row" id="register">
                 <div class="col s12">
-                    <h4 class="center-align">Registrar Tela</h4>
-                                  
-                </div>
-
-                    <input type="hidden" name="id_tela" id="id_tela">
-                    
-                <div class="input-field col s12 m6">
-                    <i class="icon-rate_review prefix"></i>
-                    <input type="text" name="nombre_tela" id="nombre_tela" class="validate" onblur="buscar()" minlength="1" maxlength="20" required>
-                    <label for="nombre_tela">Nombre de Tela</label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <i class="icon-straighten prefix"></i>
-                    <input type="text" name="unidad_med_tela" id="unidad_med_tela" class="validate" minlength="1" maxlength="3" required>
-                    <label for="unidad_med_tela">Unidad de Medida</label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <i class="icon-texture prefix"></i>
-                    <input type="text" name="tipo_tela" id="tipo_tela" class="validate" minlength="1" maxlength="20" required>
-                    <label for="tipo_tela">Tipo de Tela</label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <i class="icon-description prefix"></i>
-                    <textarea name="descripcion_tela" id="descripcion_tela" cols="30" rows="10" class="materialize-textarea"></textarea>
-                    <label for="descripcion_tela">Descripción</label>
-                </div>
-                <div class="input-field col s12 center-align">
-                    <button type="submit" class="btn green darken-2 waves-effect waves-light col s12" name="registrar">
-                        Registrar
-                        <i class="icon-send right"></i>
-                    </button>
+                    <div class="card">
+                        <div class="card-header center-align">
+                            <h4>Registrar Tela</h4>
+                        </div>
+                        <div class="card-content row">
+                            <input type="hidden" name="id_tela" id="id_tela">
+                            <div class="input-field col s12 m6">
+                                <i class="icon-rate_review prefix"></i>
+                                <input type="text" name="nombre_tela" id="nombre_tela" class="validate" onblur="buscar()" minlength="1" maxlength="20" required>
+                                <label for="nombre_tela">Nombre de Tela</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="icon-straighten prefix"></i>
+                                <input type="text" name="unidad_med_tela" id="unidad_med_tela" class="validate" minlength="1" maxlength="3" required>
+                                <label for="unidad_med_tela">Unidad de Medida</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="icon-texture prefix"></i>
+                                <input type="text" name="tipo_tela" id="tipo_tela" class="validate" minlength="1" maxlength="20" required>
+                                <label for="tipo_tela">Tipo de Tela</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="icon-description prefix"></i>
+                                <textarea name="descripcion_tela" id="descripcion_tela" cols="30" rows="10" class="materialize-textarea"></textarea>
+                                <label for="descripcion_tela">Descripción</label>
+                            </div>
+                        </div>
+                        <div class="card-footer center-align">
+                            <button type="submit" class="btn btn-large btn-rounded green-gradient waves-effect waves-light" name="registrar">
+                                <i class="icon-save left"></i>
+                                Registrar
+                                <i class="icon-save right"></i>
+                            </button>
+                        </div>
+                    </div>     
                 </div>
             </form>
         </div>

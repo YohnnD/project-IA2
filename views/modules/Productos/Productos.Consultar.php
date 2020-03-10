@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Ver Productos - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -28,43 +28,47 @@
                     <a href="<?php echo Helpers::url('Producto','getAll'); ?>" class="breadcrumb">Consultar Productos</a>
                 </div>
                 <div class="col s12">
-                    <h4 class="center-align">Productos</h4>
-                </div>
-                <div class="col s12">
-                    <?php if($allProductos == null): ?>
-                        <h4 class="center-align">No hay productos para mostrar.</h4>
-                    <?php else: ?>
-                        <table class="centered highlight" id="productos-table" style="width: 100%">
-                            <thead>
-                                <tr>
-                                    <th>Código</th>
-                                    <th>Nombre</th>
-                                    <th>Descripción</th>
-                                    <th>Costo</th>
-                                    <th>Precio</th>
-                                    <th>Cant. Disp</th>
-                                    <?php if (Helpers::hasPermissions('2','5')): ?>
-                                    <th>Detalles</th>
+                    <div class="card">
+                        <div class="card-header center-align">
+                            <h4 class="center-align">Listado de Productos</h4>
+                        </div>
+                        <div class="card-content row">
+                            <div class="col s12">
+                                <table class="centered highlight" id="productos-table" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Costo</th>
+                                            <th>Precio</th>
+                                            <th>Cant. Disp</th>
+                                            <?php if (Helpers::hasPermissions('2','5')): ?>
+                                            <th>Detalles</th>
+                                            <?php endif; ?>
+                                        </tr>
+                                        </thead>
+                                    <tbody>
+                                    <?php if($allProductos != null): ?>
+                                        <?php foreach($allProductos as $producto): ?>
+                                        <tr>
+                                            <td><?php echo $producto->codigo_producto; ?></td>
+                                            <td><?php echo $producto->nombre_producto; ?></td>
+                                            <td><?php echo $producto->descripcion_producto; ?></td>
+                                            <td><?php echo $producto->costo_producto; ?>$</td>
+                                            <td><?php echo $producto->precio_producto; ?>$</td>
+                                            <td><?php echo $producto->stock_max_producto; ?></td>
+                                            <?php if (Helpers::hasPermissions('2','5')): ?>
+                                                <td><a href="<?php echo Helpers::url('Producto','details'); ?>/<?php echo $producto->codigo_producto; ?>" class="btn btn-floating pink-gradient waves-effect effect-light"><i class="icon-find_in_page"></i></a></td>
+                                            <?php endif; ?>
+                                        </tr>
+                                        <?php endforeach; ?>       
                                     <?php endif; ?>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach($allProductos as $producto): ?>
-                                <tr>
-                                    <td><?php echo $producto->codigo_producto; ?></td>
-                                    <td><?php echo $producto->nombre_producto; ?></td>
-                                    <td><?php echo $producto->descripcion_producto; ?></td>
-                                    <td><?php echo $producto->costo_producto; ?>$</td>
-                                    <td><?php echo $producto->precio_producto; ?>$</td>
-                                    <td><?php echo $producto->stock_max_producto; ?></td>
-                                    <?php if (Helpers::hasPermissions('2','5')): ?>
-                                    <td><a href="<?php echo Helpers::url('Producto','details'); ?>/<?php echo $producto->codigo_producto; ?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-find_in_page"></i></a></td>
-                                    <?php endif; ?>
-                                </tr>
-                                <?php endforeach; ?>        
-                            </tbody>
-                        </table>
-                    <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,8 +81,8 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Producto.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.min.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Producto.js"></script>
 </body>
 </html>

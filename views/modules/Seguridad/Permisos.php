@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title> - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -28,26 +28,36 @@
                     <a href="<?php echo Helpers::url('Permiso', 'getAll'); ?>" class="breadcrumb">Ver Permisos</a>
                 </div>
                 <div class="col s12">
-                    <?php if($allPermisos == null): ?>
-                    <h5 class="center-align">No hay registros para mostrar.</h5>
-                    <?php else: ?>
-                    <table class="centered highlight">
-                        <thead>
-                            <tr>
-                                <th>Permiso</th>
-                                <th>Descripción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($allPermisos as $permiso): ?>
-                            <tr>
-                                <td><?php echo $permiso->nombre_permiso ?></td>
-                                <td><?php echo $permiso->descripcion_permiso ?></td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                    <?php endif; ?>
+                    <div class="card">
+                        <div class="card-header center-align">
+                            <h4>Listado de Permisos</h4>
+                        </div>
+                        <div class="card-content row">
+                            <div class="col s12">
+                                <?php if($allPermisos == null): ?>
+                                    <h5 class="center-align">No hay registros para mostrar.</h5>
+                                <?php else: ?>
+                                <table class="centered highlight">
+                                    <thead>
+                                        <tr>
+                                            <th>Permiso</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($allPermisos as $permiso): ?>
+                                        <tr>
+                                            <td><?php echo $permiso->nombre_permiso ?></td>
+                                            <td><?php echo $permiso->descripcion_permiso ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>

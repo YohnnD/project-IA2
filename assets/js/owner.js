@@ -13,7 +13,7 @@ $(document).ready(function(){
     });
     M.textareaAutoResize($('#descripcion_producto, #descripcion_pedido, #descripcion_cliente, #direccion_cliente , #descripcion_servicio, #descripcion_tela'));
 
-    $('select').formSelect();
+    jQuery('select').formSelect();
     $('.tabs').tabs();
     $('.datepicker').datepicker(
         {'format':'yyyy-mm-dd'}

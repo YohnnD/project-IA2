@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Pedidos - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
 <!-- Header -->
 <?php require_once "views/layouts/header.php"; ?>
 
@@ -27,7 +27,7 @@
             </div>
             <?php if (Helpers::hasPermissions('3','1')): ?>
             <div class="col s12 m6 animated bounceIn">
-                <a href="<?php echo Helpers::url('Pedido','create'); ?>" class="btn-app orange">
+                <a href="<?php echo Helpers::url('Pedido','create'); ?>" class="btn-app teal-gradient">
                     <i class="icon-add_shopping_cart"></i>
                     <span>Registrar Pedido</span>
                 </a>
@@ -36,7 +36,7 @@
 
             <?php if (Helpers::hasPermissions('3','2')): ?>
             <div class="col s12 m6 animated bounceIn">
-                <a href="<?php echo Helpers::url('Pedido','getAll'); ?>" class="btn-app pink">
+                <a href="<?php echo Helpers::url('Pedido','getAll'); ?>" class="btn-app yellow-gradient">
                     <i class="icon-chrome_reader_mode"></i>
                     <span>Consultar Pedidos</span>
                 </a>

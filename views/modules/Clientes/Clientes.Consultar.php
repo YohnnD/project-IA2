@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Consultar Clientes - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
 <!-- Header -->
 <?php require_once "views/layouts/header.php"; ?>
 
@@ -28,40 +28,46 @@
                 <a href="<?php echo Helpers::url('Cliente','getAll'); ?>" class="breadcrumb">Consultar Clientes</a>
             </div>
             <div class="col s12 center-align">
-                <h4>Consultar Clientes</h4>
-            </div>
-            <div class="col s12">
-                <table class="responsive-table highlight centered" id="clientes">
-                    <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Identificación</th>
-                        <th>Teléfono</th>
-                        <th>Dirección</th>
-                        <th>Detalles</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php if(!is_null($clientes)):?>
-                        <?php foreach ($clientes as $cliente):?>
-                            <tr>
-                                <td><?php echo $cliente->nombre_cliente;?></td>
-                                <td><?php echo $cliente->descripcion_cliente;?></td>
-                                <td><?php echo $cliente->tipo_documento_cliente ."-". $cliente->cedula_cliente;?></td>
-                                <td><?php echo $cliente->telefono_cliente?></td>
-                                <td><?php echo $cliente->direccion_cliente?></td>
-                                <td><a href="<?php echo Helpers::url('Cliente','details')."/".$cliente->cedula_cliente; ?>" class="btn btn-small btn-floating blue waves-effect waves-light"><i class="icon-find_in_page"></i></a></td>
-                            </tr>
-                        <?php endforeach;?>
-                    <?php else:?>
-                        <tr>
-                            <td colspan="6"><h5 class="center-align">Todavia no registras un cliente.</h5></td>
-                        </tr>
+                <div class="card">
+                    <div class="card-header center-align">
+                        <h4>Consultar Clientes</h4>
+                    </div>
+                    <div class="card-content row">
+                        <div class="col s12">
+                            <table class="responsive-table highlight centered" id="clientes">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Identificación</th>
+                                    <th>Teléfono</th>
+                                    <th>Dirección</th>
+                                    <th>Detalles</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php if(!is_null($clientes)):?>
+                                    <?php foreach ($clientes as $cliente):?>
+                                        <tr>
+                                            <td><?php echo $cliente->nombre_cliente;?></td>
+                                            <td><?php echo $cliente->descripcion_cliente;?></td>
+                                            <td><?php echo $cliente->tipo_documento_cliente ."-". $cliente->cedula_cliente;?></td>
+                                            <td><?php echo $cliente->telefono_cliente?></td>
+                                            <td><?php echo $cliente->direccion_cliente?></td>
+                                            <td><a href="<?php echo Helpers::url('Cliente','details')."/".$cliente->cedula_cliente; ?>" class="btn btn-floating pink-gradient waves-effect waves-light"><i class="icon-find_in_page"></i></a></td>
+                                        </tr>
+                                    <?php endforeach;?>
+                                <?php else:?>
+                                    <tr>
+                                        <td colspan="6"><h5 class="center-align">Todavia no registras un cliente.</h5></td>
+                                    </tr>
 
-                    <?php endif?>
-                    </tbody>
-                </table>
+                                <?php endif?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -73,7 +79,7 @@
 
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
-<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Cliente.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>

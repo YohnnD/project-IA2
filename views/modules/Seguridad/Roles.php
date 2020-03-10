@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Gestionar Roles y Permisos - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -27,19 +27,19 @@
                     <a href="<?php echo Helpers::url('Seguridad', 'roles'); ?>" class="breadcrumb">Gestionar Roles y Permisos</a>
                 </div>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Roles', 'create'); ?>" class="btn-app indigo">
+                    <a href="<?php echo Helpers::url('Roles', 'create'); ?>" class="btn-app indigo-gradient">
                         <i class="icon-person_pin"></i>
                         <span>Registrar Rol y Permisos</span>
                     </a>
                 </div>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Roles', 'getAll'); ?>" class="btn-app cyan">
+                    <a href="<?php echo Helpers::url('Roles', 'getAll'); ?>" class="btn-app cyan-gradient">
                         <i class="icon-playlist_add_check"></i>
                         <span>Ver Roles</span>
                     </a>
                 </div>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Permiso', 'getAll'); ?>" class="btn-app orange">
+                    <a href="<?php echo Helpers::url('Permiso', 'getAll'); ?>" class="btn-app orange-gradient">
                         <i class="icon-record_voice_over"></i>
                         <span>Ver Permisos</span>
                     </a>

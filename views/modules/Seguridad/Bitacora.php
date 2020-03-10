@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Historial - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -27,40 +27,40 @@
                     <a href="<?php echo Helpers::url('Seguridad','index'); ?>" class="breadcrumb">Seguridad</a>
                     <a href="<?php echo Helpers::url('Seguridad','bitacora'); ?>" class="breadcrumb">Historial</a>
                 </div>
-                <?php if($bitacoras == null): ?>
                 <div class="col s12">
-                    <h4 class="center-align">No hay registros para mostrar.</h4>
+                    <div class="card">
+                        <div class="card-header center-align">
+                            <h4>Bitácora</h4>
+                        </div>
+                        <div class="card-content row">
+                            <div class="col s12">
+                                <table class="centered highlight" style="width: 100%" id="bitacora">
+                                    <thead>
+                                        <tr>
+                                            <th>Usuario</th>
+                                            <th>Módulo</th>
+                                            <th>Acción</th>
+                                            <th>Fecha</th>
+                                            <th>Hora</th>
+                                            <!-- <th></th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($bitacoras as $bitacora): ?>
+                                        <tr>
+                                            <td><?= $bitacora->nick_usuario ?></td>
+                                            <td><?= $bitacora->modulo_bitacora ?></td>
+                                            <td><?= $bitacora->accion_bitacora ?></td>
+                                            <td><?= $bitacora->fecha_actu_bitacora ?></td>
+                                            <td><?= $bitacora->hora_actu_bitacora ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <?php else: ?>
-                <div class="col s12">
-                    <h4 class="center-align">Historial</h4>
-                </div>
-                <div class="col s12">
-                    <table class="centered highlight" style="width: 100%" id="bitacora">
-                        <thead>
-                            <tr>
-                                <th>Usuario</th>
-                                <th>Módulo</th>
-                                <th>Acción</th>
-                                <th>Fecha</th>
-                                <th>Hora</th>
-                                <!-- <th></th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($bitacoras as $bitacora): ?>
-                            <tr>
-                                <td><?= $bitacora->nick_usuario ?></td>
-                                <td><?= $bitacora->modulo_bitacora ?></td>
-                                <td><?= $bitacora->accion_bitacora ?></td>
-                                <td><?= $bitacora->fecha_actu_bitacora ?></td>
-                                <td><?= $bitacora->hora_actu_bitacora ?></td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-                <?php endif ?>
             </div>
         </div>
     </main>
@@ -72,7 +72,7 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
-    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.js"></script>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
     <script>
         $('#bitacora').DataTable({

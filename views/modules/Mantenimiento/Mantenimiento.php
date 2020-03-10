@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Mantenimiento - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
     <!-- Header -->
     <?php require_once "views/layouts/header.php"; ?>
 
@@ -26,13 +26,13 @@
                     <a href="<?php echo Helpers::url('Mantenimiento','index'); ?>" class="breadcrumb">Mantenimiento</a>
                 </div>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Mantenimiento','createBackup'); ?>" class="btn-app deep-purple">
+                    <a href="<?php echo Helpers::url('Mantenimiento','createBackup'); ?>" class="btn-app deep-purple-gradient">
                         <i class="icon-storage"></i>
                         <span>Generar Respaldo</span>
                     </a>
                 </div>
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Mantenimiento','systemRestore'); ?>" class="btn-app pink">
+                    <a href="<?php echo Helpers::url('Mantenimiento','systemRestore'); ?>" class="btn-app pink-gradient">
                         <i class="icon-settings_backup_restore"></i>
                         <span>Restaurar Sistema</span>
                     </a>

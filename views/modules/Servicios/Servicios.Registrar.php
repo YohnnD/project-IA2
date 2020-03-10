@@ -14,7 +14,7 @@
 
         <title>Registrar Servicio - Inversiones A2</title>
     </head>
-    <body>
+    <body class="grey lighten-4">
         <!-- Header -->
         <?php require_once "views/layouts/header.php"; ?>
 
@@ -28,50 +28,52 @@
                         <a href="<?php echo Helpers::url('Servicio', 'index'); ?>" class="breadcrumb">Gestionar Servicios</a>
                         <a href="<?php echo Helpers::url('Servicio', 'create'); ?>" class="breadcrumb">Registrar Servicio</a>
                     </div>
+                    <div class="col s12 m8 offset-m2">
+                        <form action="" method="post" class="row" id="register">
+                        <div class="card">
+                            <div class="card-header center-align">
+                                <h4>Registrar Servicio</h4>
+                            </div>
+                            <div class="card-content row">
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-stars prefix"></i>
+                                    <input type="text" name="nombre_servicio" id="nombre_servicio" required>
+                                    <label for="nombre_servicio">Nombre del Servicio</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-open_with prefix"></i>
+                                    <input type="text" name="unidad_medida" id="unidad_medida" required>
+                                    <label for="unidad_medida">Unidad de Medida</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-monetization_on prefix"></i>
+                                    <input type="text" name="costo_servicio" id="costo_servicio" class="validate" pattern="[0-9.,]+" title="Solo puede usar números." required>
+                                    <label for="costo_servicio">Costo</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-attach_money prefix"></i>
+                                    <input type="text" name="precio_servicio" id="precio_servicio" class="validate" pattern="[0-9.,]+" title="Solo puede usar números." required>
+                                    <label for="precio_servicio">Precio</label>
+                                </div>
+                                
+                                <div class="input-field col s12">
+                                    <i class="icon-description prefix"></i>
+                                    <textarea name="descripcion_servicio" id="descripcion_servicio" cols="30" rows="10" class="materialize-textarea"></textarea>
+                                    <label for="descripcion_servicio">Descripción</label>
+                                </div>
+                            </div>
+                            <div class="card-footer center-align">
+                                <button type="submit" class="btn btn-large green-gradient waves-light waves-effect">
+                                    <i class="icon-save left"></i>
+                                    Registrar
+                                    <i class="icon-save right"></i>
+                                </button>   
+                            </div>
+                        </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="container">
-                <form action="" method="post" class="row" id="register">
-                    <div class="col s12">
-                        <h4 class="center-align">Registrar Servicio</h4>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <i class="icon-stars prefix"></i>
-                        <input type="text" name="nombre_servicio" id="nombre_servicio" required>
-                        <label for="nombre_servicio">Nombre del Servicio</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <i class="icon-open_with prefix"></i>
-                        <input type="text" name="unidad_medida" id="unidad_medida" required>
-                        <label for="unidad_medida">Unidad de Medida</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <i class="icon-monetization_on prefix"></i>
-                        <input type="text" name="costo_servicio" id="costo_servicio" class="validate" pattern="[0-9.,]+" title="Solo puede usar números." required>
-                        <label for="costo_servicio">Costo</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <i class="icon-attach_money prefix"></i>
-                        <input type="text" name="precio_servicio" id="precio_servicio" class="validate" pattern="[0-9.,]+" title="Solo puede usar números." required>
-                        <label for="precio_servicio">Precio</label>
-                    </div>
-                    
-                    <div class="input-field col s12">
-                        <i class="icon-description prefix"></i>
-                        <textarea name="descripcion_servicio" id="descripcion_servicio" cols="30" rows="10" class="materialize-textarea"></textarea>
-                        <label for="descripcion_servicio">Descripción</label>
-                    </div>
-
-                    <div class="input-field col s12 center-align">
-                        <button type="submit" class="btn green darken-4 waves-light waves-effect col s12">
-                            Registrar
-                            <i class="icon-send right"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-                
-               
         </main>
 
         <!-- Footer -->
@@ -79,7 +81,7 @@
 
 
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
-        <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.js"></script>
+        <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/datatables.min.js"></script>
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/sweetalert.min.js"></script>
         <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>

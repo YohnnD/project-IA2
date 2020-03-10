@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Gestionar Clientes - Inversiones A2</title>
 </head>
-<body>
+<body class="grey lighten-4">
 <!-- Header -->
 <?php require_once "views/layouts/header.php"; ?>
 
@@ -27,7 +27,7 @@
             </div>
             <?php if (Helpers::hasPermissions('4','1')): ?>
             <div class="col s12 m6 animated bounceIn">
-                <a href="<?php echo Helpers::url('Cliente','create'); ?>" class="btn-app orange">
+                <a href="<?php echo Helpers::url('Cliente','create'); ?>" class="btn-app orange-gradient">
                     <i class="icon-person_add"></i>
                     <span>Registrar Cliente</span>
                 </a>
@@ -35,7 +35,7 @@
             <?php endif; ?>
             <?php if (Helpers::hasPermissions('4','2')): ?>
             <div class="col s12 m6 animated bounceIn">
-                <a href="<?php echo Helpers::url('Cliente','getAll'); ?>" class="btn-app pink">
+                <a href="<?php echo Helpers::url('Cliente','getAll'); ?>" class="btn-app pink-gradient">
                     <i class="icon-recent_actors"></i>
                     <span>Consultar Clientes</span>
                 </a>
