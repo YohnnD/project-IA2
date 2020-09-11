@@ -1,9 +1,10 @@
 <?php
+require_once ('config/database.php');
 
 class Helpers{//clases donde se añaden metodos que se necesiten en la vista
 
     public static function url($controller=DEFAULT_CONTROLLER,$action=DEFAULT_ACTION){//Pinta la url para la redirreciones
-        $urlString=BASE_URL.$controller.'/'.$action;
+        $urlString=BASE_URL.$controller.'/'.self::blowfishEncrypt($action);
          return  $urlString;
     }
 
@@ -41,7 +42,7 @@ class Helpers{//clases donde se añaden metodos que se necesiten en la vista
             $filename = $file['name']; // Nombre del archivo
             $tmpFilename = $file['tmp_name'];  // Nombre del archivo en carpeta temporal
             $mimetype = $file['type']; // Tipo del archivo
-            if ($mimetype == 'image/jpg' || $mimetype == 'image/jpeg' || 
+            if ($mimetype == 'image/jpg' || $mimetype == 'image/jpeg' ||
                 $mimetype == 'image/png' || $mimetype == 'image/gif'){ // Verifica si el tipo de archivo es correcto
                 if(!is_dir('storage/'.$directory)){ // Sino existe el directorio
                     mkdir('storage/'.$directory,0777,true); // Lo crea con todos los permisos
@@ -106,6 +107,93 @@ class Helpers{//clases donde se añaden metodos que se necesiten en la vista
 
         return $band;
     }
+
+
+
+    public  static function blowfishKey($key)
+    {
+        if("$key" === '')
+            return $key;
+
+        $len = (16+2) * 4;
+        while(strlen($key) < $len) {
+            $key .= $key;
+        }
+        $key = substr($key, 0, $len);
+        return $key;
+    }
+
+
+    public static  function blowfishEncrypt($str)
+    {
+        $key=KEY_BLOWFISH;
+
+        $blockSize = 64;
+        $len = strlen($str);
+        $paddingLen = intval(($len + $blockSize - 1) / $blockSize) * $blockSize - $len;
+        $padding = str_repeat("\0", $paddingLen);
+        $data = $str . $padding;
+        $key = self::blowfishKey($key);
+        $encrypted = openssl_encrypt($data, 'BF-ECB', $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
+        return bin2hex($encrypted);
+    }
+
+    public static function blowfishDecrypt($hex){
+        $key=KEY_BLOWFISH;
+        $is_hash = substr($hex, 16);
+
+        if(!$is_hash){
+            return $hex;
+        }
+        $key = self::blowfishKey($key);
+        $decrypted = openssl_decrypt(hex2bin($hex), 'BF-ECB', $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
+        return rtrim($decrypted, "\0");
+    }
+
+
+    public static function  aesEncrypt($plaintext) {
+        $method = "AES-256-CBC";
+        $password=KEY_AES;
+        $key = hash('sha256', $password, true);
+        $blockSize = 64;
+        $len = strlen($plaintext);
+        $paddingLen = intval(($len + $blockSize - 1) / $blockSize) * $blockSize - $len;
+        $padding = str_repeat("\0", $paddingLen);
+        $plaintext = $plaintext . $padding;
+
+        $iv = openssl_random_pseudo_bytes(16);
+        $ciphertext = openssl_encrypt($plaintext, $method, $key, OPENSSL_RAW_DATA, $iv);
+        $hash = hash_hmac('sha256', $ciphertext . $iv, $key, true);
+        return base64_encode($iv . $hash . $ciphertext);
+    }
+    public static function aesDecrypt($ivHashCiphertext) {
+        $codeEncrypt=$ivHashCiphertext;
+        $ivHashCiphertext=base64_decode($ivHashCiphertext);
+        $password=KEY_AES;
+        $method = "AES-256-CBC";
+        $iv = substr($ivHashCiphertext, 0, 16);
+        $hash = substr($ivHashCiphertext, 16, 32);
+        $ciphertext = substr($ivHashCiphertext, 48);
+        $key = hash('sha256', $password, true);
+
+        if(!$ciphertext){
+            return $codeEncrypt;
+        }
+
+        if (!hash_equals(hash_hmac('sha256', $ciphertext . $iv, $key, true), $hash)) return null;
+        return rtrim(openssl_decrypt($ciphertext, $method, $key, OPENSSL_RAW_DATA, $iv),"\0");
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

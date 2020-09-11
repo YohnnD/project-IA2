@@ -2,10 +2,12 @@ CREATE TABLE IF NOT EXISTS clientes(
 
     cedula_cliente         VARCHAR(9)       NOT NULL,
     tipo_documento_cliente VARCHAR(2)       NOT NULL,
-    nombre_cliente         VARCHAR (40)     NOT NULL,
+    -- nombre_cliente         VARCHAR (40)     NOT NULL,
+    nombre_cliente         VARCHAR (255)     NOT NULL,
     descripcion_cliente    TEXT,
     direccion_cliente      TEXT,
-    telefono_cliente       VARCHAR(11)      NOT NULL,
+    -- telefono_cliente       VARCHAR(11)      NOT NULL,
+    telefono_cliente       VARCHAR(255)      NOT NULL,
     representante_cliente  VARCHAR(40)      NOT NULL,
 
     PRIMARY KEY (cedula_cliente)
@@ -15,7 +17,9 @@ CREATE TABLE IF NOT EXISTS pedidos(
 
     codigo_pedido          VARCHAR(10)      NOT NULL,
     cedula_cliente         VARCHAR(9)       NOT NULL,
-    status_pedido          VARCHAR(10)      NOT NULL,
+ -- status_pedido          VARCHAR(10)      NOT NULL,
+    status_pedido          VARCHAR(255)      NOT NULL,
+
     descripcion_pedido     TEXT,
     fecha_pedido           DATE             NOT NULL,
     fecha_entrega_pedido   DATE             NOT NULL,
@@ -42,6 +46,7 @@ CREATE TABLE IF NOT EXISTS servicios(
     descripcion_servicio   TEXT,
     unidad_medida          VARCHAR(10)      NOT NULL,
     precio_servicio        FLOAT            NOT NULL,
+
     costo_servicio         FLOAT            NOT NULL,
     
 
@@ -51,8 +56,10 @@ CREATE TABLE IF NOT EXISTS servicios(
 CREATE TABLE IF NOT EXISTS productos(
 
     codigo_producto        VARCHAR(15)      NOT NULL,
-    nombre_producto        VARCHAR(20)      NOT NULL,
+    -- nombre_producto        VARCHAR(20)      NOT NULL,
+    nombre_producto        VARCHAR(255)      NOT NULL,
     descripcion_producto   TEXT,
+
     tipo_producto          VARCHAR(2)       NOT NULL,
     modelo_producto        VARCHAR(10)      NOT NULL,
     costo_producto         FLOAT            NOT NULL,
@@ -156,7 +163,7 @@ CREATE TABLE IF NOT EXISTS factura_ventas(
 
 CREATE TABLE IF NOT EXISTS usuarios(
 
- 	nick_usuario             VARCHAR(30)    NOT NULL,
+ 	  nick_usuario             VARCHAR(30)    NOT NULL,
     nombre_usuario           VARCHAR(20)    NOT NULL,
     apellido_usuario         VARCHAR(20)    NOT NULL,
     email_usuario            VARCHAR(40),    

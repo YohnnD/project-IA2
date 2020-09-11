@@ -49,11 +49,11 @@
                                 <?php if(!is_null($clientes)):?>
                                     <?php foreach ($clientes as $cliente):?>
                                         <tr>
-                                            <td><?php echo $cliente->nombre_cliente;?></td>
-                                            <td><?php echo $cliente->descripcion_cliente;?></td>
+                                            <td><?php echo Helpers::aesDecrypt($cliente->nombre_cliente);?></td>
+                                            <td><?php echo Helpers::aesDecrypt($cliente->descripcion_cliente);?></td>
                                             <td><?php echo $cliente->tipo_documento_cliente ."-". $cliente->cedula_cliente;?></td>
-                                            <td><?php echo $cliente->telefono_cliente?></td>
-                                            <td><?php echo $cliente->direccion_cliente?></td>
+                                            <td><?php echo Helpers::aesDecrypt($cliente->telefono_cliente);?></td>
+                                            <td><?php echo Helpers::aesDecrypt($cliente->direccion_cliente);?></td>
                                             <td><a href="<?php echo Helpers::url('Cliente','details')."/".$cliente->cedula_cliente; ?>" class="btn btn-floating pink-gradient waves-effect waves-light"><i class="icon-find_in_page"></i></a></td>
                                         </tr>
                                     <?php endforeach;?>

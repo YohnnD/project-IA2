@@ -48,22 +48,22 @@
                             </div>
                             <div class="input-field col s12 m6 xl6">
                                 <i class="icon-account_circle prefix"></i>
-                                <input type="text" name="nombre_cliente" id="nombre_cliente" class="validate text-validate" value="<?php echo $cliente->nombre_cliente; ?>" disabled>
-                                <label for="nombre_cliente">Nombre del Cliente</label>
+                                <input type="text" name="nombre_cliente" id="nombre_cliente" class="validate text-validate" value="<?php echo Helpers::aesDecrypt($cliente->nombre_cliente); ?>" disabled>
+                                <label for="nombre_cliente">Nombre del Cliente <?php  echo Helpers::aesDecrypt($cliente->nombre_cliente);?></label>
                             </div>
                             <div class="input-field col s12 m6 xl6">
                                 <i class="icon-description prefix"></i>
-                                <textarea name="descripcion" id="descripcion_cliente" cols="30" rows="10" class="materialize-textarea" disabled><?php echo $cliente->descripcion_cliente; ?></textarea>
+                                <textarea name="descripcion" id="descripcion_cliente" cols="30" rows="10" class="materialize-textarea" disabled><?php echo Helpers::aesDecrypt($cliente->descripcion_cliente); ?></textarea>
                                 <label for="descripcion">Descripción</label>
                             </div>
                             <div class="input-field col s12 m6 xl6">
                                 <i class="icon-room prefix"></i>
-                                <textarea name="direccion_cliente" id="direccion_cliente" cols="30" rows="10" class="materialize-textarea" disabled><?php echo $cliente->direccion_cliente; ?></textarea>
+                                <textarea name="direccion_cliente" id="direccion_cliente" cols="30" rows="10" class="materialize-textarea" disabled><?php echo Helpers::aesDecrypt($cliente->direccion_cliente); ?></textarea>
                                 <label for="direccion_cliente">Dirección del Cliente</label>
                             </div>
                             <div class="input-field col s12 m6 xl6">
                                 <i class="icon-contact_phone prefix"></i>
-                                <input type="text" name="telefono_cliente" id="telefono_cliente" class="validate number-date" value="<?php echo $cliente->telefono_cliente; ?>" disabled>
+                                <input type="text" name="telefono_cliente" id="telefono_cliente" class="validate number-date" value="<?php echo Helpers::aesDecrypt($cliente->telefono_cliente); ?>" disabled>
                                 <label for="telefono_cliente">Teléfono del Cliente</label>
                             </div>
                             <div class="input-field col s12 m6 xl6">

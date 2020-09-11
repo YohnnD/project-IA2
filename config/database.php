@@ -5,6 +5,8 @@
 define('DRIVER','pgsql');
 define('HOST','localhost');
 define('USER','postgres');
-define('PASSWORD','1234');
+define('PASSWORD','12345678');
 define('DATABASE','ia2');
 define('CHARSET','utf8');
+define('KEY_AES','estudiamosparaseringenieroseninformatica');
+define('KEY_BLOWFISH','universidadpolitecnicaadreseloyblanco');

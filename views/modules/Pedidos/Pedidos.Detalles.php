@@ -101,10 +101,10 @@
                     <i class="icon-message prefix"></i>
                     <select name="status_pedido" id="status_pedido">
                         <option value="null" selected>Selecione una opción</option>
-                        <option value="En Proceso" <?php if($pedido->status_pedido==='En Proceso'): echo "selected"; endif; ?> >En Proceso</option>
-                        <option value="Cancelado"  <?php if($pedido->status_pedido==='Cancelado'): echo "selected"; endif; ?> >Cancelado</option>
-                        <option value="Facturado"  <?php if($pedido->status_pedido==='Facturado'): echo "selected"; endif; ?> >Facturado</option>
-                        <option value="Entregado"  <?php if($pedido->status_pedido==='Entregado'): echo "selected"; endif; ?> >Entregado</option>
+                        <option value="En Proceso" <?php if(Helpers::aesDecrypt($pedido->status_pedido)==='En Proceso'): echo "selected"; endif; ?> >En Proceso</option>
+                        <option value="Cancelado"  <?php if(Helpers::aesDecrypt($pedido->status_pedido)==='Cancelado'): echo "selected"; endif; ?> >Cancelado</option>
+                        <option value="Facturado"  <?php if(Helpers::aesDecrypt($pedido->status_pedido)==='Facturado'): echo "selected"; endif; ?> >Facturado</option>
+                        <option value="Entregado"  <?php if(Helpers::aesDecrypt($pedido->status_pedido)==='Entregado'): echo "selected"; endif; ?> >Entregado</option>
                     </select>
                     <label for="id_tela">Estado del pedido</label>
                 </div>

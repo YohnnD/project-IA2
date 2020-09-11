@@ -53,8 +53,8 @@
                                         <?php foreach($allProductos as $producto): ?>
                                         <tr>
                                             <td><?php echo $producto->codigo_producto; ?></td>
-                                            <td><?php echo $producto->nombre_producto; ?></td>
-                                            <td><?php echo $producto->descripcion_producto; ?></td>
+                                            <td><?php echo Helpers::aesDecrypt($producto->nombre_producto); ?></td>
+                                            <td><?php echo Helpers::aesDecrypt($producto->descripcion_producto); ?></td>
                                             <td><?php echo $producto->costo_producto; ?>$</td>
                                             <td><?php echo $producto->precio_producto; ?>$</td>
                                             <td><?php echo $producto->stock_max_producto; ?></td>

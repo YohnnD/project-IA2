@@ -34,7 +34,7 @@ class ClienteController extends BaseController {
         $descripcionCliente=$this->input('descripcion_cliente');
         $direccionCliente=$this->input('direccion_cliente');
         $telefonoCliente=$this->input('telefono_cliente');
-        $representanteCliente=$this->input('telefono_cliente');
+        $representanteCliente=$this->input('representante_cliente');
 
 
 
@@ -66,7 +66,7 @@ class ClienteController extends BaseController {
         $descripcionCliente=$this->input('descripcion_cliente');
         $direccionCliente=$this->input('direccion_cliente');
         $telefonoCliente=$this->input('telefono_cliente');
-        $representanteCliente=$this->input('telefono_cliente');
+        $representanteCliente=$this->input('representante_cliente');
         $cliente= new Cliente();
 
         $cliente->setCedulaCliente($cedulaCliente);

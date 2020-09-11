@@ -140,6 +140,10 @@ class PedidoController extends BaseController
         $find = $_GET['id'];
         $pedido->setCodigoProducto($find);
         $productos = $pedido->findProductos();
+
+
+
+
         $this->sendAjax($productos);
     }
 

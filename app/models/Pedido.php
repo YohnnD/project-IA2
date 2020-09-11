@@ -180,7 +180,7 @@ class Pedido extends BaseModel
 
     public function setStatusPedido($statusPedido)
     {
-        $this->statusPedido = $statusPedido;
+        $this->statusPedido = Helpers::aesEncrypt($statusPedido);
     }
 
     public function setCantidadMedida($cantidadMedida)
@@ -480,6 +480,7 @@ class Pedido extends BaseModel
         $query = $this->db()->query($sql);
         if ($query->rowCount() >= 1) {
             while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+                $row->nombre_producto=Helpers::aesDecrypt($row->nombre_producto);
                 $resulSet[] = $row;
             }
         } else {

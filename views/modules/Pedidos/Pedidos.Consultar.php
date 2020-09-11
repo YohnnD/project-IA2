@@ -52,7 +52,7 @@
                                         <tr>
                                             <td><?php echo $pedido->codigo_pedido;?></td>
                                             <td><?php echo $pedido->nombre_cliente?></td>
-                                            <td><?php echo $pedido->status_pedido;?></td>
+                                            <td><?php echo Helpers::aesDecrypt($pedido->status_pedido);?></td>
                                             <td><?php echo $pedido->fecha_pedido;?></td>
                                             <td><?php echo $pedido->fecha_entrega_pedido;?></td>
                                             <td><a href="<?php echo Helpers::url('Pedido','details')."/".$pedido->codigo_pedido; ?>" class="btn btn-floating btn-small pink waves-effect waves-light"><i class="icon-pageview"></i></a></td>

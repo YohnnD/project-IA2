@@ -44,7 +44,7 @@ class Cliente extends BaseModel{
     }
 
     public function setNombreCliente($nombreCliente){
-        $this->nombreCliente = $nombreCliente;
+        $this->nombreCliente = Helpers::aesEncrypt($nombreCliente);
     }
 
     public function setCedulaCliente($cedulaCliente){
@@ -61,7 +61,7 @@ class Cliente extends BaseModel{
     }
 
     public function setTelefonoCliente($telefonoCliente){
-        $this->telefonoCliente = $telefonoCliente;
+        $this->telefonoCliente =Helpers::aesEncrypt($telefonoCliente);
     }
 
     public function setRepresentanteCliente($representanteCliente){
@@ -69,7 +69,7 @@ class Cliente extends BaseModel{
     }
 
     public function setDireccionCliente($direccionCliente){
-        $this->direccionCliente = $direccionCliente;
+        $this->direccionCliente =Helpers::aesEncrypt( $direccionCliente);
     }
 
     public function getAll(){

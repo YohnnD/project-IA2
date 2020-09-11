@@ -49,12 +49,12 @@
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="icon-label prefix"></i>
-                                    <input id="nombre_producto" type="text" name="nombre_producto" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z0-9]+" title="Escribe el nombre del producto. max(30)" value="<?php echo $producto->nombre_producto; ?>" required disabled>
+                                    <input id="nombre_producto" type="text" name="nombre_producto" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z0-9]+" title="Escribe el nombre del producto. max(30)" value="<?php echo Helpers::aesDecrypt($producto->nombre_producto); ?>" required disabled>
                                     <label for="nombre_producto">Nombre del Producto</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <i class="icon-description prefix"></i>
-                                    <textarea name="descripcion_producto" id="descripcion_producto" cols="30" rows="10" class="materialize-textarea" disabled><?php echo $producto->descripcion_producto; ?></textarea>
+                                    <textarea name="descripcion_producto" id="descripcion_producto" cols="30" rows="10" class="materialize-textarea" disabled><?php echo Helpers::aesDecrypt($producto->descripcion_producto); ?></textarea>
                                     <label for="descripcion_producto">Descripción</label>
                                 </div>
                                 <div class="input-field col s12 m6 xl4">

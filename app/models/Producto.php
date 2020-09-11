@@ -80,11 +80,11 @@
 		}
 
 		public function setNombreProducto($nombreProducto) {
-			$this->nombreProducto = $nombreProducto;
+			$this->nombreProducto = Helpers::aesEncrypt($nombreProducto);
 		}
 
 		public function setDescripcionProducto($descripcionProducto) {
-			$this->descripcionProducto = $descripcionProducto;
+			$this->descripcionProducto = Helpers::aesEncrypt($descripcionProducto);
 		}
 
 		public function setTipoProducto($tipoProducto) {
