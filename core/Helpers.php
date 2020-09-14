@@ -188,8 +188,39 @@ class Helpers{//clases donde se añaden metodos que se necesiten en la vista
 
 
 
+    /*Obtener direccion ip*/
+    public static function getUserIpAddress() {
 
+        if (isset($_SERVER["HTTP_CLIENT_IP"])){
 
+            return $_SERVER["HTTP_CLIENT_IP"];
+
+        }elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
+
+            return $_SERVER["HTTP_X_FORWARDED_FOR"];
+
+        }elseif (isset($_SERVER["HTTP_X_FORWARDED"])){
+
+            return $_SERVER["HTTP_X_FORWARDED"];
+
+        }elseif (isset($_SERVER["HTTP_FORWARDED_FOR"])){
+
+            return $_SERVER["HTTP_FORWARDED_FOR"];
+
+        }elseif (isset($_SERVER["HTTP_FORWARDED"])){
+
+            return $_SERVER["HTTP_FORWARDED"];
+
+        }else{
+            return $_SERVER["REMOTE_ADDR"];
+        }
+    }
+
+    public static function CheckDate($dateBlock){
+        $dateNow=time();
+        $dateCheck=($dateNow-$dateBlock)/60;
+        return round($dateCheck);
+    }
 
 
 

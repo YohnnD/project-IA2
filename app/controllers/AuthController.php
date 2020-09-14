@@ -9,6 +9,7 @@
 		}
 
 		public function login() {
+
 			if($_POST) { // Si se enviaron datos por post
 				$usuario = new Usuario(); // Instancia del objeto 
 				$rol = new ROl();
@@ -31,8 +32,36 @@
 					$this->redirect('Home','index');
 				}
 				else {
-					$_SESSION['error'] = true;
-					$_SESSION['message'] = "Sus credenciales son incorrectas. Por favor, intente de nuevo.";
+				    date_default_timezone_set('America/Caracas');
+
+				    if(isset($_SESSION['fails_session']['int'])){
+				        if($_SESSION['fails_session']['status']=='block'){
+                            $dateCheck=Helpers::CheckDate($_SESSION['fails_session']['date']);
+                            if($dateCheck>=3){
+                                $_SESSION['fails_session']['status']='success';
+                                $_SESSION['fails_session']['int']=0;
+                                $this->withMessage();
+                            }else{
+                                $this->withMessage('Su ip fue bloquedas por demasiados intento,sera desbloqueda en:'.abs($dateCheck-3). " minutos");
+                            }
+
+                        }else{
+                            if($_SESSION['fails_session']['int']>=3 ){
+                                $_SESSION['fails_session']['status']='block';
+                                $_SESSION['fails_session']['date']=time(); //date('d-m-Y H:i:s');
+                                $_SESSION['fails_session']['number_block']= $_SESSION['fails_session']['number_block']+1; //date('d-m-Y H:i:s');
+                                $this->withMessage("Su ip fue bloquedas por demasiados intento,sera desbloqueda en 3 minutos.");
+                            }else{
+                                $_SESSION['fails_session']['int']=$_SESSION['fails_session']['int']+1;
+                                $this->withMessage();
+                            }
+                        }
+                    }else{
+                        $_SESSION['fails_session']['ip']=Helpers::getUserIpAddress();
+                        $_SESSION['fails_session']['int']=1;
+                        $_SESSION['fails_session']['status']='success';
+                        $this->withMessage();
+                    }
 					$this->redirect('Auth', 'index');
 				}
 			}
@@ -48,7 +77,38 @@
 		}
 
 		public function passwordRestore() {
-			
+            $usuario = new Usuario(); // Instancia del objeto
+            $usuario->setNickUsuario($_POST['nick_usuario']);
+            $usuario->setContraseniaUsuario($_POST['contrasenia_usuario']);
+            $usuarioSession = $usuario->login();
+            if($usuarioSession && is_object($usuarioSession)) {
+                $this->sendAjax(true);
+            }else{
+                $this->sendAjax(false);
+            }
 		}
+
+
+
+		public function withMessage($message=null){
+            $_SESSION['error'] = true;
+		    if(is_null($message)){
+                $_SESSION['message'] = "Sus credenciales son incorrectas. Por favor, intente de nuevo.";
+            }else{
+                $_SESSION['message'] = $message;
+            }
+        }
+
+
+        public function profile(){
+            if(isset($_GET['id'])) {
+                $rol = new Rol();
+                $roles=$rol->getAll();
+                $nickUsuario = $_GET['id'];
+                $usuario = new Usuario();
+                $register = $usuario->getOne($nickUsuario);
+                return $this->view('Perfil/Perfil',['usuario' => $register]);
+            }
+        }
 	}
 ?>

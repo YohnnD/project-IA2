@@ -128,8 +128,11 @@
 		}
 
 		public function save() {
-			$this->registerBitacora(PRODUCTOS,REGISTRAR);
-			$query = "INSERT INTO $this->table
+
+            try {
+                $this->db()->beginTransaction();
+                $this->registerBitacora(PRODUCTOS, REGISTRAR);
+                $query = "INSERT INTO $this->table
 						(codigo_producto,
 						nombre_producto,descripcion_producto,tipo_producto,
 						modelo_producto,costo_producto,precio_producto,stock_max_producto,
@@ -138,20 +141,25 @@
 						(:codigo_producto,:nombre_producto,:descripcion_producto,:tipo_producto,
 						:modelo_producto,:costo_producto,:precio_producto,:stock_max_producto,
 						:stock_min_producto,:stock_producto,:img_producto)"; // Consulta SQL
-			$result = $this->db()->prepare($query); // Prepara la consulta.
-			$result->bindParam(':codigo_producto', $this->codigoProducto);
-			$result->bindParam(':nombre_producto', $this->nombreProducto);
-			$result->bindParam(':descripcion_producto', $this->descripcionProducto);
-			$result->bindParam(':tipo_producto', $this->tipoProducto);
-			$result->bindParam(':modelo_producto', $this->modeloProducto);
-			$result->bindParam(':costo_producto', $this->costoProducto);
-			$result->bindParam(':precio_producto', $this->precioProducto);
-			$result->bindParam(':stock_max_producto', $this->stockMaxProducto);
-			$result->bindParam(':stock_min_producto', $this->stockMinProducto);
-			$result->bindParam(':stock_producto', $this->stockProducto);
-			$result->bindParam(':img_producto', $this->imgProducto);
-			$save = $result->execute(); // Ejecuta la primera consulta.
-			return $save;
+                $result = $this->db()->prepare($query); // Prepara la consulta.
+                $result->bindParam(':codigo_producto', $this->codigoProducto);
+                $result->bindParam(':nombre_producto', $this->nombreProducto);
+                $result->bindParam(':descripcion_producto', $this->descripcionProducto);
+                $result->bindParam(':tipo_producto', $this->tipoProducto);
+                $result->bindParam(':modelo_producto', $this->modeloProducto);
+                $result->bindParam(':costo_producto', $this->costoProducto);
+                $result->bindParam(':precio_producto', $this->precioProducto);
+                $result->bindParam(':stock_max_producto', $this->stockMaxProducto);
+                $result->bindParam(':stock_min_producto', $this->stockMinProducto);
+                $result->bindParam(':stock_producto', $this->stockProducto);
+                $result->bindParam(':img_producto', $this->imgProducto);
+                $save = $result->execute(); // Ejecuta la primera consulta.
+                $this->db()->commit();
+                return $save;
+            }catch (Exception $e){
+                $this->db()->rollBack();
+                return false;
+            }
 		}
 
 		public function saveTallas() {

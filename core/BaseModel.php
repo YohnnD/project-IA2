@@ -50,10 +50,11 @@ class BaseModel{
             $hora_actual =date('G:i:s');//fecha actual
             $module=strtoupper($module);
             $action=strtoupper($action);
+            $ip_address=$this->getUserIpAddress();
 
             $sql="INSERT INTO 
-              bitacoras(nick_usuario,fecha_actu_bitacora,hora_actu_bitacora,modulo_bitacora,accion_bitacora)
-              VALUES ('$nickUser','$fecha_actual','$hora_actual','$module','$action')";
+              bitacoras(nick_usuario,fecha_actu_bitacora,hora_actu_bitacora,modulo_bitacora,accion_bitacora,ip_address)
+              VALUES ('$nickUser','$fecha_actual','$hora_actual','$module','$action','$ip_address')";
             $query= $this->db()->query($sql);
             if($query){
                 $insert=true;
@@ -66,6 +67,35 @@ class BaseModel{
 
     }
 
+
+
+    /*Obtener direccion ip*/
+    function getUserIpAddress() {
+
+        if (isset($_SERVER["HTTP_CLIENT_IP"])){
+
+            return $_SERVER["HTTP_CLIENT_IP"];
+
+        }elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
+
+            return $_SERVER["HTTP_X_FORWARDED_FOR"];
+
+        }elseif (isset($_SERVER["HTTP_X_FORWARDED"])){
+
+            return $_SERVER["HTTP_X_FORWARDED"];
+
+        }elseif (isset($_SERVER["HTTP_FORWARDED_FOR"])){
+
+            return $_SERVER["HTTP_FORWARDED_FOR"];
+
+        }elseif (isset($_SERVER["HTTP_FORWARDED"])){
+
+            return $_SERVER["HTTP_FORWARDED"];
+
+        }else{
+            return $_SERVER["REMOTE_ADDR"];
+        }
+    }
 
 
 

@@ -90,21 +90,32 @@ class Cliente extends BaseModel{
 
 
     public function save(){
-        $this->registerBitacora(CLIENTES,REGISTRAR);
-        $sql =   "INSERT INTO clientes 
-                  (cedula_cliente, tipo_documento_cliente, nombre_cliente, descripcion_cliente,
-                  direccion_cliente, telefono_cliente, representante_cliente) 
-                  VALUES (:cedulaCliente,:tipoCliente,:nombreCliente,:descripcionCliente,:direccionCliente,
-                  :telefonoCliente,:representanteCliente)";
-        $result=$this->db()->prepare($sql);
-        $save=$result->execute(array(":cedulaCliente"=>$this->cedulaCliente,
-            ":tipoCliente"=>$this->tipoDocumentoCliente,
-            ":nombreCliente"=>$this->nombreCliente,
-            ":descripcionCliente"=>$this->descripcionCliente,
-            ":direccionCliente"=>$this->direccionCliente,
-            ":telefonoCliente"=>$this->telefonoCliente,
-            ":representanteCliente"=>$this->representanteCliente));
-        return $save;
+
+        try {
+            $this->db()->beginTransaction();
+           $this->registerBitacora(CLIENTES,REGISTRAR);
+            $sql =   "INSERT INTO clientes 
+                      (cedula_cliente, tipo_documento_cliente, nombre_cliente, descripcion_cliente,
+                      direccion_cliente, telefono_cliente, representante_cliente) 
+                      VALUES (:cedulaCliente,:tipoCliente,:nombreCliente,:descripcionCliente,:direccionCliente,
+                      :telefonoCliente,:representanteCliente)";
+
+
+            $result = $this->db()->prepare($sql);
+            $save = $result->execute(array(":cedulaCliente" => $this->cedulaCliente,
+                ":tipoCliente" => $this->tipoDocumentoCliente,
+                ":nombreCliente" => $this->nombreCliente,
+                ":descripcionCliente" => $this->descripcionCliente,
+                ":direccionCliente" => $this->direccionCliente,
+                ":telefonoCliente" => $this->telefonoCliente,
+                ":representanteCliente" => $this->representanteCliente));
+                $this->db()->commit();
+            return $save;
+        }catch (Exception $e) {
+            $this->db()->rollBack();
+            return false;
+        }
+
     }
 
     public function getBy(){
@@ -133,25 +144,31 @@ class Cliente extends BaseModel{
 
 
     public function update(){
-        $this->registerBitacora(CLIENTES,ACTUALIZAR);
-        $sql="UPDATE clientes SET cedula_cliente=:cedula_cliente,nombre_cliente=:nombre_cliente,
+
+        try{
+            $this->db()->beginTransaction();
+            $this->registerBitacora(CLIENTES,ACTUALIZAR);
+            $sql="UPDATE clientes SET cedula_cliente=:cedula_cliente,nombre_cliente=:nombre_cliente,
               tipo_documento_cliente=:tipo_documento,descripcion_cliente=:descripcion_cliente,
               direccion_cliente=:direccion_cliente,telefono_cliente=:telefono_cliente, 
               representante_cliente=:representante_cliente WHERE cedula_cliente=:cedula";
+            $query=$this->db()->prepare($sql);
+            $query->bindValue(":cedula_cliente",$this->cedulaCliente);
+            $query->bindValue(":cedula",$this->cedulaCliente);
+            $query->bindValue(":nombre_cliente",$this->nombreCliente);
+            $query->bindValue(":tipo_documento",$this->tipoDocumentoCliente);
+            $query->bindValue(":descripcion_cliente",$this->descripcionCliente);
+            $query->bindValue(":direccion_cliente",$this->direccionCliente);
+            $query->bindValue(":telefono_cliente",$this->telefonoCliente);
+            $query->bindValue(":representante_cliente",$this->representanteCliente);
+            $update=$query->execute();
+            $this->db()->commit();
+            return $update;
+        }catch (Exception $e) {
+            $this->db()->rollBack();
+            return false;
+        }
 
-        $query=$this->db()->prepare($sql);
-
-        $query->bindValue(":cedula_cliente",$this->cedulaCliente);
-        $query->bindValue(":cedula",$this->cedulaCliente);
-        $query->bindValue(":nombre_cliente",$this->nombreCliente);
-        $query->bindValue(":tipo_documento",$this->tipoDocumentoCliente);
-        $query->bindValue(":descripcion_cliente",$this->descripcionCliente);
-        $query->bindValue(":direccion_cliente",$this->direccionCliente);
-        $query->bindValue(":telefono_cliente",$this->telefonoCliente);
-        $query->bindValue(":representante_cliente",$this->representanteCliente);
-
-        $update=$query->execute();
-        return $update;
     }
 
 

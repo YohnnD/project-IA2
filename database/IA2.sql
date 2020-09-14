@@ -177,6 +177,7 @@ CREATE TABLE IF NOT EXISTS bitacoras(
 
     id_bitacora              SERIAL         NOT NULL,
     nick_usuario             VARCHAR(30)    NOT NULL,
+    ip_address               VARCHAR(30)    NOT NULL,
     fecha_actu_bitacora      DATE           NOT NULL,
     hora_actu_bitacora       TIME           NOT NULL,
     modulo_bitacora          VARCHAR(20)    NOT NULL,

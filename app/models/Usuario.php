@@ -136,6 +136,7 @@
 		}
 
 		public function login() {
+		    $register=null;
 			$query = "SELECT * FROM $this->table WHERE nick_usuario = '$this->nickUsuario'"; // Consulta SQL
 			$login = $this->db()->query($query); // Ejecuta la consulta SQL directamente
 			if($login && $login->rowCount() == 1) { // Si existe un registro...
@@ -152,6 +153,9 @@
 			else {
 				$register = null;
 			}
+
+
+
 			return $register;
 		}
 
@@ -209,5 +213,16 @@
             }
             return $resultSet; // Finalmente retornla el arreglo con los elementos.
 		}
+
+
+
+
+
+
+
+
+
+
+
 	}
 ?>

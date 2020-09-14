@@ -304,19 +304,27 @@ class Pedido extends BaseModel
 
     public function save()
     {
-        $this->registerBitacora(PEDIDOS, REGISTRAR);
-        $sql = "INSERT INTO
+        try {
+            $this->db()->beginTransaction();
+            $this->registerBitacora(PEDIDOS, REGISTRAR);
+            $sql = "INSERT INTO
                         pedidos(codigo_pedido, cedula_cliente, status_pedido, descripcion_pedido, fecha_pedido, fecha_entrega_pedido)
                           VALUES(:codigo_pedido,:cedula_cliente,:status_pedido,:descripcion_pedido,:fecha_pedido,:fecha_entrega_pedido)";
-        $query = $this->db()->prepare($sql);
-        $query->bindValue(':codigo_pedido', $this->codigoPedido);
-        $query->bindValue(':cedula_cliente', $this->cedulaCliente);
-        $query->bindValue(':status_pedido', $this->statusPedido);
-        $query->bindValue(':descripcion_pedido', $this->descripcionPedido);
-        $query->bindValue(':fecha_pedido', $this->fechaPedido);
-        $query->bindValue(':fecha_entrega_pedido', $this->fechaEntregaPedido);
-        $save = $query->execute();
-        return $save;
+            $query = $this->db()->prepare($sql);
+            $query->bindValue(':codigo_pedido', $this->codigoPedido);
+            $query->bindValue(':cedula_cliente', $this->cedulaCliente);
+            $query->bindValue(':status_pedido', $this->statusPedido);
+            $query->bindValue(':descripcion_pedido', $this->descripcionPedido);
+            $query->bindValue(':fecha_pedido', $this->fechaPedido);
+            $query->bindValue(':fecha_entrega_pedido', $this->fechaEntregaPedido);
+            $save = $query->execute();
+            $this->db()->commit();
+            return $save;
+        }catch (Exception $e){
+            $this->db()->rollBack();
+            return false;
+        }
+
     }
 
     public function getPrecioServicio()

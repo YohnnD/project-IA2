@@ -38,6 +38,7 @@
                                     <thead>
                                         <tr>
                                             <th>Usuario</th>
+                                            <th>IP</th>
                                             <th>Módulo</th>
                                             <th>Acción</th>
                                             <th>Fecha</th>
@@ -49,6 +50,7 @@
                                         <?php foreach ($bitacoras as $bitacora): ?>
                                         <tr>
                                             <td><?= $bitacora->nick_usuario ?></td>
+                                            <td><?= $bitacora->ip_address ?></td>
                                             <td><?= $bitacora->modulo_bitacora ?></td>
                                             <td><?= $bitacora->accion_bitacora ?></td>
                                             <td><?= $bitacora->fecha_actu_bitacora ?></td>
