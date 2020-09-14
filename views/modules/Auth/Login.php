@@ -14,13 +14,14 @@
     <title>Inversiones A2 - Iniciar Sesión</title>
 </head>
 <body class="login-view login-background">
-    
+
     <main>
         <div class="container">
             <div class="row">
                 <div class="col s12 m8 offset-m2 animated bounceInDown">
                     <form action="<?php echo Helpers::url('Auth', 'login'); ?>" method="post" class="card bg-light-opacity-8">
                         <div class="card-header center-align">
+                            <i class="icon-assignment_ind" style="display: block; margin:auto; font-size: 60px"></i>
                             <h5>Iniciar Sesión</h5>
                         </div>
                         <div class="card-content row">
@@ -42,6 +43,9 @@
                                 <i class="icon-lock prefix"></i>
                                 <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" class="validate" required>
                                 <label for="contrasenia_usuario">Contraseña</label>
+                            </div>
+                            <div class="col s12">
+                                <a href="<?php echo Helpers::url('Auth', 'recoverPasswordView'); ?>" class="black-text" style="margin-left: 5px">¿Olvidó su Contraseña?</a>
                             </div>
                         </div>
                         <div class="card-action center-align">
