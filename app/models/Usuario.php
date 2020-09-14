@@ -67,8 +67,112 @@
 			$this->contraseniaUsuario = password_hash($contraseniaUsuario, PASSWORD_DEFAULT, array('cost'=>12));
 		}
 
+		public function verifyEmail(){
+            $sql = "SELECT * FROM $this->table WHERE email_usuario = '$this->emailUsuario'";
+            $query = $this->db()->query($sql);
+            if($query){ // Evalua la cansulta
+                if($query->rowCount() != 0) { // Si existe al menos un registro...
+                    while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
+                        $resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
+                    }
+                }
+                else{ // Sino...
+                    $resultSet = null; // Almacena null
+                }
+            }
+            return $resultSet; // Finalmente retorna el arreglo con los elementos.
+        }
+
+        public function sendEmail(){
+			$sql = "SELECT * FROM $this->table WHERE email_usuario = '$this->emailUsuario'";
+			$query = $this->db()->query($sql);
+			$result = $query->fetch(PDO::FETCH_OBJ);
+
+			$cadena = $result->nombre_usuario.$result->apellido_usuario.rand(1,9999999).date('Y-m-d');
+			$token = hash("sha512",$cadena);
+
+			$insert = "INSERT INTO tokens (token,revoked,nick_usuario) VALUES (:token,:revoked,:nick_usuario) "; // COnsulta SQL
+			$register = $this->db()->prepare($insert);
+			$revoked = true;
+
+			$register->bindParam(':token',$token);
+			$register->bindParam(':revoked',$revoked);
+			$register->bindParam(':nick_usuario',$result->nick_usuario);
+
+			$save = $register->execute(); // Ejecuta la consulta
+
+			$to = 'angelmserranog@gmail.com';
+			//$to = $this->emailUsuario;
+			$subject = "Recuperar Contrasena";
+			$headers =  'MIME-Version: 1.0' . "\r\n";
+			$headers .= 'From: Your name <info@address.com>' . "\r\n";
+			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+			$message = "
+				<html>
+				<head>
+				<title>Recuperar Cuenta Inversiones IA2 </title>
+				</head>
+				<body>
+				<h1>Recuperar Cuenta Inversiones IA2</h1>
+				<p>Presione en el boton para reestablecer su contraseña</p>
+					<a href='http://localhost/project-IA2/Auth/recoverAccount/$token' class='btn btn-large btn-rounded a2-green-gradient waves-effect effect-light'>
+							Recuperar Contraseña
+						   <i class='icon-send right'></i>
+					 </a>
+				</body>
+				</html>";
+
+			mail($to, $subject, $message, $headers);
+
+			return true;
+
+		}
+
+		public function recoverAccount($token){
+			$sql = "SELECT * FROM tokens WHERE token = '$token' AND revoked = 'true'";
+			$query = $this->db()->query($sql);
+
+			if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
+				$result = $row;
+			}
+
+			if($row === true){
+				return $row;
+			}else{
+				return $row;
+			}
+		}
+
+		public function updateToken($token){
+			$query = "UPDATE tokens SET 
+						revoked = false
+						WHERE token = '$token'";
+			$result = $this->db()->prepare($query); // Prepara la consulta SQL
+			// Limpia los parametros
+			$update = $result->execute(); // Ejecuta la consulta
+			return $update;
+		}
+
+		public function updatePassword($token){
+
+			$sql = "SELECT * FROM tokens WHERE token = '$token'";
+			$query = $this->db()->query($sql);
+			$row = $query->fetch(PDO::FETCH_OBJ);
+
+			$query = "UPDATE $this->table SET 
+						contrasenia_usuario = :contrasenia_usuario
+						WHERE nick_usuario = '$row->nick_usuario'";
+
+			$result = $this->db()->prepare($query); // Prepara la consulta SQL
+			// Limpia los parametros
+			$result->bindParam(':contrasenia_usuario',$this->contraseniaUsuario);
+			$update = $result->execute(); // Ejecuta la consulta
+			return $update;
+		}
+
 		public function save() {
-			$this->registerBitacora(USUARIOS,REGISTRAR);	
+			$this->registerBitacora(USUARIOS,REGISTRAR);
 			$query = "INSERT INTO $this->table (nick_usuario,nombre_usuario,apellido_usuario,email_usuario,contrasenia_usuario,id_rol) VALUES (:nick_usuario,:nombre_usuario,:apellido_usuario,:email_usuario,:contrasenia_usuario,:id_rol) "; // COnsulta SQL
 			$result = $this->db()->prepare($query); // Prepara la consulta SQL
 			// Limpia los parametros
@@ -83,7 +187,7 @@
 		}
 
 		public function update() {
-			$this->registerBitacora(USUARIOS,ACTUALIZAR);			
+			$this->registerBitacora(USUARIOS,ACTUALIZAR);
 			$query = "UPDATE $this->table SET 
 						nombre_usuario = :nombre_usuario,
 						apellido_usuario = :apellido_usuario, email_usuario = :email_usuario,
@@ -102,9 +206,9 @@
 		}
 
 		public function delete() {
-			$this->registerBitacora(USUARIOS,ELIMINAR);			
+			$this->registerBitacora(USUARIOS,ELIMINAR);
 			$query = "DELETE FROM $this->table WHERE nick_usuario = '$this->nickUsuario'"; // Consulta SQL
-			$delete = $this->db()->query($query); 
+			$delete = $this->db()->query($query);
 			return $delete;
 		}
 
@@ -126,7 +230,7 @@
 		}
 
 		public function getOne($nickUsuario) {
-			$this->registerBitacora(USUARIOS,DETALLES);						
+			$this->registerBitacora(USUARIOS,DETALLES);
 			$sql = "SELECT * FROM $this->table INNER JOIN roles ON roles.id_rol = usuarios.id_rol WHERE usuarios.nick_usuario = '$nickUsuario'"; // Consulta SQL
 			$query = $this->db()->query($sql); // Ejecuta la consulta SQL
             if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
@@ -139,7 +243,7 @@
 			$query = "SELECT * FROM $this->table WHERE nick_usuario = '$this->nickUsuario'"; // Consulta SQL
 			$login = $this->db()->query($query); // Ejecuta la consulta SQL directamente
 			if($login && $login->rowCount() == 1) { // Si existe un registro...
-				if($usuario = $login->fetch(PDO::FETCH_OBJ)) { 
+				if($usuario = $login->fetch(PDO::FETCH_OBJ)) {
 					$verify = password_verify($this->contraseniaUsuario,$usuario->contrasenia_usuario); // Verifica la contraseña
                     if($verify){ // Si la verificacion es exitosa
                         $register = $usuario;
@@ -190,11 +294,11 @@
 		}
 
 		public function changePassword() {
-			
+
 		}
 
 		public function getBitacora() {
-			$this->registerBitacora(BITACORA,CONSULTAR);			
+			$this->registerBitacora(BITACORA,CONSULTAR);
 			$sql = "SELECT * FROM bitacoras ORDER BY hora_actu_bitacora DESC";
             $query = $this->db()->query($sql);
             if($query){ // Evalua la cansulta

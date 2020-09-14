@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS servicios(
     precio_servicio        FLOAT            NOT NULL,
 
     costo_servicio         FLOAT            NOT NULL,
-    
+
 
     PRIMARY KEY (id_servicio)
 );
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS productos(
     stock_min_producto     INT              NOT NULL,
     img_producto           VARCHAR(256),
 
-    PRIMARY KEY (codigo_producto) 
+    PRIMARY KEY (codigo_producto)
 );
 
 
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS materiales(
     descripcion_material   TEXT,
     unidad_material        VARCHAR(5)       NOT NULL,
     precio_material        FLOAT            NOT NULL,
-    
+
     PRIMARY KEY (id_material)
 );
 
@@ -161,12 +161,23 @@ CREATE TABLE IF NOT EXISTS factura_ventas(
     PRIMARY KEY (codigo_factura)
 );
 
+CREATE TABLE IF NOT EXISTS tokens(
+
+ 	id_token                 SERIAL         NOT NULL,
+    token                    VARCHAR(255)   NOT NULL,
+    revoked                  BOOLEAN        NOT NULL,
+    create_at                DATE           NOT NULL,
+    nick_usuario             VARCHAR(30)    NOT NULL,
+
+    PRIMARY KEY (id_token)
+);
+
 CREATE TABLE IF NOT EXISTS usuarios(
 
- 	  nick_usuario             VARCHAR(30)    NOT NULL,
+ 	nick_usuario             VARCHAR(30)    NOT NULL,
     nombre_usuario           VARCHAR(20)    NOT NULL,
     apellido_usuario         VARCHAR(20)    NOT NULL,
-    email_usuario            VARCHAR(40),    
+    email_usuario            VARCHAR(40),
     contrasenia_usuario      VARCHAR(255)   NOT NULL,
     id_rol                   INT            NOT NULL,
 
@@ -402,4 +413,4 @@ ALTER TABLE    bitacoras                ADD CONSTRAINT    Fkusuario        FOREI
 ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkroles          FOREIGN KEY    (id_rol)            REFERENCES    roles(id_rol)                    ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkpermiso        FOREIGN KEY    (id_permiso)        REFERENCES    permisos(id_permiso)             ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkmodulo         FOREIGN KEY    (id_modulo)         REFERENCES    modulos(id_modulo)               ON UPDATE CASCADE ON DELETE CASCADE;
-
+ALTER TABLE    tokens                   ADD CONSTRAINT    Fkusuario1       FOREIGN KEY    (nick_usuario)      REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;

@@ -8,9 +8,63 @@
 			$this->view('Auth/Login');
 		}
 
+		public function recoverPasswordView (){
+		    $this->view('Auth/Recover.Password');
+        }
+
+        public function verifyEmail(){
+			$email = $_POST['email'];
+			$usuario = new Usuario ();
+			$usuario->setEmailUsuario($email);
+
+			$response= $usuario->verifyEmail();
+			$this->sendAjax($response);
+
+		}
+
+		public function recoverPassword (){
+			$email = $_POST['email'];
+			$usuario = new Usuario();
+
+			$usuario->setEmailUsuario($email);
+			$usuario->sendEmail();
+
+			$this->redirect('Auth', 'index');
+
+		}
+
+		public function recoverAccount (){
+			$token = $_GET['id'];
+			$user = new Usuario();
+
+			$result = $user->recoverAccount($token);
+
+			//var_dump($result);
+			if($result){
+				$user->updateToken($token);
+				$this->view('Auth/Recover.Account', ['token' => $token]);
+			}else{
+				$this->view('Auth/Recover.Password', ['message' => 'Este Token ya fue revocado...']);
+
+			}
+		}
+
+		public function updatePassword (){
+			$password = $_POST['repeat_contrasenia_usuario'];
+			$token = $_POST['token'];
+
+			$usuario = new Usuario();
+			$usuario->setContraseniaEncriptada($password);
+
+			$response= $usuario->updatePassword($token);
+
+			$this->redirect('Auth', 'index');
+
+		}
+
 		public function login() {
 			if($_POST) { // Si se enviaron datos por post
-				$usuario = new Usuario(); // Instancia del objeto 
+				$usuario = new Usuario(); // Instancia del objeto
 				$rol = new ROl();
 				// Se setean los datos
 				$usuario->setNickUsuario($_POST['nick_usuario']);
@@ -25,8 +79,8 @@
 					$_SESSION['permissions'] = $PermisosXModulos;
 					$_SESSION['error'] = false;
 					$_SESSION['message'] = "Log in successfully";
-					// $_SESSION['permissions'] = 
-					// $this->registerBiracora(LOGIN, LOGIN);	
+					// $_SESSION['permissions'] =
+					// $this->registerBiracora(LOGIN, LOGIN);
 					$usuario->registerBitacora(USUARIOS,INICIAR_SESION);
 					$this->redirect('Home','index');
 				}
@@ -48,7 +102,7 @@
 		}
 
 		public function passwordRestore() {
-			
+
 		}
 	}
 ?>
