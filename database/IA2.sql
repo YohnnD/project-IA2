@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS clientes(
     descripcion_cliente    TEXT,
     direccion_cliente      TEXT,
     -- telefono_cliente       VARCHAR(11)      NOT NULL,
-    telefono_cliente       VARCHAR(255)      NOT NULL,
+    telefono_cliente       VARCHAR(255)     NOT NULL,
     representante_cliente  VARCHAR(40)      NOT NULL,
 
     PRIMARY KEY (cedula_cliente)
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS servi_pedidos(
     id_tela                INT              NOT NULL,
     cantidad_prenda        INT              NOT NULL,
     cantidad_medida        INT              NOT NULL,
-    precio_servi_pedido   FLOAT            NOT NULL,
+    precio_servi_pedido   FLOAT             NOT NULL,
     PRIMARY KEY (id_servi_pedido)
 );
 
@@ -111,8 +111,8 @@ CREATE TABLE IF NOT EXISTS pro_pedidos(
 
     codigo_pedido          VARCHAR(10)       NOT NULL,
     codigo_producto        VARCHAR(10)       NOT NULL,
-    cant_pro_pedido          INT               NOT NULL,
-    precio_pro_pedido        FLOAT            NOT NULL,
+    cant_pro_pedido        INT               NOT NULL,
+    precio_pro_pedido      FLOAT             NOT NULL,
     PRIMARY KEY (codigo_pedido, codigo_producto)
 );
 

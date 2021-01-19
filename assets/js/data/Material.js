@@ -2,7 +2,7 @@
 const url="http://localhost/project-IA2/Material/"; // Constante global para ser usadaen las rutas de ajax
 
 $(document).ready(function () {
- 
+
     // Registro del Material
 
     $('#register').submit(function (e) { //recibe el parametro register por id del formulario
@@ -78,14 +78,14 @@ $(document).ready(function () {
     // Modificar Material
     $('#update').submit(function (e) { // recibe el parametro update por el id del formulario
         e.preventDefault();
-        
+
         //Datos de los input en la vista
         var id_material = $('#id_material').val();
         var nombre_material = $('#nombre_material').val();
         var unidad_material = $('#unidad_material').val();
         var precio_material = $('#precio_material').val();
         var descripcion_material = $('#descripcion_material').val();
-        
+
         // Mostrar alerta de confirmacion para modificar datos
         swal({
             title: "¿Quiere modificar la información del material " + nombre_material + "?",
@@ -116,13 +116,13 @@ $(document).ready(function () {
                             nombre_material : nombre_material,
                             unidad_material: unidad_material,
                             precio_material: precio_material,
-                            descripcion_material: descripcion_material },           
+                            descripcion_material: descripcion_material },
                     url: url + "update",
-                    
+
                     beforeSend: function(){
                         console.log("Sending data...");
                     },
-        
+
                     success: function(data) {
                         console.log(data);
                         swal({
@@ -139,11 +139,11 @@ $(document).ready(function () {
                             timer: 3000
                         })
                         .then(redirect => {
-                            location.href = url + "getAll";
+                            location.reload();
                         })
                     },
                     error: function(err) {
-        
+
                         console.log(err);
                         swal({
                             title: "¡Oh no!",
@@ -174,11 +174,11 @@ $(document).ready(function () {
 
     // Eliminar
     $('#delete').click(function () { // recibe el parametro eliminar por el id del formulario
-        
+
         // Datos de los input en la vista
         var id_material = $('#id_material').val();
         var nombre_material = $('#nombre_material').val();
-        
+
         // Mostrar alerta de confirmacion para eliminar datos
         swal({
             title: "¿Quiere eliminar el material "+nombre_material+"?",
@@ -297,7 +297,7 @@ function buscar(){
                         value: true,
                         visible: true,
                         className: "green"
-    
+
                     },
                     cancel: {
                         text: "Cancelar",
@@ -313,15 +313,15 @@ function buscar(){
 
                         location.href = url + "details/" + id_material;
 
-                }else {                  
-                        setTimeout('document.location.reload()', 0);                 
+                }else {
+                        setTimeout('document.location.reload()', 0);
                 }
             });
- 
+
            }
         },
            error:function(err){
                console.log(err);
-           }                    
-   });   
+           }
+   });
 };
