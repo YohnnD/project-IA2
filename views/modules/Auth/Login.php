@@ -21,7 +21,7 @@
                 <div class="col s12 m8 offset-m2 animated bounceInDown">
                     <form action="<?php echo Helpers::url('Auth', 'login'); ?>" method="post" class="card bg-light-opacity-8">
                         <div class="card-header center-align">
-                            <i class="icon-assignment_ind" style="display: block; margin:auto; font-size: 60px"></i>
+                            <img src="<?php echo BASE_URL ?>assets/images/user-black.svg" style="width: 75px; height: 75px; margin-top: 1rem;" alt="" srcset="">
                             <h5>Iniciar Sesión</h5>
                         </div>
                         <div class="card-content row">
@@ -45,12 +45,14 @@
                                 <label for="contrasenia_usuario">Contraseña</label>
                             </div>
                             <div class="col s12">
-                                <a href="<?php echo Helpers::url('Auth', 'recoverPasswordView'); ?>" class="black-text" style="margin-left: 5px">¿Olvidó su Contraseña?</a>
+                                <p class="center-align">
+                                    <a href="<?php echo Helpers::url('Auth', 'recoverPasswordView'); ?>" class="secondary-dark-text" style="margin-left: 5px">¿Olvidó su Contraseña?</a>
+                                </p>
                             </div>
                         </div>
-                        <div class="card-action center-align">
-                            <!-- <button id="ingresar" class="btn btn-large btn-rounded a2-green-gradient waves-effect effect-light">Entrar <i class="icon-send right"></i></button> -->
-                            <button type="submit" id="ingresar" class="btn btn-large btn-rounded a2-green-gradient waves-effect effect-light">
+                        <div class="card-footer center-align">
+                            <!-- <button id="ingresar" class="btn btn-large btn-rounded primary-gradient waves-effect effect-light">Entrar <i class="icon-send right"></i></button> -->
+                            <button type="submit" id="ingresar" class="btn btn-large btn-rounded primary-gradient waves-effect effect-light">
                                 Entrar
                                 <i class="icon-send right"></i>
                             </button>

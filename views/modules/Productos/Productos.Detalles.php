@@ -32,7 +32,7 @@
                         <div class="card-header center-align">
                             <h4>Detalles del Producto</h4>
                         </div>
-                        <div class="card-up a2-green-gradient"></div>
+                        <div class="card-up primary-gradient"></div>
                         <div class="avatar avatar-centered">
                             <?php if($producto->img_producto != null || $producto->img_producto != ""): ?>
                             <img src="<?php echo BASE_URL; ?>storage/productos/<?php echo $producto->img_producto; ?>" alt="" srcset="">

@@ -12,7 +12,7 @@
 
                         </div>
                         <div class="card-footer center-align">
-                            <a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn a2-green btn-rounded waves-effect waves-light">Detalles<i class="icon-find_in_page right"></i></a>
+                            <a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn primary btn-rounded waves-effect waves-light">Detalles<i class="icon-find_in_page right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
 
                         </div>
                         <div class="card-footer center-align">
-                            <a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn a2-green btn-rounded waves-effect waves-light">Detalles<i class="icon-find_in_page right"></i></a>
+                            <a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn primary btn-rounded waves-effect waves-light">Detalles<i class="icon-find_in_page right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
 
                         </div>
                         <div class="card-footer center-align">
-                            <a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn a2-green btn-rounded waves-effect waves-light">Detalles<i class="icon-find_in_page right"></i></a>
+                            <a href="<?php echo Helpers::url('Producto','details'); ?>" class="btn primary btn-rounded waves-effect waves-light">Detalles<i class="icon-find_in_page right"></i></a>
                         </div>
                     </div>
                 </div>

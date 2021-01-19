@@ -32,7 +32,7 @@
                         <div class="card-header center-align">
                             <h4>Detalles del Usuario</h4>
                         </div>
-                        <div class="card-up a2-green-gradient">
+                        <div class="card-up primary-gradient">
                         </div>
                         <div class="avatar avatar-centered">
                             <img src="<?php echo BASE_URL; ?>assets/images/matthew.png" alt="" srcset="">
