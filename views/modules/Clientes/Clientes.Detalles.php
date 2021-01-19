@@ -40,6 +40,7 @@
                                     <option value="" disabled>Elegir</option>
                                     <option value="" <?php if($cliente->tipo_documento_cliente=='V') echo "selected";?>>V</option>
                                     <option value=""  <?php if($cliente->tipo_documento_cliente=='R') echo "selected"?>>R</option>
+                                    <option value=""  <?php if($cliente->tipo_documento_cliente=='J') echo "selected"?>>J</option>
                                 </select>
                             </div>
                             <div class="input-field col s9 m4 xl4">
@@ -70,7 +71,7 @@
                                 <i class="icon-person prefix"></i>
                                 <input type="text" name="representante_cliente" id="representante_cliente" class="validate text-validate" value="<?php echo $cliente->representante_cliente; ?>" disabled required>
                                 <label for="representante_cliente">Representante</label>
-                            </div>                
+                            </div>
                         </div>
                         <div class="card-footer center-align">
                             <div class="row" style="margin-bottom: 0">

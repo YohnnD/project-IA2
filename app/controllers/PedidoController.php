@@ -104,6 +104,7 @@ class PedidoController extends BaseController
         $pedido = new Pedido();
         $pedido->setCedulaCliente($cedulaCliente);
         $cliente = $pedido->checkCedula();
+        isset($cliente->nombre_cliente)?$cliente->nombre_cliente=Helpers::aesDecrypt($cliente->nombre_cliente):null;
         $this->sendAjax($cliente);
     }
 
@@ -236,7 +237,7 @@ class PedidoController extends BaseController
         header('Location:http://localhost/project-IA2/Pedido/details/' . $codigoPedido);
     }
 
-   
+
 
 }
 

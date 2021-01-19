@@ -58,7 +58,7 @@
                                            title="Solo puede usar números del 0-9 y V, J ó E" required disabled>
                                     <label for="nombre_cliente">Nombre</label>
                                 </div>
-            
+
                                 <div class="input-field col s12 m12">
                                     <i class="icon-person prefix"></i>
                                     <input type="text" name="representante_cliente" id="representante_cliente" class="validate"
@@ -137,7 +137,7 @@
 
                         <div class="input-field col s12 m12">
                             <i class="icon-person prefix"></i>
-                            <input type="text" name="representante_cliente" id="representante_cliente" class="validate"
+                            <input type="text" name="representante_cliente" id="representante_cliente" class="validate validate-input" name_field="Cedula del Cliente"
                                    minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
                                    title="Solo puede usar números del 0-9 y V, J ó E" required disabled>
                             <label for="representante_cliente">Representante</label>
@@ -149,13 +149,13 @@
                     <form method="get" action="" class="row" id="form-pedido">
                         <div class="input-field col s12 m6">
                             <i class="icon-insert_invitation prefix"></i>
-                            <input type="text" name="fecha_pedido" id="fecha_pedido" class="datepicker">
+                            <input type="text" name="fecha_pedido" id="fecha_pedido" class="datepicker validate-input" name_field="Fecha de Pedido">
                             <label for="fecha_pedido">Fecha del Pedido</label>
                         </div>
 
                         <div class="input-field col s12 m6">
                             <i class="icon-event_available prefix"></i>
-                            <input type="text" name="fecha_entrega_pedido" id="fecha_entrega_pedido" class="datepicker">
+                            <input type="text" name="fecha_entrega_pedido" id="fecha_entrega_pedido"  name_field="Fecha de Entrega" class="datepicker  validate-input">
                             <label for="fecha_entrega_pedido">Fecha de Entrega</label>
                         </div>
 

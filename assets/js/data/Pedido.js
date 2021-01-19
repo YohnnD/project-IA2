@@ -3,6 +3,45 @@ $(document).ready(function () {
 
     var url = localStorage.getItem('url');
 
+
+    localStorage.setItem('pedido',JSON.stringify({
+        cedula_cliente:'',
+        status_pedido:'',
+        fecha_pedido:'',
+        fecha_entrega_pedido:'',
+        descripcion_pedido:''
+    }));
+
+
+    let validationInput=(className)=>{
+        let field=document.getElementsByClassName(className);
+        let band=false;
+        for(var i=0;i<field.length;i++){
+
+            if(field[i].value==''){
+                swal({
+                    title: "Información",
+                    text: "Debe completar el campo " +field[i].getAttribute('name_field') +"." ,
+                    icon: "info",
+                    button: {
+                        text: "Esta bien",
+                        className: "blue-gradient"
+                    },
+                });
+
+                band=true;
+                break;
+            }
+
+        }
+
+        return band;
+    }
+
+
+
+
+
     $('#add-services').click(function () {
         var texto = '';
         $.ajax({
@@ -90,7 +129,6 @@ $(document).ready(function () {
 
 
 
-
     $('#register-service').submit(function (e) {
         e.preventDefault();
         var servicios_seleted = [];
@@ -155,7 +193,7 @@ $(document).ready(function () {
     });
 
 
-    $('#cedula_cliente').blur(function () {
+    $('#cedula_cliente').change(function () {
         console.log(url);
         var cedula_cliente = $('#cedula_cliente').val();
         $.ajax({
@@ -181,6 +219,18 @@ $(document).ready(function () {
                     $('#cedula_cliente').val(response.cedula_cliente);
                     $('#nombre_cliente').val(response.nombre_cliente);
                     $('#representante_cliente').val(response.representante_cliente);
+
+
+                    let pedido=JSON.parse(localStorage.getItem('pedido'));
+
+
+
+
+                    pedido.cedula_cliente=response.cedula_cliente;
+                    localStorage.setItem('pedido',JSON.stringify(pedido));
+
+
+
 
                     $('#cedula_cliente').removeAttr('disabled', '');
                     M.updateTextFields();
@@ -260,14 +310,43 @@ $(document).ready(function () {
     $('#form-pedido').submit(function (e) {
         e.preventDefault();
 
-
-        // Getting form data
-
-        var cedula_cliente = $('#cedula_cliente').val();
         var status_pedido = 'En proceso';
         var fecha_pedido = $('#fecha_pedido').val();
         var fecha_entrega_pedido = $('#fecha_entrega_pedido').val();
         var descripcion_pedido = $('#descripcion_pedido').val();
+
+
+       let data=validationInput('validate-input');
+
+
+       if(!data){
+           let pedido=JSON.parse(localStorage.getItem('pedido'));
+           pedido.status_pedido=status_pedido;
+           pedido.fecha_pedido=fecha_pedido;
+           pedido.fecha_entrega_pedido=fecha_entrega_pedido;
+           pedido.descripcion_pedido=descripcion_pedido;
+           localStorage.setItem('pedido',JSON.stringify(pedido));
+                       $('#form-consul-client :input').attr('disabled', 'disabled');
+                       $('#form-pedido :input').attr('disabled', 'disabled');
+                       $('#two-tabs').removeClass('disabled');
+                       $('#three-tabs').removeClass('disabled');
+                       $('ul.tabs').tabs();
+                       $('ul.tabs').tabs("select", "two");
+       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         /* var id_servicio = $('#id_servicio').val();
@@ -282,60 +361,60 @@ $(document).ready(function () {
  */
 
         // Sending data by AJAX
-        $.ajax({
-            method: "POST",
-            dataType: "json",
-            data: {
-                cedula_cliente: cedula_cliente,
-                status_pedido: status_pedido,
-                fecha_pedido: fecha_pedido,
-                descripcion_pedido: descripcion_pedido,
-                fecha_entrega_pedido: fecha_entrega_pedido
-            },
-            url: url+"Pedido/register",
-            beforeSend: function () {
-
-                console.log("Sending data...");
-            },
-            success: function (data) {
-                $('#codigo_pedido').val(data);
-                swal({
-                    title: "¡Bien hecho!",
-                    text: "Datos generales del pedidos se han registrado con el codigo" + data + " exitosamente.(1/4)",
-                    icon: "success",
-                    button: {
-                        text: "Aceptar",
-                        visible: true,
-                        value: true,
-                        className: "green",
-                        closeModal: true
-                    },
-                    timer: 3000
-                }).then(function () {
-                    $('#form-consul-client :input').attr('disabled', 'disabled');
-                    $('#form-pedido :input').attr('disabled', 'disabled');
-                    $('#two-tabs').removeClass('disabled');
-                    $('#three-tabs').removeClass('disabled');
-                    $('ul.tabs').tabs();
-                    $('ul.tabs').tabs("select", "two");
-                });
-            },
-            error: function (err) {
-                console.log(err);
-                swal({
-                    title: "¡Oh no!",
-                    text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
-                    icon: "error",
-                    button: {
-                        text: "Aceptar",
-                        visible: true,
-                        value: true,
-                        className: "green",
-                        closeModal: true
-                    }
-                });
-            }
-        });
+        // $.ajax({
+        //     method: "POST",
+        //     dataType: "json",
+        //     data: {
+        //         cedula_cliente: cedula_cliente,
+        //         status_pedido: status_pedido,
+        //         fecha_pedido: fecha_pedido,
+        //         descripcion_pedido: descripcion_pedido,
+        //         fecha_entrega_pedido: fecha_entrega_pedido
+        //     },
+        //     url: url+"Pedido/register",
+        //     beforeSend: function () {
+        //
+        //         console.log("Sending data...");
+        //     },
+        //     success: function (data) {
+        //         $('#codigo_pedido').val(data);
+        //         swal({
+        //             title: "¡Bien hecho!",
+        //             text: "Datos generales del pedidos se han registrado con el codigo" + data + " exitosamente.(1/4)",
+        //             icon: "success",
+        //             button: {
+        //                 text: "Aceptar",
+        //                 visible: true,
+        //                 value: true,
+        //                 className: "green",
+        //                 closeModal: true
+        //             },
+        //             timer: 3000
+        //         }).then(function () {
+        //             $('#form-consul-client :input').attr('disabled', 'disabled');
+        //             $('#form-pedido :input').attr('disabled', 'disabled');
+        //             $('#two-tabs').removeClass('disabled');
+        //             $('#three-tabs').removeClass('disabled');
+        //             $('ul.tabs').tabs();
+        //             $('ul.tabs').tabs("select", "two");
+        //         });
+        //     },
+        //     error: function (err) {
+        //         console.log(err);
+        //         swal({
+        //             title: "¡Oh no!",
+        //             text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+        //             icon: "error",
+        //             button: {
+        //                 text: "Aceptar",
+        //                 visible: true,
+        //                 value: true,
+        //                 className: "green",
+        //                 closeModal: true
+        //             }
+        //         });
+        //     }
+        // });
     });
 
 
@@ -806,6 +885,12 @@ $(document).ready(function () {
             }
         }
     });
+
+
+
+
+
+
 
 
 });

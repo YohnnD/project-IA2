@@ -7,7 +7,7 @@ $(document).ready(function () {
 
 
 
-    $('#cedula_cliente').blur(function () {
+    $('#cedula_cliente').change(function () {
         var cedula_cliente = $('#cedula_cliente').val();
         $.ajax({
             method: "POST",
@@ -128,7 +128,7 @@ $(document).ready(function () {
         $('#form-details-client :input').removeAttr('disabled','');
         $('#modify').html("Guardar Cambios <i class='icon-save right'></i>");
         $('#form-details-client').attr('id','form-update');
-
+        $('select').formSelect();
 
         $('#form-update').submit(function (e) {
             e.preventDefault();

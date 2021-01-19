@@ -47,7 +47,7 @@
                         <i class="icon-person prefix"></i>
                         <input type="text" name="nombre_cliente" id="nombre_cliente" class="validate" minlength="5"
                                maxlength="15" pattern="[VvJjEe0-9]+" title="Solo puede usar números del 0-9 y V, J ó E" required disabled
-                               value="<?php echo $pedido->nombre_cliente; ?>">
+                               value="<?php echo Helpers::aesDecrypt($pedido->nombre_cliente); ?>">
                         <label for="nombre_cliente">Nombre</label>
                     </div>
 
@@ -65,7 +65,7 @@
                     <i class="icon-phone prefix"></i>
                     <input type="text" name="phone" id="phone" class="validate"  pattern="[VvJjEe0-9]+"
                            title="Solo puede usar números del 0-9 y V, J ó E" required
-                           value="<?php echo $pedido->telefono_cliente; ?>" disabled>
+                           value="<?php echo Helpers::aesDecrypt($pedido->telefono_cliente); ?>" disabled>
                     <label for="phone" >Teléfono</label>
                 </div
             </div>
