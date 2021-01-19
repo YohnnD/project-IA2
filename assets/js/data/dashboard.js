@@ -1,6 +1,7 @@
 var ventasChart = document.querySelector("#ventas");
 var gananciasChart = document.querySelector("#ganancias");
-const url='http://localhost/project-IA2/Home/';
+
+var url = localStorage.getItem('url');
 
 $('document').ready(function () {
 

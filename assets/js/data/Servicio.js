@@ -1,5 +1,7 @@
 var deleteMaterial=false;
 $(document).ready(function () {
+    var url = localStorage.getItem('url');
+
 
     $('#unidad_medida').attr('disabled', 'disabled');
     $('#costo_servicio').attr('disabled', 'disabled');
@@ -11,7 +13,7 @@ $(document).ready(function () {
         $.ajax({
             method: "post",
             dataType: "json",
-            url: "http://localhost/project-IA2/Servicio/verificarServicio",
+            url: url+"Servicio/verificarServicio",
             data: {
                 nombre_servicio: nombre_servicio
             },
@@ -80,7 +82,7 @@ $(document).ready(function () {
             cache: false,
             contentType: false,
             processData: false,
-            url: "http://localhost/project-IA2/Servicio/save",
+            url: url+"Servicio/save",
             data: new FormData(this),
             // url: "",
             beforeSend: function () {
@@ -102,7 +104,7 @@ $(document).ready(function () {
                         },
                         timer: 3000
                     }).then(redirect => {
-                        location.href = "http://localhost/project-IA2/Servicio/getMateriales";
+                        location.href = url+"Servicio/getMateriales";
                     });
                 }
             },
@@ -162,7 +164,7 @@ $(document).ready(function () {
             method: "POST",
             dataType: "json",
 
-            url: "http://localhost/project-IA2/Servicio/saveMaterial",
+            url: url+"Servicio/saveMaterial",
             data: {
                 cantidad: cantidad,
                 id: id
@@ -188,7 +190,7 @@ $(document).ready(function () {
                         },
                         timer: 7000
                     }).then(redirect => {
-                        location.href = "http://localhost/project-IA2/Servicio/getMateriales";
+                        location.href = url+"Servicio/getMateriales";
                     });
                 }
             },
@@ -248,7 +250,7 @@ $(document).ready(function () {
                 $.ajax({
                     method: "POST",
                     dataType: "json",
-                    url: "http://localhost/project-IA2/Servicio/update",
+                    url: url+"Servicio/update",
                     data: {
                         id_servicio: id_servicio,
                         nombre_servicio: nombre_servicio,
@@ -342,7 +344,7 @@ $(document).ready(function () {
             $.ajax({
                 method: "POST",
                 dataType: "json",
-                url: "http://localhost/project-IA2/Servicio/delete",
+                url: url+"Servicio/delete",
                 data: {
                     id_servicio: id_servicio,
                 }
@@ -363,7 +365,7 @@ $(document).ready(function () {
                     timer: 3000
                 })
                         .then(redirect => {
-                            location.href = "http://localhost/project-IA2/Servicio/getAll";
+                            location.href = url+ "Servicio/getAll";
                         });
             } else {
                 swal({

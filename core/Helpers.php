@@ -4,7 +4,7 @@ require_once ('config/database.php');
 class Helpers{//clases donde se añaden metodos que se necesiten en la vista
 
     public static function url($controller=DEFAULT_CONTROLLER,$action=DEFAULT_ACTION){//Pinta la url para la redirreciones
-        $urlString=BASE_URL.$controller.'/'.self::blowfishEncrypt($action);
+        $urlString=BASE_URL.$controller.'/'.$action;
          return  $urlString;
     }
 

@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    var url = localStorage.getItem('url');
+
+
     $('#email').change(function (){
         var email = $('#email').val();
         console.log()
@@ -10,7 +13,7 @@ $(document).ready(function () {
             data: {
                 email: email
             },
-            url: "http://localhost/project-IA2/Auth/verifyEmail",
+            url: url+"Auth/verifyEmail",
             beforeSend: function() {
                 $('#enviar :button').attr('disabled','disabled');
             },

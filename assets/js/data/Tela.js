@@ -1,4 +1,4 @@
-const url ="http://localhost/project-IA2/Tela/"; // Constante global para ser usadaen las rutas de ajax
+const url = localStorage.getItem('url')+"Tela/"; // Constante global para ser usadaen las rutas de ajax
 
 $(document).ready(function () {
     // Registro de la tela

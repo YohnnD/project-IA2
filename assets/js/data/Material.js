@@ -1,5 +1,5 @@
 
-const url="http://localhost/project-IA2/Material/"; // Constante global para ser usadaen las rutas de ajax
+var url = localStorage.getItem('url');
 
 $(document).ready(function () {
 

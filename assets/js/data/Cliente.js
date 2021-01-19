@@ -1,5 +1,12 @@
 $(document).ready(function () {
     // Registrar
+
+    var url = localStorage.getItem('url');
+
+
+
+
+
     $('#cedula_cliente').blur(function () {
         var cedula_cliente = $('#cedula_cliente').val();
         $.ajax({
@@ -9,7 +16,7 @@ $(document).ready(function () {
                 cedula_cliente: cedula_cliente
             },
 
-            url: "http://localhost/project-IA2/Cliente/verifyCedula",
+            url:    url+ "Cliente/verifyCedula",
             beforeSend: function() {
                 $('#register :input').attr('disabled','disabled');
             },
@@ -75,7 +82,7 @@ $(document).ready(function () {
                 telefono_cliente: telefono_cliente,
                 representante_cliente: representante_cliente
             },
-            url: "http://localhost/project-IA2/Cliente/register",
+            url:url+"Cliente/register",
             beforeSend: function() {
                 console.log("Sending data...");
             },
@@ -94,7 +101,7 @@ $(document).ready(function () {
                     },
                     timer: 3000
                 }).then(function () {
-                    window.location.href="http://localhost/project-IA2/Cliente/getAll";
+                    window.location.href=url+"Cliente/getAll";
                 });
             },
             error: function(err) {
@@ -147,7 +154,7 @@ $(document).ready(function () {
                     telefono_cliente: telefono_cliente,
                     representante_cliente: representante_cliente
                 },
-                url: "http://localhost/project-IA2/Cliente/update",
+                url:     url+"Cliente/update",
                 beforeSend: function() {
                     console.log("Sending data...");
                 },
@@ -165,7 +172,7 @@ $(document).ready(function () {
                         },
                         timer: 3000
                     }).then(function () {
-                        window.location.href="http://localhost/project-IA2/Cliente/details/"+cedula_cliente;
+                        window.location.href=url+"Cliente/details/"+cedula_cliente;
                     });
                 },
                 error: function(err) {
@@ -210,7 +217,7 @@ $(document).ready(function () {
                     method: "POST",
                     dataType: "json",
                     data: {cedula_cliente:cedula_cliente},
-                    url: "http://localhost/project-IA2/Cliente/delete",
+                    url:     url+"Cliente/delete",
                     beforeSend: function() {
                         console.log("Sending data...");
                     },
@@ -227,7 +234,7 @@ $(document).ready(function () {
                                 closeModal: true
                             }
                         }).then(function () {
-                            window.location.href="http://localhost/project-IA2/Cliente/getAll";
+                            window.location.href=url+"Cliente/getAll";
                         });
                     },
                     error: function(err) {
