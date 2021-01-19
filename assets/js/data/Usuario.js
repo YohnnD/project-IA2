@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-var url = "http://localhost/project-IA2/Usuario/";
+var url = localStorage.getItem('url')+"Usuario/";
     // Registrar
     $('#register').submit(function(e) {
         e.preventDefault(); // Disable submit event
@@ -169,7 +169,7 @@ var url = "http://localhost/project-IA2/Usuario/";
                 cancel: {
                     text: "Cancelar",
                     value: false,
-                    visible: true, 
+                    visible: true,
                     className: "grey lighten-2"
                 }
             }

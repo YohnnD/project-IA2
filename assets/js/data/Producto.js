@@ -1,6 +1,6 @@
-var url = "http://localhost/project-IA2/Producto/";
+var url = localStorage.getItem('url')+ "Producto/";
 $(document).ready(function(){
-    
+
     // Registrar
     $('#register').submit(function(e) {
         e.preventDefault();
@@ -157,13 +157,13 @@ $(document).ready(function(){
         });
     });
 
-    
+
     // Eliminar
     $('#delete').click(function (){
         var codigo_producto = $('#codigo_producto').val();
         var nombre_producto = $('#nombre_producto').val();
         swal({
-            title: "Eliminar Producto '" + nombre_producto + "'", 
+            title: "Eliminar Producto '" + nombre_producto + "'",
             text: "¿Esta seguro que desea eliminar este producto? Si lo hace, no podrá revertir los cambios.",
             icon: "warning",
             buttons: {
@@ -261,7 +261,7 @@ $(document).ready(function(){
         });
 
     // function getTallas() {
-    //     return 
+    //     return
     // }
 
     // getTallas();

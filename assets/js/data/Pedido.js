@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // Registrar
 
-    var url ="http://localhost/project-IA2/";
+    var url = localStorage.getItem('url');
 
     $('#add-services').click(function () {
         var texto = '';

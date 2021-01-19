@@ -1,4 +1,4 @@
-const url ="http://localhost/project-IA2/Tela/"; // Constante global para ser usadaen las rutas de ajax
+const url = localStorage.getItem('url')+"Tela/"; // Constante global para ser usadaen las rutas de ajax
 
 $(document).ready(function () {
     // Registro de la tela
@@ -12,8 +12,8 @@ $(document).ready(function () {
         var descripcion_tela = $('#descripcion_tela').val();
         // Enviar objetopor ajax
         $.ajax({
-            method: "POST", 
-            dataType: "json", 
+            method: "POST",
+            dataType: "json",
             data: {
                     nombre_tela: nombre_tela,
                     unidad_med_tela: unidad_med_tela,
@@ -120,13 +120,13 @@ $(document).ready(function () {
                             nombre_tela : nombre_tela,
                             unidad_med_tela: unidad_med_tela,
                             tipo_tela: tipo_tela,
-                            descripcion_tela: descripcion_tela },           
+                            descripcion_tela: descripcion_tela },
                     url: url + "update",
-                    
+
                     beforeSend: function(){
                         console.log("Sending data...");
                     },
-        
+
                     success: function(data) {
                         console.log(data);
                         swal({
@@ -147,7 +147,7 @@ $(document).ready(function () {
                         })
                     },
                     error: function(err) {
-        
+
                         console.log(err);
                         swal({
                             title: "¡Oh no!",
@@ -175,7 +175,7 @@ $(document).ready(function () {
             }
         });
 
-        
+
     });
 
 
@@ -188,7 +188,7 @@ $(document).ready(function () {
         var nombre_tela = $('#nombre_tela').val();
 
         // Mostrar alerta de confirmacion para eliminar datos
-        
+
         swal({
             title: "¿Quiere eliminar la tela "+nombre_tela+"?",
             text: "¿Esta seguro que desea eliminar esta tela? Si lo hace, no podrá revertir los cambios.",
@@ -275,7 +275,7 @@ $(document).ready(function () {
             }
         }
     });
-  
+
 });
 
 function buscar(){
@@ -306,7 +306,7 @@ function buscar(){
                         value: true,
                         visible: true,
                         className: "green"
-    
+
                     },
                     cancel: {
                         text: "Cancelar",
@@ -322,15 +322,15 @@ function buscar(){
 
                         location.href = url + "details/" + id_tela;
 
-                }else {                  
-                        setTimeout('document.location.reload()', 0);                 
+                }else {
+                        setTimeout('document.location.reload()', 0);
                 }
             });
- 
+
            }
         },
            error:function(err){
                console.log(err);
-           }                    
-   });   
+           }
+   });
 };

@@ -25,8 +25,8 @@ class FrontController{
 
         //$action=;
 
-        if(isset($_GET["action"])&&method_exists($objController,Helpers::blowfishDecrypt($_GET['action']))){
-            $this->loadAction($objController,Helpers::blowfishDecrypt($_GET['action']));
+        if(isset($_GET["action"])&&method_exists($objController,$_GET['action'])){
+            $this->loadAction($objController,$_GET['action']);
         }else{
             $this->loadAction($objController,'index');
         }
