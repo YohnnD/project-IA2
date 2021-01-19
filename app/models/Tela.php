@@ -10,18 +10,18 @@
 
 		// Métodos de la clase
 		public function __construct() {
-			$this->table="telas"; //colocar valor al atributo table 
+			$this->table="telas"; //colocar valor al atributo table
 			parent::__construct();
 		}
 
 		//Setter de los atributos
 		public function setId_tela($id_tela){
-			
+
 			$this->id_tela = $id_tela;
-		}	
+		}
 
 		public function setNombre_tela($nombre_tela) {
-			
+
 				$this->nombre_tela = $nombre_tela;
 		}
 
@@ -31,7 +31,7 @@
 		}
 
 		public function setUnidad_med_tela($unidad_med_tela){
-			
+
 				$this->unidad_med_tela = $unidad_med_tela;
 		}
 
@@ -48,7 +48,7 @@
 		}
 
 		public function getNombre_tela(){
-			
+
 			return $this->nombre_tela;
 		}
 
@@ -79,16 +79,16 @@
 
 					$register [] = $row; // Guardando los registros en un array
 				}
-			
-			}else{				
+
+			}else{
 					$register = null; // Devolvemos un null si la condicion no se cumple
 			}
 
 			$this->registerBitacora(TELAS , CONSULTAR);
-					
+
 			return $register; // Retornamos la variable
 
-			
+
 		}
 
 		public function getById(){ // Consulta para obtener un solo registro especifico
@@ -106,10 +106,13 @@
 
 		}
 
-		public function save(){ // Metodo de registro 
+		public function save(){ // Metodo de registro
 
 			//Consulta sql
-			$sql="INSERT INTO $this->table (id_tela,
+            try {
+                $this->db()->beginTransaction();
+
+                $sql="INSERT INTO $this->table (id_tela,
 											nombre_tela,
 											descripcion_tela,
 											unidad_med_tela,
@@ -120,55 +123,79 @@
 											 :descrip,
 											 :unidad,
 											 :tipo)";
-			
-			$query = $this->db()->prepare($sql); //preparamos consulta
 
-			//asignamos valores a los marcadores
-			$query->bindParam(':nombre' , $this->nombre_tela);
-			$query->bindParam(':descrip', $this->descripcion_tela);
-			$query->bindParam(':unidad'	, $this->unidad_med_tela);
-			$query->bindParam(':tipo'   , $this->tipo_tela);
+                $query = $this->db()->prepare($sql); //preparamos consulta
 
-			$registering = $query->execute(); // Ejecutamos el registro y guardamos en una variable
+                //asignamos valores a los marcadores
+                $query->bindParam(':nombre' , $this->nombre_tela);
+                $query->bindParam(':descrip', $this->descripcion_tela);
+                $query->bindParam(':unidad'	, $this->unidad_med_tela);
+                $query->bindParam(':tipo'   , $this->tipo_tela);
 
-			$this->registerBitacora(TELAS , REGISTRAR);
+                $registering = $query->execute(); // Ejecutamos el registro y guardamos en una variable
 
-			return $registering; // retornamos la variable
+                $this->registerBitacora(TELAS , REGISTRAR);
+                $this->db()->commit();
+
+                return $registering; // retornamos la variable
+            }catch (Exception $exception){
+                $this->db()->rollBack();
+                return false;
+            }
+
 
 	}
 
 		public function delete(){ // Metodo Eliminar
 
-			$query=$this->db()->query("DELETE FROM $this->table WHERE id_tela= '$this->id_tela' "); // Creando consulta sql
+            try {
+                $this->db()->beginTransaction();
 
-			$this->registerBitacora(TELAS , ELIMINAR);
+                $query=$this->db()->query("DELETE FROM $this->table WHERE id_tela= '$this->id_tela' "); // Creando consulta sql
+                $this->registerBitacora(TELAS , ELIMINAR);
+                $this->db()->commit();
 
-			return $query; // Retornamos la variable
+                return $query; // Retornamos la variable
+            }catch (Exception $exception){
+                $this->db()->rollBack();
+                return false;
+            }
+
+
 		}
 
 		public function update(){ // Metodo Actualizar
 
-			// Consulta sql
-			$sql="UPDATE $this->table SET  nombre_tela     =:nombre,
+            try {
+                $this->db()->beginTransaction();
+                // Consulta sql
+                $sql="UPDATE $this->table SET  nombre_tela     =:nombre,
 										   descripcion_tela=:descrip,
 										   unidad_med_tela =:unidad,
 										   tipo_tela       =:tipo
 				   WHERE id_tela =:id_tela";
-			
-			$query=$this->db()->prepare($sql); // Preparamos la consulta
-			
-			//le asignamos los valores a los marcadores
-			$query->bindParam(':id_tela', $this->id_tela);
-			$query->bindParam(':nombre',  $this->nombre_tela);
-			$query->bindParam(':descrip', $this->descripcion_tela);
-			$query->bindParam(':unidad',  $this->unidad_med_tela);
-			$query->bindParam(':tipo',    $this->tipo_tela);
 
-			$updating = $query->execute(); // Ejecutamos la consulta
+                $query=$this->db()->prepare($sql); // Preparamos la consulta
 
-			$this->registerBitacora(TELAS , ACTUALIZAR);
+                //le asignamos los valores a los marcadores
+                $query->bindParam(':id_tela', $this->id_tela);
+                $query->bindParam(':nombre',  $this->nombre_tela);
+                $query->bindParam(':descrip', $this->descripcion_tela);
+                $query->bindParam(':unidad',  $this->unidad_med_tela);
+                $query->bindParam(':tipo',    $this->tipo_tela);
 
-			return $updating; // Retornamos la variable
+                $updating = $query->execute(); // Ejecutamos la consulta
+
+                $this->registerBitacora(TELAS , ACTUALIZAR);
+                $this->db()->commit();
+                return $updating; // Retornamos la variable
+
+            }catch (Exception $exception){
+                $this->db()->rollBack();
+                return false;
+            }
+
+
 		}
 
 		public function search($nombre){

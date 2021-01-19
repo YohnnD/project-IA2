@@ -1,7 +1,57 @@
 
-var url = localStorage.getItem('url');
+var url = localStorage.getItem('url')+"Material/";
 
 $(document).ready(function () {
+
+    $('#nombre_material').change(function (e) {
+        e.preventDefault();
+        // Valores de los input en la vista
+        var nombre=$('#nombre_material').val();
+
+        $.ajax({
+            method: "POST",
+            datatype: "JSON",
+            data: {nombre:nombre},
+            url: url + "search",
+
+            beforeSend:function(){
+                console.log("Sending data...");
+            },
+
+            success:function(data){
+
+                if(data){
+
+                    swal({
+                        title: "Material ya registrado",
+                        text: "¿Quiere modificar o ver informacion del Material?, la pagina se actualizara",
+                        icon: "info",
+                        buttons: {
+                            confirm: {
+                                text: "Detalles",
+                                value: true,
+                                visible: true,
+                                className: "green"
+
+                            },
+                            cancel: {
+                                text: "Cancelar",
+                                value: false,
+                                visible: true,
+                                className: "grey lighten-2"
+                            }
+                        }
+                    }).then(function(value){
+                        $('#nombre_material').val(null);
+                    });
+
+                }
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
+    });
 
     // Registro del Material
 
@@ -139,7 +189,7 @@ $(document).ready(function () {
                             timer: 3000
                         })
                         .then(redirect => {
-                            location.href = url + "getAll";
+                            location.reload();
                         })
                     },
                     error: function(err) {
@@ -269,59 +319,59 @@ $(document).ready(function () {
 
 });
 
-function buscar(){
-
-    var nombre=$('#nombre_material').val();
-
-       $.ajax({
-            method: "POST",
-            datatype: "JSON",
-            data: {nombre:nombre},
-            url: url + "search",
-
-           beforeSend:function(){
-            console.log("Sending data...");
-           },
-
-           success:function(data){
-
-           if(data){
-
-            swal({
-                title: "Material ya registrado",
-                text: "¿Quiere modificar o ver informacion del Material?, la pagina se actualizara",
-                icon: "info",
-                buttons: {
-                    confirm: {
-                        text: "Detalles",
-                        value: true,
-                        visible: true,
-                        className: "green"
-
-                    },
-                    cancel: {
-                        text: "Cancelar",
-                        value: false,
-                        visible: true,
-                        className: "grey lighten-2"
-                    }
-                }
-            }).then(function(value){
-                if(value == true){
-
-                   var id_material= data.id_material;
-
-                        location.href = url + "details/" + id_material;
-
-                }else {
-                        setTimeout('document.location.reload()', 0);
-                }
-            });
-
-           }
-        },
-           error:function(err){
-               console.log(err);
-           }
-   });
-};
+// function buscar(){
+//
+//     var nombre=$('#nombre_material').val();
+//
+//        $.ajax({
+//             method: "POST",
+//             datatype: "JSON",
+//             data: {nombre:nombre},
+//             url: url + "search",
+//
+//            beforeSend:function(){
+//             console.log("Sending data...");
+//            },
+//
+//            success:function(data){
+//
+//            if(data){
+//
+//             swal({
+//                 title: "Material ya registrado",
+//                 text: "¿Quiere modificar o ver informacion del Material?, la pagina se actualizara",
+//                 icon: "info",
+//                 buttons: {
+//                     confirm: {
+//                         text: "Detalles",
+//                         value: true,
+//                         visible: true,
+//                         className: "green"
+//
+//                     },
+//                     cancel: {
+//                         text: "Cancelar",
+//                         value: false,
+//                         visible: true,
+//                         className: "grey lighten-2"
+//                     }
+//                 }
+//             }).then(function(value){
+//                 if(value == true){
+//
+//                    var id_material= data.id_material;
+//
+//                         location.href = url + "details/" + id_material;
+//
+//                 }else {
+//                         setTimeout('document.location.reload()', 0);
+//                 }
+//             });
+//
+//            }
+//         },
+//            error:function(err){
+//                console.log(err);
+//            }
+//    });
+// };

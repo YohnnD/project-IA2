@@ -9,18 +9,18 @@ INSERT INTO 	clientes 		VALUES ('27212503','V', 'Gabriel Oropeza'  , 'Estudiante
 
 -- PEDIDOS
 
-INSERT INTO 	pedidos 		VALUES	('P-0000001','27210326','Entregado' ,'','20-1-2020', '22-1-2020');
-INSERT INTO 	pedidos 		VALUES	('P-0000002','27085898','Facturado' ,'','20-1-2020', '22-1-2020');
-INSERT INTO 	pedidos 		VALUES	('P-0000003','27317920','En Proceso','','22-1-2020', '23-1-2020');
-INSERT INTO 	pedidos 		VALUES	('P-0000004','28286639','Cancelado' ,'','01-11-2019', '19-11-2019');
-INSERT INTO 	pedidos 		VALUES	('P-0000005','27198456','En Proceso','','22-1-2020', '23-1-2020');
-INSERT INTO 	pedidos 		VALUES	('P-0000006','27212503','Facturado' ,'','01-11-2019', '19-11-2019');
+INSERT INTO 	pedidos 		VALUES	('P-0000001','27210326','Entregado' ,'','2020-1-01', '2020-1-01');
+INSERT INTO 	pedidos 		VALUES	('P-0000002','27085898','Facturado' ,'','2020-1-01', '2020-1-01');
+INSERT INTO 	pedidos 		VALUES	('P-0000003','27317920','En Proceso','','2020-1-01', '2020-1-23');
+INSERT INTO 	pedidos 		VALUES	('P-0000004','28286639','Cancelado' ,'','2019-11-01', '2019-11-19');
+INSERT INTO 	pedidos 		VALUES	('P-0000005','27198456','En Proceso','','2020-1-22', '2020-1-23');
+INSERT INTO 	pedidos 		VALUES	('P-0000006','27212503','Facturado' ,'','2019-11-01', '2019-11-19');
 
 -- FACTURA
 
-INSERT INTO 	factura_ventas 	VALUES	('1','P-0000001','20-1-2020', 'Punto'         , true  , 12);
-INSERT INTO 	factura_ventas 	VALUES	('2','P-0000002','20-1-20200', 'Pago Movil'    , false ,  3);
-INSERT INTO 	factura_ventas 	VALUES	('3','P-0000003','22-1-2020', 'Transferencia' , true  ,  3);
+INSERT INTO 	factura_ventas 	VALUES	('1','P-0000001','2020-1-20', 'Punto'         , true  , 12);
+INSERT INTO 	factura_ventas 	VALUES	('2','P-0000002','2020-1-20', 'Pago Movil'    , false ,  3);
+INSERT INTO 	factura_ventas 	VALUES	('3','P-0000003','2020-1-22', 'Transferencia' , true  ,  3);
 
 -- SERVICIOS
 

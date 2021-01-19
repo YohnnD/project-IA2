@@ -40,7 +40,7 @@
                             <input type="hidden" name="id_tela" id="id_tela">
                             <div class="input-field col s12 m6">
                                 <i class="icon-rate_review prefix"></i>
-                                <input type="text" name="nombre_tela" id="nombre_tela" class="validate" onblur="buscar()" minlength="1" maxlength="20" required>
+                                <input type="text" name="nombre_tela" id="nombre_tela" class="validate" minlength="1" maxlength="20" required>
                                 <label for="nombre_tela">Nombre de Tela</label>
                             </div>
                             <div class="input-field col s12 m6">
@@ -66,7 +66,7 @@
                                 <i class="icon-save right"></i>
                             </button>
                         </div>
-                    </div>     
+                    </div>
                 </div>
             </form>
         </div>
