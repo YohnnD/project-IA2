@@ -4,6 +4,13 @@ $(document).ready(function(){
         constrainWidth: false,
         alignment: 'right'
     });
+
+    if (localStorage.getItem('url') === null) {
+        localStorage.setItem('url', 'http://localhost/project-IA2/');
+    }
+
+
+
     $('.sidenav').sidenav();
     $(".collapsible").collapsible();
 

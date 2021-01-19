@@ -1,15 +1,15 @@
 $(document).ready(function () {
-
+    var url = localStorage.getItem('url');
 	var status_factura = $('#status_factura').val();
 
 	if (status_factura==="Vigente"){
 
 	$('#anular').on('click',function () {
-        
+
         // Getting form data
         var codigo_factura = $('#codigo_factura').val();
         var status_factura = $('#status_factura').val();
-       
+
 
         swal({
             title: "Anular Facura ????",
@@ -34,7 +34,7 @@ $(document).ready(function () {
             $.ajax({
                 method: "POST",
                 dataType: "json",
-                url:"http://localhost/project-IA2/Factura/anular",
+                url:url+"Factura/anular",
                 data: {
                     codigo_factura: codigo_factura,
                     status_factura: status_factura,
@@ -56,7 +56,7 @@ $(document).ready(function () {
                 timer: 3000
             })
             .then(redirect => {
-                location.href = "http://localhost/project-IA2/Factura/getAll";
+                location.href = url+"Factura/getAll";
             });
             }
             else{

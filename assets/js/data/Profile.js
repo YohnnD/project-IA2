@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-    var url = "http://localhost/project-IA2/Auth/";
+    var url =localStorage.getItem('url')+"Auth/";
 
     // Modificar
     $('#modify').click(function(e) {
@@ -43,7 +43,7 @@ $(document).ready(function(){
                 // repeat_password_usuario: repeat_password_usuario,
                 id_rol: 3
             },
-            url: "http://localhost/project-IA2/Usuario/update",
+            url: url+"Usuario/update",
             beforeSend: function() {
                 console.log("Sending data...");
                 $('#update :input').attr('disabled', 'disabled');

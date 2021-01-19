@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var url ="http://localhost/project-IA2/";
+    var url = localStorage.getItem('url');
 
 
 
