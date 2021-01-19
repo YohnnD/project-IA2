@@ -3,6 +3,57 @@ const url = localStorage.getItem('url')+"Tela/"; // Constante global para ser us
 $(document).ready(function () {
     // Registro de la tela
 
+    $('#nombre_tela').change(function (e) { //recibe el parametro register por id del formulario
+        e.preventDefault();
+        // Valores de los input en la vista
+        var nombre=$('#nombre_tela').val();
+
+
+        $.ajax({
+            method: "POST",
+            datatype: "JSON",
+            data: {nombre:nombre},
+            url: url + "search",
+
+            beforeSend:function(){
+                console.log("Sending data...");
+            },
+
+            success:function(data){
+
+                if(data){
+
+                    swal({
+                        title: "Tela ya registrada",
+                        text: "¿Quiere modificar o ver informacion de la tela?, la pagina se actualizara",
+                        icon: "info",
+                        buttons: {
+                            confirm: {
+                                text: "Detalles",
+                                value: true,
+                                visible: true,
+                                className: "green"
+
+                            },
+                            cancel: {
+                                text: "Cancelar",
+                                value: false,
+                                visible: true,
+                                className: "grey lighten-2"
+                            }
+                        }
+                    }).then(function(value){
+                        $('#nombre_tela').val(null);
+                    });
+
+                }
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
+    });
+
     $('#register').submit(function (e) { //recibe el parametro register por id del formulario
         e.preventDefault();
         // Valores de los input en la vista
@@ -276,61 +327,63 @@ $(document).ready(function () {
         }
     });
 
+
+
 });
 
-function buscar(){
-
-    var nombre=$('#nombre_tela').val();
-
-       $.ajax({
-            method: "POST",
-            datatype: "JSON",
-            data: {nombre:nombre},
-            url: url + "search",
-
-           beforeSend:function(){
-            console.log("Sending data...");
-           },
-
-           success:function(data){
-
-           if(data){
-
-            swal({
-                title: "Tela ya registrada",
-                text: "¿Quiere modificar o ver informacion de la tela?, la pagina se actualizara",
-                icon: "info",
-                buttons: {
-                    confirm: {
-                        text: "Detalles",
-                        value: true,
-                        visible: true,
-                        className: "green"
-
-                    },
-                    cancel: {
-                        text: "Cancelar",
-                        value: false,
-                        visible: true,
-                        className: "grey lighten-2"
-                    }
-                }
-            }).then(function(value){
-                if(value == true){
-
-                   var id_tela= data.id_tela;
-
-                        location.href = url + "details/" + id_tela;
-
-                }else {
-                        setTimeout('document.location.reload()', 0);
-                }
-            });
-
-           }
-        },
-           error:function(err){
-               console.log(err);
-           }
-   });
-};
+// function buscar(){
+//
+//     var nombre=$('#nombre_tela').val();
+//
+//        $.ajax({
+//             method: "POST",
+//             datatype: "JSON",
+//             data: {nombre:nombre},
+//             url: url + "search",
+//
+//            beforeSend:function(){
+//             console.log("Sending data...");
+//            },
+//
+//            success:function(data){
+//
+//            if(data){
+//
+//             swal({
+//                 title: "Tela ya registrada",
+//                 text: "¿Quiere modificar o ver informacion de la tela?, la pagina se actualizara",
+//                 icon: "info",
+//                 buttons: {
+//                     confirm: {
+//                         text: "Detalles",
+//                         value: true,
+//                         visible: true,
+//                         className: "green"
+//
+//                     },
+//                     cancel: {
+//                         text: "Cancelar",
+//                         value: false,
+//                         visible: true,
+//                         className: "grey lighten-2"
+//                     }
+//                 }
+//             }).then(function(value){
+//                 if(value == true){
+//
+//                    var id_tela= data.id_tela;
+//
+//                         location.href = url + "details/" + id_tela;
+//
+//                 }else {
+//                         setTimeout('document.location.reload()', 0);
+//                 }
+//             });
+//
+//            }
+//         },
+//            error:function(err){
+//                console.log(err);
+//            }
+//    });
+// };

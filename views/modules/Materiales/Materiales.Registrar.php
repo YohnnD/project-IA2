@@ -36,7 +36,7 @@
                             <div class="card-content row">
                                 <div class="input-field col s12 m6">
                                     <i class="icon-streetview prefix"></i>
-                                    <input type="text" name="nombre_material" id="nombre_material" onblur="buscar()" minlength="3" maxlength="100" required>
+                                    <input type="text" name="nombre_material" id="nombre_material" minlength="3" maxlength="100" required>
                                     <label for="nombre_material">Nombre del Material</label>
                                 </div>
                                 <div class="input-field col s12 m6">
