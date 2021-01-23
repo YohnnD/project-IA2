@@ -66,16 +66,5 @@
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/materialize.min.js"></script>
     <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
-    <script>
-        /* var usuario = document.querySelector("#usuario");
-        var password = document.querySelector("#password");
-        var login = document.querySelector("#ingresar");
-        if(usuario == "andres22_mr" && password == "1234") {
-            document.location.href = "dashboard.php";
-        }
-        else {
-            document.location.href = "login.php";
-        } */
-    </script>
 </body>
 </html>

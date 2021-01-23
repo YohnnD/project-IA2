@@ -37,7 +37,7 @@
                             <label for="repeat_contrasenia_usuario">Repetir Password del Usuario</label>
                         </div>
                     </div>
-                    <div class="card-action center-align">
+                    <div class="card-footer center-align">
                         <button type="submit" id="enviar" class="btn btn-large btn-rounded primary-gradient waves-effect effect-light">
                             Cambiar Contraseña
                             <i class="icon-send right"></i>

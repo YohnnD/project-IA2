@@ -93,8 +93,8 @@
 				// $stockMaxProducto = $_POST['stock_max_producto'];
 				// $stockMinProducto = $_POST['stock_min_producto'];
 				// $stockProducto = $_POST['stock_producto'];
-				$idTalla = $_POST['id_talla'];
-				$stockProTalla = $_POST['stock_pro_talla'];
+				// $idTalla = $_POST['id_talla'];
+				// $stockProTalla = $_POST['stock_pro_talla'];
 				$codigoProducto = $this->input('codigo_producto', true, 'string');
 				$nombreProducto = $this->input('nombre_producto', true, 'string');
 				$descripcionProducto = $this->input('descripcion_producto', true, 'string');
@@ -105,11 +105,12 @@
 				$stockMaxProducto = $this->input('stock_max_producto', true, 'int');
 				$stockMinProducto = $this->input('stock_min_producto', true, 'int');
 				$stockProducto = $this->input('stock_producto', true, 'int');
-				// $idTalla = $this->input('id_talla');
-				// $stockProTalla = $this->input('stock_pro_talla');
+				$imgProducto = $_FILES['img_producto'];
+				$idTalla = $this->input('id_talla');
+				$stockProTalla = $this->input('stock_pro_talla');
 				if($this->validateFails()) { // Si la validacion falla
 					// $this->redirect('Producto','index'); // Redirecciona al inicio.
-					var_dump($_POST); die();
+					var_export($_POST); die();
 				}
 				else {
 					$producto = new Producto(); // Instancia el objeto
@@ -124,17 +125,24 @@
 					$producto->setStockMaxProducto($stockMaxProducto);
 					$producto->setStockMinProducto($stockMinProducto);
 					$producto->setStockProducto($stockProducto);
+					if($imgProducto !== null || $imgProducto !== '') {
+						$producto->setImgProducto(Helpers::saveImage($imgProducto,'productos'));
+					}
 					$dataProducto = $producto->update();
 					for ($i = 0; $i < count($stockProTalla); $i++) {
+						$producto->setCodigoProducto($codigoProducto);
 						$producto->setIdTalla($idTalla[$i]);
 						$producto->setStockProTalla($stockProTalla[$i]);
-						$dataTallas = $producto->updateTallas();
+						$dataTallas = $producto->updateTalla();
+						// var_export($dataTallas);
+						// var_export($stockProTalla[$i]);
+						
 						// var_dump($dataTallas); die();
-						if(is_object($dataTallas)){
-							// $this->sendAjax($dataTallas);
-							// var_dump($dataTallas);
-			        break;
-			      }
+						// $this->sendAjax($dataTallas);
+						// if(!is_object($dataTallas)){
+						// 	// var_dump($dataTallas);
+			      //   break;
+			      // }
 					}
 					$this->sendAjax($dataProducto);
 				}
