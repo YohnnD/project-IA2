@@ -82,7 +82,7 @@
 
                     <div class="input-field col s12 m4">
                         <i class="icon-insert_invitation prefix"></i>
-                        <input type="text" name="fecha_pedido" id="fecha_pedido" class="datepicker"
+                        <input type="text" name="fecha_pedido" id="fecha_pedido" readonly
                                value="<?php echo $pedido->fecha_pedido; ?>">
                         <label for="fecha_pedido">Fecha del Pedido</label>
                     </div>
@@ -137,7 +137,7 @@
                         <div class="input-field col s12 m4">
                             <i class="icon-plus_one prefix"></i>
                             <input type="number" name="cantidad_prenda[]" id="cantidad_prenda"
-                                   class="validate" pattern="[0-9]+" title="Solo puede usar números."
+                                   class="validate" pattern="[0-9]+" min="1" title="Solo puede usar números."
                                    value="<?php echo $servicio->cantidad_prenda; ?>">
                             <label for="cantidad_prenda">Cantidad de Prendas</label>
                         </div>
@@ -145,7 +145,7 @@
                         <div class="input-field col s12 m4">
                             <i class="icon-star_border prefix"></i>
                             <input type="number" name="cantidad_medida[]" id="cantidad_medida"
-                                   class="validate" pattern="[0-9]+" title="Solo puede usar números."
+                                   class="validate" pattern="[0-9]+" min="1" title="Solo puede usar números."
                                    value="<?php echo $servicio->cantidad_medida; ?>">
                             <label for="cantidad_prenda">Cantidad de Medida</label>
                         </div>
@@ -199,7 +199,7 @@
                             <th><?php echo $producto->nombre_producto; ?></th>
                             <th><?php echo $producto->nombre_talla; ?></th>
                             <th><?php echo $producto->precio_producto; ?></th>
-                            <th><input type="number" name="cant_producto_pedido[]" class="col s4 m4 center cant_producto_pedido" value="<?php echo $producto->cant_pro_pedido; ?>"></th>
+                            <th><input type="number" name="cant_producto_pedido[]" class="col center-align cant_producto_pedido"  min="1"  readonly value="<?php echo $producto->cant_pro_pedido; ?>"></th>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
