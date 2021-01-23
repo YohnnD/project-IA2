@@ -16,7 +16,14 @@ class PedidoController extends BaseController
         Helpers::hasPermissions('3','1',true,'Pedido');
         $pedido = new Pedido();
         $services = $pedido->getServices();
-        $this->view('Pedidos/Pedidos.Registrar', ['services' => $services]);
+
+
+        $producto = new Producto(); // Instancia el objeto
+        $productos = $pedido->productoAll();
+
+
+
+        $this->view('Pedidos/Pedidos.Registrar', ['services' => $services, "productos"=>$productos]);
     }
 
     public function getAll()
@@ -32,10 +39,12 @@ class PedidoController extends BaseController
         $pedido = new Pedido();
         $cedulaCliente = $this->input('cedula_cliente');
         $codigoPedido = $pedido->generatedNumberPedido();
-        $fechaPedido = $this->input('fecha_pedido');
+        $fechaPedido = date('d-m-Y');
         $fechaEntregaPedido = $this->input('fecha_entrega_pedido');
-        $statusPedido = $this->input('status_pedido');
         $descripcionPedido = $this->input('descripcion_pedido');
+        $productos = $this->input('productos');
+        $servicios=$this->input('servicio');
+
 
         $pedido->setCedulaCliente($cedulaCliente);
         $pedido->setFechaEntregaPedido($fechaEntregaPedido);
@@ -43,10 +52,54 @@ class PedidoController extends BaseController
         $pedido->setCodigoPedido($codigoPedido);
         $pedido->setStatusPedido("En Proceso");
         $pedido->setDescripcionPedido($descripcionPedido);
-        $pedido->save();
+        $band=$pedido->save();
 
-        $response = $codigoPedido;
-        $this->sendAjax($response);
+
+        if(!is_null($productos)&&count($productos)>=1) {
+            foreach ($productos as $producto) {
+                $pedido->setCodigoProducto($producto["codigo_producto"]);
+                $pedido->setCantidadPrenda($producto["cant_pro_pedidos"]);
+                $pedido->setIdTallas($producto["id_talla"]);
+                $save = $pedido->verifyProduct();
+                if (is_object($save)) {
+                    return $this->sendAjax(["status" => 'error', "message"=>"El producto con el codigo " .
+                        $producto["codigo_producto"] .
+                        " no cuenta con el stock suficiente para realizar un pedido"
+                    ]);
+                }
+            }
+            foreach ($productos as $producto) {
+                $pedido->setCodigoProducto($producto["codigo_producto"]);
+                $pedido->setCodigoPedido($codigoPedido);
+                $pedido->setCantidadPrenda($producto["cant_pro_pedidos"]);
+                $pedido->setPrecioServiPedido($producto["precio_producto"]);
+                $pedido->setIdTallas($producto["id_talla"]);
+                $pedido->setNombreTalla($producto["nombre_talla"]);
+                $save = $pedido->saveProPredido();
+            }
+        }
+
+        if(!is_null($servicios)&&count($servicios)>=1){
+            foreach ($servicios as $serviPedido) {
+                $pedido->setIdServicio($serviPedido['id']);
+                $pedido->setCodigoPedido($codigoPedido);
+                $pedido->setCantidadPrenda($serviPedido['cant_prenda']);
+                $pedido->setCantidadMedida($serviPedido['cant_medida']);
+                $pedido->setPrecioServiPedido($serviPedido['precio_servicio']);
+                $pedido->setIdTela($serviPedido['id_tela']);
+                $save = $pedido->saveServiPedido();
+            }
+        }
+        $codigoFactura = $pedido->generateNumberFactura();
+        $modoPagoFactura = $this->input('modo_pago_factura');
+        $porcentajeVentas = $this->input('porcentaje_pago_factura');
+        $pedido->setCodigoPedido($codigoPedido);
+        $pedido->setCodigoFactura($codigoFactura);
+        $pedido->setModoPagoFactura($modoPagoFactura);
+        $pedido->setPorcentajeVentaFactura($porcentajeVentas);
+        $save = $pedido->saveFactura();
+        return $this->sendAjax(["status"=>"success" ,"message"=> "Pedido creado correctamente."]);
+
     }
 
     public function details()
@@ -104,6 +157,7 @@ class PedidoController extends BaseController
         $pedido = new Pedido();
         $pedido->setCedulaCliente($cedulaCliente);
         $cliente = $pedido->checkCedula();
+        isset($cliente->nombre_cliente)?$cliente->nombre_cliente=Helpers::aesDecrypt($cliente->nombre_cliente):null;
         $this->sendAjax($cliente);
     }
 
@@ -137,13 +191,13 @@ class PedidoController extends BaseController
     public function productosFind()
     {
         $pedido = new Pedido();
-        $find = $_GET['id'];
+        $find = $this->input("codigo_producto");
+        $talla = $this->input("talla");
         $pedido->setCodigoProducto($find);
+        $pedido->setIdTallas($talla);
+
+
         $productos = $pedido->findProductos();
-
-
-
-
         $this->sendAjax($productos);
     }
 
@@ -233,10 +287,32 @@ class PedidoController extends BaseController
         }
 
         $_SESSION['message']=true;
-        header('Location:http://localhost/project-IA2/Pedido/details/' . $codigoPedido);
+        header('Location:'. BASE_URL .'Pedido/details/' . $codigoPedido);
     }
 
-   
+
+    public function checkStock(){
+        $codigoProducto=$this->input('codigo_producto');
+        $cantProPedidos=$this->input('cant_pro_pedidos');
+        $idTalla=$this->input('id_talla');
+
+        $pedido=new Pedido();
+        $pedido->setCodigoProducto($codigoProducto);
+        $pedido->setCantidadPrenda($cantProPedidos);
+        $pedido->setIdTallas($idTalla);
+
+        $save = $pedido->verifyProduct();
+        if (is_object($save)) {
+            return $this->sendAjax(["status" => 'error', "message"=>
+                "El producto con el codigo " .
+                $codigoProducto .
+                " no tiene el stock ingresado"
+            ]);
+        }
+
+      return $this->sendAjax(["status" => 'success', "Tiene stock"]);
+
+    }
 
 }
 

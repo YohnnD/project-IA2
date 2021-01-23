@@ -12,6 +12,7 @@
 			$this->view('Productos/Productos.Registrar');
 		}
 
+
 		public function getAll() {
 			$producto = new Producto(); // Instancia el objeto
 			$allProductos = $producto->getAll(); // Obtiene todos los registros del producto

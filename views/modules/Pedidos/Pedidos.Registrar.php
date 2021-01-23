@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/icons/style.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/owner.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/styles.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/select2.min.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animate.min.css">
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo-trasparente.png">
     <title>Registrar Pedido - Inversiones A2</title>
@@ -58,7 +59,7 @@
                                            title="Solo puede usar números del 0-9 y V, J ó E" required disabled>
                                     <label for="nombre_cliente">Nombre</label>
                                 </div>
-            
+
                                 <div class="input-field col s12 m12">
                                     <i class="icon-person prefix"></i>
                                     <input type="text" name="representante_cliente" id="representante_cliente" class="validate"
@@ -137,7 +138,7 @@
 
                         <div class="input-field col s12 m12">
                             <i class="icon-person prefix"></i>
-                            <input type="text" name="representante_cliente" id="representante_cliente" class="validate"
+                            <input type="text" name="representante_cliente" id="representante_cliente" class="validate validate-input" name_field="Cedula del Cliente"
                                    minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
                                    title="Solo puede usar números del 0-9 y V, J ó E" required disabled>
                             <label for="representante_cliente">Representante</label>
@@ -147,15 +148,10 @@
 
                 <div class="col l12">
                     <form method="get" action="" class="row" id="form-pedido">
-                        <div class="input-field col s12 m6">
-                            <i class="icon-insert_invitation prefix"></i>
-                            <input type="text" name="fecha_pedido" id="fecha_pedido" class="datepicker">
-                            <label for="fecha_pedido">Fecha del Pedido</label>
-                        </div>
 
-                        <div class="input-field col s12 m6">
+                        <div class="input-field col s12 m12">
                             <i class="icon-event_available prefix"></i>
-                            <input type="text" name="fecha_entrega_pedido" id="fecha_entrega_pedido" class="datepicker">
+                            <input type="text" name="fecha_entrega_pedido" id="fecha_entrega_pedido"  name_field="Fecha de Entrega" class="datepicker  validate-input">
                             <label for="fecha_entrega_pedido">Fecha de Entrega</label>
                         </div>
 
@@ -242,11 +238,37 @@
             <div class="row p-5x" id="three">
                 <form method="#" action="#" id="register-product">
                     <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix icon-search"></i>
-                            <input type="text" id="search" class="autocomplete" autocomplete="off">
-                            <label for="autocomplete-input">Buscar</label>
+<!--                        <div class="input-field col s12">-->
+<!--                            <i class="material-icons prefix icon-search"></i>-->
+<!--                            <input type="text" id="search" class="autocomplete" autocomplete="off">-->
+<!--                            <label for="autocomplete-input">Buscar</label>-->
+<!--                        </div>-->
+
+
+                        <div class="input-field col s12 m8">
+                            <select id="product-select" class="browser-default col l12" style="width: 100%!important;height: 48px!important;">
+                                <option value="null" disabled selected>Seleciona una opcion</option>
+                                <?php foreach ($productos as $producto): ?>
+                                    <option data-tallas="<?php echo $producto->nombre_talla ?>" value="<?php echo $producto->codigo_producto ?>"><?php echo $producto->codigo_producto ."|". $producto->nombre_producto."|". $producto->nombre_talla ?></option>
+                                <?php endforeach;?>
+
+
+                            </select>
                         </div>
+                        <div class="input-field col s12 m4">
+                            <button type="button" class="btn green darken-2 waves-effect waves-light col s12"
+                                    id="add-product">
+                                Añadir
+                                <i class="icon-add right"></i>
+                            </button>
+                        </div>
+
+
+
+
+
+
+                        <input type="hidden" id="codigo_producto">
                         <table class="responsive-table striped">
                             <thead>
                                 <tr>
@@ -278,9 +300,8 @@
                     <div class="input-field col s12">
                         <i class="icon-star prefix"></i>
                         <select name="forma_de_pago" id="forma_pago">
-                            <option value="null" disabled selected>Elige una opción</option>
                             <option value="transferencia">Tranferencia</option>
-                            <option value="efectivo">Efectivo</option>
+                            <option value="efectivo" selected>Efectivo</option>
                             <option value="debito">Debito</option>
                             <option value="credito">Credito</option>
                         </select>
@@ -289,7 +310,7 @@
 
                     <div class="input-field col s12 m12">
                         <i class="icon-person prefix"></i>
-                        <input type="text" name="porcentaje" id="porcentaje" class="validate"  pattern="[VvJjEe0-9]+" value="0"
+                        <input type="number" name="porcentaje" id="porcentaje" class="validate"  pattern="[VvJjEe0-9]+" value="0"
                                title="Solo puede usar números del 0-9 y V, J ó E" required>
                         <label for="porcentaje">Porcentaje(%)</label>
                     </div>
@@ -318,6 +339,7 @@
                              title="Solo puede usar números del 0-9 y V, J ó E" required readonly>
                       <label for="total_pagar">Total a Pagar (Bs):</label>
                   </div>
+                    <input type="hidden" id="total_pagar_base" value="">
 
                     <div class="input-field col s12 center-align">
                         <button type="submit" class="btn green darken-2 waves-effect waves-light col s12">
@@ -342,5 +364,6 @@
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/owner.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/validations.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/data/Pedido.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>assets/js/plugins/select2.full.min.js"></script>
 </body>
 </html>

@@ -3,6 +3,49 @@ $(document).ready(function () {
 
     var url = localStorage.getItem('url');
 
+
+    localStorage.setItem('pedido',JSON.stringify({
+        cedula_cliente:'',
+        status_pedido:'',
+        fecha_entrega_pedido:'',
+        descripcion_pedido:'',
+        total_pagar:'',
+        modo_pago_factura:'',
+        porcentaje_pago_factura:'',
+        servicio:[],
+        productos:[]
+    }));
+
+
+    let validationInput=(className)=>{
+        let field=document.getElementsByClassName(className);
+        let band=false;
+        for(var i=0;i<field.length;i++){
+
+            if(field[i].value==''){
+                swal({
+                    title: "Información",
+                    text: "Debe completar el campo " +field[i].getAttribute('name_field') +"." ,
+                    icon: "info",
+                    button: {
+                        text: "Esta bien",
+                        className: "blue-gradient"
+                    },
+                });
+
+                band=true;
+                break;
+            }
+
+        }
+
+        return band;
+    }
+
+
+
+
+
     $('#add-services').click(function () {
         var texto = '';
         $.ajax({
@@ -36,21 +79,21 @@ $(document).ready(function () {
                             <div class="input-field col s12 m4">
                                 <i class="icon-plus_one prefix"></i>
                                 <input type="number" name="cantidad_prenda_${name_str}" id="cantidad_prenda_${name_str}"
-                                       class="validate" pattern="[0-9]+" title="Solo puede usar números." value="1">
+                                       class="validate" pattern="[0-9]+" min="1" title="Solo puede usar números." value="1">
                                 <label for="cantidad_prenda_${name_str}">Cantidad de Prendas</label>
                             </div>
                             
                             <div class="input-field col s12 m4">
                                 <i class="icon-star_border prefix"></i>
                                 <input type="number" name="cantidad_medida_${name_str}" id="cantidad_medida_${name_str}"
-                                       class="validate" pattern="[0-9]+" title="Solo puede usar números." value="1">
+                                       class="validate" pattern="[0-9]+" min="1" title="Solo puede usar números." value="1">
                                 <label for="cantidad_prenda_${name_str}">Cantidad de Medida</label>
                             </div>
                             
                             <div class="input-field col s12 m4">
                                 <i class="icon-star_border prefix"></i>
                                 <input type="number" name="precio_servicio_${name_str}" id="precio_servicio_${name_str}"
-                                       class="validate" pattern="[0-9]+" title="Solo puede usar números." value="${price_service}">
+                                       class="validate" pattern="[0-9]+" min="1" title="Solo puede usar números." value="${price_service}">
                                 <label for="cantidad_prenda_${name_str}">Precio Servicio</label>
                             </div>
                              
@@ -90,7 +133,6 @@ $(document).ready(function () {
 
 
 
-
     $('#register-service').submit(function (e) {
         e.preventDefault();
         var servicios_seleted = [];
@@ -102,6 +144,25 @@ $(document).ready(function () {
 
         console.log(servicios_seleted);
         var servicio = [];
+
+
+        if(servicios_seleted.length<1){
+            return swal({
+                title: "Información",
+                text: "Debes agregar al menos un servicio para completar esta acción.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            })
+        }
+
+
+
         for (var i = 0; i < servicios_seleted.length; i++) {
 
             servicio.push({
@@ -118,44 +179,58 @@ $(document).ready(function () {
         var json_text = JSON.stringify(servicio);
         var json = JSON.parse(json_text);
 
-        $.ajax({
-            method: "POST",
-            dataType: "json",
-            data: {json: json},
-            url: url+"Pedido/saveServiPedido",
-            beforeSend: function () {
-                console.log("Sending data...");
-            },
-            success: function (data) {
-                swal({
-                    title: "¡Bien hecho!",
-                    text: "Servicios agregados al pedido  con éxito(2/4).",
-                    icon: "success",
-                    button: {
-                        text: "Aceptar",
-                        visible: true,
-                        value: true,
-                        className: "green",
-                        closeModal: true
-                    },
-                    timer: 3000
-                }).then(function () {
-                    $('#four-tabs').removeClass('disabled');
-                    $('#register-service :input').attr('disabled', 'disabled');
-                    $('ul.tabs').tabs();
-                    $('ul.tabs').tabs("select", "three");
-                });
-            },
-            error: function (err) {
-                console.log(err.responseText);
-            }
-        });
+        let pedido=JSON.parse(localStorage.getItem('pedido'));
+        pedido.servicio=json;
+        localStorage.setItem('pedido',JSON.stringify(pedido));
+
+
+        $('#four-tabs').removeClass('disabled');
+        $('#register-service :input').attr('disabled', 'disabled');
+        $('ul.tabs').tabs();
+        $('ul.tabs').tabs("select", "three");
+
+
+
+
+
+        // $.ajax({
+        //     method: "POST",
+        //     dataType: "json",
+        //     data: {json: json},
+        //     url: url+"Pedido/saveServiPedido",
+        //     beforeSend: function () {
+        //         console.log("Sending data...");
+        //     },
+        //     success: function (data) {
+        //         swal({
+        //             title: "¡Bien hecho!",
+        //             text: "Servicios agregados al pedido  con éxito(2/4).",
+        //             icon: "success",
+        //             button: {
+        //                 text: "Aceptar",
+        //                 visible: true,
+        //                 value: true,
+        //                 className: "green",
+        //                 closeModal: true
+        //             },
+        //             timer: 3000
+        //         }).then(function () {
+        //             $('#four-tabs').removeClass('disabled');
+        //             $('#register-service :input').attr('disabled', 'disabled');
+        //             $('ul.tabs').tabs();
+        //             $('ul.tabs').tabs("select", "three");
+        //         });
+        //     },
+        //     error: function (err) {
+        //         console.log(err.responseText);
+        //     }
+        // });
 
 
     });
 
 
-    $('#cedula_cliente').blur(function () {
+    $('#cedula_cliente').change(function () {
         console.log(url);
         var cedula_cliente = $('#cedula_cliente').val();
         $.ajax({
@@ -181,6 +256,12 @@ $(document).ready(function () {
                     $('#cedula_cliente').val(response.cedula_cliente);
                     $('#nombre_cliente').val(response.nombre_cliente);
                     $('#representante_cliente').val(response.representante_cliente);
+
+
+                    let pedido=JSON.parse(localStorage.getItem('pedido'));
+                    pedido.cedula_cliente=response.cedula_cliente;
+                    localStorage.setItem('pedido',JSON.stringify(pedido));
+
 
                     $('#cedula_cliente').removeAttr('disabled', '');
                     M.updateTextFields();
@@ -209,6 +290,16 @@ $(document).ready(function () {
                         if (registrar) {
                             location.href = url+"Cliente/create";
                         }
+
+
+                        let pedido=JSON.parse(localStorage.getItem('pedido'));
+                        pedido.cedula_cliente='';
+                        localStorage.setItem('pedido',JSON.stringify(pedido));
+
+
+                        $('#cedula_cliente').val('');
+                        $('#nombre_cliente').val('');
+                        $('#representante_cliente').val('');
                         $('#cedula_cliente').removeAttr('disabled', '');
                     });
                 }
@@ -241,12 +332,17 @@ $(document).ready(function () {
 
 
 
-    $('#porcentaje').blur(function () {
+    $('#porcentaje').change(function () {
         var porcentaje=0;
         var total=0;
         var porcen=0;
         porcentaje=$(this).val();
-        total=$('#total_pagar').val();
+
+        let pedido=JSON.parse(localStorage.getItem('pedido'));
+
+
+
+        total=$('#total_pagar_base').val();
 
         porcen=total*porcentaje/100;
 
@@ -260,82 +356,27 @@ $(document).ready(function () {
     $('#form-pedido').submit(function (e) {
         e.preventDefault();
 
-
-        // Getting form data
-
-        var cedula_cliente = $('#cedula_cliente').val();
         var status_pedido = 'En proceso';
-        var fecha_pedido = $('#fecha_pedido').val();
         var fecha_entrega_pedido = $('#fecha_entrega_pedido').val();
         var descripcion_pedido = $('#descripcion_pedido').val();
 
 
-        /* var id_servicio = $('#id_servicio').val();
-         var cantidad_prenda = $('#cantidad_prenda').val();
-         var cantidad_medida = $('#cantidad_medida').val();
-         var precio_servi_pedido = $('#precio_servi_pedido').val();
+       let data=validationInput('validate-input');
 
-          id_servicio: id_servicio,
-                     cantidad_prenda: cantidad_prenda,
-                     cantidad_medida: cantidad_medida,
-                     precio_servi_pedido: precio_servi_pedido
- */
 
-        // Sending data by AJAX
-        $.ajax({
-            method: "POST",
-            dataType: "json",
-            data: {
-                cedula_cliente: cedula_cliente,
-                status_pedido: status_pedido,
-                fecha_pedido: fecha_pedido,
-                descripcion_pedido: descripcion_pedido,
-                fecha_entrega_pedido: fecha_entrega_pedido
-            },
-            url: url+"Pedido/register",
-            beforeSend: function () {
-
-                console.log("Sending data...");
-            },
-            success: function (data) {
-                $('#codigo_pedido').val(data);
-                swal({
-                    title: "¡Bien hecho!",
-                    text: "Datos generales del pedidos se han registrado con el codigo" + data + " exitosamente.(1/4)",
-                    icon: "success",
-                    button: {
-                        text: "Aceptar",
-                        visible: true,
-                        value: true,
-                        className: "green",
-                        closeModal: true
-                    },
-                    timer: 3000
-                }).then(function () {
-                    $('#form-consul-client :input').attr('disabled', 'disabled');
-                    $('#form-pedido :input').attr('disabled', 'disabled');
-                    $('#two-tabs').removeClass('disabled');
-                    $('#three-tabs').removeClass('disabled');
-                    $('ul.tabs').tabs();
-                    $('ul.tabs').tabs("select", "two");
-                });
-            },
-            error: function (err) {
-                console.log(err);
-                swal({
-                    title: "¡Oh no!",
-                    text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
-                    icon: "error",
-                    button: {
-                        text: "Aceptar",
-                        visible: true,
-                        value: true,
-                        className: "green",
-                        closeModal: true
-                    }
-                });
-            }
-        });
+       if(!data){
+           let pedido=JSON.parse(localStorage.getItem('pedido'));
+           pedido.status_pedido=status_pedido;
+           pedido.fecha_entrega_pedido=fecha_entrega_pedido;
+           pedido.descripcion_pedido=descripcion_pedido;
+           localStorage.setItem('pedido',JSON.stringify(pedido));
+                       $('#form-consul-client :input').attr('disabled', 'disabled');
+                       $('#form-pedido :input').attr('disabled', 'disabled');
+                       $('#two-tabs').removeClass('disabled');
+                       $('#three-tabs').removeClass('disabled');
+                       $('ul.tabs').tabs();
+                       $('ul.tabs').tabs("select", "two");
+       }
     });
 
 
@@ -366,12 +407,12 @@ $(document).ready(function () {
         $('#register-product').find('input.calc').each(function () {
             temp=temp*$(this).val();
             cont++;
-
             if(cont===2){
                 total_producto+=temp;
                 cont=0;
                 temp=1;
             }
+
 
         });
 
@@ -380,11 +421,95 @@ $(document).ready(function () {
         $('#total_servicios').val(total_service);
         $('#total_producto').val(total_producto);
         $('#total_pagar').val(total_producto+total_service);
-
+        $('#total_pagar_base').val(total_producto+total_service);
 
         M.updateTextFields();
     });
 
+
+    $("#product-select").select2({
+        placeholder: "Select an option",
+        allowClear: true,
+    });
+
+
+
+
+
+    $("#add-product").click(function (){
+        let search= $('#product-select').val();
+
+        let tallas=$("#product-select option:selected").attr("data-tallas");
+
+        if(search!==null) {
+
+
+            $.ajax({
+                method: "POST",
+                dataType: "json",
+                url: url + "Pedido/productosFind",
+                data:{
+                    codigo_producto:search,
+                    talla:tallas
+                },
+                beforeSend: function () {
+
+                },
+                success: function (response) {
+                      let pedido=JSON.parse(localStorage.getItem('pedido'));
+                      let product=pedido.productos;
+                      console.log(product);
+                      console.log(response[0]);
+                      let productSearch = product.filter(product=> product.codigo_producto === response[0].codigo_producto && response[0].id_talla===product.id_talla);
+
+                      if(productSearch.length<1) {
+                          response[0].cant_pro_pedidos = "1";
+                          product.push(response[0]);
+                          pedido.productos = product;
+                          localStorage.setItem('pedido', JSON.stringify(pedido));
+                          addProducto(response[0]);
+                      }else{
+                          swal({
+                              title: "Información",
+                              text: "Este producto ya se encuentra en el pedido.",
+                              icon: "info",
+                              button: {
+                                  text: "Aceptar",
+                                  visible: true,
+                                  value: true,
+                                  className: "green",
+                                  closeModal: true
+                              },
+                              timer: 3000
+                          })
+                      }
+                     },
+                error: function (err) {
+                    console.log(err);
+                    swal({
+                        title: "¡Oh no!",
+                        text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                        icon: "error",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        }
+                    });
+                }
+
+            });
+        }
+    });
+
+
+    $("#product-select").change(function (){
+
+
+
+    });
 
     $('#search').keydown(function () {
         var search = $(this).val();
@@ -416,12 +541,10 @@ $(document).ready(function () {
                     }
 
 
-                    console.log(product_array);
-
                     $('input.autocomplete').autocomplete({
                         data: product_array,
                         onAutocomplete: function (val) {
-
+                                console.log(val);
                             var codigo_producto=val.substr(0,1);
                             addProducto(response,codigo_producto);
                             $('#search').val('');
@@ -459,15 +582,22 @@ $(document).ready(function () {
        var porcentaje=$('#porcentaje').val();
 
 
+        let pedido=JSON.parse(localStorage.getItem('pedido'));
+
+
         $.ajax({
             method: "POST",
             dataType: "json",
             data: {
-                codigo_pedido: codigo_pedido,
+                cedula_cliente: pedido.cedula_cliente,
+                fecha_entrega_pedido:pedido.fecha_entrega_pedido,
+                descripcion_pedido:pedido.descripcion_pedido,
+                productos:pedido.productos,
+                servicio:pedido.servicio,
                 modo_pago_factura: forma_pago,
                 porcentaje_pago_factura:porcentaje,
             },
-            url: url+"Pedido/registerFactura",
+            url: url+"Pedido/register",
             beforeSend: function () {
 
                 console.log("Sending data...");
@@ -516,93 +646,33 @@ $(document).ready(function () {
     $('#register-product').submit(function (e) {
         e.preventDefault();
 
-        var codigo_productos=[];
-        var cant_pro_pedida=[];
-        var id_tallas=[];
-        var precio=[];
+        let pedido=JSON.parse(localStorage.getItem('pedido'));
+
+        if(pedido.productos.length<1){
 
 
-        $('.codigo_producto').each(function () {
-            codigo_productos.push($(this).val());
-        });
-
-        $('.cant_producto_pedido').each(function () {
-            cant_pro_pedida.push($(this).val());
-        });
-
-        $('.id_talla').each(function () {
-            id_tallas.push($(this).val());
-        });
-
-        $('.precio').each(function () {
-            precio.push($(this).val());
-        });
+            return swal({
+                title: "Información",
+                text: "Debes agregar al menos un producto para completar esta acción.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            })
 
 
-           var codigo_pedido = document.querySelector('#codigo_pedido').value
 
+        }
 
-        $.ajax({
-            method: "POST",
-            dataType: "json",
-            data: { codigo_producto:codigo_productos, cant_pro_pedida:cant_pro_pedida,
-                codigo_pedido:codigo_pedido,
-                id_talla:id_tallas,
-                precio:precio,
-            },
-            url: url+"Pedido/registerProducto",
-            beforeSend: function () {
-                console.log("Sending data...");
-            },
-            success: function (data) {
-                console.log(data);
-                if(data.status==='error'){
-
-                    console.log(data);
-                    swal({
-                        title: "¡Oh no!",
-                        text: "El producto " + data.producto.nombre_producto + " no cuenta con el stock suficiente. stock disponible:" + data.producto.stock_producto +".",
-                        icon: "error",
-                        button: {
-                            text: "Aceptar",
-                            visible: true,
-                            value: true,
-                            className: "green",
-                            closeModal: true
-                        }
-                    });
-
-
-                }else{
-                    swal({
-                        title: "¡Bien hecho!",
-                        text: "Producto ingresado con éxito 3/4.",
-                        icon: "success",
-                        button: {
-                            text: "Aceptar",
-                            visible: true,
-                            value: true,
-                            className: "green",
-                            closeModal: true
-                        },
-                    }).then(function () {
-                        $('#register-product :input').attr('disabled', 'disabled');
+        $('#register-product :input').attr('disabled', 'disabled');
                         $('#four-tabs').removeClass('disabled');
                         $('ul.tabs').tabs();
                         $('ul.tabs').tabs("select", "four");
                     });
-                }
-
-
-            },
-
-            error: function (err) {
-                console.log(err.responseText);
-            }
-        });
-
-
-
     });
 
     // Actualizar
@@ -613,6 +683,7 @@ $(document).ready(function () {
 
     // Eliminar
     $('#delete').click(function () {
+
         swal({
             title: "Eliminar Pedido",
             text: "¿Esta seguro que desea eliminar este Pedido? Si lo hace, no podrá revertir los cambios.",
@@ -633,6 +704,7 @@ $(document).ready(function () {
                 }
             }
         }).then(function (aceptar) {
+            var url = localStorage.getItem('url');
             if(aceptar){
                 var codigo_pedido = $('#codigo_pedido').val();
                 $.ajax({
@@ -679,31 +751,102 @@ $(document).ready(function () {
     });
 
 
-    function addProducto(producto,codigo_producto) {
 
-        for (var i = 0; i < producto.length; i++) {
-            if(producto[i].codigo_producto==codigo_producto){
-                var  texto = `
-                                   <tr>
-                                       <th><input type="number" name="codigo_prodcuto"  readonly class="col s4 m4 center codigo_producto" value="${producto[i].codigo_producto}" readonly></th>
-                                       <th>${producto[i].nombre_producto}</th>
-                                       <th>${producto[i].nombre_talla}</th>
-                                       <th><input type="number" name="cant_producto_pedido[]" class="col s4 m4 center cant_producto_pedido calc" value=""></th>
-                                       <th><input type="number" name="precio[]" class="col s4 m4 center precio calc" value="${producto[i].precio_producto}"></th>
-                                       <th><button type="button" class="delete-product btn red "><i class="icon-delete"></button></th>
-                                       <input type="hidden"  name="id_talla[]" class="id_talla" value="${producto[i].id_talla}">
-                                   </tr>
-                                   
-         
-                     
-            `;
+
+   /**Agregar product**/
+    function addProducto(producto) {
+                var  texto = ` <tr>
+                                       <th><input type="number" name="codigo_prodcuto"  readonly class="col s4 m4 center codigo_producto" value="${producto.codigo_producto}" readonly></th>
+                                       <th>${producto.nombre_producto}</th>
+                                       <th>${producto.nombre_talla}</th>
+                                       <th><input type="number" min="1" name="cant_producto_pedido[]" class="col s4 m4 center cant_product calc" data-talla="${producto.id_talla}" data-code="${producto.codigo_producto}"   value="${producto.cant_pro_pedidos}"></th>
+                                       <th><input type="number" name="precio[]" class="col s4 m4 center precio calc"  data-code="${producto.codigo_producto}"  value="${producto.precio_producto}" readonly></th>
+                                       <th><button type="button" class="delete-product btn red " data-code="${producto.codigo_producto}" ><i class="icon-delete"></button></th>
+                                   </tr>`;
                 $('#product-list').append(texto);
                 $('.delete-product').click(function () {
                     $(this).parent().parent().text("");
+
+                    let codigo_producto=$(this).attr('data-code');
+
+
+
+
+                    let pedido=JSON.parse(localStorage.getItem('pedido'));
+                    let product=pedido.productos;
+                    product = product.filter(product => product.codigo_producto !== codigo_producto);
+                    pedido.productos=product;
+                    localStorage.setItem('pedido',JSON.stringify(pedido));
+
                 });
-            }
-        }
+
+                   $('.cant_product').change(function (){
+                       let codigo_producto=$(this).attr('data-code');
+                       let cant_product_pedidos=$(this).val();
+                       let talla_id=$(this).attr('data-talla');
+
+                       var url = localStorage.getItem('url');
+
+                       let input=$(this);
+
+
+                       $.ajax({
+                               method: "POST",
+                               dataType: "json",
+                               data: {
+                                   codigo_producto:codigo_producto,
+                                   cant_pro_pedidos:cant_product_pedidos,
+                                   id_talla:talla_id,
+                                   },
+                               url: url+"Pedido/checkStock",
+                               beforeSend: function () {
+                                   console.log("Sending data...");
+                               },
+                               success: function (data) {
+                                   if(data.status==="error"){
+                                       input.val(cant_product_pedidos-1);
+
+
+
+                                       return swal({
+                                           title: "Información",
+                                           text: data.message,
+                                           icon: "info",
+                                           button: {
+                                               text: "Aceptar",
+                                               visible: true,
+                                               value: true,
+                                               className: "green",
+                                               closeModal: true
+                                           }
+                                       })
+
+                                   }
+
+
+                                   let pedido=JSON.parse(localStorage.getItem('pedido'));
+                                   let product=pedido.productos;
+                                   var foundIndex = product.findIndex(product => product.codigo_producto === codigo_producto);
+                                   product[foundIndex].cant_product_pedidos = cant_product_pedidos;
+                                   pedido.productos=product;
+                                   localStorage.setItem('pedido',JSON.stringify(pedido));
+
+
+                               },
+                               error: function (err) {
+                                   console.log(err.responseText);
+                               }
+                       });
+
+
+
+
+                   });
+
     }
+
+
+
 
     $('#form-pedido-details').submit(function (e) {
         e.preventDefault();
@@ -805,7 +948,7 @@ $(document).ready(function () {
                 "colvis": "Visibilidad"
             }
         }
-    });
+
 
 
 });

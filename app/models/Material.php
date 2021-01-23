@@ -1,5 +1,5 @@
 <?php
-	class Material extends BaseModel {	
+	class Material extends BaseModel {
 
 		// Atributos de la clase
 		private $id_material;
@@ -11,7 +11,7 @@
 
 		// Métodos de la clase
 		public function __construct() {
-			parent::__construct(); //colocar valor al atributo table 
+			parent::__construct(); //colocar valor al atributo table
 			require_once ('config/actions.php');
 			require_once ('config/modules.php');
 			$this->table="materiales";
@@ -47,7 +47,7 @@
 		}
 
 		// Getter de los atributos
-		
+
 		public function getId_material(){
 
 				return $this->id_material;
@@ -85,7 +85,7 @@
 
 					$register [] = $row; // Guardando los registros en un array
 				}
-			
+
 			}else{
 				$register = null; // Devolvemos un null si la condicion no se cumple
 			}
@@ -93,7 +93,7 @@
 			$this->registerBitacora(MATERIALES , CONSULTAR);
 
 			return $register; // Retornamos la variable
-			
+
 		}
 
 		public function getById(){ // Consulta para obtener un solo registro especifico
@@ -101,7 +101,7 @@
 			$query = $this->db()->query("SELECT * FROM $this->table WHERE id_material = $this->id_material"); // Creando consulta sql
 
 			if($row = $query->fetch(PDO::FETCH_OBJ)){ // Guardamos el registro como objeto si existe
-				
+
 				$result = $row; // Se guarda el registro en una variable
 			}
 
@@ -110,10 +110,12 @@
 			return $result; //retornamos la variable
 		}
 
-		public function save(){ // Metodo de registro 
-			
-			//Consulta sql
-			$sql = "INSERT INTO $this->table (id_material,
+		public function save(){ // Metodo de registro
+
+            try {
+                $this->db()->beginTransaction();
+                //Consulta sql
+                $sql = "INSERT INTO $this->table (id_material,
 											  nombre_material,
 											  descripcion_material,
 											  unidad_material,
@@ -125,54 +127,79 @@
 											  :unidad,
 											  :precio)";
 
-			$material = $this->db()->prepare($sql); //preparamos consulta
-			
-			//asignamos valores a los marcadores
-			$material->bindParam(':nombre',  $this->nombre_material);
-			$material->bindParam(':descrip', $this->descripcion_material);
-			$material->bindParam(':unidad',  $this->unidad_material);
-			$material->bindParam(':precio',  $this->precio_material);
+                $material = $this->db()->prepare($sql); //preparamos consulta
 
-			$registering = $material->execute(); // Ejecutamos el registro y guardamos en una variable
+                //asignamos valores a los marcadores
+                $material->bindParam(':nombre',  $this->nombre_material);
+                $material->bindParam(':descrip', $this->descripcion_material);
+                $material->bindParam(':unidad',  $this->unidad_material);
+                $material->bindParam(':precio',  $this->precio_material);
 
-			$this->registerBitacora(MATERIALES , REGISTRAR);
+                $registering = $material->execute(); // Ejecutamos el registro y guardamos en una variable
 
-			return $registering; // retornamos la variable
+                $this->registerBitacora(MATERIALES , REGISTRAR);
+                $this->db()->commit();
+
+                return $registering; // retornamos la variable
+            }catch (Exception $exception){
+                $this->db()->rollBack();
+                return false;
+            }
+
+
 		}
 
 		public function update(){ // Metodo Actualizar
 
-			// Consulta sql
-			$sql = "UPDATE $this->table SET nombre_material      = :nombre,
+            try {
+                $this->db()->beginTransaction();
+                // Consulta sql
+                $sql = "UPDATE $this->table SET nombre_material      = :nombre,
 											descripcion_material =:descrip,
 											unidad_material      = :unidad,
 											precio_material      = :precio
 					WHERE id_material = :id ";
 
-			$material = $this->db()->prepare($sql); // Preparamos la consulta
-			
-			//le asignamos los valores a los marcadores
-			$material->bindParam(':id',      $this->id_material);
-			$material->bindParam(':nombre',  $this->nombre_material);
-			$material->bindParam(':descrip', $this->descripcion_material);
-			$material->bindParam(':unidad',  $this->unidad_material);
-			$material->bindParam(':precio',  $this->precio_material);
+                $material = $this->db()->prepare($sql); // Preparamos la consulta
 
-			$updating = $material->execute(); // Ejecutamos la consulta
+                //le asignamos los valores a los marcadores
+                $material->bindParam(':id',      $this->id_material);
+                $material->bindParam(':nombre',  $this->nombre_material);
+                $material->bindParam(':descrip', $this->descripcion_material);
+                $material->bindParam(':unidad',  $this->unidad_material);
+                $material->bindParam(':precio',  $this->precio_material);
 
-			$this->registerBitacora(MATERIALES , ACTUALIZAR);
+                $updating = $material->execute(); // Ejecutamos la consulta
 
-			return $updating; // Retornamos la variable
+                $this->registerBitacora(MATERIALES , ACTUALIZAR);
+                $this->db()->commit();
+
+                return $updating; // Retornamos la variable
+            }catch (Exception $exception){
+                $this->db()->rollBack();
+                return false;
+            }
+
+
+
 
 		}
 
 		public function delete(){ // Metodo Eliminar
+            try {
+                $this->db()->beginTransaction();
 
-			$query = $this->db()->query("DELETE FROM $this->table WHERE id_material = '$this->id_material' "); // Creando consulta sql
+                $query = $this->db()->query("DELETE FROM $this->table WHERE id_material = '$this->id_material' "); // Creando consulta sql
+                $this->registerBitacora(MATERIALES , ELIMINAR);
+                $this->db()->commit();
 
-			$this->registerBitacora(MATERIALES , ELIMINAR);
+                return $query; // Retornamos la variable
 
-			return $query; // Retornamos la variable
+            }catch (Exception $exception){
+                $this->db()->rollBack();
+                return false;
+            }
+            
 		}
 
 		public function search($nombre){
@@ -192,7 +219,7 @@
 
 		}
 
-		
+
 	}
 
 ?>
