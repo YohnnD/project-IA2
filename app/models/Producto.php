@@ -220,14 +220,14 @@
 		}
 
 		public function delete() {
-			$this->registerBitacora(PRODUCTOS,ELIMINAR);			
+			$this->registerBitacora(PRODUCTOS,ELIMINAR);
 			$query = "DELETE FROM $this->table WHERE codigo_producto = '$this->codigoProducto'"; // Consulta SQL
 			$delete = $this->db()->query($query); // Prepara la consulta SQL
 			return $delete;
 		}
 
 		public function getAll() {
-			$this->registerBitacora(PRODUCTOS,CONSULTAR);			
+			$this->registerBitacora(PRODUCTOS,CONSULTAR);
 			$sql = "SELECT * FROM $this->table";
             $query = $this->db()->query($sql);
             if($query){ // Evalua la cansulta
@@ -244,7 +244,7 @@
 		}
 
 		public function getOne($codigoProducto) {
-			$this->registerBitacora(PRODUCTOS, DETALLES);			
+			$this->registerBitacora(PRODUCTOS, DETALLES);
 			$sql = "SELECT * FROM $this->table AS pro
 					WHERE pro.codigo_producto = '$codigoProducto'";
 			$query = $this->db()->query($sql);
@@ -259,7 +259,7 @@
                 }
             }
             return $register; // Y finalmente, lo retorna.
-		}	
+		}
 
 		public function up() {
 
@@ -321,4 +321,3 @@
 			return $register; // Y finalmente, lo retorna.
 		}
 	}
-?>

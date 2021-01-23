@@ -31,7 +31,7 @@
 				$this->sendAjax($data); // Enviamos la informacion a ajax
 
 			}else{
-			
+
 				$this->view('Materiales/Materiales.Registrar'); // Si no se reciben parametros que muestre la vista de registro
 			}
 		}
@@ -64,7 +64,7 @@
 
 			if(isset($_POST["id_material"])){ // Creamos condición
 
-			$material = new Material(); // Instanciamos la clase 
+			$material = new Material(); // Instanciamos la clase
 
 			// Creamos variables para guardar la informacion recibida por POST
 			$id      = $_POST["id_material"];
@@ -110,4 +110,3 @@
 			$this->sendAjax($query);
 		}
 	}
-?>

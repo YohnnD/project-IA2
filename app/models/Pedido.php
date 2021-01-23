@@ -666,5 +666,3 @@ class Pedido extends BaseModel
     }
 
 }
-
-?>

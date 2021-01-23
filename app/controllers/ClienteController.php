@@ -88,4 +88,3 @@ class ClienteController extends BaseController {
         $this->sendAjax($cliente);
     }
 }
-?>

@@ -7,7 +7,7 @@
 
 		// Métodos
 		public function __construct() {
-			$this->table = 'modulos';            
+			$this->table = 'modulos';
 			parent::__construct();
 		}
 
@@ -28,7 +28,7 @@
         }
 
         public function getAll() {
-			// $this->registerBiracora(PRODUCTOS,CONSULTAR);			
+			// $this->registerBiracora(PRODUCTOS,CONSULTAR);
 			$sql = "SELECT * FROM $this->table";
             $query = $this->db()->query($sql);
             if($query){ // Evalua la cansulta
@@ -44,4 +44,3 @@
             return $resultSet; // Finalmente retornla el arreglo con los elementos.
 		}
 	}
-?>

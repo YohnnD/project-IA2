@@ -8,7 +8,7 @@
 
 		// Métodos
 		public function __construct() {
-			$this->table = 'permisos';            
+			$this->table = 'permisos';
 			parent::__construct();
 		}
 
@@ -49,7 +49,7 @@
         }
 
         public function getAll() {
-			// $this->registerBiracora(PRODUCTOS,CONSULTAR);			
+			// $this->registerBiracora(PRODUCTOS,CONSULTAR);
 			$sql = "SELECT * FROM $this->table";
             $query = $this->db()->query($sql);
             if($query){ // Evalua la cansulta
@@ -66,7 +66,6 @@
 		}
 
         public function getBy() {
-            
+
         }
 	}
-?>

@@ -72,7 +72,7 @@
 				$producto = new Producto();
 				$_producto = $producto->getOne($codigoProducto);
 				$_tallas = $producto->getProductoXTallas($codigoProducto);
-				$this->view('Productos/Productos.Detalles', 
+				$this->view('Productos/Productos.Detalles',
 					[
 						'producto' => $_producto,
 						'pro_tallas' => $_tallas
@@ -163,8 +163,7 @@
     		$producto->setCodigoProducto($codigoProducto);
 				$response = $producto->checkCodigoProducto();
 
-    		$this->sendAjax($response); 
+    		$this->sendAjax($response);
     	}
 
 	}
-?>

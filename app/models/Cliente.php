@@ -187,5 +187,3 @@ class Cliente extends BaseModel{
 
 
 }
-
-?>

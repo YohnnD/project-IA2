@@ -315,5 +315,3 @@ class PedidoController extends BaseController
     }
 
 }
-
-?>
