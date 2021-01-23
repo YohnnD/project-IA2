@@ -24,7 +24,7 @@ class BaseController extends Validations {
     }
 
     public function redirect($controller=DEFAULT_CONTROLLER,$action=DEFAULT_ACTION){//Redirecciona a otra controlador y accion
-        header('Location:'.BASE_URL.$controller.'/'.Helpers::blowfishEncrypt($action));
+        header('Location:'.BASE_URL.$controller.'/'.$action);
     }
 
     public function sendAjax($data){ // Se encarga de enviar los datos y cabeceras de una peticion AJAX
