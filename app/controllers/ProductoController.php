@@ -82,28 +82,28 @@
 
 		public function update() {
 			if($_POST) {
-				$codigoProducto = $_POST['codigo_producto'];
-				$nombreProducto = $_POST['nombre_producto'];
-				$descripcionProducto = $_POST['descripcion_producto'];
-				$tipoProducto = $_POST['tipo_producto'];
-				$modeloProducto = $_POST['modelo_producto'];
-				$costoProducto = $_POST['costo_producto'];
-				$precioProducto = $_POST['precio_producto'];
-				$stockMaxProducto = $_POST['stock_max_producto'];
-				$stockMinProducto = $_POST['stock_min_producto'];
-				$stockProducto = $_POST['stock_producto'];
+				// $codigoProducto = $_POST['codigo_producto'];
+				// $nombreProducto = $_POST['nombre_producto'];
+				// $descripcionProducto = $_POST['descripcion_producto'];
+				// $tipoProducto = $_POST['tipo_producto'];
+				// $modeloProducto = $_POST['modelo_producto'];
+				// $costoProducto = $_POST['costo_producto'];
+				// $precioProducto = $_POST['precio_producto'];
+				// $stockMaxProducto = $_POST['stock_max_producto'];
+				// $stockMinProducto = $_POST['stock_min_producto'];
+				// $stockProducto = $_POST['stock_producto'];
 				$idTalla = $_POST['id_talla'];
 				$stockProTalla = $_POST['stock_pro_talla'];
-				// $codigoProducto = $this->input('codigo_producto', true, 'string');
-				// $nombreProducto = $this->input('nombre_producto', true, 'string');
-				// $descripcionProducto = $this->input('descripcion_producto', true, 'string');
-				// $tipoProducto = $this->input('tipo_producto', true, 'string');
-				// $modeloProducto = $this->input('modelo_producto', true, 'string');
-				// $costoProducto = $this->input('costo_producto', true, 'int');
-				// $precioProducto = $this->input('precio_producto', true, 'int');
-				// $stockMaxProducto = $this->input('stock_max_producto', true, 'int');
-				// $stockMinProducto = $this->input('stock_min_producto', true, 'int');
-				// $stockProducto = $this->input('stock_producto', true, 'int');
+				$codigoProducto = $this->input('codigo_producto', true, 'string');
+				$nombreProducto = $this->input('nombre_producto', true, 'string');
+				$descripcionProducto = $this->input('descripcion_producto', true, 'string');
+				$tipoProducto = $this->input('tipo_producto', true, 'string');
+				$modeloProducto = $this->input('modelo_producto', true, 'string');
+				$costoProducto = $this->input('costo_producto', true, 'int');
+				$precioProducto = $this->input('precio_producto', true, 'int');
+				$stockMaxProducto = $this->input('stock_max_producto', true, 'int');
+				$stockMinProducto = $this->input('stock_min_producto', true, 'int');
+				$stockProducto = $this->input('stock_producto', true, 'int');
 				// $idTalla = $this->input('id_talla');
 				// $stockProTalla = $this->input('stock_pro_talla');
 				if($this->validateFails()) { // Si la validacion falla
@@ -128,10 +128,12 @@
 						$producto->setIdTalla($idTalla[$i]);
 						$producto->setStockProTalla($stockProTalla[$i]);
 						$dataTallas = $producto->updateTallas();
+						// var_dump($dataTallas); die();
 						if(is_object($dataTallas)){
-			            	break;
-							$this->sendAjax($dataTallas);
-			            }
+							// $this->sendAjax($dataTallas);
+							// var_dump($dataTallas);
+			        break;
+			      }
 					}
 					$this->sendAjax($dataProducto);
 				}
@@ -155,10 +157,11 @@
     	}
 
     	public function checkCodigoProducto() {
-			$codigoProducto = $this->input('codigo_producto', true, 'string');
+				$codigoProducto = $this->input('codigo_producto', true, 'string');
     		$producto = new Producto();
     		$producto->setCodigoProducto($codigoProducto);
-   			$response = $producto->checkCodigoProducto();
+				$response = $producto->checkCodigoProducto();
+
     		$this->sendAjax($response); 
     	}
 

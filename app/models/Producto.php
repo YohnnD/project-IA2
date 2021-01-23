@@ -199,16 +199,24 @@
 		}
 
 		public function updateTallas() {
-			$query = "UPDATE pro_tallas SET 
-						id_talla = :id_talla, 
-						stock_pro_talla = :stock_pro_talla
-						WHERE codigo_producto = :codigo_producto AND id_talla = :id_talla";
-			$result = $this->db()->prepare($query); // Prepara la consulta.
-			$result->bindParam(':codigo_producto', $this->codigoProducto);
-			$result->bindParam(':id_talla', $this->idTalla);
-			$result->bindParam(':stock_pro_talla', $this->stockProTalla);
-			$save = $result->execute(); // Ejecuta la consulta
-			return $save;
+			try {
+				$this->db()->beginTransaction();
+				$query = "UPDATE pro_tallas SET 
+							id_talla = :id_talla, 
+							stock_pro_talla = :stock_pro_talla
+							WHERE id_talla = :id_talla AND codigo_producto = :codigo_producto";
+				$result = $this->db()->prepare($query); // Prepara la consulta.
+				$result->bindParam(':codigo_producto', $this->codigoProducto);
+				$result->bindParam(':id_talla', $this->idTalla);
+				$result->bindParam(':stock_pro_talla', $this->stockProTalla);
+				$save = $result->execute(); // Ejecuta la consulta
+				$this->db()->commit();
+				return $save;
+			}
+			catch(Exception $e) {
+				$this->db()->rollBack();
+        return false;
+			}
 		}
 
 		public function delete() {
@@ -301,16 +309,16 @@
 					WHERE codigo_producto = '$this->codigoProducto'";
 			$query = $this->db()->query($sql);
 			if($query){
-                if($query->rowCount() != 0){
-                    if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
-                        $register = $row; // Lo almacena en $register
-                    }
-                }
-                else{
-                    $register = null;
-                }
-            }
-            return $register; // Y finalmente, lo retorna.
+				if($query->rowCount() != 0){
+					if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
+						$register = $row; // Lo almacena en $register
+					}
+				}
+				else{
+					$register = null;
+				}
+			}
+			return $register; // Y finalmente, lo retorna.
 		}
 	}
 ?>

@@ -44,12 +44,12 @@
                             <div class="card-content row">
                                 <div class="input-field col s12 m6">
                                     <i class="icon-label prefix"></i>
-                                    <input id="codigo_producto" type="text" name="codigo_producto" class="validate code-only" minlength="5" maxlength="30" pattern="[A-Za-z0-9]+" title="Escribe el codigo del producto. max(30)" value="<?php echo $producto->codigo_producto; ?>" required disabled>
+                                    <input id="codigo_producto" type="text" name="codigo_producto" class="validate code-only" minlength="5" maxlength="30" pattern="[A-Za-z0-9 ]+" title="Escribe el codigo del producto. max(30)" value="<?php echo $producto->codigo_producto; ?>" required disabled>
                                     <label for="codigo_producto">Código del Producto</label>
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="icon-label prefix"></i>
-                                    <input id="nombre_producto" type="text" name="nombre_producto" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z0-9]+" title="Escribe el nombre del producto. max(30)" value="<?php echo Helpers::aesDecrypt($producto->nombre_producto); ?>" required disabled>
+                                    <input id="nombre_producto" type="text" name="nombre_producto" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z0-9 ]+" title="Escribe el nombre del producto. max(30)" value="<?php echo Helpers::aesDecrypt($producto->nombre_producto); ?>" required disabled>
                                     <label for="nombre_producto">Nombre del Producto</label>
                                 </div>
                                 <div class="input-field col s12">

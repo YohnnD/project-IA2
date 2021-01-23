@@ -36,7 +36,7 @@ $(document).ready(function(){
                         className: "green",
                         closeModal: true
                     },
-                    timer: 3000
+                    // timer: 3000
                 })
                 .then(redirect => {
                     location.href = url + "index";
@@ -133,7 +133,7 @@ $(document).ready(function(){
                         className: "green",
                         closeModal: true
                     },
-                    timer: 3000
+                    // timer: 3000
                 })
                 .then(redirect => {
                     location.href = url + "index";
@@ -243,7 +243,7 @@ $(document).ready(function(){
                 console.log('It works');
             },
             success: function(resp) {
-                var tallas = "<option disabled selected>Elige una opción</option>";
+                var tallas = `<option value="" disabled selected>Elige una opción</option>`;
                 if(resp === null) {
                     tallas = "<option disabled selected>No hay registros</option>";
                 }
@@ -293,10 +293,15 @@ $(document).ready(function(){
             </div>
         `;
         $('#list_tallas').append(template);
-        M.updateTextFields();
         $('.remove').click(function() {
             $(this).parent().parent().text('');
         });
+        $('#list_id_talla option[value=""]').prop('selected', true);
+        $('#list_id_talla').prop('required', false);
+        $('#list_stock_pro_talla').val('').prop('required', false);
+        M.updateTextFields();
+        $('select').formSelect();
+
     });
 
 
@@ -329,6 +334,8 @@ $(document).ready(function(){
                     $('#codigo_producto').val('');
                 }
                 $('#register :input').removeAttr('disabled','');
+                $('select').formSelect();
+                M.updateTextFields();
             },
             error: function(err) {
                 console.log(err);
