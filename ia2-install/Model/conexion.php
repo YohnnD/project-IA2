@@ -2,7 +2,7 @@
 class Conexion{
     private $driver = "pgsql";
     private $host = "localhost";
-    private $user = "admin";
+    private $user = "postgres";
     private $password = "12345678";
     private $dbname = "ia2";
     protected $dbConexion;
