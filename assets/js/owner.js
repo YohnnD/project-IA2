@@ -7,7 +7,7 @@ $(document).ready(function(){
 
     if (localStorage.getItem('url') === null) {
         //localStorage.setItem('url', 'http://localhost/project-IA2/');
-        localStorage.setItem('url', 'http://localhost:8080/project-IA2/');
+        localStorage.setItem('url', 'http://200.8.18.26:85/');
     }
 
 
