@@ -271,23 +271,27 @@ class PedidoController extends BaseController
         $idTela = $this->input('id_tela');
 
 
-        for ($i = 0; $i < count($id_servicio); $i++) {
-            $pedido->setIdServicio($id_servicio[$i]);
-            $pedido->setCantidadPrenda($cantidadPrenda[$i]);
-            $pedido->setCantidadMedida($cantidadMedida[$i]);
-            $pedido->setIdTela($idTela[$i]);
-            $pedido->updateServiPedido();
+
+        if(!is_null($id_servicio)){
+            for ($i = 0; $i < count($id_servicio); $i++) {
+                $pedido->setIdServicio($id_servicio[$i]);
+                $pedido->setCantidadPrenda($cantidadPrenda[$i]);
+                $pedido->setCantidadMedida($cantidadMedida[$i]);
+                $pedido->setIdTela($idTela[$i]);
+                $pedido->updateServiPedido();
+            }
         }
 
 
-        for ($i = 0; $i < count($cant_producto_pedido); $i++) {
-            $pedido->setCantidadPrenda($cant_producto_pedido[$i]);
-            $pedido->setCodigoProducto($codigoProducto[$i]);
-            $pedido->updateProducto();
+        if(!is_null($cant_producto_pedido)){
+            for ($i = 0; $i < count($cant_producto_pedido); $i++) {
+                $pedido->setCantidadPrenda($cant_producto_pedido[$i]);
+                $pedido->setCodigoProducto($codigoProducto[$i]);
+                $pedido->updateProducto();
+            }
         }
-
         $_SESSION['message']=true;
-        header('Location:'. BASE_URL .'Pedido/details/' . $codigoPedido);
+        header('Location:'.BASE_URL.'Pedido/details/'.$codigoPedido);
     }
 
 
@@ -315,5 +319,3 @@ class PedidoController extends BaseController
     }
 
 }
-
-?>

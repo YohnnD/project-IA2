@@ -5,11 +5,11 @@
 		}
 
 		public function index() {
-			$this->view('Permisos/Permisos'); 
+			$this->view('Permisos/Permisos');
 		}
 
 		public function create() {
-			
+
 		}
 
 		public function manage() {
@@ -26,7 +26,7 @@
 			$allPermisos = $permiso->getAll();
 			$this->view('Seguridad/Permisos', [
 				'allPermisos' => $allPermisos
-			]); 
+			]);
 		}
 
 		public function register() {
@@ -53,7 +53,7 @@
 			// 				$this->sendAjax($dataRolXPermiso);
 			//             }
 			// 		}
-			// 		// for ($i = 0; $i < count($idModulo); $i++) { 
+			// 		// for ($i = 0; $i < count($idModulo); $i++) {
 			// 		// 	$rol->setIdRol($idRol);
 			// 		// 	$dataRolXModulo = $rol->saveRolXModulos();
 			// 		// 	if(is_object($dataRolXPermiso)){
@@ -61,11 +61,11 @@
 			// 		// 		$this->sendAjax($dataRolXModulo);
 			//   //           }
 			// 		// }
-					
+
 			// 	}
 			// 		var_dump($dataRolXPermiso);
 			// 		var_dump($dataRolXModulo);
-			
+
 		}
 
 		public function update() {
@@ -76,4 +76,3 @@
 
 		}
 	}
-?>

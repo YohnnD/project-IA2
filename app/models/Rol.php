@@ -8,7 +8,7 @@
 
 		// Métodos
 		public function __construct() {
-			$this->table = 'roles';            
+			$this->table = 'roles';
 			parent::__construct();
 		}
 
@@ -37,7 +37,7 @@
         }
 
         public function save() {
-            $this->registerBitacora(ROLES_PERMISOS,REGISTRAR);            
+            $this->registerBitacora(ROLES_PERMISOS,REGISTRAR);
             $query = "INSERT INTO roles (nombre_rol, descripcion_rol) VALUES (:nombre_rol,:descripcion_rol) "; // COnsulta SQL
             $result = $this->db()->prepare($query); // Prepara la consulta SQL
             $result->bindParam(':nombre_rol',$this->nombreRol);
@@ -48,7 +48,7 @@
 
 
         public function update() {
-            // $this->registerBiracora(USUARIOS,ACTUALIZAR);            
+            // $this->registerBiracora(USUARIOS,ACTUALIZAR);
             $query = "UPDATE $this->table SET 
                         nombre_rol = :nombre_rol,
                         descripcion_rol = :descripcion_rol
@@ -184,7 +184,7 @@
         }
 
         public function updateRolPermisoModule($id_rol,$id_modulo,$id_permiso) {
-            // $this->registerBiracora(USUARIOS,ACTUALIZAR);            
+            // $this->registerBiracora(USUARIOS,ACTUALIZAR);
             $query = "UPDATE rol_permisos_modulos SET 
                         id_permiso = :id_permiso,
                         id_modulo = :id_modulo 
@@ -197,11 +197,11 @@
             return $update;
         }
 
- 
+
         public function deleteRolPermisoModule($id_rol,$id_modulo,$id_permiso) {
-            // $this->registerBiracora(USUARIOS,ELIMINAR);          
+            // $this->registerBiracora(USUARIOS,ELIMINAR);
             $query = "DELETE FROM rol_permisos_modulos WHERE id_rol = '$id_rol'"; // Consulta SQL
-            $delete = $this->db()->query($query); 
+            $delete = $this->db()->query($query);
             return $delete;
         }
 
@@ -221,4 +221,3 @@
             return $resultSet; // Finalmente retornla el arreglo con los elementos.
         }
 	}
-?>

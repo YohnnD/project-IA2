@@ -1,8 +1,8 @@
 <?php
 class Conexion{
     private $driver = "pgsql";
-    private $host = "192.168.64.1";
-    private $user = "yohnnd";
+    private $host = "localhost";
+    private $user = "postgres";
     private $password = "12345678";
     private $dbname = "ia2";
     protected $dbConexion;

@@ -89,7 +89,7 @@
                 $factura_find = $factura->getFacturaId($id);
                 $servicio_find = $factura->getFacturaServicioById($id);
                 $producto_find=$factura->getFacturaProductoById($id);
-                
+
                 echo var_dump($factura_find);
 
                 $this->view('Reportes/Invoice',
@@ -120,7 +120,7 @@
         }
 
         public function facturaBolivares() {
-    
+
                 if (isset($_POST["id"])) {
                 $mpdf = new \Mpdf\Mpdf();
                 ob_start();
@@ -148,13 +148,12 @@
                 $mpdf->WriteHTML($html);
                 $mpdf->Output();
             }
-        
+
         }
 
 
 
 	}
-?>
 
 
 

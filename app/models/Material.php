@@ -199,7 +199,7 @@
                 $this->db()->rollBack();
                 return false;
             }
-            
+
 		}
 
 		public function search($nombre){
@@ -221,5 +221,3 @@
 
 
 	}
-
-?>

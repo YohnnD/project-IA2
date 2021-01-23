@@ -121,7 +121,7 @@ class ServicioController extends BaseController {
 
             $nombre = '';
         }
-        
+
         $servicio = new Servicio();
         $servicio->setNombreServicio($nombre);
         $respuesta = $servicio->verificarServicio();
@@ -135,8 +135,8 @@ class ServicioController extends BaseController {
             $respuesta = $materiales->searchMaterial($idMaterial);
 
             $this->view('Servicios/Servicios.addMateriales.Servicio', array(
-                'materiales' => $respuesta 
-            ));   
+                'materiales' => $respuesta
+            ));
     }
 
     public function saveMaterial() {
@@ -146,14 +146,14 @@ class ServicioController extends BaseController {
 
         if ($idServicio == 0) {
             $Servicio = new Servicio();
-            
+
             $Servicio->setIdServicio($idServicio);
             $result = $Servicio->saveMaterial($idMaterial, $cantidad);
 
             $this->sendAjax($result);
         } else {
             $Servicio = new Servicio();
-            
+
             $Servicio->setIdServicio($idServicio);
             $result = $Servicio->saveMaterial($idMaterial, $cantidad);
 
@@ -169,11 +169,9 @@ class ServicioController extends BaseController {
         $servicio->setIdServicio($id);
         $respuesta=$servicio->deleteMaterial();
 
-        $this->redirect('Servicio','getAll');  
+        $this->redirect('Servicio','getAll');
     }
 
 
 
 }
-
-?>
