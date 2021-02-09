@@ -113,7 +113,8 @@ CREATE TABLE IF NOT EXISTS pro_pedidos(
     codigo_producto        VARCHAR(10)       NOT NULL,
     cant_pro_pedido        INT               NOT NULL,
     precio_pro_pedido      FLOAT             NOT NULL,
-    PRIMARY KEY (codigo_pedido, codigo_producto)
+    nombre_talla           VARCHAR (4)       NOT NULL,
+    PRIMARY KEY (codigo_pedido, codigo_producto,nombre_talla)
 );
 
 

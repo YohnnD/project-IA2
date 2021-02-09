@@ -12,7 +12,7 @@
                 <li>
                     <a href="#" class="dropdown-trigger avatar-trigger" data-target="user-dropdown">
                         <i class="icon-arrow_drop_down right"></i>
-						<img src="<?php echo BASE_URL ?>assets/images/manager.png" alt="" class="avatar">
+						<img src="<?php echo BASE_URL ?>assets/images/user-white.svg" alt="" class="avatar">
                     </a>
                 </li>
                 <!-- User dropdown trigger -->
@@ -24,7 +24,7 @@
             </ul>
         </div>
         <!-- Sidenav menu -->
-        <ul class="sidenav sidenav-fixed show-on-large" id="sidenav-menu">
+        <ul class="sidenav sidenav-fixed show-on-large grey-text text-darken-2" id="sidenav-menu">
             <li><a href="" class="logo-container">IA2</a></li>
             <li><a href="<?php echo Helpers::url('Auth','profile'); ?>/<?php echo $_SESSION['user']->nick_usuario; ?>" class="waves-effect waves-black"><i class="icon-person left"></i><?php echo $_SESSION['user']->nick_usuario; ?></a></li>
             <li class="divider"></li>
@@ -53,7 +53,9 @@
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
                     <li class="bold">
-                        <a href="#!" class="collapsible-header"><i class="icon-build left" style="margin-left:15px;"></i>Configuración <i class="icon-arrow_drop_down right"></i></a>
+                        <div class="collapsible-header">
+                            <i class="icon-build left" style="margin-left:15px;"></i>Configuración<i class="icon-arrow_drop_down right" style="margin-left:50px;"></i>
+                        </div>
                         <div class="collapsible-body">
                             <ul>
                                 <?php if (Helpers::hasPermissions('5')): ?>

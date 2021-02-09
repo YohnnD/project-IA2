@@ -28,7 +28,7 @@
                 </div>
                 <div class="col s12 m8 offset-m2">
                     <div class="card testimonial-card">
-                        <div class="card-up a2-green-gradient"></div>
+                        <div class="card-up primary-gradient"></div>
                         <div class="avatar avatar-centered">
                             <img src="<?php echo BASE_URL; ?>assets/images/avatar-1.png" alt="" srcset="">
                         </div>
@@ -38,7 +38,7 @@
                         </ul>
                         <div class="card-content row">
                             <!-- <span class="card-title">Jhon Doe</span>
-                            <p class="card-subtitle a2-green-text darken">Administrador</p> -->
+                            <p class="card-subtitle primary-text darken">Administrador</p> -->
                             <div id="tab-1" class="col s12">
                                 <!-- <span>Something</span> -->
                                 <form action="" class="row">
@@ -81,7 +81,7 @@
                                         </span>
                                     </div>
                                     <div class="col s12 center-align">
-                                        <div class="btn btn-small a2-green-gradient waves-effect waves-light">Enviar</div>
+                                        <div class="btn btn-small primary-gradient waves-effect waves-light">Enviar</div>
                                     </div>
                                 </form>
                             </div>

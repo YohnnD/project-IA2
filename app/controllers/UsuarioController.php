@@ -102,7 +102,7 @@
     		$usuario = new Usuario();
     		$usuario->setNickUsuario($nickUsuario);
    			$response = $usuario->checkNickUsuario();
-    		$this->sendAjax($response); 
+    		$this->sendAjax($response);
     	}
 
     	public function checkEmailUsuario() {
@@ -110,7 +110,6 @@
     		$usuario = new Usuario();
     		$usuario->setEmailUsuario($emailUsuario);
    			$response = $usuario->checkEmailUsuario();
-    		$this->sendAjax($response); 
+    		$this->sendAjax($response);
     	}
 	}
-?>

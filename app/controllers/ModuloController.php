@@ -9,7 +9,7 @@
 		}
 
 		public function create() {
-			
+
 		}
 
 		public function getAll() {
@@ -32,4 +32,3 @@
 
 		}
 	}
-?>

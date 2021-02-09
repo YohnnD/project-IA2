@@ -33,7 +33,7 @@
 
 
 
-			$this->view('Seguridad/Permisos');			
+			$this->view('Seguridad/Permisos');
 
 		}
 
@@ -54,4 +54,3 @@
 
         }
 	}
-?>

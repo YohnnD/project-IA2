@@ -38,4 +38,6 @@ $(document).ready(function(){
     $('.validate.text-validate').keyup(function (){
         this.value = (this.value + '').replace(/[^a-zA-Z ]/g, '');
     });
+
+
 });

@@ -86,8 +86,8 @@ INSERT INTO 	pro_tallas 		VALUES ( '3' , 5 , 20 );
 
 -- PRO_PEDIDOS
 
-INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000001' , '3' , 5 ,5);
-INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '2' , 1 ,5);
-INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '3' , 1 ,5);
-INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '1' , 1, 5);
-INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000001' , '2' , 1 ,5);
+INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000001' , '3' , 5 ,5, 'S');
+INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '2' , 1 ,5, 'S');
+INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '3' , 1 ,5, 'XXL');
+INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000006' , '1' , 1, 5, 'XS');
+INSERT INTO 	pro_pedidos 	VALUES ( 'P-0000001' , '2' , 1 ,5, 'S');

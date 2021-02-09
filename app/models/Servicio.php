@@ -92,9 +92,9 @@ class Servicio extends BaseModel {
         $this->registerBitacora(SERVICIOS,CONSULTAR);
         $query = $this->db()->query("SELECT * FROM $this->table");
 
-        if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
+        if ($query && $query->rowCount() != 0) {// Evalua la cansulta
             $row = $query->fetchAll();
-        } else { // 
+        } else { //
             $row = NULL;
         }
 
@@ -105,9 +105,9 @@ class Servicio extends BaseModel {
         $this->registerBitacora(SERVICIOS,DETALLES);
         $query = $this->db()->query("SELECT * FROM $this->table WHERE id_servicio = '$this->id_servicio'");
 
-        if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
+        if ($query && $query->rowCount() != 0) {// Evalua la cansulta
             $row = $query->fetchAll();
-        } else { // 
+        } else { //
             $row = NULL;
         }
 
@@ -153,9 +153,9 @@ class Servicio extends BaseModel {
     }
 
     public function verificarServicio() {
-       
+
         $servicio = $this->db()->query("SELECT * FROM servicios where nombre_servicio='$this->nombre_Servicio'");
-        
+
         if ($servicio && $servicio->rowCount() !== 0) {
             $respuesta = true;
         } else {
@@ -170,9 +170,9 @@ class Servicio extends BaseModel {
         if ($this->id_servicio == 0) {
             $query = $this->db()->query('select id_servicio from servicios order by id_servicio desc');
 
-            if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
+            if ($query && $query->rowCount() != 0) {// Evalua la cansulta
                 $row = $query->fetchAll();
-            } else { // 
+            } else { //
                 $row = NULL;
             }
 
@@ -205,9 +205,9 @@ class Servicio extends BaseModel {
     public function searchMaterial($search) {
         $query = $this->db()->query("SELECT * FROM materiales where id_material='$search'");
 
-        if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
+        if ($query && $query->rowCount() != 0) {// Evalua la cansulta
             $row = $query->fetchAll();
-        } else { // 
+        } else { //
             $row = NULl;
         }
 
@@ -237,5 +237,3 @@ class Servicio extends BaseModel {
     }
 
 }
-
-?>

@@ -30,6 +30,7 @@ class Pedido extends BaseModel
     private $codigoProducto;
     private $nombreProducto;
     private $idTallas;
+    private $nombreTalla;
 
 
     /**
@@ -49,6 +50,12 @@ class Pedido extends BaseModel
     {
         return $this->nombreProducto;
     }
+
+    public function getNombreTalla()
+    {
+        return $this->nombreTalla;
+    }
+
 
     public function setNombreProducto($nombreProducto)
     {
@@ -181,6 +188,11 @@ class Pedido extends BaseModel
     public function setStatusPedido($statusPedido)
     {
         $this->statusPedido = Helpers::aesEncrypt($statusPedido);
+    }
+
+    public function setNombreTalla($nombreTalla)
+    {
+        $this->nombreTalla = $nombreTalla;
     }
 
     public function setCantidadMedida($cantidadMedida)
@@ -482,8 +494,7 @@ class Pedido extends BaseModel
         $sql = "SELECT * FROM productos INNER JOIN pro_tallas
                 on productos.codigo_producto = pro_tallas.codigo_producto INNER JOIN 
                 tallas ON pro_tallas.id_talla = tallas.id_talla
-                 WHERE productos.codigo_producto LIKE '%$this->codigoProducto%' OR nombre_producto 
-                 LIKE '%$this->codigoProducto%'  OR tallas.nombre_talla LIKE '%$this->codigoProducto%' ";
+                 WHERE productos.codigo_producto='$this->codigoProducto' AND tallas.nombre_talla ='$this->idTallas'";
 
         $query = $this->db()->query($sql);
         if ($query->rowCount() >= 1) {
@@ -498,15 +509,46 @@ class Pedido extends BaseModel
         return $resulSet;
     }
 
+    public function productoAll()
+    {
+        $sql = "SELECT * FROM productos INNER JOIN pro_tallas
+                on productos.codigo_producto = pro_tallas.codigo_producto INNER JOIN 
+                tallas ON pro_tallas.id_talla = tallas.id_talla
+                 WHERE pro_tallas.stock_pro_talla != 0";
+
+        $query = $this->db()->query($sql);
+        if ($query->rowCount() >= 1) {
+            while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+                $row->nombre_producto=Helpers::aesDecrypt($row->nombre_producto);
+                $resulSet[] = $row;
+            }
+        } else {
+            $resulSet = null;
+        }
+
+        return $resulSet;
+    }
+
+
+
+
+
+
+
+
+
+
+
     public function saveProPredido()
     {
-        $sql = "INSERT INTO pro_pedidos(codigo_pedido, codigo_producto, cant_pro_pedido,precio_pro_pedido) 
-                      VALUES(:codigo_pedido,:codigo_producto,:cant_pro_pedido,:precio_pro_pedido)";
+        $sql = "INSERT INTO pro_pedidos(codigo_pedido, codigo_producto, cant_pro_pedido,precio_pro_pedido,nombre_talla) 
+                      VALUES(:codigo_pedido,:codigo_producto,:cant_pro_pedido,:precio_pro_pedido,:nombre_talla)";
         $query = $this->db()->prepare($sql);
         $query->bindValue(':codigo_pedido', $this->codigoPedido);
         $query->bindValue(':codigo_producto', $this->codigoProducto);
         $query->bindValue(':cant_pro_pedido', $this->cantidadPrenda);
         $query->bindValue(':precio_pro_pedido', $this->precioServiPedido);
+        $query->bindValue(':nombre_talla', $this->nombreTalla);
         $save = $query->execute();
 
 
@@ -624,5 +666,3 @@ class Pedido extends BaseModel
     }
 
 }
-
-?>

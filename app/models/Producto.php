@@ -128,129 +128,173 @@
 		}
 
 		public function save() {
-
-            try {
-                $this->db()->beginTransaction();
-                $this->registerBitacora(PRODUCTOS, REGISTRAR);
-                $query = "INSERT INTO $this->table
-						(codigo_producto,
-						nombre_producto,descripcion_producto,tipo_producto,
-						modelo_producto,costo_producto,precio_producto,stock_max_producto,
-						stock_min_producto,stock_producto,img_producto) 
-						VALUES 
-						(:codigo_producto,:nombre_producto,:descripcion_producto,:tipo_producto,
-						:modelo_producto,:costo_producto,:precio_producto,:stock_max_producto,
-						:stock_min_producto,:stock_producto,:img_producto)"; // Consulta SQL
-                $result = $this->db()->prepare($query); // Prepara la consulta.
-                $result->bindParam(':codigo_producto', $this->codigoProducto);
-                $result->bindParam(':nombre_producto', $this->nombreProducto);
-                $result->bindParam(':descripcion_producto', $this->descripcionProducto);
-                $result->bindParam(':tipo_producto', $this->tipoProducto);
-                $result->bindParam(':modelo_producto', $this->modeloProducto);
-                $result->bindParam(':costo_producto', $this->costoProducto);
-                $result->bindParam(':precio_producto', $this->precioProducto);
-                $result->bindParam(':stock_max_producto', $this->stockMaxProducto);
-                $result->bindParam(':stock_min_producto', $this->stockMinProducto);
-                $result->bindParam(':stock_producto', $this->stockProducto);
-                $result->bindParam(':img_producto', $this->imgProducto);
-                $save = $result->execute(); // Ejecuta la primera consulta.
-                $this->db()->commit();
-                return $save;
-            }catch (Exception $e){
-                $this->db()->rollBack();
-                return false;
-            }
+			try {
+				$this->db()->beginTransaction();
+				$this->registerBitacora(PRODUCTOS, REGISTRAR);
+				$query = "INSERT INTO $this->table
+					(codigo_producto,
+					nombre_producto,descripcion_producto,tipo_producto,
+					modelo_producto,costo_producto,precio_producto,stock_max_producto,
+					stock_min_producto,stock_producto,img_producto) 
+					VALUES 
+					(:codigo_producto,:nombre_producto,:descripcion_producto,:tipo_producto,
+					:modelo_producto,:costo_producto,:precio_producto,:stock_max_producto,
+					:stock_min_producto,:stock_producto,:img_producto)"; // Consulta SQL
+				$result = $this->db()->prepare($query); // Prepara la consulta.
+				$result->bindParam(':codigo_producto', $this->codigoProducto);
+				$result->bindParam(':nombre_producto', $this->nombreProducto);
+				$result->bindParam(':descripcion_producto', $this->descripcionProducto);
+				$result->bindParam(':tipo_producto', $this->tipoProducto);
+				$result->bindParam(':modelo_producto', $this->modeloProducto);
+				$result->bindParam(':costo_producto', $this->costoProducto);
+				$result->bindParam(':precio_producto', $this->precioProducto);
+				$result->bindParam(':stock_max_producto', $this->stockMaxProducto);
+				$result->bindParam(':stock_min_producto', $this->stockMinProducto);
+				$result->bindParam(':stock_producto', $this->stockProducto);
+				$result->bindParam(':img_producto', $this->imgProducto);
+				$save = $result->execute(); // Ejecuta la primera consulta.
+				$this->db()->commit();
+				return $save;
+			}catch (Exception $e){
+				$this->db()->rollBack();
+				return false;
+			}
 		}
 
 		public function saveTallas() {
-			$query = "INSERT INTO pro_tallas (codigo_producto,id_talla,stock_pro_talla) VALUES 
-						(:codigo_producto,:id_talla,:stock_pro_talla)";
-			$result = $this->db()->prepare($query); // Prepara la consulta.
-			$result->bindParam(':codigo_producto', $this->codigoProducto);
-			$result->bindParam(':id_talla', $this->idTalla);
-			$result->bindParam(':stock_pro_talla', $this->stockProTalla);
-			$save = $result->execute(); // Ejecuta la consulta
-			return $save;
+			// try {
+				// $this->db()->beginTransaction();
+				$query = "INSERT INTO pro_tallas (codigo_producto,id_talla,stock_pro_talla) VALUES 
+					(:codigo_producto,:id_talla,:stock_pro_talla)";
+				$result = $this->db()->prepare($query); // Prepara la consulta.
+				$result->bindParam(':codigo_producto', $this->codigoProducto);
+				$result->bindParam(':id_talla', $this->idTalla);
+				$result->bindParam(':stock_pro_talla', $this->stockProTalla);
+				$save = $result->execute(); // Ejecuta la consulta
+				return $save;
+				// $this->db()->commit();
+			// } catch (Exception $e){
+				// $this->db()->rollBack();
+				// return false;
+			// }
 		}
 
 		public function update() {
-			$this->registerBitacora(PRODUCTOS,ACTUALIZAR);
-			$query = "UPDATE $this->table SET
-						-- codigo_producto = :codigo_producto, 
-						nombre_producto = :nombre_producto,
-						descripcion_producto = :descripcion_producto, tipo_producto = :tipo_producto,
-						modelo_producto = :modelo_producto, costo_producto = :costo_producto,
-						precio_producto = :precio_producto, stock_max_producto = :stock_max_producto,
-						stock_min_producto = :stock_min_producto, stock_producto = :stock_producto
-						WHERE codigo_producto = :codigo_producto";
-			$result = $this->db()->prepare($query); // Prepara la consulta.
-			$result->bindValue(':codigo_producto', $this->codigoProducto);
-			$result->bindValue(':nombre_producto', $this->nombreProducto);
-			$result->bindValue(':descripcion_producto', $this->descripcionProducto);
-			$result->bindValue(':tipo_producto', $this->tipoProducto);
-			$result->bindValue(':modelo_producto', $this->modeloProducto);
-			$result->bindValue(':costo_producto', $this->costoProducto);
-			$result->bindValue(':precio_producto', $this->precioProducto);
-			$result->bindValue(':stock_max_producto', $this->stockMaxProducto);
-			$result->bindValue(':stock_min_producto', $this->stockMinProducto);
-			$result->bindValue(':stock_producto', $this->stockProducto);
-			$save = $result->execute(); // Ejecuta la consulta
-			return $save;
+			try {
+				$this->db()->beginTransaction();
+				$this->registerBitacora(PRODUCTOS,ACTUALIZAR);
+				$query = "UPDATE $this->table SET
+							-- codigo_producto = :codigo_producto, 
+							nombre_producto = :nombre_producto,
+							descripcion_producto = :descripcion_producto, tipo_producto = :tipo_producto,
+							modelo_producto = :modelo_producto, costo_producto = :costo_producto,
+							precio_producto = :precio_producto, stock_max_producto = :stock_max_producto,
+							stock_min_producto = :stock_min_producto, stock_producto = :stock_producto
+							WHERE codigo_producto = :codigo_producto";
+				$result = $this->db()->prepare($query); // Prepara la consulta.
+				$result->bindValue(':codigo_producto', $this->codigoProducto);
+				$result->bindValue(':nombre_producto', $this->nombreProducto);
+				$result->bindValue(':descripcion_producto', $this->descripcionProducto);
+				$result->bindValue(':tipo_producto', $this->tipoProducto);
+				$result->bindValue(':modelo_producto', $this->modeloProducto);
+				$result->bindValue(':costo_producto', $this->costoProducto);
+				$result->bindValue(':precio_producto', $this->precioProducto);
+				$result->bindValue(':stock_max_producto', $this->stockMaxProducto);
+				$result->bindValue(':stock_min_producto', $this->stockMinProducto);
+				$result->bindValue(':stock_producto', $this->stockProducto);
+				$save = $result->execute(); // Ejecuta la consulta
+				return $save;
+				$this->db()->commit();
+			} catch (Exception $e){
+				$this->db()->rollBack();
+				return false;
+			}
 		}
 
-		public function updateTallas() {
-			$query = "UPDATE pro_tallas SET 
-						id_talla = :id_talla, 
-						stock_pro_talla = :stock_pro_talla
-						WHERE codigo_producto = :codigo_producto AND id_talla = :id_talla";
-			$result = $this->db()->prepare($query); // Prepara la consulta.
-			$result->bindParam(':codigo_producto', $this->codigoProducto);
-			$result->bindParam(':id_talla', $this->idTalla);
-			$result->bindParam(':stock_pro_talla', $this->stockProTalla);
-			$save = $result->execute(); // Ejecuta la consulta
-			return $save;
+		public function updateTalla() {
+			// try {
+			// 	$this->db()->beginTransaction();
+				$query = "UPDATE pro_tallas SET 
+							-- id_talla = :id_talla, 
+							stock_pro_talla = :stock_pro_talla
+							WHERE codigo_producto = '$this->codigoProducto' AND id_talla = '$this->idTalla'";
+				$result = $this->db()->prepare($query); // Prepara la consulta.
+				// $result->bindParam(':codigo_producto', $this->codigoProducto);
+				// $result->bindParam(':id_talla', $this->idTalla);
+				$result->bindParam(':stock_pro_talla', $this->stockProTalla);
+				$save = $result->execute(); // Ejecuta la consulta
+				// $this->db()->commit();
+				return $save;
+			// }
+			// catch(Exception $e) {
+			// 	echo $e->getMessage();
+			// 	$this->db()->rollBack();
+      //   return false;
+			// }
 		}
 
 		public function delete() {
-			$this->registerBitacora(PRODUCTOS,ELIMINAR);			
-			$query = "DELETE FROM $this->table WHERE codigo_producto = '$this->codigoProducto'"; // Consulta SQL
-			$delete = $this->db()->query($query); // Prepara la consulta SQL
-			return $delete;
+			try {
+				$this->db()->beginTransaction();
+				$this->registerBitacora(PRODUCTOS,ELIMINAR);			
+				$query = "DELETE FROM $this->table WHERE codigo_producto = '$this->codigoProducto'"; // Consulta SQL
+				$delete = $this->db()->query($query); // Prepara la consulta SQL
+				$this->db()->commit();
+				return $delete;
+
+			} catch(Exception $e) {
+				$this->db()->rollBack();
+        return false;
+			}
 		}
 
 		public function getAll() {
-			$this->registerBitacora(PRODUCTOS,CONSULTAR);			
-			$sql = "SELECT * FROM $this->table";
-            $query = $this->db()->query($sql);
-            if($query){ // Evalua la cansulta
-                if($query->rowCount() != 0) { // Si existe al menos un registro...
-                    while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
-                        $resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
-                    }
-                }
-                else{ // Sino...
-                    $resultSet = null; // Almacena null
-                }
-            }
-            return $resultSet; // Finalmente retornla el arreglo con los elementos.
+			try {
+				$this->db()->beginTransaction();
+				$this->registerBitacora(PRODUCTOS,CONSULTAR);			
+				$sql = "SELECT * FROM $this->table";
+				$query = $this->db()->query($sql);
+				if($query){ // Evalua la cansulta
+					if($query->rowCount() != 0) { // Si existe al menos un registro...
+						while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
+							$resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
+						}
+					}
+					else{ // Sino...
+						$resultSet = null; // Almacena null
+					}
+				}
+				$this->db()->commit();
+				return $resultSet; // Finalmente retornla el arreglo con los elementos.
+			} catch(Exception $e) {
+				$this->db()->rollBack();
+        return false;
+			}
 		}
 
 		public function getOne($codigoProducto) {
-			$this->registerBitacora(PRODUCTOS, DETALLES);			
-			$sql = "SELECT * FROM $this->table AS pro
-					WHERE pro.codigo_producto = '$codigoProducto'";
-			$query = $this->db()->query($sql);
-			if($query){
-                if($query->rowCount() != 0){
-                    if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
-                        $register = $row; // Lo almacena en $register
-                    }
-                }
-                else{
-                    $register = null;
-                }
-            }
-            return $register; // Y finalmente, lo retorna.
+			try {
+				$this->db()->beginTransaction();
+				$this->registerBitacora(PRODUCTOS, DETALLES);			
+				$sql = "SELECT * FROM $this->table AS pro
+						WHERE pro.codigo_producto = '$codigoProducto'";
+				$query = $this->db()->query($sql);
+				if($query){
+					if($query->rowCount() != 0){
+						if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
+							$register = $row; // Lo almacena en $register
+						}
+					}
+					else{
+						$register = null;
+					}
+				}
+				$this->db()->commit();
+				return $register; // Y finalmente, lo retorna.
+			} catch(Exception $e) {
+				$this->db()->rollBack();
+        return false;
+			}
 		}	
 
 		public function up() {
@@ -262,55 +306,75 @@
 		}
 
 		public function getAllTallas() {
-			$sql = "SELECT * FROM tallas";
-            $query = $this->db()->query($sql);
-            if($query){ // Evalua la cansulta
-                if($query->rowCount() != 0) { // Si existe al menos un registro...
-                    while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
-                        $resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
-                    }
-                }
-                else{ // Sino...
-                    $resultSet = null; // Almacena null
-                }
-            }
-            return $resultSet; // Finalmente retornla el arreglo con los elementos.
+			try {
+				$this->db()->beginTransaction();
+				$sql = "SELECT * FROM tallas";
+				$query = $this->db()->query($sql);
+				if($query){ // Evalua la cansulta
+					if($query->rowCount() != 0) { // Si existe al menos un registro...
+						while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
+							$resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
+						}
+					}
+					else{ // Sino...
+							$resultSet = null; // Almacena null
+					}
+				}
+				$this->db()->commit();
+				return $resultSet; // Finalmente retornla el arreglo con los elementos.
+			} catch(Exception $e) {
+				$this->db()->rollBack();
+        return false;
+			}
 		}
 
 		public function getProductoXTallas($codigoProducto) {
-			$sql = "SELECT * FROM pro_tallas AS pt 
-						INNER JOIN tallas AS t
-							ON t.id_talla = pt.id_talla
-						WHERE pt.codigo_producto = '$codigoProducto'";
-            $query = $this->db()->query($sql);
-            if($query){ // Evalua la cansulta
-                if($query->rowCount() != 0) { // Si existe al menos un registro...
-                    while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
-                        $resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
-                    }
-                }
-                else{ // Sino...
-                    $resultSet = null; // Almacena null
-                }
-            }
-            return $resultSet; // Finalmente retornla el arreglo con los elementos.
+			try {
+				$this->db()->beginTransaction();
+				$sql = "SELECT * FROM pro_tallas AS pt 
+							INNER JOIN tallas AS t
+								ON t.id_talla = pt.id_talla
+							WHERE pt.codigo_producto = '$codigoProducto'";
+				$query = $this->db()->query($sql);
+				if($query){ // Evalua la cansulta
+						if($query->rowCount() != 0) { // Si existe al menos un registro...
+								while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
+										$resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
+								}
+						}
+						else{ // Sino...
+								$resultSet = null; // Almacena null
+						}
+				}
+				$this->db()->rollBack();
+				return $resultSet; // Finalmente retornla el arreglo con los elementos.
+			} catch(Exception $e) {
+				$this->db()->rollBack();
+        return false;
+			}
 		}
 
 		public function checkCodigoProducto() {
-			$sql = "SELECT codigo_producto FROM $this->table 
-					WHERE codigo_producto = '$this->codigoProducto'";
-			$query = $this->db()->query($sql);
-			if($query){
-                if($query->rowCount() != 0){
-                    if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
-                        $register = $row; // Lo almacena en $register
-                    }
-                }
-                else{
-                    $register = null;
-                }
-            }
-            return $register; // Y finalmente, lo retorna.
+			try {
+				$this->db()->beginTransaction();
+				$sql = "SELECT codigo_producto FROM $this->table 
+						WHERE codigo_producto = '$this->codigoProducto'";
+				$query = $this->db()->query($sql);
+				if($query){
+					if($query->rowCount() != 0){
+						if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
+							$register = $row; // Lo almacena en $register
+						}
+					}
+					else{
+						$register = null;
+					}
+				}
+				$this->db()->rollBack();
+				return $register; // Y finalmente, lo retorna.
+			} catch(Exception $e) {
+				$this->db()->rollBack();
+        return false;
+			}
 		}
 	}
-?>

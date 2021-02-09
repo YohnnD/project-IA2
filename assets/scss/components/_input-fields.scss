@@ -13,9 +13,9 @@ input[type=tel]:focus:not(.browser-default),
 input[type=number]:focus:not(.browser-default),
 input[type=search]:focus:not(.browser-default),
 textarea.materialize-textarea:focus {
-    border-bottom: 1px solid $secondary-color-darken !important;
-    -webkit-box-shadow: 0 1px 0 0 $secondary-color-darken !important;
-    box-shadow: 0 1px 0 0 $secondary-color-darken !important;
+    border-bottom: 1px solid $secondary-dark-color !important;
+    -webkit-box-shadow: 0 1px 0 0 $secondary-dark-color !important;
+    box-shadow: 0 1px 0 0 $secondary-dark-color !important;
 }
 .input-field .prefix~input,
 .input-field .prefix~textarea,
@@ -27,12 +27,12 @@ textarea.materialize-textarea:focus {
 }
 
 .input-field label.active {
-    color: $secondary-color-darken !important;
+    color: $secondary-dark-color !important;
 }
 
 
 .input-field .prefix.active {
-    color: $secondary-color-darken !important;
+    color: $secondary-dark-color !important;
 }
 
 

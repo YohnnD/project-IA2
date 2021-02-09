@@ -21,7 +21,7 @@
 			$this->tableProductos = "productos";
 			$this->tableClientes = "clientes";
 			$this->tableFacturas = "facturas";
-			
+
 			parent::__construct();
 		}
 
@@ -32,7 +32,7 @@
 	    public function setCodigoMaterial($codigo_material){
 	        $this->codigo_material = $codigo_material;
 	    }
-		
+
 		//Getters y Setters de Servicios
 		public function getIdServicio(){
 	        return $this->id_servicio;
@@ -40,7 +40,7 @@
 	    public function setIdServicio($id_servicio){
 	        $this->id_servicio = $id_servicio;
 	    }
-	
+
 		//Getters y Setters de Pedidos
 		public function getCodigoPedido(){
 	        return $this->codigo_pedido;
@@ -77,7 +77,7 @@
 
 
 	    	public function getFactura(){//para consultar todos lo registros de una tabla
-        
+
 
 		        $query=$this->db()->query("
 		        	SELECT 										
@@ -106,7 +106,7 @@
 		            $resulSet=NULL;
 		        }
 
-		      
+
 		        return $resulSet;
 
 
@@ -115,7 +115,7 @@
 
 
 		    public function getFacturaId($id){//para consultar todos lo registros de una tabla
-        
+
 
 		        $query=$this->db()->query("										
 					SELECT 										
@@ -149,15 +149,15 @@
 		            $resulSet=NULL;
 		        }
 
-		      
+
 		        return $resulSet;
 
 
 		    }
 
-		
+
 		    public function getFacturaProductoById($id){//para consultar todos lo registros de una tabla
-        
+
 
 		        $query=$this->db()->query("									
 					SELECT
@@ -197,16 +197,16 @@
 		            $resulSet=NULL;
 		        }
 
-		      
+
 		        return $resulSet;
 
 
-		    }	
+		    }
 
 
 
 		    public function getFacturaServicioById($id){//para consultar todos lo registros de una tabla
-        
+
 
 		        $query=$this->db()->query("									
 					SELECT 										
@@ -255,14 +255,14 @@
 		            $resulSet=NULL;
 		        }
 
-		      
+
 		        return $resulSet;
 
 
 		    }
 
 		    public function getProductos(){//para consultar todos lo registros de una tabla
-        
+
 
 		        $query=$this->db()->query("SELECT 
 		        							codigo_producto, 
@@ -285,15 +285,15 @@
 		            $resulSet=NULL;
 		        }
 
-		      
+
 		        return $resulSet;
 
 
-		    } 
+		    }
 
 
 		    public function getPedidos(){//para consultar todos lo registros de una tabla
-        
+
 
 		        $query=$this->db()->query("SELECT 
 		        							pedidos.codigo_pedido,
@@ -317,20 +317,10 @@
 		            $resulSet=NULL;
 		        }
 
-		      
+
 		        return $resulSet;
 
 
-		    }  
-
-
-
-
-
-
-
-
-
+		    }
 
 	}
-?>

@@ -80,9 +80,9 @@ class Factura extends BaseModel {
     public function getAll() {
         $query = $this->db()->query("SELECT * FROM $this->table");
 
-        if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
+        if ($query && $query->rowCount() != 0) {// Evalua la cansulta
             $row = $query->fetchAll();
-        } else { // 
+        } else { //
             $row = NULL;
         }
 
@@ -96,10 +96,10 @@ class Factura extends BaseModel {
 
         $factura = $this->db()->query("SELECT * FROM $this->table WHERE codigo_factura = '$this->codigo_factura'");
 
-        if ($factura && $factura->rowCount() != 0) {// Evalua la cansulta 
+        if ($factura && $factura->rowCount() != 0) {// Evalua la cansulta
             $rowFactura = $factura->fetchObject();
             $p = $rowFactura->codigo_pedido;
-        } else { // 
+        } else { //
             $rowFactura = 0;
         }
 
@@ -108,26 +108,26 @@ class Factura extends BaseModel {
 
             $pedido = $this->db()->query("SELECT * FROM pedidos WHERE codigo_pedido = '$p'");
 
-            if ($pedido && $pedido->rowCount() != 0) {// Evalua la cansulta 
+            if ($pedido && $pedido->rowCount() != 0) {// Evalua la cansulta
                 $rowPedido = $pedido->fetchObject();
 
                 $cedulaPedido = $rowPedido->cedula_cliente;
-            } else { // 
+            } else { //
                 $rowPedido = 0;
             }
-        } else { // 
+        } else { //
             $rowPedido = 0;
         }
 
 
         if ($rowPedido !== 0) {
             $cliente = $this->db()->query("SELECT * FROM clientes WHERE cedula_cliente = '$cedulaPedido'");
-            if ($cliente && $cliente->rowCount() != 0) {// Evalua la cansulta 
+            if ($cliente && $cliente->rowCount() != 0) {// Evalua la cansulta
                 $rowCliente = $cliente->fetchObject();
-            } else { // 
+            } else { //
                 $rowCliente = 0;
             }
-        } else { // 
+        } else { //
             $rowCliente = 0;
         }
 
@@ -135,54 +135,54 @@ class Factura extends BaseModel {
 
             $proPedido = $this->db()->query("SELECT * FROM pro_pedidos WHERE codigo_pedido = '$p'");
 
-            if ($proPedido && $proPedido->rowCount() != 0) {// Evalua la cansulta 
+            if ($proPedido && $proPedido->rowCount() != 0) {// Evalua la cansulta
                 while ($rowProPedid = $proPedido->fetchObject()) {
                     $rowProPedido[] = $rowProPedid;
                 }
-            } else { // 
+            } else { //
                 $rowProPedido = 0;
             }
-        } else { // 
+        } else { //
             $rowProPedido = 0;
         }
 
-      
+
 $rowProducto=[];
         if ($rowProPedido !== 0) {
 
             for ($i = 0; $i < $proPedido->rowCount(); $i++) {
-               
+
                 $codigo = $rowProPedido[$i]->codigo_producto;
                 $producto = $this->db()->query("SELECT * FROM productos WHERE codigo_producto = '$codigo'");
 
-                if ($producto && $producto->rowCount() != 0) {// Evalua la cansulta 
+                if ($producto && $producto->rowCount() != 0) {// Evalua la cansulta
                     while ($rowProduc = $producto->fetchAll()) {
-                        
-                        $rowProducto+=array($i=>$rowProduc);  
-                         
+
+                        $rowProducto+=array($i=>$rowProduc);
+
                    }
-                } else { // 
+                } else { //
                     $rowProducto = 0;
                 }
             }
-        } else { // 
+        } else { //
             $rowProducto = 0;
         }
-  
+
 
         if (!is_null($rowFactura)) {
 
             $serviPedido = $this->db()->query("SELECT * FROM servi_pedidos WHERE codigo_pedido = '$p' ");
             //$serviPedido = $this->db()->query("SELECT id_servicio FROM servi_pedidos");
 
-            if ($serviPedido && $serviPedido->rowCount() != 0) {// Evalua la cansulta 
+            if ($serviPedido && $serviPedido->rowCount() != 0) {// Evalua la cansulta
                 while ($rowServiP = $serviPedido->fetchObject()) {
                     $rowServiPedido[] = $rowServiP;
                 }
-            } else { // 
+            } else { //
                 $rowServiPedido = 0;
             }
-        } else { // 
+        } else { //
             $rowServiPedido = 0;
         }
 
@@ -192,15 +192,15 @@ $rowProducto=[];
 
                 $servicio = $this->db()->query("SELECT * FROM servicios WHERE id_servicio =$id");
 
-                if ($servicio && $servicio->rowCount() != 0) {// Evalua la cansulta 
+                if ($servicio && $servicio->rowCount() != 0) {// Evalua la cansulta
                     while ($rowServi = $servicio->fetchObject()) {
                         $rowServicio[] = $rowServi;
                     }
-                } else { // 
+                } else { //
                     $rowServicio = 0;
                 }
             }
-        } else { // 
+        } else { //
             $rowServicio = 0;
         }
 
@@ -237,7 +237,7 @@ $rowProducto=[];
                 );
             }
         }
-       
+
         return $row;
     }
 
@@ -254,5 +254,3 @@ $rowProducto=[];
     }
 
 }
-
-?>

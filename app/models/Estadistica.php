@@ -1,6 +1,6 @@
 <?php
 	class Estadistica extends BaseModel {
-		
+
 
 		public function __construct() {
 			parent::__construct();
@@ -9,7 +9,7 @@
 		public function producto(){
 
 			$fecha = date('Y');
-			
+
 			$producto=$this->db()->query("	SELECT pedidos.fecha_pedido, pro_pedidos.codigo_producto, productos.nombre_producto, productos.tipo_producto, productos.precio_producto,
 											COUNT( pro_pedidos.codigo_producto ) AS total FROM  pro_pedidos 
 											INNER JOIN productos ON pro_pedidos.codigo_producto = productos.codigo_producto
@@ -22,7 +22,7 @@
 
 					while($fila=$producto->fetch(PDO::FETCH_OBJ)){
 						$result[]=$fila;
-					}	
+					}
 					return $result;
 				}
 					else{
@@ -38,13 +38,13 @@
 
 				while($fila=$pedido->fetch(PDO::FETCH_OBJ)){
 					$result[]=$fila;
-				}	
+				}
 				return $result;
 			}
 				else{
 					return $result=null;
 				}
-				
+
 		}
 		public function servicio(){
 
@@ -61,7 +61,7 @@
 
 					while($fila=$servicio->fetch(PDO::FETCH_OBJ)){
 						$result[]=$fila;
-					}	
+					}
 					return $result;
 				}
 					else{
@@ -72,7 +72,7 @@
 
 		public function cliente(){
 		$cliente=$this->db()->query("SELECT to_char(fecha_actu_bitacora, 'MM/YYYY') AS mes, count(*) AS registro  FROM bitacoras WHERE accion_bitacora = 'REGISTRAR' AND modulo_bitacora='CLIENTES' GROUP BY mes");
-			
+
 			if($cliente->rowCount()>=1){
 
 				while($fila=$cliente->fetch(PDO::FETCH_OBJ)){
@@ -97,7 +97,7 @@
 				while($fila=$factura->fetch(PDO::FETCH_OBJ)){
 					$result[]=$fila;
 				}
-					
+
 				return $result;
 
 			}
@@ -130,7 +130,7 @@
 				while($fila=$enero->fetch(PDO::FETCH_OBJ)){
 					$resultEnero[]=$fila;
 				}
-				
+
 			}else{
 				$resultEnero[0]["ventas"] = 0;
 			}
@@ -141,7 +141,7 @@
 				while($fila=$febrero->fetch(PDO::FETCH_OBJ)){
 					$resultFebrero[]=$fila;
 				}
-				
+
 			}else{
 				$resultFebrero[0]["ventas"] = 0;
 			}
@@ -152,7 +152,7 @@
 				while($fila=$marzo->fetch(PDO::FETCH_OBJ)){
 					$resultMarzo[]=$fila;
 				}
-				
+
 			}else{
 				$resultMarzo[0]["ventas"] = 0;
 			}
@@ -163,7 +163,7 @@
 				while($fila=$abril->fetch(PDO::FETCH_OBJ)){
 					$resultAbril[]=$fila;
 				}
-				
+
 			}else{
 				$resultAbril[0]["ventas"] = 0;
 			}
@@ -174,7 +174,7 @@
 				while($fila=$mayo->fetch(PDO::FETCH_OBJ)){
 					$resultMayo[]=$fila;
 				}
-				
+
 			}else{
 				$resultMayo[0]["ventas"] = 0;
 			}
@@ -185,7 +185,7 @@
 				while($fila=$junio->fetch(PDO::FETCH_OBJ)){
 					$resultJunio[]=$fila;
 				}
-				
+
 			}else{
 				$resultJunio[0]["ventas"] = 0;
 			}
@@ -196,7 +196,7 @@
 				while($fila=$julio->fetch(PDO::FETCH_OBJ)){
 					$resultJulio[]=$fila;
 				}
-				
+
 			}else{
 				$resultJulio[0]["ventas"] = 0;
 			}
@@ -207,7 +207,7 @@
 				while($fila=$agosto->fetch(PDO::FETCH_OBJ)){
 					$resultAgosto[]=$fila;
 				}
-				
+
 			}else{
 				$resultAgosto[0]["ventas"] = 0;
 			}
@@ -218,7 +218,7 @@
 				while($fila=$septiembre->fetch(PDO::FETCH_OBJ)){
 					$resultSeptiembre[]=$fila;
 				}
-				
+
 			}else{
 				$resultSeptiembre[0]["ventas"] = 0;
 			}
@@ -229,7 +229,7 @@
 				while($fila=$octubre->fetch(PDO::FETCH_OBJ)){
 					$resultOctubre[]=$fila;
 				}
-				
+
 			}else{
 				$resultOctubre[0]["ventas"] = 0;
 			}
@@ -240,7 +240,7 @@
 				while($fila=$noviembre->fetch(PDO::FETCH_OBJ)){
 					$resultNoviembre[]=$fila;
 				}
-				
+
 			}else{
 				$resultNoviembre[0]["ventas"] = 0;
 			}
@@ -251,7 +251,7 @@
 				while($fila=$diciembre->fetch(PDO::FETCH_OBJ)){
 					$resultDiciembre[]=$fila;
 				}
-				
+
 			}else{
 				$resultDiciembre[0]["ventas"] = 0;
 			}
@@ -283,4 +283,3 @@
 		}
 
 	}
-?>

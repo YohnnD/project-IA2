@@ -26,31 +26,35 @@
                     <a href="<?php echo Helpers::url('Seguridad','index'); ?>" class="breadcrumb">Seguridad</a>
                     <a href="<?php echo Helpers::url('Modulo','getAll'); ?>" class="breadcrumb">Ver Módulos</a>
                 </div>
-                <?php if($allModulos == null): ?>
-                <div class="col s12">
-                    <h4 class="center-align">No hay registros para mostrar.</h4>
+                <div class="card">
+                    <div class="card-content row">
+                        <?php if($allModulos == null): ?>
+                        <div class="col s12">
+                            <h4 class="center-align">No hay registros para mostrar.</h4>
+                        </div>
+                        <?php else: ?>
+                        <div class="col s12">
+                            <h4 class="center-align">Módulos</h4>
+                        </div>
+                        <div class="col s12">
+                            <table class="centered responsive-table highlight">
+                                <thead>
+                                    <tr>
+                                        <th>Módulo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($allModulos as $modulo): ?>
+                                    <tr>
+                                        <td><?php echo $modulo->nombre_modulo ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                <?php else: ?>
-                <div class="col s12">
-                    <h4 class="center-align">Módulos</h4>
-                </div>
-                <div class="col s12">
-                    <table class="centered responsive-table highlight">
-                        <thead>
-                            <tr>
-                                <th>Módulo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($allModulos as $modulo): ?>
-                            <tr>
-                                <td><?php echo $modulo->nombre_modulo ?></td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-                <?php endif; ?>
             </div>
         </div>
     </main>

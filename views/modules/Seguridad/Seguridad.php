@@ -47,7 +47,7 @@
 
 
                 <div class="col s12 m6 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Audit','index'); ?>" class="btn-app indigo-gradient">
+                    <a href="<?php echo Helpers::url('Audit','index'); ?>" class="btn-app pink-gradient">
                         <i class="icon-apps"></i>
                         <span>Auditoria</span>
                     </a>

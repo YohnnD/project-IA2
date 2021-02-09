@@ -38,22 +38,22 @@
                     <div class="card-content row">
                         <div class="input-field col s12 m6">
                         <i class="icon-label prefix"></i>
-                        <input id="codigo_producto" type="text" name="codigo_producto" class="validate code-only" minlength="5" maxlength="30" pattern="[A-Za-z0-9]+" title="Escribe el codigo del producto. max(30)" required>
+                        <input id="codigo_producto" type="text" name="codigo_producto" class="validate code-only" minlength="5" maxlength="30" pattern="[A-Za-z0-9 ]+" title="Escribe el codigo del producto. max(30)" required>
                         <label for="codigo_producto">Código del Producto</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="icon-label prefix"></i>
-                        <input id="nombre_producto" type="text" name="nombre_producto" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z0-9]+" title="Escribe el nombre del producto. max(30)" required>
+                        <input id="nombre_producto" type="text" name="nombre_producto" class="validate" minlength="5" maxlength="30" pattern="[A-Za-z0-9 ]+" title="Escribe el nombre del producto. max(30)" disabled required>
                         <label for="nombre_producto">Nombre del Producto</label>
                     </div>
                     <div class="input-field col s12">
                         <i class="icon-description prefix"></i>
-                        <textarea name="descripcion_producto" id="descripcion_producto" cols="30" rows="10" class="materialize-textarea"></textarea>
+                        <textarea name="descripcion_producto" id="descripcion_producto" cols="30" rows="10" class="materialize-textarea" disabled></textarea>
                         <label for="descripcion_producto">Descripción</label>
                     </div>
                     <div class="input-field col s12 m6 xl4">
                         <i class="icon-wc prefix"></i>
-                        <select name="tipo_producto" id="tipo_producto" required>
+                        <select name="tipo_producto" id="tipo_producto" disabled required>
                             <option value="null" disabled selected>Elije la categoría</option>
                             <option value="ma">Masculino</option>
                             <option value="fe">Femenino</option>
@@ -63,38 +63,38 @@
                     </div>
                     <div class="input-field col s12 m6 xl4">
                         <i class="icon-compare prefix"></i>
-                        <input type="text" name="modelo_producto" id="modelo_producto">
+                        <input type="text" name="modelo_producto" id="modelo_producto" disabled>
                         <label for="modelo_producto">Modelo del Producto</label>
                     </div>
                     <div class="input-field col s12 m6 xl4">
                         <i class="icon-monetization_on prefix"></i>
-                        <input type="text" name="costo_producto" id="costo_producto" class="validate number-only-float" min="0" pattern="[0-9]+" title="Solo puede usar números." min="0" required>
+                        <input type="text" name="costo_producto" id="costo_producto" class="validate number-only-float" min="0" pattern="[0-9]+" title="Solo puede usar números." min="0" disabled required>
                         <label for="costo_producto">Costo</label>
                     </div>
                     <div class="input-field col s12 m6 xl4">
                         <i class="icon-monetization_on prefix"></i>
-                        <input type="text" name="precio_producto" id="precio_producto" class="validate number-only-float" min="0" pattern="[0-9]+" title="Solo puede usar números." min="0" required>
+                        <input type="text" name="precio_producto" id="precio_producto" class="validate number-only-float" min="0" pattern="[0-9]+" title="Solo puede usar números." min="0" disabled required>
                         <label for="precio_producto">Precio</label>
                     </div>
                     <div class="input-field col s12 m6 xl4">
                         <i class="icon-call_received prefix"></i>
-                        <input type="number" name="stock_min_producto" id="stock_min_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números. Mínimo 24" required>
+                        <input type="number" name="stock_min_producto" id="stock_min_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números. Mínimo 24" disabled required>
                         <label for="stock_min_producto">Stock Mínimo</label>
                     </div>
                     <div class="input-field col s12 m6 xl4">
                         <i class="icon-call_made prefix"></i>
-                        <input type="number" name="stock_max_producto" id="stock_max_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números." required>
+                        <input type="number" name="stock_max_producto" id="stock_max_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números." disabled required>
                         <label for="stock_max_producto">Stock Máximo</label>
                     </div>
                     <div class="input-field col s12 m6 xl4">
                         <i class="icon-call_made prefix"></i>
-                        <input type="number" name="stock_producto" id="stock_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números." required>
+                        <input type="number" name="stock_producto" id="stock_producto" class="validate" min="24" pattern="[0-9]+" title="Solo puede usar números." disabled required>
                         <label for="stock_producto">Stock Disponible</label>
                     </div>
                     <div class="file-field input-field col s12 m6 xl8">
                         <div class="btn purple-gradient">
                             <span><i class="icon-photo_size_select_actual right"></i>Imagen</span>
-                            <input type="file" name="img_producto" id="img_producto">
+                            <input type="file" name="img_producto" id="img_producto" disabled>
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text" placeholder="Elige una imagen">
@@ -102,18 +102,18 @@
                     </div>
                     <div class="input-field col s12 m5" id="">
                         <i class="icon-straighten prefix"></i>
-                        <select name="list_id_talla" id="list_id_talla" class="list_id_talla" required>
+                        <select name="list_id_talla" id="list_id_talla" class="list_id_talla" disabled required>
 
                         </select>
                         <label for="list_id_talla">Talla</label>
                     </div>
                     <div class="input-field col s10 m5">
                         <i class="icon-call_made prefix"></i>
-                        <input type="number" name="list_stock_pro_talla" id="list_stock_pro_talla" class="validate" pattern="[0-9]+" title="Solo puede usar números." min="1" required>
+                        <input type="number" name="list_stock_pro_talla" id="list_stock_pro_talla" class="validate" pattern="[0-9]+" title="Solo puede usar números." min="1" disabled required>
                         <label for="list_stock_pro_talla">Cantidad por Talla</label>
                     </div>
                     <div class="input-field col s2 center-align" id="add-talla">
-                        <a href="#!" class="btn btn-floating green-gradient waves-effect waves-light" id="btn-add-talla"><i class="icon-add"></i></a>
+                        <button type="button" class="btn btn-floating green-gradient waves-effect waves-light" id="btn-add-talla" disabled><i class="icon-add"></i></button>
                     </div>
                     <div id="list_tallas">
                         
