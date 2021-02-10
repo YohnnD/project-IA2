@@ -185,6 +185,31 @@ CREATE TABLE IF NOT EXISTS usuarios(
     PRIMARY KEY (nick_usuario)
 );
 
+
+CREATE TABLE IF NOT EXISTS preguntas_seguridad(
+    id_pregunta_seguridad    SERIAL         NOT NULL,
+ 	nick_usuario             VARCHAR (30)   NOT NULL,
+    pregunta                 VARCHAR (255)   NOT NULL,
+    imagen                   VARCHAR (255)   NOT NULL,
+    PRIMARY KEY (id_pregunta_seguridad)
+);
+
+
+CREATE TABLE IF NOT EXISTS preguntas(
+    id_pregunta   SERIAL         NOT NULL,
+    pregunta      VARCHAR (100)  NOT NULL,
+    PRIMARY  KEY (id_pregunta)
+);
+CREATE TABLE IF NOT EXISTS imagen_seguridad(
+    id_imagen_seguridad   SERIAL         NOT NULL,
+    imagen                VARCHAR (100)  NOT NULL,
+    PRIMARY  KEY (id_imagen_seguridad)
+);
+
+
+
+
+
 CREATE TABLE IF NOT EXISTS bitacoras(
 
     id_bitacora              SERIAL         NOT NULL,
@@ -206,6 +231,10 @@ CREATE TABLE IF NOT EXISTS roles(
 
     PRIMARY KEY (id_rol)
 );
+
+
+
+
 
 INSERT INTO roles VALUES(1, 'SuperUsuario'    , 'Tiene acceso a todo el sistema');
 INSERT INTO roles VALUES(2, 'Administrador'   , 'Tiene acceso a parcial al sistema');
@@ -232,6 +261,22 @@ INSERT INTO modulos VALUES(10, 'ESTADISTICAS');
 INSERT INTO modulos VALUES(11, 'SEGURIDAD');
 INSERT INTO modulos VALUES(12, 'MANTENIMIENTO');
 INSERT INTO modulos VALUES(13, 'NOTIFICACIONES');
+
+
+
+INSERT INTO preguntas VALUES(1, 'Nombre de tu mejor amigo/a de la infancia');
+INSERT INTO preguntas VALUES(2, 'Color favorito');
+INSERT INTO preguntas VALUES(3, 'Nombre de tu primera mascota');
+INSERT INTO preguntas VALUES(4, 'Cual es tu hobby favorito');
+INSERT INTO preguntas VALUES(5, 'Ciudad de nacimiento de tu abuela materna');
+
+
+INSERT INTO imagen_seguridad VALUES(1, 'champion.png');
+INSERT INTO imagen_seguridad VALUES(2, 'crayons.png');
+INSERT INTO imagen_seguridad VALUES(3, 'keys.png');
+INSERT INTO imagen_seguridad VALUES(4, 'piano.png');
+INSERT INTO imagen_seguridad VALUES(5, 'smarthouse.png');
+INSERT INTO imagen_seguridad VALUES(6, 'strategy.png');
 
 
 
@@ -415,4 +460,7 @@ ALTER TABLE    bitacoras                ADD CONSTRAINT    Fkusuario        FOREI
 ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkroles          FOREIGN KEY    (id_rol)            REFERENCES    roles(id_rol)                    ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkpermiso        FOREIGN KEY    (id_permiso)        REFERENCES    permisos(id_permiso)             ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkmodulo         FOREIGN KEY    (id_modulo)         REFERENCES    modulos(id_modulo)               ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    tokens                   ADD CONSTRAINT    Fkusuario1       FOREIGN KEY    (nick_usuario)      REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    preguntas_seguridad      ADD CONSTRAINT    Fkusuario       FOREIGN KEY     (nick_usuario)      REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+ALTER TABLE                       ADD CONSTRAINT    Fkusuario1       FOREIGN KEY    (nick_usuario)      REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;

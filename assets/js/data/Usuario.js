@@ -10,9 +10,17 @@ var url = localStorage.getItem('url')+"Usuario/";
         var apellido_usuario = $('#apellido_usuario').val();
         var email_usuario = $('#email_usuario').val();
         var contrasenia_usuario = $('#contrasenia_usuario').val();
+        var pregunta = $('#id_pregunta').val();
+        var respuesta=$('#respuesta').val();
+        var image = $("input[name='image']:checked").val();
+        var id_rol = $('#id_rol').val();
+
+
+
+
         // var repeat_contrasenia_usuario = $('#repeat_contrasenia_usuario').val();
         // var url_imagen = $('#url_imagen').val();
-        var id_rol = $('#id_rol').val();
+
         // Sending data by AJAX
         $.ajax({
             method: "POST",
@@ -23,6 +31,9 @@ var url = localStorage.getItem('url')+"Usuario/";
                     apellido_usuario: apellido_usuario,
                     email_usuario: email_usuario,
                     contrasenia_usuario: contrasenia_usuario,
+                    pregunta:pregunta,
+                    respuesta:respuesta,
+                    image:image,
                     // repeat_password_usuario: repeat_password_usuario,
                     id_rol: id_rol
                     },

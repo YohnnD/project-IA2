@@ -84,6 +84,53 @@
                             <input class="file-path validate" type="text" placeholder="Elige una imagen">
                         </div>
                     </div> -->
+                        <div class="input-field col s12">
+                            <i class="icon-assistant prefix"></i>
+                            <select name="id_pregunta" id="id_pregunta">
+
+                                <option value="null" disabled selected>Elige una pregunta</option>
+
+                                <?php if(!is_null($allPreguntas)):?>
+                                    <?php foreach ($allPreguntas as $pregunta):?>
+                                        <option value="<?php echo $pregunta->pregunta;?>">¿<?php echo $pregunta->pregunta;?>?</option>
+                                    <?php endforeach;?>
+                                <?php else:?>
+                                    <option value="null" disabled selected>Sin preguntas aún registrados.</option>
+                                <?php endif?>
+                            </select>
+                            <label for="id_rol">Pregunta de seguridad</label>
+                        </div>
+
+                        <div class="input-field col s12 m12">
+                            <i class="icon-person_pin prefix"></i>
+                            <input type="text" name="respuesta" id="respuesta" class="validate code-only" required>
+                            <label for="respuesta">Repuesta secreta</label>
+                        </div>
+
+
+                        <div class="col s12 m12">
+                            <h4 class="center-align">Elige una imagen de seguridad</h4>
+                        </div>
+                        <?php foreach ($allImageSeguridad as $image):?>
+
+                            <div class="col s12 m6 payment-form">
+                                <input type="radio" id="image_<?php echo $image->id_imagen_seguridad ?>" name="image" value="storage/image-seguridad/<?php echo $image->imagen; ?>" class="type_payment_event">
+                                <label class="btn-radio white lighten-4" for="image_<?php echo $image->id_imagen_seguridad ?>">
+                                    <i class="">
+                                        <img src="<?php echo BASE_URL; ?>storage/image-seguridad/<?php echo $image->imagen; ?>"
+                                             style="height: 100px!important;width: 100px!important;"
+                                             alt="Smartphone Image" width="100%" height="100%">
+                                    </i>
+                                </label>
+                            </div>
+
+                        <?php endforeach;?>
+
+
+
+
+
+
                     <div class="input-field col s12">
                         <i class="icon-assistant prefix"></i>
                         <select name="id_rol" id="id_rol">
@@ -103,7 +150,7 @@
                     </div>
                     <div class="card-footer center-align">
                         <button type="submit" class="btn btn-large btn-rounded green-gradient waves-effect waves-light">
-                            <i class="icon-add left"></i>                        
+                            <i class="icon-add left"></i>
                             Registrar
                             <i class="icon-add right"></i>
                         </button>

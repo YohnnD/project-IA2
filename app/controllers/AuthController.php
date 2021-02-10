@@ -1,4 +1,7 @@
 <?php
+
+  require_once "vendor/autoload.php";
+
 	class AuthController extends BaseController {
 		public function __construct() {
 			parent::__construct();
@@ -72,18 +75,14 @@
 				$usuario->setContraseniaUsuario($_POST['contrasenia_usuario']);
 				$usuarioSession = $usuario->login();
 				if($usuarioSession && is_object($usuarioSession)) { // Si se definio el usuario y es un objeto
-					$idRol = $usuarioSession->id_rol;
-					$PermisosXModulos = $rol->getPermisosXModulosByRol($idRol);
-					$_SESSION['nick_usuario'] = $usuarioSession->nick_usuario;
-					$_SESSION['user'] = $usuarioSession;
-					$_SESSION['authenticated'] = true;
-					$_SESSION['permissions'] = $PermisosXModulos;
-					$_SESSION['error'] = false;
-					$_SESSION['message'] = "Log in successfully";
-					// $_SESSION['permissions'] =
-					// $this->registerBiracora(LOGIN, LOGIN);
-					$usuario->registerBitacora(USUARIOS,INICIAR_SESION);
-					$this->redirect('Home','index');
+
+
+
+				    $this->getAsk($usuarioSession->nick_usuario);
+
+
+
+
 				}
 				else {
 				    date_default_timezone_set('America/Caracas');
@@ -164,4 +163,66 @@
                 return $this->view('Perfil/Perfil',['usuario' => $register]);
             }
         }
+
+
+
+        public function getAsk($nick){
+            $_SESSION['error'] = false;
+            $preguntaSeguridad = new PreguntaSeguridad(); // Instancia el objeto
+            $preguntaSeguridad->setNickUsuario($nick);
+            $pregunta=$preguntaSeguridad->getBy();
+            if($pregunta==null&&$nick=='root'){
+                return $this->createdSession($nick);
+            }
+		    return $this->view('Auth/Verify.Ask',["nick"=>$nick,"pregunta"=>$pregunta]);
+        }
+
+
+        public function verifyAsK()
+        {
+
+            if ($_POST) { // Si se enviaron datos por post
+                $preguntaSeguridad = new PreguntaSeguridad(); // Instancia del objeto
+                $preguntaSeguridad->setNickUsuario($_POST['nick_usuario']);
+                $pregunta = $preguntaSeguridad->getBy();
+
+                $respuesta = $_POST["respuesta"];
+
+                $imagePath = Helpers::aesDecrypt($pregunta->imagen);
+                $processor = new KzykHys\Steganography\Processor();
+                $message = $processor->decode($imagePath);
+                $respuestaDecript = Helpers::aesDecrypt($message);
+
+                if($respuesta!=$respuestaDecript){
+                    $this->withMessage("Su respuesta fue incorrecta. Por favor, intente de nuevo. ");
+                    $this->redirect('Auth', 'index');
+                }else{
+
+                    $this->createdSession($_POST['nick_usuario']);
+                }
+
+            }
+        }
+
+
+
+        public function createdSession($nickUsuario){
+            $rol = new ROl();
+            $usuario=new Usuario();
+            $usuarioSession = $usuario->getOne($nickUsuario);
+
+            $idRol = $usuarioSession->id_rol;
+
+            $PermisosXModulos = $rol->getPermisosXModulosByRol($idRol);
+            $_SESSION['nick_usuario'] = $usuarioSession->nick_usuario;
+            $_SESSION['user'] = $usuarioSession;
+            $_SESSION['authenticated'] = true;
+            $_SESSION['permissions'] = $PermisosXModulos;
+            $_SESSION['error'] = false;
+
+            $_SESSION['message'] = "Log in successfully";
+            $usuario->registerBitacora(USUARIOS,INICIAR_SESION);
+            $this->redirect('Home','index');
+        }
+
 	}
