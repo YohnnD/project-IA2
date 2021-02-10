@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="icon-open_with prefix"></i>
-                                    <input type="text" name="unidad_medida" id="unidad_medida" class="validate text-validate" required>
+                                    <input type="text" name="unidad_medida" id="unidad_medida" class="validate code-only" required>
                                     <label for="unidad_medida">Unidad de Medida</label>
                                 </div>
                                 <div class="input-field col s12 m6">
