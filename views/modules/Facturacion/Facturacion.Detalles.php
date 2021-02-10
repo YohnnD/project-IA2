@@ -19,18 +19,23 @@
 
         <!-- Main Container -->
         <main>
-            <div class="container">
-                <form action="" class="row">
+            <div class="container-fluid">
+                <div class="row">
                     <div class="col s12 breadcrumb-nav left-align">
                         <a href="<?php echo Helpers::url('Home', 'index'); ?>" class="breadcrumb">Inicio</a>
                         <a href="<?php echo Helpers::url('Factura', 'index'); ?>" class="breadcrumb">Facturación de Ventas</a>
                         <a href="<?php echo Helpers::url('Factura', 'getAll'); ?>" class="breadcrumb">Consultar Facturas</a>
-                        <a href="<?php echo Helpers::url('Factura', 'details'); ?>" class="breadcrumb">detalles Factura</a>
+                        <a href="<?php echo Helpers::url('Factura', 'details'); ?>" class="breadcrumb">Detalles Factura</a>
                     </div>
-
-                    <div class="col s12">
-                        <h4 class="center-align">Detalles de Factura</h4>
+                </div>
+            </div>
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="center-align">Detalles de Factura</h5>
                     </div>
+                    <div class="card-content">
+                    <form action="" class="row">
                     <div class="input-field col s12 m6 xl6">
                         <i class="icon-attach_money prefix"></i>
                         <input type="text" name="codigo_factura" id="codigo_factura" value="<?php echo $detalles['Factura']->codigo_factura ?>" disabled>
@@ -179,6 +184,9 @@
                 <?php endif?>
                 <?php endif?>
                 </form>
+                    </div>
+                </div>
+                
             </div>
         </main>
 

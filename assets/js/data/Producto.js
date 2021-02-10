@@ -93,6 +93,13 @@ $(document).ready(function(){
         // $("#id_rol").removeAttr("readonly", "false");
         $('.btn.disabled').removeClass('disabled').removeClass('purple').addClass('purple-gradient');
         $(".select-wrapper").removeClass('disabled');
+        // $('select').addClass('disabled');
+        // let key = parseInt($('#key').val());
+        // console.log(key);
+        // for(let i = 0; i <= key; i++) {
+        // console.log(i);
+        //     $(`select#talla-${i}`).attr('disabled', true);
+        // }
         $('select').formSelect();
         $('#modify-btn').hide();
         $('#delete-btn').hide();
@@ -114,7 +121,7 @@ $(document).ready(function(){
             data: formData,
             url: url + "update",
             contentType: false,
-            cache: false,
+            cache: true,
             processData:false,
             beforeSend: function() {
                 console.log('Sending data');

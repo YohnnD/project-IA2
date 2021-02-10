@@ -101,25 +101,30 @@
                             <label for="stock_producto">Stock Disponible</label>
                         </div>
                         <div class="file-field input-field col s12 m6 xl8">
-                            <div class="btn purple disabled">
+                            <div class="btn btn-rounded purple disabled">
                                 <span><i class="icon-photo_size_select_actual right"></i>Imagen</span>
                                 <input type="file" name="img_producto" id="img_producto" disabled>
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text" placeholder="Elige una imagen" value="<?php echo $producto->img_producto; ?>" disabled>
                             </div>
+                            <input type="hidden" name="img_producto_name" id="img_producto_name" value="<?php echo $producto->img_producto; ?>" disabled>
+
                         </div>
-                        <?php foreach ($pro_tallas as $talla): ?>
+                        <?php $valor = 0; ?>
+                        <?php foreach ($pro_tallas as $key => $talla): ?>
                         <div class="input-field col s12 m6">
                             <i class="icon-straighten prefix"></i>
                             <?php $_tallas = Helpers::getTallas(); ?>
-                            <select name="id_talla[]" id="talla" required disabled>
+                            <select name="id_talla[]" id="talla-<?php echo $key ?>" required disabled>
                                 <option value="null" disabled selected>Elije la talla</option>
                                 <?php foreach ($_tallas as $_talla) : ?> 
-                                <option value="<?php echo $_talla->id_talla; ?>" <?php echo $_talla->id_talla == $talla->id_talla ? 'selected' : ''; ?>><?php echo $_talla->nombre_talla; ?></option>
+                                <option value="<?php echo $_talla->id_talla; ?>" <?php echo $_talla->id_talla == $talla->id_talla ? 'selected' : 'disabled'; ?>><?php echo $_talla->nombre_talla; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <label for="talla">Talla</label>
+                               
+                            <?php $valor += $key; ?>
                         </div>
                         <div class="input-field col s12 m6">
                             <i class="icon-call_made prefix"></i>
@@ -127,12 +132,13 @@
                             <label for="stock_pro_talla">Cantidad por Talla</label>
                         </div>
                         <?php endforeach; ?>
+                        <input type="hidden" name="key" id="key" value="<?php echo $key; ?>">
                     </div>
                     <div class="card-footer">
                         <div class="row" style="margin-bottom: 0">
                             <?php if (Helpers::hasPermissions('2','3')): ?>
                             <div class="col s12 m6 center-align" id="modify-btn">
-                                <a id="modify" class="btn btn-large blue-gradient waves-effect waves-light col s12">
+                                <a id="modify" class="btn btn-large btn-rounded blue-gradient waves-effect waves-light col s12">
                                     <i class="icon-update left"></i>                        
                                     Modificar
                                     <i class="icon-update right"></i>
@@ -142,7 +148,7 @@
                             <!-- <br class="show-on-down-only"> -->
                             <?php if (Helpers::hasPermissions('2','4')): ?>
                             <div class="col s12 m6 center-align" id="delete-btn">
-                                <a id="delete" class="btn btn-large red-gradient waves-effect waves-light col s12">
+                                <a id="delete" class="btn btn-large btn-rounded red-gradient waves-effect waves-light col s12">
                                     <i class="icon-remove left"></i>                        
                                     Eliminar
                                     <i class="icon-remove right"></i>
@@ -150,7 +156,7 @@
                             </div>
                             <?php endif; ?>
                             <div class="col s12 center-align" style="display: none" id="update-btn">
-                                <button type="submit" class="btn btn-large green-gradient waves-effect waves-light col s12">
+                                <button type="submit" class="btn btn-large btn-rounded green-gradient waves-effect waves-light col s12">
                                     <i class="icon-save left"></i>
                                     Actualizar
                                     <i class="icon-save right"></i>
