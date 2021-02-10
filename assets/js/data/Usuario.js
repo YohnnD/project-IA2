@@ -148,21 +148,23 @@ var url = localStorage.getItem('url')+"Usuario/";
 
     });
 
-    $('#reset-btn').click(() => {
+    $('#reset-buttons').click(() => {
         $('#form-user').show();
         $('#update :input').attr('disabled',true);
         // $('#form-password').hide();
         $('#modify').show();
         $('#update-btn').hide();
         // $('#change-password').hide();
+        $('#form-password').hide();
         $('#modify-btn').show();
         $('#delete-btn').show();
         $('#change-password').show();
         $('#reset-buttons').hide();
+        $('#update-password').hide();
         $('select').formSelect();
     });
 
-    $('#change-password-btn').click(function(e) {
+    $('#change-password').click(function(e) {
         $('#update :input').removeAttr('disabled','disabled');
         $('#form-password').show();
         $('#form-user').hide();
@@ -173,8 +175,66 @@ var url = localStorage.getItem('url')+"Usuario/";
         $('#reset-password').hide();
         // $('#update-btn').show();
         $('#update-password').show();
+    
         $('#reset-buttons').show();
         $(this).hide();
+    });
+
+    $('#update-password-btn').click(function () {
+        var contrasenia_usuario = $('#contrasenia_usuario').val();
+        var repeat_contrasenia_usuario = $('#repeat_contrasenia_usuario').val();
+        var nick_usuario = $('#nick_usuario').val();
+        console.log(nick_usuario);
+        if(contrasenia_usuario !== '' && repeat_contrasenia_usuario !== '') {
+            $.ajax({
+                method: "POST",
+                dataType: "json",
+                data: {
+                    contrasenia_usuario: contrasenia_usuario,
+                    repeat_contrasenia_usuario: repeat_contrasenia_usuario,
+                    nick_usuario: nick_usuario,
+                },
+                url: localStorage.getItem('url') + "Usuario/updatePassword",
+                beforeSend: function() {
+                    console.log("Sending data...");
+                    $('#update :input').attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    console.log(data);
+                    swal({
+                        title: "¡Bien hecho!",
+                        text: "Se ha cambiado la contraseña del usuario '" + nick_usuario + "' exitosamente.",
+                        icon: "success",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        },
+                        timer: 3000
+                    })
+                        .then(redirect => {
+                            location.reload();
+                        })
+                },
+                error: function(err) {
+                    console.log(err);
+                    swal({
+                        title: "¡Oh no!",
+                        text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                        icon: "error",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        }
+                    });
+                }
+            });
+        }
     });
 
 
