@@ -28,8 +28,10 @@
                         <a href="<?php echo Helpers::url('Servicio', 'index'); ?>" class="breadcrumb">Gestionar Servicios</a>
                         <a href="<?php echo Helpers::url('Servicio', 'create'); ?>" class="breadcrumb">Registrar Servicio</a>
                     </div>
-                    <div class="col s12 m8 offset-m2">
-                        <form action="" method="post" class="row" id="register">
+                </div>
+            </div>
+            <div class="container">
+                <form action="" method="post" class="row" id="register">
                         <div class="card">
                             <div class="card-header center-align">
                                 <h4>Registrar Servicio</h4>
@@ -63,15 +65,13 @@
                                 </div>
                             </div>
                             <div class="card-footer center-align">
-                                <button type="submit" class="btn btn-large green-gradient waves-light waves-effect">
+                                <button type="submit" class="btn btn-large btn-rounded green-gradient waves-light waves-effect">
                                     Registrar
                                     <i class="icon-save right"></i>
                                 </button>   
                             </div>
                         </div>
-                        </form>
-                    </div>
-                </div>
+                </form>
             </div>
         </main>
 

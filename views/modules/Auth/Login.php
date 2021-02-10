@@ -25,7 +25,7 @@
                             <h5>Iniciar Sesión</h5>
                         </div>
                         <div class="card-content row">
-                            <?php if($_SESSION): ?>
+                            <!-- <?php if($_SESSION): ?>
                                 <div class="col s12">
                                     <div class="message message-danger">
                                         <div class="message-body">
@@ -33,7 +33,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                             <div class="input-field col s12">
                                 <i class="icon-account_circle prefix"></i>
                                 <input name="nick_usuario" class="validate" id="nick_usuario" type="text">
