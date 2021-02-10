@@ -67,12 +67,12 @@
                     </div>
                     <div class="input-field col s12">
                         <i class="icon-beenhere prefix"></i>
-                        <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" class="validate" required>
+                        <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" pattern='[A-Za-z0-9]+{5,20}' minlength="8" title="La contraseña debe tener una logitud mínima de 8 caracteres y contener al menos un letra en mayuscula y un número."  class="validate" required>
                         <label for="contrasenia_usuario">Password del Usuario</label>
                     </div>
                     <div class="input-field col s12">
                         <i class="icon-beenhere prefix"></i>
-                        <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario" class="validate" required>
+                        <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario"  pattern='[A-Za-z0-9]+{5,20}' minlength="8" title="La contraseña debe tener una logitud mínima de 8 caracteres y contener al menos un letra en mayuscula y un número." class="validate" required>
                         <label for="repeat_contrasenia_usuario">Repetir Password del Usuario</label>
                     </div>
                     <!-- <div class="file-field input-field col s12">
@@ -103,7 +103,7 @@
 
                         <div class="input-field col s12 m12">
                             <i class="icon-person_pin prefix"></i>
-                            <input type="text" name="respuesta" id="respuesta" class="validate code-only" required>
+                            <input type="text" name="respuesta" id="respuesta" class="validate code-only" minlength="3"  maxlength="100" required>
                             <label for="respuesta">Repuesta secreta</label>
                         </div>
 
@@ -125,9 +125,6 @@
                             </div>
 
                         <?php endforeach;?>
-
-
-
 
 
 

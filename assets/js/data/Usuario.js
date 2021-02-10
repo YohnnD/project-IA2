@@ -15,13 +15,57 @@ var url = localStorage.getItem('url')+"Usuario/";
         var image = $("input[name='image']:checked").val();
         var id_rol = $('#id_rol').val();
 
+        if(pregunta==null){
+            return swal({
+                title: "¡Información!",
+                text: "Debe elegir una pregunta de seguridad para completar el registro.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+
+        }
+
+
+        if(id_rol==null){
+            return swal({
+                title: "¡Información!",
+                text: "Debe elegir un rol para completar el registros",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+
+        }
+
+
+        if(image===undefined){
+            return swal({
+                title: "¡Información!",
+                text: "Debe elegir una imagen de seguridad para completar el registro.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+        }
 
 
 
-        // var repeat_contrasenia_usuario = $('#repeat_contrasenia_usuario').val();
-        // var url_imagen = $('#url_imagen').val();
-
-        // Sending data by AJAX
         $.ajax({
             method: "POST",
             dataType: "json",
@@ -77,6 +121,9 @@ var url = localStorage.getItem('url')+"Usuario/";
                 });
             }
         });
+
+
+
 
     });
 

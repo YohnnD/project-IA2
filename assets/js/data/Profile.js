@@ -16,9 +16,146 @@ $(document).ready(function(){
         $('#modify-btn').hide();
         $('#delete-btn').hide();
         $('#update-btn').show();
+        $('#change-security').hide();
+
         // $('#passwordUsuario').removeAttr('disabled', 'disabled');
+    });
+
+
+    $('#change-security').click(function(e) {
+        $('#form-security').show();
+        $('.form-profile').hide();
+        $('#modify').hide();
+        $('#update-security').show();
+        $(this).hide();
+    });
+
+
+
+    $('#update-security').click(function () {
+        var pregunta = $('#id_pregunta').val();
+        var respuesta=$('#respuesta').val();
+
+
+
+        var nick=$('#nick').val();
+        var image = $("input[name='image']:checked").val();
+
+
+        if(respuesta===''&&respuesta.length<2){
+            return swal({
+                title: "¡Información!",
+                text: "Debe colocar una respuesta valida.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+        }
+
+        if(pregunta==null){
+            return swal({
+                title: "¡Información!",
+                text: "Debe elegir una pregunta de seguridad para completar el registro.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+
+        }
+        if(image===undefined){
+            return swal({
+                title: "¡Información!",
+                text: "Debe elegir una imagen de seguridad para completar el registro.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+        }
+
+
+
+
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            data: {
+                pregunta: pregunta,
+                nick:nick,
+                image:image,
+                respuesta:respuesta,
+            },
+            url: url+"updatePreguntaSeguridad",
+
+
+
+            beforeSend: function() {
+                console.log("Sending data...");
+                $('#update :input').attr('disabled', 'disabled');
+            },
+            success: function(data) {
+                console.log(data);
+                swal({
+                    title: "¡Bien hecho!",
+                    text: "Se ha modificado el usuario '" + nick + "' exitosamente.",
+                    icon: "success",
+                    button: {
+                        text: "Aceptar",
+                        visible: true,
+                        value: true,
+                        className: "green",
+                        closeModal: true
+                    },
+                    timer: 3000
+                }).then(redirect => {
+                       location.reload();
+                });
+            },
+            error: function(err) {
+                console.log(err);
+                swal({
+                    title: "¡Oh no!",
+                    text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                    icon: "error",
+                    button: {
+                        text: "Aceptar",
+                        visible: true,
+                        value: true,
+                        className: "green",
+                        closeModal: true
+                    }
+                });
+            }
+        });
+
+
+
+
+
 
     });
+
+
+
+
+
+
+
+
 
     $('#update').submit(function(e) {
         e.preventDefault(); // Disable submit event
