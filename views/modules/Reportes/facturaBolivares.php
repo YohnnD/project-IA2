@@ -75,11 +75,11 @@
               <h3><?php echo $servicio->nombre_servicio?></h3>
             <?php echo $servicio->descripcion_servicio?></td>
 
-            <td class="unit">BsS<?php echo $servicio->precio_servicio*$precioDolar?></td>
+            <td class="unit">Bs <?php echo number_format($servicio->precio_servicio * $precioDolar,2,',','.') ?></td>
 
             <td class="qty"><?php echo $servicio->cantidad_prenda?> / <?php echo $servicio->cantidad_medida?></td>
 
-            <td class="total">BsS<?php echo $servicio->total_servicio*$precioDolar?></td>
+            <td class="total">Bs <?php echo number_format($servicio->total_servicio * $precioDolar,2,',','.') ?></td>
           </tr> 
            <?php  $suma1 +=$servicio->total_servicio;?>
 
@@ -98,9 +98,9 @@
             <td class="desc">
               <h3><?php echo $producto->nombre_producto?></h3>
             <?php echo $producto->descripcion_producto?></td>
-            <td class="unit">BsS<?php echo $producto->precio_producto*$precioDolar?></td>
+            <td class="unit">Bs <?php echo number_format($producto->precio_producto * $precioDolar,2,',','.') ?></td>
             <td class="qty"><?php echo $producto->cant_pro_pedido?></td>
-            <td class="total">BsS<?php echo $producto->total_producto*$precioDolar?></td>
+            <td class="total">Bs <?php echo number_format($producto->total_producto*$precioDolar,2,',','.') ?></td>
           </tr>
           <?php  $suma2 +=$producto->total_producto;?>
           <?php elseif($producto->codigo_producto == NULL): ?>      
@@ -119,7 +119,7 @@
           <tr>
             <td colspan="2"></td>
             <td colspan="2">TOTAL</td>
-            <td>BsS<?php echo ($suma1+$suma2)*$precioDolar;?></td>
+            <td>Bs <?php echo number_format(($suma1 + $suma2) * $precioDolar,2,',','.');?></td>
           </tr>
         </tfoot>
 

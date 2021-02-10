@@ -53,7 +53,7 @@
                                         <tr>
                                             <td><?php echo $factura->codigo_factura?></td>
                                             <td><?php echo $factura->nombre_cliente?></td>
-                                            <td><?php echo $factura->status_pedido?></td>
+                                            <td><?php echo Helpers::aesDecrypt($factura->status_pedido);?></td>
                                             <td><?php echo $factura->fecha_factura?></td>
                                             <td><?php echo $factura->fecha_entrega_pedido?></td>
                                             <td><a href="<?php echo Helpers::url('Reporte','facturaById')."/".$factura->codigo_factura?>" class="btn btn-floating green waves-effect waves-light"><i class="icon-monetization_on"></i></a></td>

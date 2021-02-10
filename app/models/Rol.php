@@ -38,6 +38,7 @@
 
         public function save() {
             $this->registerBitacora(ROLES_PERMISOS,REGISTRAR);
+            // var_export('hola'); die();
             $query = "INSERT INTO roles (nombre_rol, descripcion_rol) VALUES (:nombre_rol,:descripcion_rol) "; // COnsulta SQL
             $result = $this->db()->prepare($query); // Prepara la consulta SQL
             $result->bindParam(':nombre_rol',$this->nombreRol);

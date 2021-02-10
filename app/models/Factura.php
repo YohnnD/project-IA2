@@ -78,15 +78,29 @@ class Factura extends BaseModel {
     }
 
     public function getAll() {
-        $query = $this->db()->query("SELECT * FROM $this->table");
-
-        if ($query && $query->rowCount() != 0) {// Evalua la cansulta
-            $row = $query->fetchAll();
-        } else { //
-            $row = NULL;
+		$sql = "SELECT * FROM $this->table";
+        $query = $this->db()->query($sql);
+        if($query){ // Evalua la cansulta
+            if($query->rowCount() != 0) { // Si existe al menos un registro...
+                while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
+                    $resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
+                }
+            }
+            else{ // Sino...
+                $resultSet = null; // Almacena null
+            }
         }
+		return $resultSet; // Finalmente retornla el arreglo con los elementos.
 
-        return $row;
+        // $query = $this->db()->query("SELECT * FROM $this->table");
+
+        // if ($query && $query->rowCount() != 0) {// Evalua la cansulta
+        //     $row = $query->fetchAll();
+        // } else { //
+        //     $row = NULL;
+        // }
+
+        // return $row;
     }
 
     public function getOne() {

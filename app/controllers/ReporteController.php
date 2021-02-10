@@ -90,7 +90,7 @@
                 $servicio_find = $factura->getFacturaServicioById($id);
                 $producto_find=$factura->getFacturaProductoById($id);
 
-                echo var_dump($factura_find);
+                // echo var_export($factura_find); die();
 
                 $this->view('Reportes/Invoice',
                     ['servicio' => $servicio_find,
@@ -109,14 +109,15 @@
         }
 
         public function setDolar() {
-        if (isset($_GET["id"])) {
-            $factura = new Reporte(); // Instancia un objeto
-            $id=$_GET["id"];
-            $factura->setCodigoFactura($id);
-            $allFactura = $factura->getFacturaId($id);
-            $this->view('Reportes/setDolar',
-                ['allFactura' => $allFactura]);
-        }
+            if (isset($_GET["id"])) {
+                $id = $_GET["id"];
+                // $factura = new Reporte(); // Instancia un objeto
+                // $factura->setCodigoFactura($id);
+                // $allFactura = $factura->getFacturaId($id);
+                // var_export($allFactura); die();
+                $this->view('Reportes/setDolar',
+                    ['id' => $id]);
+            }
         }
 
         public function facturaBolivares() {

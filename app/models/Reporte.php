@@ -115,10 +115,7 @@
 
 
 		    public function getFacturaId($id){//para consultar todos lo registros de una tabla
-
-
-		        $query=$this->db()->query("										
-					SELECT 										
+		        $sql = "SELECT 										
 					servicios.id_servicio,
 		        	factura_ventas.codigo_factura, 
 		        	factura_ventas.fecha_factura,
@@ -139,20 +136,19 @@
 					INNER JOIN productos on productos.codigo_producto = pro_pedidos.codigo_producto
 		        	INNER JOIN servi_pedidos on servi_pedidos.codigo_pedido = pedidos.codigo_pedido
 		        	INNER JOIN servicios on servicios.id_servicio = servi_pedidos.id_servicio
-		        	WHERE factura_ventas.codigo_factura = '$id'");
-
-		        if($query->rowCount()>=1){
-		            while ($row=$query->fetch(PDO::FETCH_OBJ)){
-		                $resulSet[]=$row;
-		            }
-		        }else{
-		            $resulSet=NULL;
-		        }
-
-
-		        return $resulSet;
-
-
+		        	WHERE factura_ventas.codigo_factura = '$id'";
+						$query = $this->db()->query($sql);
+						if($query){ // Evalua la cansulta
+							if($query->rowCount() != 0) { // Si existe al menos un registro...
+								while($row = $query->fetch(PDO::FETCH_OBJ)) { // Recorre un array (tabla) fila por fila.
+									$resultSet[] = $row; // Llena el array con cada uno de los registros de la tabla.
+								}
+							}
+							else{ // Sino...
+								$resultSet = null; // Almacena null
+							}
+						}
+					return $resultSet; // Finalmente retornla el arreglo con los elementos.
 		    }
 
 

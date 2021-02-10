@@ -164,8 +164,6 @@
 		}
 
 		public function saveTallas() {
-			// try {
-				// $this->db()->beginTransaction();
 				$query = "INSERT INTO pro_tallas (codigo_producto,id_talla,stock_pro_talla) VALUES 
 					(:codigo_producto,:id_talla,:stock_pro_talla)";
 				$result = $this->db()->prepare($query); // Prepara la consulta.
@@ -174,11 +172,6 @@
 				$result->bindParam(':stock_pro_talla', $this->stockProTalla);
 				$save = $result->execute(); // Ejecuta la consulta
 				return $save;
-				// $this->db()->commit();
-			// } catch (Exception $e){
-				// $this->db()->rollBack();
-				// return false;
-			// }
 		}
 
 		public function update() {

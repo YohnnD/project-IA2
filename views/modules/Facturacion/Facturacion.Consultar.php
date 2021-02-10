@@ -49,12 +49,12 @@
                                     <?php if($factura != null): ?>
                                         <?php foreach ($factura as $value):?>
                                             <tr>
-                                                <td><?php echo $value['codigo_factura']?></td>
-                                                <td><?php echo $value['fecha_factura']?></td>
-                                                <td><?php echo $value['modo_pago_factura']?></td>
-                                                <td><?php echo $value['porcentaje_venta_factura']?></td>
+                                                <td><?php echo $value->codigo_factura; ?></td>
+                                                <td><?php echo $value->fecha_factura; ?></td>
+                                                <td><?php echo $value->modo_pago_factura; ?></td>
+                                                <td><?php echo $value->porcentaje_venta_factura; ?></td>
                                                 <td>
-                                                    <a href="<?php echo Helpers::url('Factura','details');?>/<?php echo $value['codigo_factura'];?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
+                                                    <a href="<?php echo Helpers::url('Factura','details');?>/<?php echo $value->codigo_factura; ?>" class="btn btn-small btn-floating pink waves-effect effect-light"><i class="icon-pageview"></i></a>
                                                 </td>
                                             </tr>
                                             <?php if (Helpers::hasPermissions('6','5')): ?>

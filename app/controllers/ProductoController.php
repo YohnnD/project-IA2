@@ -72,13 +72,11 @@
 				$producto = new Producto();
 				$_producto = $producto->getOne($codigoProducto);
 				$_tallas = $producto->getProductoXTallas($codigoProducto);
-				// var_export($_tallas); die();
 				$this->view('Productos/Productos.Detalles',
 					[
 						'producto' => $_producto,
 						'pro_tallas' => $_tallas
 					]);
-				// $this->sendAjax($register);
 			}
 		}
 

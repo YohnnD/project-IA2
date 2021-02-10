@@ -236,9 +236,9 @@ CREATE TABLE IF NOT EXISTS roles(
 
 
 
-INSERT INTO roles VALUES(1, 'SuperUsuario'    , 'Tiene acceso a todo el sistema');
-INSERT INTO roles VALUES(2, 'Administrador'   , 'Tiene acceso a parcial al sistema');
-INSERT INTO roles VALUES(3, 'Usuario'         , 'Tiene limitado al sistema');
+INSERT INTO roles VALUES(DEFAULT, 'SuperUsuario'    , 'Tiene acceso a todo el sistema');
+INSERT INTO roles VALUES(DEFAULT, 'Administrador'   , 'Tiene acceso a parcial al sistema');
+INSERT INTO roles VALUES(DEFAULT, 'Usuario'         , 'Tiene limitado al sistema');
 
 CREATE TABLE IF NOT EXISTS modulos(
 
@@ -248,35 +248,35 @@ CREATE TABLE IF NOT EXISTS modulos(
     PRIMARY KEY (id_modulo)
 );
 
-INSERT INTO modulos VALUES(1, 'USUARIOS');
-INSERT INTO modulos VALUES(2, 'PRODUCTOS');
-INSERT INTO modulos VALUES(3, 'PEDIDOS');
-INSERT INTO modulos VALUES(4, 'CLIENTES');
-INSERT INTO modulos VALUES(5, 'SERVICIOS');
-INSERT INTO modulos VALUES(6, 'FACTURAS');
-INSERT INTO modulos VALUES(7, 'REPORTES');
-INSERT INTO modulos VALUES(8, 'TELAS');
-INSERT INTO modulos VALUES(9, 'MATERIALES');
-INSERT INTO modulos VALUES(10, 'ESTADISTICAS');
-INSERT INTO modulos VALUES(11, 'SEGURIDAD');
-INSERT INTO modulos VALUES(12, 'MANTENIMIENTO');
-INSERT INTO modulos VALUES(13, 'NOTIFICACIONES');
+INSERT INTO modulos VALUES(DEFAULT, 'USUARIOS');
+INSERT INTO modulos VALUES(DEFAULT, 'PRODUCTOS');
+INSERT INTO modulos VALUES(DEFAULT, 'PEDIDOS');
+INSERT INTO modulos VALUES(DEFAULT, 'CLIENTES');
+INSERT INTO modulos VALUES(DEFAULT, 'SERVICIOS');
+INSERT INTO modulos VALUES(DEFAULT, 'FACTURAS');
+INSERT INTO modulos VALUES(DEFAULT, 'REPORTES');
+INSERT INTO modulos VALUES(DEFAULT, 'TELAS');
+INSERT INTO modulos VALUES(DEFAULT, 'MATERIALES');
+INSERT INTO modulos VALUES(DEFAULT, 'ESTADISTICAS');
+INSERT INTO modulos VALUES(DEFAULT, 'SEGURIDAD');
+INSERT INTO modulos VALUES(DEFAULT, 'MANTENIMIENTO');
+INSERT INTO modulos VALUES(DEFAULT, 'NOTIFICACIONES');
 
 
 
-INSERT INTO preguntas VALUES(1, 'Nombre de tu mejor amigo/a de la infancia');
-INSERT INTO preguntas VALUES(2, 'Color favorito');
-INSERT INTO preguntas VALUES(3, 'Nombre de tu primera mascota');
-INSERT INTO preguntas VALUES(4, 'Cual es tu hobby favorito');
-INSERT INTO preguntas VALUES(5, 'Ciudad de nacimiento de tu abuela materna');
+INSERT INTO preguntas VALUES(DEFAULT, 'Nombre de tu mejor amigo/a de la infancia');
+INSERT INTO preguntas VALUES(DEFAULT, 'Color favorito');
+INSERT INTO preguntas VALUES(DEFAULT, 'Nombre de tu primera mascota');
+INSERT INTO preguntas VALUES(DEFAULT, 'Cual es tu hobby favorito');
+INSERT INTO preguntas VALUES(DEFAULT, 'Ciudad de nacimiento de tu abuela materna');
 
 
-INSERT INTO imagen_seguridad VALUES(1, 'champion.png');
-INSERT INTO imagen_seguridad VALUES(2, 'crayons.png');
-INSERT INTO imagen_seguridad VALUES(3, 'keys.png');
-INSERT INTO imagen_seguridad VALUES(4, 'piano.png');
-INSERT INTO imagen_seguridad VALUES(5, 'smarthouse.png');
-INSERT INTO imagen_seguridad VALUES(6, 'strategy.png');
+INSERT INTO imagen_seguridad VALUES(DEFAULT, 'champion.png');
+INSERT INTO imagen_seguridad VALUES(DEFAULT, 'crayons.png');
+INSERT INTO imagen_seguridad VALUES(DEFAULT, 'keys.png');
+INSERT INTO imagen_seguridad VALUES(DEFAULT, 'piano.png');
+INSERT INTO imagen_seguridad VALUES(DEFAULT, 'smarthouse.png');
+INSERT INTO imagen_seguridad VALUES(DEFAULT, 'strategy.png');
 
 
 
@@ -290,13 +290,13 @@ CREATE TABLE IF NOT EXISTS permisos(
     PRIMARY KEY (id_permiso)
 );
 
-INSERT INTO 	permisos 	VALUES (1 , 'REGISTRAR'     , 'El usuario tendrá permiso para registrar en el módulo.' );
-INSERT INTO 	permisos 	VALUES (2 , 'CONSULTAR'     , 'El usuario tendrá permiso para consultar registros en el módulo.' );
-INSERT INTO 	permisos 	VALUES (3 , 'ACTUALIZAR'    , 'El usuario tendrá permiso para actualizar registros en el módulo.' );
-INSERT INTO 	permisos 	VALUES (4 , 'ELIMINAR'      , 'El usuario tendrá permiso para eliminar registros en el módulo.' );
-INSERT INTO 	permisos 	VALUES (5 , 'VER DETALLES'  , 'El usuario tendrá permiso para ver detalles de registros del módulo.');
-INSERT INTO 	permisos 	VALUES (6 , 'REPORTES'      , 'El usuario tendrá permiso para acceder a los reportes del sistema.');
-INSERT INTO 	permisos 	VALUES (7 , 'CONFIGURACION' , 'El usuario tendrá permiso para acceder a los modulos de mantenimiento y seguridad del sistema.');
+INSERT INTO 	permisos 	VALUES (DEFAULT , 'REGISTRAR'     , 'El usuario tendrá permiso para registrar en el módulo.' );
+INSERT INTO 	permisos 	VALUES (DEFAULT , 'CONSULTAR'     , 'El usuario tendrá permiso para consultar registros en el módulo.' );
+INSERT INTO 	permisos 	VALUES (DEFAULT , 'ACTUALIZAR'    , 'El usuario tendrá permiso para actualizar registros en el módulo.' );
+INSERT INTO 	permisos 	VALUES (DEFAULT , 'ELIMINAR'      , 'El usuario tendrá permiso para eliminar registros en el módulo.' );
+INSERT INTO 	permisos 	VALUES (DEFAULT , 'VER DETALLES'  , 'El usuario tendrá permiso para ver detalles de registros del módulo.');
+INSERT INTO 	permisos 	VALUES (DEFAULT , 'REPORTES'      , 'El usuario tendrá permiso para acceder a los reportes del sistema.');
+INSERT INTO 	permisos 	VALUES (DEFAULT , 'CONFIGURACION' , 'El usuario tendrá permiso para acceder a los modulos de mantenimiento y seguridad del sistema.');
 
 
 CREATE TABLE IF NOT EXISTS rol_permisos_modulos (
