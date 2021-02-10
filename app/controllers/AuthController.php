@@ -75,14 +75,7 @@
 				$usuario->setContraseniaUsuario($_POST['contrasenia_usuario']);
 				$usuarioSession = $usuario->login();
 				if($usuarioSession && is_object($usuarioSession)) { // Si se definio el usuario y es un objeto
-
-
-
 				    $this->getAsk($usuarioSession->nick_usuario);
-
-
-
-
 				}
 				else {
 				    date_default_timezone_set('America/Caracas');

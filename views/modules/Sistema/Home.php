@@ -111,14 +111,14 @@
                     </a>
                 </div>
             <?php endif; ?>
-            <?php if (Helpers::hasPermissions('12')): ?>
-                <div class="col s12 m3 animated bounceIn">
-                    <a href="<?php echo Helpers::url('Mantenimiento', 'index'); ?>" class="btn-app orange-gradient">
-                        <i class="icon-perm_data_setting"></i>
-                        <span class="truncate">Mantenimiento</span>
-                    </a>
-                </div>
-            <?php endif; ?>
+<!--            --><?php //if (Helpers::hasPermissions('12')): ?>
+<!--                <div class="col s12 m3 animated bounceIn">-->
+<!--                    <a href="--><?php //echo Helpers::url('Mantenimiento', 'index'); ?><!--" class="btn-app orange-gradient">-->
+<!--                        <i class="icon-perm_data_setting"></i>-->
+<!--                        <span class="truncate">Mantenimiento</span>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            --><?php //endif; ?>
         </div>
     </div>
 </main>

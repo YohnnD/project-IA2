@@ -33,7 +33,7 @@
                     </a>
                 </div>
                 <?php endif; ?>
-                <?php if (Helpers::hasPermissions('2','1')): ?>
+                <?php if (Helpers::hasPermissions('2','2')): ?>
                 <div class="col s12 m6 animated bounceIn">
                     <a href="<?php echo Helpers::url('Producto','getAll'); ?>" class="btn-app blue-gradient">
                         <i class="icon-style"></i>

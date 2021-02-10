@@ -33,7 +33,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                             <div class="input-field col s12">
                                 <i class="icon-account_circle prefix"></i>
                                 <input name="nick_usuario" class="validate" id="nick_usuario" type="text">

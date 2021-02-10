@@ -92,7 +92,7 @@
                         <label for="stock_producto">Stock Disponible</label>
                     </div>
                     <div class="file-field input-field col s12 m6 xl8">
-                        <div class="btn purple-gradient">
+                        <div class="btn btn-rounded purple-gradient">
                             <span><i class="icon-photo_size_select_actual right"></i>Imagen</span>
                             <input type="file" name="img_producto" id="img_producto" disabled>
                         </div>
