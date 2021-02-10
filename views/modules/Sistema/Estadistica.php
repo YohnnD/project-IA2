@@ -20,12 +20,12 @@
     <!-- Main Container -->
     <main>
         <div class="container-fluid">
-            
+
             <h4 class="black-text" style="margin-left:20px;"> Estadisticas Inversiones A2</h4>
 
             <div class="divider"></div>
             <!-- Widgets -->
-            
+
             <div class="row" style="margin-top:20px;">
                 <div class="col s12 m6">
                     <div class="widget bootstrap-widget stats">
@@ -34,12 +34,12 @@
                         </div>
                         <div class="widget-stats-content">
                             <span class="widget-stats-title">Clientes Registrados al Mes</span>
-                            
+
                                 <?php
                                 $count1=0;
                                 $count2=0;
                                     $fecha = date('m/Y');
-                                    
+
                                     $count1=0;
                                     $count2=0;
                                     error_reporting(0);
@@ -51,25 +51,25 @@
                                             }
 
                                             if($band == false):?>
-                                            
+
                                             <?php $band=true;?>
                                         <?php else:
                                             if($band==true):
                                                 $count2+=$clientes->registro;
                                             ?>
                                                 <span class="timer widget-stats-number" data-from="0" data-to=""><?php echo $count2?></span>
-                                        <?php 
+                                        <?php
                                             endif;
-                                        endif;        
+                                        endif;
                                         endforeach;
                                         if($count2 == 0):?>
                                             <span class="timer widget-stats-number" data-from="0" data-to="0"><?php echo $count2 ?></span>
                                         <?php endif?>
 
                         </div>
-                    </div> 
+                    </div>
                 </div>
-                
+
                 <div class="col s12 m6">
                     <div class="widget bootstrap-widget stats">
                         <div class="widget-stats-icon blue-gradient white-text">
@@ -79,9 +79,9 @@
                             <span class="widget-stats-title">Ventas facturadas al Mes</span>
                                 <?php
                                     $fecha = date('m/Y');
-                
+
                                    ?>
-                                    <?php 
+                                    <?php
                                     $count1=0;
                                     $count2=0;
                                         foreach($factura as $facturas):
@@ -92,22 +92,22 @@
                                             }
 
                                             if($band == false):?>
-                                            
+
                                             <?php $band=true;?>
                                         <?php else:
                                             if($band==true):
                                                 $count2+=$facturas->registro;
                                             ?>
                                                 <span class="timer widget-stats-number" data-from="0" data-to=""><?php echo $count2?></span>
-                                        <?php 
+                                        <?php
                                             endif;
-                                        endif;        
+                                        endif;
                                         endforeach;
                                         if($count2 == 0):?>
                                             <span class="timer widget-stats-number" data-from="0" data-to="0"><?php echo $count2 ?></span>
                                         <?php endif?>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
             <!-- Row para gráficos -->
@@ -134,39 +134,39 @@
                         <li class="collection-header"><h5><i class="icon-event_note"></i>  Pedidos Pendientes</h5></li>
                         <?php if($pedido==null){  ?>
                             <li class="collection-item">
-                            
-                            <div> 
-                                <span class="title"></b>No hay Pedidos En Proceso</span><br>                          
+
+                            <div>
+                                <span class="title"></b>No hay Pedidos En Proceso</span><br>
                             </div>
                         </li>
                         <?php }else{foreach($pedido as $pedidos): ?>
                         <li class="collection-item">
-                            
+
                             <a href="<?php echo Helpers::url('Pedido','details')."/".$pedidos->codigo_pedido; ?>"><span class="new badge red icon-touch_app small" data-badge-caption="Pendiente || Ver Pedido"></span></a>
-                            <span class="title"><b>Cliente: </b> <?php echo $pedidos->nombre_cliente; ?></span><br>
-                            <span class=""><b>Contacto: </b><?php echo $pedidos->telefono_cliente; ?></span><br>
+                            <span class="title"><b>Cliente: </b> <?php echo Helpers::aesDecrypt($pedidos->nombre_cliente); ?></span><br>
+                            <span class=""><b>Contacto: </b><?php  echo Helpers::aesDecrypt( $pedidos->telefono_cliente); ?></span><br>
                             <span class=""><b>Fecha Entrega: </b><?php echo $pedidos->fecha_entrega_pedido; ?></span>
-                            
+
                         </li>
                         <?php endforeach;}?>
                     </ul>
                 </div>
                 <div class="col s12 m6">
                     <ul class="collection with-header">
-                        <li class="collection-header"><h5><i class="icon-local_mall"></i>  Productos Mas Vendidos Anuales</h5></li> 
+                        <li class="collection-header"><h5><i class="icon-local_mall"></i>  Productos Mas Vendidos Anuales</h5></li>
                         <?php if($producto==null){  ?>
                             <li class="collection-item">
-                            
-                            <div> 
+
+                            <div>
                                 <span class="title"></b>No hay Productos Vendidos</span><br>
-                                
+
                             </div>
                         </li>
-                             
+
                         <?php  }else{foreach($producto as $productos): ?>
                         <li class="collection-item">
-                            
-                            <div> 
+
+                            <div>
                             <a href="<?php echo Helpers::url('Producto','details')."/".$productos->codigo_producto; ?>"><span class="new badge blue icon-touch_app small" data-badge-caption="Ver Producto"></span></a>
                                 <span class="title"><b>Producto: </b><?php echo $productos->nombre_producto ?></span><br>
                                 <span><b>Codigo: </b><?php echo $productos->codigo_producto; ?></span><br>
@@ -180,21 +180,21 @@
 
                 <div class="col s12 m12">
                     <ul class="collection with-header">
-                        <li class="collection-header"><h5><i class="icon-local_atm"></i>  Servicios Mas Vendidos Anuales</h5></li> 
+                        <li class="collection-header"><h5><i class="icon-local_atm"></i>  Servicios Mas Vendidos Anuales</h5></li>
                         <?php if($servicio==null){  ?>
                             <li class="collection-item">
-                            
-                            <div> 
+
+                            <div>
                                 <span class="title"></b>No hay Servicios Vendidos</span><br>
-                                
+
                             </div>
                         </li>
-                             
-                        <?php  
+
+                        <?php
                         }else{foreach($servicio as $servicios): ?>
                         <li class="collection-item">
-                            
-                            <div> 
+
+                            <div>
                                 <a href="<?php echo Helpers::url('Servicio','details')."/".$servicios->id_servicio; ?>"><span class="new badge green icon-touch_app small" data-badge-caption="Ver Servicio"></span></a>
                                 <span class="title"><b>Servicio: </b><?php echo $servicios->nombre_servicio ?></span><br>
                                 <span><b>Descripción: </b><?php echo $servicios->descripcion_servicio; ?></span><br>

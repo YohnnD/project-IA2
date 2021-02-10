@@ -1,4 +1,8 @@
 <?php
+
+       require_once "vendor/autoload.php";
+
+
 	class UsuarioController extends BaseController {
 		public function __construct() {
 			parent::__construct();
@@ -11,12 +15,25 @@
 		public function create() {
             $rol = new Rol();
             $roles=$rol->getAll();
-			$this->view('Usuarios/Usuarios.Registrar',['roles'=>$roles]);
+
+            $pregunta=new Pregunta();
+            $allPreguntas=$pregunta->getAll();
+
+            $imageSeguridad=new ImageSeguridad();
+            $allImageSeguridad=$imageSeguridad->getAll();
+
+
+			$this->view('Usuarios/Usuarios.Registrar',['roles'=>$roles,
+                'allPreguntas'=>$allPreguntas,
+                'allImageSeguridad'=>$allImageSeguridad
+            ]);
 		}
 
 		public function getAll() {
 			$usuario = new Usuario(); // Instancia el objeto
 			$allUsuarios = $usuario->getAll(); // Obtiene todos los usuarios
+
+
 			$this->view('Usuarios/Usuarios.Consultar', ['allUsuarios' => $allUsuarios]);
 		}
 
@@ -29,11 +46,20 @@
 				$emailUsuario = $this->input('email_usuario', true, 'string');
 				$contraseniaUsuario = $this->input('contrasenia_usuario', true, 'string');
 				$idRol = $this->input('id_rol', true, 'int');
+                $pregunta = $this->input('pregunta', true, 'string');
+                $respuesta = $this->input('respuesta', true, 'string');
+                $imagen= $this->input('image', true, 'string');
+
+
+
 
 				if($this->validateFails()) { // Si la validacion falla
 					$this->redirect('Usuario','index'); // Redirecciona al inicio.
 				}
-				else { // Si no falla la validacion
+				else {
+
+
+				    // Si no falla la validacion
 					$usuario = new Usuario(); // Instancia el objeto
 					// Setea los datos
 					$usuario->setNickUsuario($nickUsuario);
@@ -43,6 +69,18 @@
 					$usuario->setContraseniaEncriptada($contraseniaUsuario);
 					$usuario->setIdRol($idRol);
 					$data = $usuario->save();
+
+
+                    $processor = new KzykHys\Steganography\Processor();
+                    $image = $processor->encode( $imagen,  Helpers::aesEncrypt($respuesta)); // jpg|png|gif
+                    $imagePath='storage/preguntas/image'.time().".png";
+                    $image->write($imagePath); // png only
+                    $preguntaSeguridad = new PreguntaSeguridad(); // Instancia el objeto
+                    $preguntaSeguridad->setNickUsuario($nickUsuario);
+                    $preguntaSeguridad->setImagen($imagePath);
+                    $preguntaSeguridad->setPregunta($pregunta);
+                    $preguntaSeguridad->save();
+
 					$this->sendAjax($data);
 				}
 			}

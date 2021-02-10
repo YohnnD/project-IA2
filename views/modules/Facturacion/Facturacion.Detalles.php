@@ -58,7 +58,7 @@
                     </div>
                     <div class="input-field col s12 m6 xl6">
                         <i class="icon-monetization_on prefix"></i>
-                        <input type="text" name="cliente" id="modo_pago_factura" value="<?php echo $detalles['Cliente']->nombre_cliente ?>" disabled>
+                        <input type="text" name="cliente" id="modo_pago_factura" value="<?php echo Helpers::aesDecrypt($detalles['Cliente']->nombre_cliente) ?>" disabled>
                         <label for="modo_pago_factura">Cliente</label>
                     </div>
                     <div class="input-field col s12 m6 xl6">
@@ -68,12 +68,12 @@
                     </div>
                     <div class="input-field col s12 m6 xl6">
                         <i class="icon-monetization_on prefix"></i>
-                        <input type="text" name="modo_pago_factura" id="cedula" value="<?php echo $detalles['Cliente']->telefono_cliente ?>" disabled>
+                        <input type="text" name="modo_pago_factura" id="cedula" value="<?php echo Helpers::aesDecrypt($detalles['Cliente']->telefono_cliente) ?>" disabled>
                         <label for="modo_pago_factura">Telefono</label>
                     </div>
                     <div class="input-field col s12 m6 xl6">
                         <i class="icon-monetization_on prefix"></i>
-                        <input type="text" name="modo_pago_factura" id="cedula" value="<?php echo $detalles['Cliente']->direccion_cliente ?>" disabled>
+                        <input type="text" name="modo_pago_factura" id="cedula" value="<?php echo Helpers::aesDecrypt($detalles['Cliente']->direccion_cliente) ?>" disabled>
                         <label for="modo_pago_factura">Direccion</label>
                     </div>
                     <div class="input-field col s12 m6 xl6">
@@ -144,7 +144,7 @@
                             </div>
 
                             <?php
-                                     
+
                             $monto1 = $detalles['Producto'][$i][0]['precio_producto'] * $detalles['ProPedidos'][$i]->cant_pro_pedido;
 
                             $montoProducto += $monto1;
@@ -156,7 +156,7 @@
                             <input type="text" name="total" id="total" value="<?php echo $montoProducto ?> $" disabled>
                             <label for="total">Total a Pagar Por Producto:</label>
                         </div>
-                   
+
                     <?php else: ?>
 
 
@@ -172,14 +172,14 @@
                         <a href="#!" class="btn red waves-effect waves-light col s12" id="anular">
                             <i class="icon-delete right"></i>
                             Anular
-                        </a>                
+                        </a>
                     </div>
                 <?php else:?>
                     <div class="input-field col s12 m12 center-align">
                         <a href="#!" class="btn red waves-effect waves-light col s12" id="anular" disabled>
                             <i class="icon-delete right"></i>
                             Anular
-                        </a>                
+                        </a>
                     </div>
                 <?php endif?>
                 <?php endif?>
