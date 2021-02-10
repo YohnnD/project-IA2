@@ -463,4 +463,3 @@ ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkmodulo         FOREI
 ALTER TABLE    preguntas_seguridad      ADD CONSTRAINT    Fkusuario       FOREIGN KEY     (nick_usuario)      REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;
 
 
-ALTER TABLE                       ADD CONSTRAINT    Fkusuario1       FOREIGN KEY    (nick_usuario)      REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;

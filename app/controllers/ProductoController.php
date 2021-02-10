@@ -84,7 +84,6 @@
 
 		public function update() {
 			if($_POST) {
-				// var_export($_POST);
 				$codigoProducto = $this->input('codigo_producto', true, 'string');
 				$nombreProducto = $this->input('nombre_producto', true, 'string');
 				$descripcionProducto = $this->input('descripcion_producto', true, 'string');
@@ -102,13 +101,12 @@
 					$imgProducto = $_POST['img_producto_name'];
 				}
 				$idTalla = $this->input('id_talla');
-				// var_export($idTalla); die();
 				$stockProTalla = $this->input('stock_pro_talla');
 				if($this->validateFails()) { // Si la validacion falla
 					// $this->redirect('Producto','index'); // Redirecciona al inicio.
 					var_export($_POST); 
-					var_export('hola');
-					die();
+					// var_export('hola');
+					// die();
 				}
 				else {
 					$producto = new Producto(); // Instancia el objeto
@@ -131,20 +129,8 @@
 					}
 					$dataProducto = $producto->update();
 					for ($i = 0; $i < count($stockProTalla); $i++) {
-						// $producto->setCodigoProducto($codigoProducto);
-						// $producto->setIdTalla($idTalla[$i]);
-						// $producto->setStockProTalla($stockProTalla[$i]);
 						$producto->updateTalla($stockProTalla[$i], $idTalla[$i], $codigoProducto);
-						// var_export($dataTallas);
-						// var_export($stockProTalla[$i]);
-						
-						// var_dump($dataTallas); die();
-						// $this->sendAjax($dataTallas);
-						// if(!is_object($dataTallas)){
-							// 	// var_dump($dataTallas);
-							//   break;
-							// }
-						}
+					}
 					$this->sendAjax($dataProducto);
 				}
 			}
