@@ -48,6 +48,10 @@ body.login-view {
     justify-content: center;
     align-items: center;
 
+    main {
+        flex: auto;
+    }
+
     & header,
     & main,
     & footer {

@@ -79,7 +79,7 @@
 					$_SESSION['authenticated'] = true;
 					$_SESSION['permissions'] = $PermisosXModulos;
 					$_SESSION['error'] = false;
-					$_SESSION['message'] = "Log in successfully";
+					// $_SESSION['message'] = "Log in successfully";
 					// $_SESSION['permissions'] =
 					// $this->registerBiracora(LOGIN, LOGIN);
 					$usuario->registerBitacora(USUARIOS,INICIAR_SESION);

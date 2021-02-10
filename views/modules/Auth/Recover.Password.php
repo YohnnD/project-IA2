@@ -42,7 +42,7 @@
                             <label for="email" required>Email</label>
                         </div>
                     </div>
-                    <div class="card-action center-align">
+                    <div class="card-footer center-align">
                         <button type="submit" id="enviar" class="btn btn-large btn-rounded primary-gradient waves-effect effect-light" disabled>
                             Recuperar Contraseña
                             <i class="icon-send right"></i>
