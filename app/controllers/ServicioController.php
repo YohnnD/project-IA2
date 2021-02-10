@@ -1,20 +1,16 @@
 <?php
 
-class ServicioController extends BaseController
-{
+class ServicioController extends BaseController {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
-    public function index()
-    {
+    public function index() {
         $this->view('Servicios/Servicios');
     }
 
-    public function create()
-    {
+    public function create() {
         $materiales = new Servicio();
         $valor = $materiales->getMaterial();
 
@@ -23,15 +19,13 @@ class ServicioController extends BaseController
         ));
     }
 
-    public function getAll()
-    {
+    public function getAll() {
         $Servicio = new Servicio();
         $result = $Servicio->getAll();
         $this->view('Servicios/Servicios.Consultar', array("servicios" => $result));
     }
 
-    public function save()
-    {
+    public function save() {
 
         $nombreServicio = ucwords($_POST['nombre_servicio']);
         $unidadMedida = strtoupper($_POST['unidad_medida']);
@@ -52,8 +46,7 @@ class ServicioController extends BaseController
         $this->sendAjax($result);
     }
 
-    public function delete()
-    {
+    public function delete() {
         $idServicio = $_POST['id_servicio'];
 
         $Servicios = new Servicio();
@@ -64,8 +57,7 @@ class ServicioController extends BaseController
         $this->sendAjax($result);
     }
 
-    public function details()
-    {
+    public function details() {
 
         $idServicio = $_GET['id'];
 
@@ -84,8 +76,7 @@ class ServicioController extends BaseController
         ));
     }
 
-    public function update()
-    {
+    public function update() {
 
         $idServicio = $_POST['id_servicio'];
         $nombreServicio = $_POST['nombre_servicio'];
@@ -107,27 +98,23 @@ class ServicioController extends BaseController
         $this->sendAjax($result);
     }
 
-    public function getMateriales()
-    {
+    public function getMateriales() {
         $materiales = new Servicio();
         $valor = $materiales->getMaterial();
-
-        var_dump();
         if (!empty($_GET['id'])) {
-            $_SESSION['servicio'] = $_GET['id'];
+            $_SESSION['servicio']=$_GET['id'];
             $this->view('Servicios/Servicios.addMateriales', array(
                 'materiales' => $valor
             ));
         } else {
-            $_SESSION['servicio'] = 0;
+            $_SESSION['servicio']=0;
             $this->view('Servicios/Servicios.addMateriales', array(
                 'materiales' => $valor
             ));
         }
     }
 
-    public function verificarServicio()
-    {
+    public function verificarServicio() {
         if ($_POST['nombre_servicio']) {
             $nombre = $_POST['nombre_servicio'];
         } else {
@@ -142,42 +129,49 @@ class ServicioController extends BaseController
         $this->sendAjax($respuesta);
     }
 
-    public function searchMateriales()
-    {
+    public function searchMateriales() {
         $idMaterial = $_GET['id'];
-        $materiales = new Servicio();
-        $respuesta = $materiales->searchMaterial($idMaterial);
+            $materiales = new Servicio();
+            $respuesta = $materiales->searchMaterial($idMaterial);
 
-        $this->view('Servicios/Servicios.addMateriales.Servicio', array(
-            'materiales' => $respuesta
-        ));
+            $this->view('Servicios/Servicios.addMateriales.Servicio', array(
+                'materiales' => $respuesta
+            ));
     }
 
-    public function saveMaterial()
-    {
+    public function saveMaterial() {
         $idMaterial = $_POST['id'];
         $cantidad = $_POST['cantidad'];
         $idServicio = $_SESSION['servicio'];
 
-        $Servicio = new Servicio();
+        if ($idServicio == 0) {
+            $Servicio = new Servicio();
 
-        $Servicio->setIdServicio($idServicio);
-        $result = $Servicio->saveMaterial($idMaterial, $cantidad);
+            $Servicio->setIdServicio($idServicio);
+            $result = $Servicio->saveMaterial($idMaterial, $cantidad);
 
-        $this->sendAjax($result);
+            $this->sendAjax($result);
+        } else {
+            $Servicio = new Servicio();
 
+            $Servicio->setIdServicio($idServicio);
+            $result = $Servicio->saveMaterial($idMaterial, $cantidad);
+
+            $this->sendAjax($result);
+        }
     }
 
     public function deleteMaterial()
     {
-        $id = $_GET['id'];
+        $id=$_GET['id'];
 
-        $servicio = new Servicio();
+        $servicio= new Servicio();
         $servicio->setIdServicio($id);
-        $respuesta = $servicio->deleteMaterial();
+        $respuesta=$servicio->deleteMaterial();
 
-        $this->redirect('Servicio', 'getAll');
+        $this->redirect('Servicio','getAll');
     }
+
 
 
 }

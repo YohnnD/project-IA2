@@ -35,7 +35,7 @@
                         </div>
                         <div class="card-content row">
                             <div class="col s12">
-                                <table class="striped centered responsive-table" id="Materiales">
+                                <table class="striped centered" style="width: 100%" id="Materiales">
                                     <thead>
                                         <tr>
                                             <th>Materiales</th>
@@ -44,7 +44,7 @@
                                     </thead>
                                     <tbody>
                                         <?php foreach ($materiales as $value):?>
-                
+
                                         <tr>
                                             <td><?php echo $value->nombre_material?></td>
                                             <td>

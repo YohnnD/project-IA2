@@ -56,7 +56,7 @@
               <h3><?php echo Helpers::aesDecrypt($producto->nombre_producto)?></h3>
             <?php echo Helpers::aesDecrypt($producto->descripcion_producto)?></td>
             <td class="unit"><?php echo $producto->tipo_producto?></td>
-            <td class="qty"><?php echo $producto->modelo_producto?></td>
+            <td class="qty"><?php echo Helpers::aesDecrypt($producto->modelo_producto)?></td>
             <td class="unit"><?php echo $producto->stock_producto?></td>
             <td class="total"><?php echo $producto->precio_producto?></td>
           </tr>
