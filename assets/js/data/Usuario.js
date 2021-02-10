@@ -140,10 +140,43 @@ var url = localStorage.getItem('url')+"Usuario/";
         $('select').formSelect();
         $('#modify-btn').hide();
         $('#delete-btn').hide();
+        $('#change-password').hide();
+        $('#reset-password').hide();
         $('#update-btn').show();
+        $('#reset-buttons').show();
         // $('#passwordUsuario').removeAttr('disabled', 'disabled');
 
     });
+
+    $('#reset-btn').click(() => {
+        $('#form-user').show();
+        $('#update :input').attr('disabled',true);
+        // $('#form-password').hide();
+        $('#modify').show();
+        $('#update-btn').hide();
+        // $('#change-password').hide();
+        $('#modify-btn').show();
+        $('#delete-btn').show();
+        $('#change-password').show();
+        $('#reset-buttons').hide();
+        $('select').formSelect();
+    });
+
+    $('#change-password-btn').click(function(e) {
+        $('#update :input').removeAttr('disabled','disabled');
+        $('#form-password').show();
+        $('#form-user').hide();
+        $('#modify').hide();
+        $('#modify-btn').hide();
+        $('#delete-btn').hide();
+        $('#change-password').hide();
+        $('#reset-password').hide();
+        // $('#update-btn').show();
+        $('#update-password').show();
+        $('#reset-buttons').show();
+        $(this).hide();
+    });
+
 
     $('#update').submit(function(e) {
         e.preventDefault(); // Disable submit event

@@ -320,7 +320,22 @@
 
 
 
+		public function updatePassword2(){
 
+			// $sql = "SELECT * FROM tokens WHERE token = '$token'";
+			// $query = $this->db()->query($sql);
+			// $row = $query->fetch(PDO::FETCH_OBJ);
+			$query = "UPDATE $this->table SET 
+						contrasenia_usuario = :contrasenia_usuario
+						WHERE nick_usuario = :nick_usuario";
+
+			$result = $this->db()->prepare($query); // Prepara la consulta SQL
+			// Limpia los parametros
+			$result->bindParam(':nick_usuario',$this->nickUsuario);
+			$result->bindParam(':contrasenia_usuario',$this->contraseniaUsuario);
+			$update = $result->execute(); // Ejecuta la consulta
+			return $update;
+		}
 
 
 

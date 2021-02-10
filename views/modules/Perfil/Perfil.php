@@ -70,6 +70,10 @@
                                 <input type="text" name="nick_usuario" id="nick_usuario" class="validate code-only" value="<?php echo $usuario->nick_usuario; ?>" required disabled>
                                 <label for="nick_usuario">Nick</label>
                             </div>
+
+                        </div>
+                        <div id="form-password" style="display:none;">
+                            <input type="hidden" name="nick_usuario" id="nick_usuario" value="<?php echo $usuario->nick_usuario; ?>">
                             <div class="input-field col s12">
                                 <i class="icon-beenhere prefix"></i>
                                 <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" class="validate" required disabled>
@@ -81,7 +85,6 @@
                                 <label for="repeat_contrasenia_usuario">Repetir Password del Usuario</label>
                             </div>
                         </div>
-
 
 
                         <div class="input-field col s12"  id="form-security" style="display: none">
@@ -149,23 +152,9 @@
                             </div>
                         </div> -->
                     </div>
-                    <div class="card-footer">
-                        <div class="row" style="margin-bottom: 0">
-
-
-
-                            <div class="col s12 m6 center-align" id="change-security">
-                                <a  class="btn btn-large btn-rounded blue-gradient waves-effect waves-light col s12">
-                                    <i class="icon-update left"></i>
-                                    Cambiar Preguntas
-                                    <i class="icon-update right"></i>
-                                </a>
-                            </div>
-
-
-
-
-                            <div class="col s12 m6 center-align" id="modify-btn">
+                    <div class="card-footer center-align">
+                        <div class="row" style="margin-bottom: 0; display: flex; flex-direction: row; justify-content: center;">
+                            <div class="col s12 m4 center-align" id="modify-btn">
                                 <a id="modify" class="btn btn-large btn-rounded blue-gradient waves-effect waves-light col s12">
                                     <i class="icon-update left"></i>
                                     Modificar
@@ -173,8 +162,23 @@
                                 </a>
                             </div>
 
+                            <div class="col s12 m4 center-align" id="change-security">
+                                <a  class="btn btn-large btn-rounded orange-gradient waves-effect waves-light col s12">
+                                    <i class="icon-update left"></i>
+                                    Cambiar Preguntas
+                                    <i class="icon-update right"></i>
+                                </a>
+                            </div>
 
-                            <div class="col s12 m12 center-align" style="display: none" id="update-security">
+                            <div class="col s12 m4 center-align" id="change-password">
+                                <a  class="btn btn-large btn-rounded indigo-gradient waves-effect waves-light col s12">
+                                    <i class="icon-update left"></i>
+                                    Cambiar Contraseña
+                                    <i class="icon-update right"></i>
+                                </a>
+                            </div>
+
+                            <div class="col s12 m6 center-align" style="display: none" id="update-security">
                                 <a  class="btn btn-large btn-rounded blue-gradient waves-effect waves-light col s12">
                                     <i class="icon-update left"></i>
                                     Guardar Pregunta
@@ -183,13 +187,31 @@
                             </div>
 
 
-                            <div class="col s12 center-align" style="display: none" id="update-btn">
+                            <div class="col s12 m6 center-align" style="display: none" id="update-btn">
                                 <button type="submit" class="btn btn-large btn-rounded green-gradient waves-effect waves-light col s12">
                                     <i class="icon-save left"></i>
                                     Actualizar
                                     <i class="icon-save right"></i>
                                 </button>
                             </div>
+
+
+                            <div class="col s12 m6 center-align" style="display: none" id="update-password">
+                                <a  class="btn btn-large btn-rounded blue-gradient waves-effect waves-light col s12" id="update-password-btn">
+                                    <i class="icon-update left"></i>
+                                    Actualizar Contraseña
+                                    <i class="icon-update right"></i>
+                                </a>
+                            </div>
+
+                            
+                            <div class="col s12 m6 center-align" style="display: none" id="reset-buttons">
+                                <a  class="btn btn-large btn-rounded red-gradient waves-effect waves-light col s12" id="reset-btn">
+                                    <i class="icon-cancel left"></i>
+                                    Atras
+                                </a>
+                            </div>
+
                         </div>
                     </div>
                 </form>

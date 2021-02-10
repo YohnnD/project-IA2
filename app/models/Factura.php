@@ -91,16 +91,6 @@ class Factura extends BaseModel {
             }
         }
 		return $resultSet; // Finalmente retornla el arreglo con los elementos.
-
-        // $query = $this->db()->query("SELECT * FROM $this->table");
-
-        // if ($query && $query->rowCount() != 0) {// Evalua la cansulta
-        //     $row = $query->fetchAll();
-        // } else { //
-        //     $row = NULL;
-        // }
-
-        // return $row;
     }
 
     public function getOne() {

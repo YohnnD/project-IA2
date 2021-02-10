@@ -150,4 +150,20 @@
    			$response = $usuario->checkEmailUsuario();
     		$this->sendAjax($response);
     	}
+
+			public function updatePassword() {
+				if($_POST) { // Si se pasan datos por post
+					// Valida los datos recibidos por los inputs
+					$nickUsuario = $this->input('nick_usuario', true, 'string');
+					$contraseniaUsuario = $this->input('contrasenia_usuario', true, 'string');
+					$repearContraseniaUsuario = $_POST['repeat_contrasenia_usuario'];
+					if($contraseniaUsuario === $repearContraseniaUsuario) {
+						$usuario = new Usuario(); // Instancia el objeto
+						$usuario->setNickUsuario($nickUsuario);
+						$usuario->setContraseniaEncriptada($contraseniaUsuario);
+						$data = $usuario->updatePassword2();
+						$this->sendAjax($data);
+					}
+				}
+			}
 	}

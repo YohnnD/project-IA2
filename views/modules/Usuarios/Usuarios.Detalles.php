@@ -46,64 +46,71 @@
                             <input id="cedula_usuario" type="text" name="cedulaUcedula_usuarioscedula_usuariouario" class="validate" minlength="5" maxlength="8" pattern="[0-9]+"  title="Solo puedes usar números." required>
                             <label for="cedula_usuario">Cedula del Usuario</label>
                         </div> -->
-                        <div class="input-field col s12 m6">
-                            <i class="icon-person_pin prefix"></i>
-                            <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate text-validate" minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->nombre_usuario; ?>" required disabled>
-                            <label for="nombre_usuario" >Nombre del Usuario</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <i class="icon-person_pin prefix"></i>
-                            <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate text-validate"  minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->apellido_usuario; ?>" required disabled>
-                            <label for="apellido_usuario">Apellido del Usuario</label>
-                        </div>
-                        <!-- <div class="input-field col s12 m6 xl4">
-                            <i class="icon-phone_android prefix"></i>
-                            <input id="telefono_usuario" type="text" name="telefono_usuario" class="validate" minlength="11" maxlength="11" pattern="[0-9]+"  title="Solo puedes usar numeros." required disabled>
-                            <label for="telefono_usuario">Teléfono del Usuario</label>
-                        </div> -->
-                        <div class="input-field col s12 m6">
-                            <i class="icon-markunread prefix"></i>
-                            <input type="email" name="email_usuario" id="email_usuario" class="validate" value="<?php echo $usuario->email_usuario; ?>" required disabled>
-                            <label for="email_usuario">E-mail del Usuario</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <i class="icon-person_pin prefix"></i>
-                            <input type="text" name="nick_usuario" id="nick_usuario" class="validate code-only" value="<?php echo $usuario->nick_usuario; ?>" required disabled>
-                            <label for="nick_usuario">Nick del Usuario</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="icon-beenhere prefix"></i>
-                            <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" class="validate" required disabled>
-                            <label for="contrasenia_usuario">Password del Usuario</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="icon-beenhere prefix"></i>
-                            <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario" class="validate" required disabled>
-                            <label for="repeat_contrasenia_usuario">Repetir Password del Usuario</label>
-                        </div>
-                        <!-- 
-                        <div class="file-field input-field col s12">
-                            <div class="btn purple">
-                                <span><i class="icon-photo_size_select_actual right"></i>Imagen</span>
-                                <input type="file" name="url_imagen" id="url_imagen">
+                        <div id="form-user">
+                            <div class="input-field col s12 m6">
+                                <i class="icon-person_pin prefix"></i>
+                                <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate text-validate" minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->nombre_usuario; ?>" required disabled>
+                                <label for="nombre_usuario" >Nombre del Usuario</label>
                             </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" placeholder="Elige una imagen">
+                            <div class="input-field col s12 m6">
+                                <i class="icon-person_pin prefix"></i>
+                                <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate text-validate"  minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->apellido_usuario; ?>" required disabled>
+                                <label for="apellido_usuario">Apellido del Usuario</label>
                             </div>
-                        </div> -->
-                        <div class="input-field col s12" id="last-input">
-                            <i class="icon-assistant prefix"></i>
-                            <select name="id_rol" id="id_rol" disabled>
-                                <option value="" disabled>Elige un rol</option>
-                                <?php foreach ($roles as $rol):?>
-                                    <?php if($usuario->id_rol==$rol->id_rol):?>
-                                        <option value="<?php echo $rol->id_rol;?>" selected> <?php echo $rol->nombre_rol;?></option>
-                                        <?php else:?>
-                                        <option value="<?php echo $rol->id_rol;?>"> <?php echo $rol->nombre_rol;?></option>
-                                        <?php endif;?>
-                                <?php endforeach;?>
-                            </select>
-                            <label for="id_rol">Rol</label>
+                            <!-- <div class="input-field col s12 m6 xl4">
+                                <i class="icon-phone_android prefix"></i>
+                                <input id="telefono_usuario" type="text" name="telefono_usuario" class="validate" minlength="11" maxlength="11" pattern="[0-9]+"  title="Solo puedes usar numeros." required disabled>
+                                <label for="telefono_usuario">Teléfono del Usuario</label>
+                            </div> -->
+                            <div class="input-field col s12 m6">
+                                <i class="icon-markunread prefix"></i>
+                                <input type="email" name="email_usuario" id="email_usuario" class="validate" value="<?php echo $usuario->email_usuario; ?>" required disabled>
+                                <label for="email_usuario">E-mail del Usuario</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="icon-person_pin prefix"></i>
+                                <input type="text" name="nick_usuario" id="nick_usuario" class="validate code-only" value="<?php echo $usuario->nick_usuario; ?>" required disabled>
+                                <label for="nick_usuario">Nick del Usuario</label>
+                            </div>
+                            <!-- 
+                            <div class="file-field input-field col s12">
+                                <div class="btn purple">
+                                    <span><i class="icon-photo_size_select_actual right"></i>Imagen</span>
+                                    <input type="file" name="url_imagen" id="url_imagen">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" placeholder="Elige una imagen">
+                                </div>
+                            </div> -->
+                            <div class="input-field col s12" id="last-input">
+                                <i class="icon-assistant prefix"></i>
+                                <select name="id_rol" id="id_rol" disabled>
+                                    <option value="" disabled>Elige un rol</option>
+                                    <?php foreach ($roles as $rol):?>
+                                        <?php if($usuario->id_rol==$rol->id_rol):?>
+                                            <option value="<?php echo $rol->id_rol;?>" selected> <?php echo $rol->nombre_rol;?></option>
+                                            <?php else:?>
+                                            <option value="<?php echo $rol->id_rol;?>"> <?php echo $rol->nombre_rol;?></option>
+                                            <?php endif;?>
+                                    <?php endforeach;?>
+                                </select>
+                                <label for="id_rol">Rol</label>
+                            </div>
+                        
+                        </div>
+
+                        <div id="form-password" style="display: none;">
+                            <input type="hidden" name="nick_usuario" id="nick_usuario" value="<?php echo $usuario->nick_usuario; ?>">
+                            <div class="input-field col s12">
+                                <i class="icon-beenhere prefix"></i>
+                                <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" class="validate" required disabled>
+                                <label for="contrasenia_usuario">Password del Usuario</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="icon-beenhere prefix"></i>
+                                <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario" class="validate" required disabled>
+                                <label for="repeat_contrasenia_usuario">Repetir Password del Usuario</label>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -123,12 +130,31 @@
                                     <i class="icon-remove right"></i>
                                 </a>
                             </div>
-                            <div class="col s12 center-align" style="display: none" id="update-btn">
+                            <div class="col s12 m6 center-align" style="display: none" id="update-btn">
                                 <button type="submit" class="btn btn-large btn-rounded green-gradient waves-effect waves-light col s12">
                                     <i class="icon-save left"></i>
                                     Actualizar
                                     <i class="icon-save right"></i>
                                 </button>
+                            </div>
+                            <div class="col s12 m6 center-align" id="change-password" style="margin-top: 1rem;">
+                                <a  class="btn btn-large btn-rounded indigo-gradient waves-effect waves-light col s12" id="change-password-btn">
+                                    <i class="icon-lock left"></i>
+                                    Cambiar Contraseña
+                                </a>
+                            </div>
+                            <div class="col s12 m6 center-align" style="display: none; margin-top: 1rem;" id="update-password">
+                                <a  class="btn btn-large btn-rounded blue-gradient waves-effect waves-light col s12" id="update-password-btn">
+                                    <i class="icon-update left"></i>
+                                    Actualizar Contraseña
+                                    <i class="icon-update right"></i>
+                                </a>
+                            </div>
+                            <div class="col s12 m6 center-align" style="display: none; margin-top: 1rem;" id="reset-buttons">
+                                <a  class="btn btn-large btn-rounded red-gradient waves-effect waves-light col s12" id="reset-btn">
+                                    <i class="icon-cancel left"></i>
+                                    Atras
+                                </a>
                             </div>
                         </div>
                     </div>
