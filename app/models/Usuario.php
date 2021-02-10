@@ -230,7 +230,7 @@
 		}
 
 		public function getOne($nickUsuario) {
-			$this->registerBitacora(USUARIOS,DETALLES);
+			//$this->registerBitacora(USUARIOS,DETALLES);
 			$sql = "SELECT * FROM $this->table INNER JOIN roles ON roles.id_rol = usuarios.id_rol WHERE usuarios.nick_usuario = '$nickUsuario'"; // Consulta SQL
 			$query = $this->db()->query($sql); // Ejecuta la consulta SQL
             if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
@@ -320,7 +320,22 @@
 
 
 
+		public function updatePassword2(){
 
+			// $sql = "SELECT * FROM tokens WHERE token = '$token'";
+			// $query = $this->db()->query($sql);
+			// $row = $query->fetch(PDO::FETCH_OBJ);
+			$query = "UPDATE $this->table SET 
+						contrasenia_usuario = :contrasenia_usuario
+						WHERE nick_usuario = :nick_usuario";
+
+			$result = $this->db()->prepare($query); // Prepara la consulta SQL
+			// Limpia los parametros
+			$result->bindParam(':nick_usuario',$this->nickUsuario);
+			$result->bindParam(':contrasenia_usuario',$this->contraseniaUsuario);
+			$update = $result->execute(); // Ejecuta la consulta
+			return $update;
+		}
 
 
 

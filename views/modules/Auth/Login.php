@@ -25,7 +25,7 @@
                             <h5>Iniciar Sesión</h5>
                         </div>
                         <div class="card-content row">
-                            <?php if($_SESSION): ?>
+                            <?php if(isset($_SESSION["error"])&& $_SESSION["error"] ): ?>
                                 <div class="col s12">
                                     <div class="message message-danger">
                                         <div class="message-body">
@@ -53,7 +53,7 @@
                         <div class="card-footer center-align">
                             <!-- <button id="ingresar" class="btn btn-large btn-rounded primary-gradient waves-effect effect-light">Entrar <i class="icon-send right"></i></button> -->
                             <button type="submit" id="ingresar" class="btn btn-large btn-rounded primary-gradient waves-effect effect-light">
-                                Entrar
+                                Continuar
                                 <i class="icon-send right"></i>
                             </button>
                         </div>

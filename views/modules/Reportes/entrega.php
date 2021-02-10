@@ -48,15 +48,15 @@
         </thead>
         <tbody>
           <?php foreach ($allPedido as $pedido): ?>
-            <?php if($pedido->status_pedido == 'Entregado' || $pedido->status_pedido == 'entregado'){?>
+            <?php if(Helpers::aesDecrypt($pedido->status_pedido) == 'Entregado' || Helpers::aesDecrypt($pedido->status_pedido) == 'entregado'){?>
           <tr>
-            <td class="no"><?php echo $pedido->codigo_pedido?></td>
+            <td class="no"><?php echo Helpers::aesDecrypt($pedido->codigo_pedido)?></td>
             <td class="desc">
-              <h3><?php echo $pedido->nombre_cliente?></h3>
-            <?php echo $pedido->representante_cliente?> - <?php echo $pedido->telefono_cliente?></td>
+              <h3><?php echo Helpers::aesDecrypt($pedido->nombre_cliente)?></h3>
+            <?php echo Helpers::aesDecrypt($pedido->representante_cliente)?> - <?php echo Helpers::aesDecrypt($pedido->telefono_cliente)?></td>
             <td class="unit"><?php echo date("d/m/Y", strtotime($pedido->fecha_entrega_pedido))?></td>
             <td class="qty"><?php echo $pedido->descripcion_pedido?></td>
-            <td class="total"><?php echo $pedido->status_pedido?></td>
+            <td class="total"><?php echo Helpers::aesDecrypt($pedido->status_pedido)?></td>
             
           </tr>
           <?php }else?>

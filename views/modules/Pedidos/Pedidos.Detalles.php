@@ -19,7 +19,7 @@
 
 <!-- Main Container -->
 <main>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col s12 breadcrumb-nav left-align">
                 <a href="<?php echo Helpers::url('Home', 'index'); ?>" class="breadcrumb">Inicio</a>
@@ -27,7 +27,10 @@
                 <a href="<?php echo Helpers::url('Pedido', 'getAll'); ?>" class="breadcrumb">Consultar Pedidos</a>
                 <a href="<?php echo Helpers::url('Pedido', 'details'); ?>" class="breadcrumb">Detalles</a>
             </div>
-            <form method="post" action="<?php echo Helpers::url('Pedido','update');?>" class="row" id="form-pedido-details">
+        </div>
+    </div>
+    <div class="container">
+    <form method="post" action="<?php echo Helpers::url('Pedido','update');?>" class="row" id="form-pedido-details">
             <div class="col s12">
                     <div class="col s12">
                         <h4 class="center-align">PEDIDO</h4>
@@ -220,9 +223,6 @@
                         Eliminar
                     </a>
                 </div>
-            </form>
-
-
     </div>
 </main>
 

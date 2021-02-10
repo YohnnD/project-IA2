@@ -10,10 +10,62 @@ var url = localStorage.getItem('url')+"Usuario/";
         var apellido_usuario = $('#apellido_usuario').val();
         var email_usuario = $('#email_usuario').val();
         var contrasenia_usuario = $('#contrasenia_usuario').val();
-        // var repeat_contrasenia_usuario = $('#repeat_contrasenia_usuario').val();
-        // var url_imagen = $('#url_imagen').val();
+        var pregunta = $('#id_pregunta').val();
+        var respuesta=$('#respuesta').val();
+        var image = $("input[name='image']:checked").val();
         var id_rol = $('#id_rol').val();
-        // Sending data by AJAX
+
+        if(pregunta==null){
+            return swal({
+                title: "¡Información!",
+                text: "Debe elegir una pregunta de seguridad para completar el registro.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+
+        }
+
+
+        if(id_rol==null){
+            return swal({
+                title: "¡Información!",
+                text: "Debe elegir un rol para completar el registros",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+
+        }
+
+
+        if(image===undefined){
+            return swal({
+                title: "¡Información!",
+                text: "Debe elegir una imagen de seguridad para completar el registro.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+        }
+
+
+
         $.ajax({
             method: "POST",
             dataType: "json",
@@ -23,6 +75,9 @@ var url = localStorage.getItem('url')+"Usuario/";
                     apellido_usuario: apellido_usuario,
                     email_usuario: email_usuario,
                     contrasenia_usuario: contrasenia_usuario,
+                    pregunta:pregunta,
+                    respuesta:respuesta,
+                    image:image,
                     // repeat_password_usuario: repeat_password_usuario,
                     id_rol: id_rol
                     },
@@ -67,6 +122,9 @@ var url = localStorage.getItem('url')+"Usuario/";
             }
         });
 
+
+
+
     });
 
     // Modificar
@@ -82,10 +140,103 @@ var url = localStorage.getItem('url')+"Usuario/";
         $('select').formSelect();
         $('#modify-btn').hide();
         $('#delete-btn').hide();
+        $('#change-password').hide();
+        $('#reset-password').hide();
         $('#update-btn').show();
+        $('#reset-buttons').show();
         // $('#passwordUsuario').removeAttr('disabled', 'disabled');
 
     });
+
+    $('#reset-buttons').click(() => {
+        $('#form-user').show();
+        $('#update :input').attr('disabled',true);
+        // $('#form-password').hide();
+        $('#modify').show();
+        $('#update-btn').hide();
+        // $('#change-password').hide();
+        $('#form-password').hide();
+        $('#modify-btn').show();
+        $('#delete-btn').show();
+        $('#change-password').show();
+        $('#reset-buttons').hide();
+        $('#update-password').hide();
+        $('select').formSelect();
+    });
+
+    $('#change-password').click(function(e) {
+        $('#update :input').removeAttr('disabled','disabled');
+        $('#form-password').show();
+        $('#form-user').hide();
+        $('#modify').hide();
+        $('#modify-btn').hide();
+        $('#delete-btn').hide();
+        $('#change-password').hide();
+        $('#reset-password').hide();
+        // $('#update-btn').show();
+        $('#update-password').show();
+    
+        $('#reset-buttons').show();
+        $(this).hide();
+    });
+
+    $('#update-password-btn').click(function () {
+        var contrasenia_usuario = $('#contrasenia_usuario').val();
+        var repeat_contrasenia_usuario = $('#repeat_contrasenia_usuario').val();
+        var nick_usuario = $('#nick_usuario').val();
+        console.log(nick_usuario);
+        if(contrasenia_usuario !== '' && repeat_contrasenia_usuario !== '') {
+            $.ajax({
+                method: "POST",
+                dataType: "json",
+                data: {
+                    contrasenia_usuario: contrasenia_usuario,
+                    repeat_contrasenia_usuario: repeat_contrasenia_usuario,
+                    nick_usuario: nick_usuario,
+                },
+                url: localStorage.getItem('url') + "Usuario/updatePassword",
+                beforeSend: function() {
+                    console.log("Sending data...");
+                    $('#update :input').attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    console.log(data);
+                    swal({
+                        title: "¡Bien hecho!",
+                        text: "Se ha cambiado la contraseña del usuario '" + nick_usuario + "' exitosamente.",
+                        icon: "success",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        },
+                        timer: 3000
+                    })
+                        .then(redirect => {
+                            location.reload();
+                        })
+                },
+                error: function(err) {
+                    console.log(err);
+                    swal({
+                        title: "¡Oh no!",
+                        text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                        icon: "error",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        }
+                    });
+                }
+            });
+        }
+    });
+
 
     $('#update').submit(function(e) {
         e.preventDefault(); // Disable submit event

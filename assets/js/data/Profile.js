@@ -16,9 +16,237 @@ $(document).ready(function(){
         $('#modify-btn').hide();
         $('#delete-btn').hide();
         $('#update-btn').show();
+        $('#reset-buttons').show();
+        $('#change-security').hide();
+        $('#change-password').hide();
+
         // $('#passwordUsuario').removeAttr('disabled', 'disabled');
+    });
+
+
+    $('#change-security').click(function(e) {
+        $('#form-security').show();
+        $('.form-profile').hide();
+        $('#change-password').hide();
+
+        $('#modify').hide();
+        $('#update-security').show();
+        $('#reset-buttons').show();
+        $(this).hide();
+    });
+
+
+    $('#change-password').click(function(e) {
+        $('#form-security').hide();
+        $('#update :input').removeAttr('disabled','disabled');
+        $('.form-profile').hide();
+        $('#form-password').show();
+        $('#modify').hide();
+        $('#change-security').hide();
+        // $('#update-btn').show();
+        $('#update-password').show();
+        $('#reset-buttons').show();
+        $(this).hide();
+    });
+
+    $('#reset-btn').click(() => {
+        $('.form-profile').show();
+        $('#update :input').attr('disabled',true);
+        $('#form-password').hide();
+        $('#form-security').hide();
+        $('#update-security').hide();
+        $('#update-password').hide();
+        $('#modify').show();
+        $('#update-btn').hide();
+        $('#form-security').hide();
+        $('select').formSelect();
+        // $('#change-password').hide();
+        $('#modify-btn').show();
+        $('#change-security').show();
+        $('#change-password').show();
+        $('#reset-buttons').hide();
+    });
+
+
+    $('#update-security').click(function () {
+        var pregunta = $('#id_pregunta').val();
+        var respuesta=$('#respuesta').val();
+
+
+
+        var nick=$('#nick').val();
+        var image = $("input[name='image']:checked").val();
+
+
+        if(respuesta===''&&respuesta.length<2){
+            return swal({
+                title: "¡Información!",
+                text: "Debe colocar una respuesta valida.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+        }
+
+        if(pregunta==null){
+            return swal({
+                title: "¡Información!",
+                text: "Debe elegir una pregunta de seguridad para completar el registro.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+
+        }
+        if(image===undefined){
+            return swal({
+                title: "¡Información!",
+                text: "Debe elegir una imagen de seguridad para completar el registro.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+        }
+
+
+
+
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            data: {
+                pregunta: pregunta,
+                nick:nick,
+                image:image,
+                respuesta:respuesta,
+            },
+            url: url+"updatePreguntaSeguridad",
+
+
+
+            beforeSend: function() {
+                console.log("Sending data...");
+                $('#update :input').attr('disabled', 'disabled');
+            },
+            success: function(data) {
+                console.log(data);
+                swal({
+                    title: "¡Bien hecho!",
+                    text: "Se ha modificado el usuario '" + nick + "' exitosamente.",
+                    icon: "success",
+                    button: {
+                        text: "Aceptar",
+                        visible: true,
+                        value: true,
+                        className: "green",
+                        closeModal: true
+                    },
+                    timer: 3000
+                }).then(redirect => {
+                       location.reload();
+                });
+            },
+            error: function(err) {
+                console.log(err);
+                swal({
+                    title: "¡Oh no!",
+                    text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                    icon: "error",
+                    button: {
+                        text: "Aceptar",
+                        visible: true,
+                        value: true,
+                        className: "green",
+                        closeModal: true
+                    }
+                });
+            }
+        });
+
+
+
+
+
 
     });
+
+
+
+
+    $('#update-password-btn').click(function () {
+        var contrasenia_usuario = $('#contrasenia_usuario').val();
+        var repeat_contrasenia_usuario = $('#repeat_contrasenia_usuario').val();
+        var nick_usuario = $('#nick_usuario').val();
+        console.log(nick_usuario);
+        if(contrasenia_usuario !== '' && repeat_contrasenia_usuario !== '') {
+            $.ajax({
+                method: "POST",
+                dataType: "json",
+                data: {
+                    contrasenia_usuario: contrasenia_usuario,
+                    repeat_contrasenia_usuario: repeat_contrasenia_usuario,
+                    nick_usuario: nick_usuario,
+                },
+                url: localStorage.getItem('url') + "Usuario/updatePassword",
+                beforeSend: function() {
+                    console.log("Sending data...");
+                    $('#update :input').attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    console.log(data);
+                    swal({
+                        title: "¡Bien hecho!",
+                        text: "Se ha cambiado la contraseña del usuario '" + nick_usuario + "' exitosamente.",
+                        icon: "success",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        },
+                        timer: 3000
+                    })
+                        .then(redirect => {
+                            location.reload();
+                        })
+                },
+                error: function(err) {
+                    console.log(err);
+                    swal({
+                        title: "¡Oh no!",
+                        text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                        icon: "error",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+
+
 
     $('#update').submit(function(e) {
         e.preventDefault(); // Disable submit event
@@ -43,7 +271,7 @@ $(document).ready(function(){
                 // repeat_password_usuario: repeat_password_usuario,
                 id_rol: 3
             },
-            url: url+"Usuario/update",
+            url: localStorage.getItem('url')+"Usuario/update",
             beforeSend: function() {
                 console.log("Sending data...");
                 $('#update :input').attr('disabled', 'disabled');

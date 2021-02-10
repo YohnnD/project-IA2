@@ -427,7 +427,7 @@ $(document).ready(function () {
     });
 
 
-    $("#product-select").select2({
+    $("#product-select").select({
         placeholder: "Select an option",
         allowClear: true,
     });

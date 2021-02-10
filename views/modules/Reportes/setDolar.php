@@ -25,47 +25,27 @@
                     <a href="<?php echo Helpers::url('Factura','FactuIndex'); ?>" class="breadcrumb">Facturación de Ventas</a>
                     <a href="<?php echo Helpers::url('Factura','setDolar'); ?>" class="breadcrumb">Facturación en Bolivares</a>
                 </div>
-                <div class="col s12">
-                    <h4 class="center-align">Precio del Dolar</h4>
-                </div>
-                <?php if (empty($allFactura)){ ?>
-                        <h2 class="center-align">No Hay Ninguna Factura Registrada Aún.</h2>
-                    <!-- Cards -->
-               
-                <div class="col s12">
-                    <?php }else ?>
-                   
-                        
-<div class="row">
-    <div class="col s12 m6">
-      <div class="card-panel">
-        <span>
-            <?php foreach ($allFactura as $factura): ?> 
-        <form action="<?php echo Helpers::url('Reporte','facturaBolivares')."/".$factura->codigo_factura?>" method="post">
-        <input type="hidden" name="id" value="<?php echo $factura->codigo_factura?>"> 
-            <?php endforeach;?>
-          <div class="input-field">                     
-          <i class="icon-attach_money prefix"></i>
-          <input type="number" id="dolar" name="dolar" value="" class="validate">
-          <label for="dolar">Precio Dolar</label>
-          </div>
-        <div>
-            <button type="submit" class="btn-large waves-effect waves-light green"><i class="icon-money_off"></i>Imprimir PDF</a></button>
-            
-        </div>
-        </form>       
-                           
-        
-        
-        </span>
-      </div>
-    </div>
-  </div>
-                            
-                     
-                         
-                </div>
             </div>
+        </div>
+        <div class="container">
+                <div class="card">
+                    <form action="<?php echo Helpers::url('Reporte','facturaBolivares')."/".$id ?>" method="post">
+                        <input type="hidden" name="id" value="<?php echo $id?>"> 
+                        <div class="card-header">
+                            <h4 class="center-align">Precio del Dolar</h4>          
+                        </div>
+                        <div class="card-content row">
+                            <div class="input-field col s12">                     
+                                <i class="icon-attach_money prefix"></i>
+                                <input type="number" id="dolar" name="dolar" value="" class="validate" required>
+                                <label for="dolar">Precio Dolar Actual en Bolivares</label>
+                            </div>
+                        </div>
+                        <div class="card-footer center-align">
+                            <button type="submit" class="btn-large waves-effect waves-light green-gradient btn-rounded"><i class="icon-money_off left"></i>Imprimir PDF</a></button>
+                        </div>
+                    </form>       
+                </div>
         </div>
     </main>
 

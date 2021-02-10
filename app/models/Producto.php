@@ -2,6 +2,7 @@
 	class Producto extends BaseModel {
 		// Atributos
 		private $table;
+		private $secondTable;
 		private $codigoProducto;
 		private $nombreProducto;
 		private $descripcionProducto;
@@ -19,6 +20,7 @@
 		// Métodos
 		public function __construct() {
 			$this->table = 'productos';
+			$this->secondTable = 'pro_tallas';
 			parent::__construct();
 		}
 
@@ -162,8 +164,6 @@
 		}
 
 		public function saveTallas() {
-			// try {
-				// $this->db()->beginTransaction();
 				$query = "INSERT INTO pro_tallas (codigo_producto,id_talla,stock_pro_talla) VALUES 
 					(:codigo_producto,:id_talla,:stock_pro_talla)";
 				$result = $this->db()->prepare($query); // Prepara la consulta.
@@ -172,11 +172,6 @@
 				$result->bindParam(':stock_pro_talla', $this->stockProTalla);
 				$save = $result->execute(); // Ejecuta la consulta
 				return $save;
-				// $this->db()->commit();
-			// } catch (Exception $e){
-				// $this->db()->rollBack();
-				// return false;
-			// }
 		}
 
 		public function update() {
@@ -189,7 +184,8 @@
 							descripcion_producto = :descripcion_producto, tipo_producto = :tipo_producto,
 							modelo_producto = :modelo_producto, costo_producto = :costo_producto,
 							precio_producto = :precio_producto, stock_max_producto = :stock_max_producto,
-							stock_min_producto = :stock_min_producto, stock_producto = :stock_producto
+							stock_min_producto = :stock_min_producto, stock_producto = :stock_producto,
+							img_producto = :img_producto
 							WHERE codigo_producto = :codigo_producto";
 				$result = $this->db()->prepare($query); // Prepara la consulta.
 				$result->bindValue(':codigo_producto', $this->codigoProducto);
@@ -202,27 +198,30 @@
 				$result->bindValue(':stock_max_producto', $this->stockMaxProducto);
 				$result->bindValue(':stock_min_producto', $this->stockMinProducto);
 				$result->bindValue(':stock_producto', $this->stockProducto);
+				$result->bindParam(':img_producto', $this->imgProducto);
 				$save = $result->execute(); // Ejecuta la consulta
-				return $save;
 				$this->db()->commit();
+				return $save;
 			} catch (Exception $e){
 				$this->db()->rollBack();
 				return false;
 			}
 		}
 
-		public function updateTalla() {
+		public function updateTalla($stockProTalla, $idTalla, $codigoProducto) {
 			// try {
 			// 	$this->db()->beginTransaction();
-				$query = "UPDATE pro_tallas SET 
-							-- id_talla = :id_talla, 
-							stock_pro_talla = :stock_pro_talla
-							WHERE codigo_producto = '$this->codigoProducto' AND id_talla = '$this->idTalla'";
+			
+			$query = "UPDATE pro_tallas SET 
+							stock_pro_talla = '$stockProTalla'
+							WHERE codigo_producto = '$codigoProducto' AND id_talla = '$idTalla'";
 				$result = $this->db()->prepare($query); // Prepara la consulta.
 				// $result->bindParam(':codigo_producto', $this->codigoProducto);
 				// $result->bindParam(':id_talla', $this->idTalla);
-				$result->bindParam(':stock_pro_talla', $this->stockProTalla);
+				// $result->bindParam(':stock_pro_talla', $this->stockProTalla);
 				$save = $result->execute(); // Ejecuta la consulta
+				// var_export($save);
+				// die();
 				// $this->db()->commit();
 				return $save;
 			// }
