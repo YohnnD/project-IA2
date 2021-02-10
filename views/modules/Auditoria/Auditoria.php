@@ -20,7 +20,7 @@
 
 <!-- Main Container -->
 <main>
-    <div class="contaner-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col s12 breadcrumb-nav left-align">
                 <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>

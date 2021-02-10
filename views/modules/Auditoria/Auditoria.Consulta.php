@@ -20,7 +20,7 @@
 
 <!-- Main Container -->
 <main>
-    <div class="contaner-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col s12 breadcrumb-nav left-align">
                 <a href="<?php echo Helpers::url('Home','index'); ?>" class="breadcrumb">Inicio</a>
@@ -39,8 +39,9 @@
                                 <thead>
                                 <tr>
                                     <th>Fecha de Registro</th>
-                                    <th>Acciones (Actualizaciones)</th>
-                                    <th>Acciones (Registros)</th>
+                                    <th>Acción</th>
+                                    <th>Campos (Antiguos)</th>
+                                    <th>Campos (Nuevos)</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -48,6 +49,7 @@
                                     <?php foreach($query as $query):?>
                                         <tr>
                                             <td><?php echo $query->register_date; ?></td>
+                                            <td><?php  if($query->command === 'I') { echo('INSERTAR'); } elseif ($query->command === 'U'){ echo('ACTUALIZAR'); } else{ echo('ELIMINAR'); } ?></td>
                                             <td><?php echo $query->old; ?></td>
                                             <td><?php echo $query->new; ?></td>
                                         </tr>
