@@ -152,10 +152,60 @@
                 $roles=$rol->getAll();
                 $nickUsuario = $_GET['id'];
                 $usuario = new Usuario();
+
+                $pregunta=new Pregunta();
+                $allPreguntas=$pregunta->getAll();
+
+                $imageSeguridad=new ImageSeguridad();
+                $allImageSeguridad=$imageSeguridad->getAll();
+
                 $register = $usuario->getOne($nickUsuario);
-                return $this->view('Perfil/Perfil',['usuario' => $register]);
+
+                return $this->view('Perfil/Perfil',['usuario' => $register,
+                    "allPreguntas"=>$allPreguntas,
+                    "allImageSeguridad"=>$allImageSeguridad
+                ]);
             }
         }
+
+
+
+
+        public function updatePreguntaSeguridad(){
+            if($_POST) { // Si se enviaron datos por post
+                $nickUsuario=$_POST['nick'];
+                $pregunta=$_POST['pregunta'];
+                $respuesta=$_POST['respuesta'];
+                $imagen=$_POST['image'];
+                $preguntaSeguridad = new PreguntaSeguridad(); // Instancia del objeto
+                $preguntaSeguridad->setNickUsuario($nickUsuario);
+                $isPregunta = $preguntaSeguridad->getBy();
+
+                if(!is_null($isPregunta)){
+                    $preguntaSeguridad->delete();
+                }
+                $this->crearImagenSeguridad($imagen,$nickUsuario,$pregunta,$respuesta);
+                $this->sendAjax(true);
+            }
+
+        }
+
+
+
+
+        public function crearImagenSeguridad($imagen,$nickUsuario,$pregunta,$respuesta){
+            $processor = new KzykHys\Steganography\Processor();
+            $image = $processor->encode( $imagen,  Helpers::aesEncrypt($respuesta)); // jpg|png|gif
+            $imagePath='storage/preguntas/image'.time().".png";
+            $image->write($imagePath); // png only
+            $preguntaSeguridad = new PreguntaSeguridad(); // Instancia el objeto
+            $preguntaSeguridad->setNickUsuario($nickUsuario);
+            $preguntaSeguridad->setImagen($imagePath);
+            $preguntaSeguridad->setPregunta($pregunta);
+            $preguntaSeguridad->save();
+        }
+
+
 
 
 

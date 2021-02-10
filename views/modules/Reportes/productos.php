@@ -22,13 +22,13 @@
     </header>
     <main>
 
-      
+
      <div id="details" class="clearfix">
         <div id="client">
-          
+
           <div class="to">REPORTE A FECHA:</div>
           <h2 class="name"><?php echo date('d/m/Y');?></h2>
-          
+
         </div>
         <div id="invoice">
         <?php if (empty($allProducto)){ ?>
@@ -53,8 +53,8 @@
           <tr>
             <td class="no"><?php echo $producto->codigo_producto?></td>
             <td class="desc">
-              <h3><?php echo $producto->nombre_producto?></h3>
-            <?php echo $producto->descripcion_producto?></td>
+              <h3><?php echo Helpers::aesDecrypt($producto->nombre_producto)?></h3>
+            <?php echo Helpers::aesDecrypt($producto->descripcion_producto)?></td>
             <td class="unit"><?php echo $producto->tipo_producto?></td>
             <td class="qty"><?php echo $producto->modelo_producto?></td>
             <td class="unit"><?php echo $producto->stock_producto?></td>
@@ -63,9 +63,9 @@
           <?php endforeach;?>
         </tbody>
       </table>
-      
+
     </main>
-    
-  
+
+
   </body>
 </html>

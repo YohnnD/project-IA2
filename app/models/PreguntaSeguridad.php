@@ -70,6 +70,19 @@
 
 
 
+        public function delete(){
+            $sql="DELETE FROM $this->table WHERE nick_usuario='$this->nickUsuario'";
+            $register=$this->db()->query($sql);
+            if($register){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+
+
+
 
 
 
