@@ -52,14 +52,16 @@
 					$producto->setStockProducto($stockProducto);
 					$producto->setImgProducto(Helpers::saveImage($imgProducto,'productos'));
 					$dataProducto = $producto->save();
-					for ($i = 0; $i < count($stockProTalla); $i++) {
-						$producto->setIdTalla($idTalla[$i]);
-						$producto->setStockProTalla($stockProTalla[$i]);
-						$dataTallas = $producto->saveTallas();
-						if(is_object($dataTallas)){
-			            	break;
-							$this->sendAjax($dataTallas);
-			            }
+					if(count($stockProTalla) !== 0) {
+						for ($i = 0; $i < count($stockProTalla); $i++) {
+							$producto->setIdTalla($idTalla[$i]);
+							$producto->setStockProTalla($stockProTalla[$i]);
+							$dataTallas = $producto->saveTallas();
+							if(is_object($dataTallas)){
+											break;
+								$this->sendAjax($dataTallas);
+										}
+						}
 					}
 					$this->sendAjax($dataProducto);
 				}
