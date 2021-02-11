@@ -29,6 +29,7 @@ class RolesController extends BaseController
 
     public function register()
     {
+        // var_export($_POST);
         $rol = new Rol();
         $nombre_rol = $_POST['nombre_rol'];
         $descripcion_rol = $_POST['descripcion_rol'];

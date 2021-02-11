@@ -30,51 +30,46 @@
         </div>
     </div>
     <div class="container">
-    <form method="post" action="<?php echo Helpers::url('Pedido','update');?>" class="row" id="form-pedido-details">
-            <div class="col s12">
-                    <div class="col s12">
-                        <h4 class="center-align">PEDIDO</h4>
-                    </div>
+    
+        <div class="card">
+            <div class="card-header">
+                <h5 class="center-align">Detalles del Pedido</h5>
 
-                    <div class="input-field col s12 m6">
-                        <i class="icon-person prefix"></i>
-                        <input type="text" name="cedula_cliente" id="cedula_cliente" class="validate" minlength="5"
-                               maxlength="15" pattern="[VvJjEe0-9]+"
-                               title="Solo puede usar números del 0-9 y V, J ó E"
-                               value="<?php echo $pedido->cedula_cliente; ?>" required readonly>
-                        <label for="cedula_cliente">Cedula o RIF del Cliente</label>
-                    </div>
-
-
-                    <div class="input-field col s12 m6">
-                        <i class="icon-person prefix"></i>
-                        <input type="text" name="nombre_cliente" id="nombre_cliente" class="validate" minlength="5"
-                               maxlength="15" pattern="[VvJjEe0-9]+" title="Solo puede usar números del 0-9 y V, J ó E" required disabled
-                               value="<?php echo Helpers::aesDecrypt($pedido->nombre_cliente); ?>">
-                        <label for="nombre_cliente">Nombre</label>
-                    </div>
-
-                    <div class="input-field col s12 m6">
-                        <i class="icon-person prefix"></i>
-                        <input type="text" name="representante_cliente" id="representante_cliente" class="validate"
-                               minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
-                               title="Solo puede usar números del 0-9 y V, J ó E" required
-                               value="<?php echo $pedido->representante_cliente; ?>" disabled>
-                        <label for="representante_cliente" >Representante</label>
-                    </div>
-
-
+            </div>
+            <div class="card-content row">
+                <div class="input-field col s12 m6">
+                    <i class="icon-person prefix"></i>
+                    <input type="text" name="cedula_cliente" id="cedula_cliente" class="validate" minlength="5"
+                            maxlength="15" pattern="[VvJjEe0-9]+"
+                            title="Solo puede usar números del 0-9 y V, J ó E"
+                            value="<?php echo $pedido->cedula_cliente; ?>" required readonly>
+                    <label for="cedula_cliente">Cedula o RIF del Cliente</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="icon-person prefix"></i>
+                    <input type="text" name="nombre_cliente" id="nombre_cliente" class="validate" minlength="5"
+                            maxlength="15" pattern="[VvJjEe0-9]+" title="Solo puede usar números del 0-9 y V, J ó E" required disabled
+                            value="<?php echo Helpers::aesDecrypt($pedido->nombre_cliente); ?>">
+                    <label for="nombre_cliente">Nombre</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="icon-person prefix"></i>
+                    <input type="text" name="representante_cliente" id="representante_cliente" class="validate"
+                            minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
+                            title="Solo puede usar números del 0-9 y V, J ó E" required
+                            value="<?php echo $pedido->representante_cliente; ?>" disabled>
+                    <label for="representante_cliente" >Representante</label>
+                </div>
                 <div class="input-field col s12 m6">
                     <i class="icon-phone prefix"></i>
                     <input type="text" name="phone" id="phone" class="validate"  pattern="[VvJjEe0-9]+"
-                           title="Solo puede usar números del 0-9 y V, J ó E" required
-                           value="<?php echo Helpers::aesDecrypt($pedido->telefono_cliente); ?>" disabled>
+                        title="Solo puede usar números del 0-9 y V, J ó E" required
+                        value="<?php echo Helpers::aesDecrypt($pedido->telefono_cliente); ?>" disabled>
                     <label for="phone" >Teléfono</label>
-                </div
+                </div>
             </div>
-            <div class="col s12">
-                <div class="divider"></div>
-                    <div class="input-field col s12 m4">
+            <div class="card-content row">
+                <div class="input-field col s12 m4">
                         <i class="icon-person prefix"></i>
                         <input type="text" name="codigo_pedido" id="codigo_pedido" class="validate"
                                minlength="5" maxlength="15" pattern="[VvJjEe0-9]+"
@@ -96,10 +91,6 @@
                                value="<?php echo $pedido->fecha_entrega_pedido; ?>">
                         <label for="fecha_entrega_pedido">Fecha de Entrega</label>
                     </div>
-
-
-
-
                 <div class="input-field col s12 m6">
                     <i class="icon-message prefix"></i>
                     <select name="status_pedido" id="status_pedido">
@@ -111,8 +102,6 @@
                     </select>
                     <label for="id_tela">Estado del pedido</label>
                 </div>
-
-
                     <div class="input-field col s12 m6">
                         <i class="icon-description prefix"></i>
                         <textarea name="descripcion_pedido" id="descripcion_pedido"
@@ -121,12 +110,11 @@
                     </div>
             </div>
             <?php if($servicios!=null):?>
-            <div class="col s12">
-                <div class="col s12">
-                    <h4 class="center-align">SERVICIOS</h4>
-                </div>
-                <div class="divider"></div>
-                    <?php foreach ($servicios as $servicio): ?>
+            <div class="card-header">
+                <h5 class="center-align">SERVICIOS</h5>
+            </div>
+            <div class="card-content row">
+                <?php foreach ($servicios as $servicio): ?>
                         <input type="hidden" name="id_servicio[]" value="<?php echo $servicio->id_servicio; ?>">
                         <div class="input-field col s12 m4">
                             <i class="icon-plus_one prefix"></i>
@@ -175,14 +163,13 @@
                             <label for="id_tela">Telas</label>
                         </div>
                     <?php endforeach; ?>
-                </div>
+            </div>
             <?php endif;?>
-
             <?php if($productos!=null):?>
-            <div class="col s12">
-                <div class="col s12">
-                    <h4 class="center-align">PRODUCTOS</h4>
-                </div>
+            <div class="card-header">
+                <h5 class="center-align">PRODUCTOS</h5>
+            </div>
+            <div class="card-content row">
                 <table class="centered highlight responsive-table">
                     <thead>
                     <tr>
@@ -207,22 +194,24 @@
                     <?php endforeach; ?>
                     </tbody>
                 </table>
-
             </div>
             <?php endif;?>
-
+            <div class="card-footer row">
                 <div class="input-field col s12 m6 center-align">
-                    <button type="submit" href="#!" class="btn blue waves-effect waves-light col s12" id="modify">
-                        <i class="icon-update right"></i>
-                        Modificar
-                    </button>
-                </div>
-                <div class="input-field col s12 m6 center-align">
-                    <a href="#" class="btn red waves-effect waves-light col s12" id="delete">
-                        <i class="icon-delete right"></i>
-                        Eliminar
-                    </a>
-                </div>
+                        <button type="submit" href="#!" class="btn blue waves-effect waves-light col s12" id="modify">
+                            <i class="icon-update right"></i>
+                            Modificar
+                        </button>
+                    </div>
+                    <div class="input-field col s12 m6 center-align">
+                        <a href="#" class="btn red waves-effect waves-light col s12" id="delete">
+                            <i class="icon-delete right"></i>
+                            Eliminar
+                        </a>
+                    </div>
+            </div>
+        </div>
+    </form>     
     </div>
 </main>
 

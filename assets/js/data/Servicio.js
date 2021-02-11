@@ -1,4 +1,4 @@
-var deleteMaterial=false;
+var deleteMaterial = false;
 $(document).ready(function () {
     var url = localStorage.getItem('url');
 
@@ -13,7 +13,7 @@ $(document).ready(function () {
         $.ajax({
             method: "post",
             dataType: "json",
-            url: url+"Servicio/verificarServicio",
+            url: url + "Servicio/verificarServicio",
             data: {
                 nombre_servicio: nombre_servicio
             },
@@ -74,7 +74,7 @@ $(document).ready(function () {
     // Registrar
     $('#register').on('submit', function (e) {
         e.preventDefault();
-        var nombre_servicio=$('#nombre_servicio').val()
+        var nombre_servicio = $('#nombre_servicio').val()
 
         $.ajax({
             method: "POST",
@@ -82,7 +82,7 @@ $(document).ready(function () {
             cache: false,
             contentType: false,
             processData: false,
-            url: url+"Servicio/save",
+            url: url + "Servicio/save",
             data: new FormData(this),
             // url: "",
             beforeSend: function () {
@@ -104,7 +104,7 @@ $(document).ready(function () {
                         },
                         timer: 3000
                     }).then(redirect => {
-                        location.href = url+"Servicio/getMateriales";
+                        location.href = url + "Servicio/getMateriales";
                     });
                 }
             },
@@ -126,73 +126,113 @@ $(document).ready(function () {
         });
     });
 
-    if (deleteMaterial==false) {
-        $('#deleteMaterial').on('click',function(event) {
+    if (deleteMaterial == false) {
+        $('#deleteMaterial').on('click', function (event) {
 
-            $('.materiales').removeAttr('disabled','');
-           // $(this).addAttr('disabled','disabled');
-            deleteMaterial=true;
+            $('.materiales').removeAttr('disabled', '');
+            // $(this).addAttr('disabled','disabled');
+            deleteMaterial = true;
 
 
         });
     }
 
     //if (deleteMaterial==true){
-      //  $('#deleteMaterial').on('click',function(event) {
-        //    console.log('hola');
-          //      console.log(deleteMaterial);
+    //  $('#deleteMaterial').on('click',function(event) {
+    //    console.log('hola');
+    //      console.log(deleteMaterial);
 
-      //      $('.materiales').addAttr('disabled','disabled');
-        //    $(this).text('Eliminar Materiales');
-          //  deleteMaterial=false;
+    //      $('.materiales').addAttr('disabled','disabled');
+    //    $(this).text('Eliminar Materiales');
+    //  deleteMaterial=false;
 
-        //});
+    //});
     //}
-
-
 
 
     // Registrar material
     $('#MaterialServi').on('submit', function (e) {
         e.preventDefault();
-        console.log('holaa');
         var cantidad = $('#cantidad').val();
         var id = $('#id_material').val();
+        var idServicio = localStorage.getItem('id_servicio');
 
 
         $.ajax({
             method: "POST",
             dataType: "json",
 
-            url: url+"Servicio/saveMaterial",
+            url: url + "Servicio/saveMaterial",
             data: {
                 cantidad: cantidad,
-                id: id
+                id: id,
+                idServicio: idServicio
             },
-            // url: "",
             beforeSend: function () {
                 console.log("Sending data...");
             },
             success: function (data) {
-                console.log(data);
+                console.log(data.status);
+
+                if (data === 'update') {
+                    swal({
+                        title: "¡Bien hecho!",
+                        text: "Se ha actualizado el material del servicio exitosamente.\n" +
+                            "¿Deseas Añadir otro material?",
+                        icon: "success",
+                        buttons: {
+                            confirm: {
+                                text: "Si",
+                                value: true,
+                                visible: true,
+                                className: "red-45"
+                            },
+                            cancel: {
+                                text: "Cancelar",
+                                value: false,
+                                visible: true,
+                                className: "grey lighten-2"
+                            }
+                        },
+                    }).then(redirect => {
+                        if (redirect) {
+                            location.href = url + "Servicio/getMateriales";
+                        } else {
+                            location.href = url + "Servicio/getAll";
+                        }
+
+                    });
+                }
+
                 if (data == true) {
                     swal({
                         title: "¡Bien hecho!",
-                        text: "Se ha registrado el material al servicio exitosamente./n+" +
-                                "¿Deseas Añadir otro material?",
+                        text: "Se ha registrado el material al servicio exitosamente.\n" +
+                            "¿Deseas Añadir otro material?",
                         icon: "success",
-                        button: {
-                            text: "Aceptar",
-                            visible: true,
-                            value: true,
-                            className: "green",
-                            closeModal: true
+                        buttons: {
+                            confirm: {
+                                text: "Si",
+                                value: true,
+                                visible: true,
+                                className: "red-45"
+                            },
+                            cancel: {
+                                text: "Cancelar",
+                                value: false,
+                                visible: true,
+                                className: "grey lighten-2"
+                            }
                         },
-                        timer: 7000
                     }).then(redirect => {
-                        location.href = url+"Servicio/getMateriales";
+                        if (redirect) {
+                            location.href = url + "Servicio/getMateriales";
+                        } else {
+                            location.href = url + "Servicio/getAll";
+                        }
                     });
                 }
+
             },
             error: function (err) {
                 console.log(err);
@@ -250,7 +290,7 @@ $(document).ready(function () {
                 $.ajax({
                     method: "POST",
                     dataType: "json",
-                    url: url+"Servicio/update",
+                    url: url + "Servicio/update",
                     data: {
                         id_servicio: id_servicio,
                         nombre_servicio: nombre_servicio,
@@ -278,8 +318,8 @@ $(document).ready(function () {
                                 },
                                 timer: 3000
                             }).then(redirect => {
-                                        location.reload();
-                                    });
+                                location.reload();
+                            });
 
                         }
                     },
@@ -344,7 +384,7 @@ $(document).ready(function () {
             $.ajax({
                 method: "POST",
                 dataType: "json",
-                url: url+"Servicio/delete",
+                url: url + "Servicio/delete",
                 data: {
                     id_servicio: id_servicio,
                 }
@@ -364,9 +404,9 @@ $(document).ready(function () {
                     },
                     timer: 3000
                 })
-                        .then(redirect => {
-                            location.href = url+ "Servicio/getAll";
-                        });
+                    .then(redirect => {
+                        location.href = url + "Servicio/getAll";
+                    });
             } else {
                 swal({
                     text: "Acción cancelada.",
@@ -380,32 +420,91 @@ $(document).ready(function () {
         });
     });
 
+    $('#addMateriales').on('click', function (e) {
+        var id_servicio = $('#id_servicio').val();
+        var id_materiales = $('#id_material').val();
+
+        console.log(id_servicio, id_materiales)
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            url: url + "Servicio/update",
+            data: {
+                id_servicio: id_servicio,
+                nombre_servicio: nombre_servicio,
+                unidad_medida: unidad_medida,
+                precio_servicio: precio_servicio,
+                costo_servicio: costo_servicio,
+                descripcion_servicio: descripcion_servicio,
+            },
+            beforeSend: function () {
+                console.log("Sending data...");
+            },
+            success: function (data) {
+                console.log(data);
+                if (data == true) {
+                    swal({
+                        title: "¡Bien hecho!",
+                        text: "Se ha Actualizado el servicio " + nombre_servicio + " exitosamente.",
+                        icon: "success",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        },
+                        timer: 3000
+                    }).then(redirect => {
+                        location.reload();
+                    });
+
+                }
+            },
+            error: function (err) {
+                console.log(err);
+                swal({
+                    title: "¡Oh no!",
+                    text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                    icon: "error",
+                    button: {
+                        text: "Aceptar",
+                        visible: true,
+                        value: true,
+                        className: "green",
+                        closeModal: true
+                    }
+                });
+            }
+        });
+    });
+
     //Consultar servicios DataTables
     $('#Servicio').DataTable({
         "responsive": true,
         "scrollX": true,
         "pageLength": 10,
         "language": {
-            "sProcessing":     "Procesando...",
-            "sLengthMenu":     "Mostrar _MENU_ registros",
-            "sZeroRecords":    "No se encontraron resultados",
-            "sEmptyTable":     "No hay servicios registrados",
-            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix":    "",
-            "sSearch":         "Buscar:",
-            "sUrl":            "",
-            "sInfoThousands":  ",",
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "No hay servicios registrados",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
             "sLoadingRecords": "Cargando...",
             "oPaginate": {
-                "sFirst":    "Primero",
-                "sLast":     "Último",
-                "sNext":     "<i class='icon-navigate_next'></i>",
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "<i class='icon-navigate_next'></i>",
                 "sPrevious": "<i class='icon-navigate_before'></i>"
             },
             "oAria": {
-                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             },
             "buttons": {
@@ -421,26 +520,26 @@ $(document).ready(function () {
         "scrollX": true,
         "pageLength": 10,
         "language": {
-            "sProcessing":     "Procesando...",
-            "sLengthMenu":     "Mostrar _MENU_ registros",
-            "sZeroRecords":    "No se encontraron resultados",
-            "sEmptyTable":     "No hay materiales registrados",
-            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix":    "",
-            "sSearch":         "Buscar:",
-            "sUrl":            "",
-            "sInfoThousands":  ",",
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "No hay materiales registrados",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
             "sLoadingRecords": "Cargando...",
             "oPaginate": {
-                "sFirst":    "Primero",
-                "sLast":     "Último",
-                "sNext":     "<i class='icon-navigate_next'></i>",
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "<i class='icon-navigate_next'></i>",
                 "sPrevious": "<i class='icon-navigate_before'></i>"
             },
             "oAria": {
-                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             },
             "buttons": {
@@ -450,6 +549,88 @@ $(document).ready(function () {
         }
     });
 
+
+    $('.materiales').on('click', function (e) {
+        var id = $(this).attr('data-id');
+        swal({
+            title: "¿Eliminar Material ?",
+            text: "¿Esta seguro que desea eliminar este material Si lo hace, no podrá revertir los cambios.",
+            icon: "warning",
+            buttons: {
+                confirm: {
+                    text: "Eliminar",
+                    value: true,
+                    visible: true,
+                    className: "red"
+
+                },
+                cancel: {
+                    text: "Cancelar",
+                    value: false,
+                    visible: true,
+                    className: "grey lighten-2"
+                }
+            }
+        }).then(function (terminar) {
+            if (terminar) {
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    url: url + "Servicio/deleteMaterial",
+                    data: {
+                        id_material: id_material,
+                    },
+                    beforeSend: function () {
+                        console.log("Sending data...");
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        if (data == true) {
+                            swal({
+                                title: "¡Bien hecho!",
+                                text: "Se ha Actualizado el servicio " + nombre_servicio + " exitosamente.",
+                                icon: "success",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                },
+                                timer: 3000
+                            }).then(redirect => {
+                                location.reload();
+                            });
+
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }});
+            } else {
+                swal({
+                    text: "Acción cancelada.",
+                    icon: "info",
+                    button: {
+                        text: "Aceptar",
+                        className: "blue-45deg-gradient-1"
+                    }
+                });
+            }
+        });
+    });
 
 
 });

@@ -52,14 +52,16 @@
 					$producto->setStockProducto($stockProducto);
 					$producto->setImgProducto(Helpers::saveImage($imgProducto,'productos'));
 					$dataProducto = $producto->save();
-					for ($i = 0; $i < count($stockProTalla); $i++) {
-						$producto->setIdTalla($idTalla[$i]);
-						$producto->setStockProTalla($stockProTalla[$i]);
-						$dataTallas = $producto->saveTallas();
-						if(is_object($dataTallas)){
-			            	break;
-							$this->sendAjax($dataTallas);
-			            }
+					if(count($stockProTalla) !== 0) {
+						for ($i = 0; $i < count($stockProTalla); $i++) {
+							$producto->setIdTalla($idTalla[$i]);
+							$producto->setStockProTalla($stockProTalla[$i]);
+							$dataTallas = $producto->saveTallas();
+							if(is_object($dataTallas)){
+											break;
+								$this->sendAjax($dataTallas);
+										}
+						}
 					}
 					$this->sendAjax($dataProducto);
 				}
@@ -77,24 +79,11 @@
 						'producto' => $_producto,
 						'pro_tallas' => $_tallas
 					]);
-				// $this->sendAjax($register);
 			}
 		}
 
 		public function update() {
 			if($_POST) {
-				// $codigoProducto = $_POST['codigo_producto'];
-				// $nombreProducto = $_POST['nombre_producto'];
-				// $descripcionProducto = $_POST['descripcion_producto'];
-				// $tipoProducto = $_POST['tipo_producto'];
-				// $modeloProducto = $_POST['modelo_producto'];
-				// $costoProducto = $_POST['costo_producto'];
-				// $precioProducto = $_POST['precio_producto'];
-				// $stockMaxProducto = $_POST['stock_max_producto'];
-				// $stockMinProducto = $_POST['stock_min_producto'];
-				// $stockProducto = $_POST['stock_producto'];
-				// $idTalla = $_POST['id_talla'];
-				// $stockProTalla = $_POST['stock_pro_talla'];
 				$codigoProducto = $this->input('codigo_producto', true, 'string');
 				$nombreProducto = $this->input('nombre_producto', true, 'string');
 				$descripcionProducto = $this->input('descripcion_producto', true, 'string');
@@ -105,12 +94,19 @@
 				$stockMaxProducto = $this->input('stock_max_producto', true, 'int');
 				$stockMinProducto = $this->input('stock_min_producto', true, 'int');
 				$stockProducto = $this->input('stock_producto', true, 'int');
-				$imgProducto = $_FILES['img_producto'];
+				if(isset($_FILES['img_producto']) && $_FILES['img_producto']['name'] !== '') {
+					$imgProducto = $_FILES['img_producto'];
+				}
+				else {
+					$imgProducto = $_POST['img_producto_name'];
+				}
 				$idTalla = $this->input('id_talla');
 				$stockProTalla = $this->input('stock_pro_talla');
 				if($this->validateFails()) { // Si la validacion falla
 					// $this->redirect('Producto','index'); // Redirecciona al inicio.
-					var_export($_POST); die();
+					var_export($_POST); 
+					// var_export('hola');
+					// die();
 				}
 				else {
 					$producto = new Producto(); // Instancia el objeto
@@ -125,24 +121,15 @@
 					$producto->setStockMaxProducto($stockMaxProducto);
 					$producto->setStockMinProducto($stockMinProducto);
 					$producto->setStockProducto($stockProducto);
-					if($imgProducto !== null || $imgProducto !== '') {
+					if(isset($_FILES['img_producto']) && $_FILES['img_producto']['name'] !== '') {
 						$producto->setImgProducto(Helpers::saveImage($imgProducto,'productos'));
+					}
+					else {
+						$producto->setImgProducto($_POST['img_producto_name']);
 					}
 					$dataProducto = $producto->update();
 					for ($i = 0; $i < count($stockProTalla); $i++) {
-						$producto->setCodigoProducto($codigoProducto);
-						$producto->setIdTalla($idTalla[$i]);
-						$producto->setStockProTalla($stockProTalla[$i]);
-						$dataTallas = $producto->updateTalla();
-						// var_export($dataTallas);
-						// var_export($stockProTalla[$i]);
-						
-						// var_dump($dataTallas); die();
-						// $this->sendAjax($dataTallas);
-						// if(!is_object($dataTallas)){
-						// 	// var_dump($dataTallas);
-			      //   break;
-			      // }
+						$producto->updateTalla($stockProTalla[$i], $idTalla[$i], $codigoProducto);
 					}
 					$this->sendAjax($dataProducto);
 				}

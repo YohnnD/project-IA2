@@ -92,9 +92,9 @@ class Servicio extends BaseModel {
         $this->registerBitacora(SERVICIOS,CONSULTAR);
         $query = $this->db()->query("SELECT * FROM $this->table");
 
-        if ($query && $query->rowCount() != 0) {// Evalua la cansulta
+        if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
             $row = $query->fetchAll();
-        } else { //
+        } else { // 
             $row = NULL;
         }
 
@@ -105,9 +105,9 @@ class Servicio extends BaseModel {
         $this->registerBitacora(SERVICIOS,DETALLES);
         $query = $this->db()->query("SELECT * FROM $this->table WHERE id_servicio = '$this->id_servicio'");
 
-        if ($query && $query->rowCount() != 0) {// Evalua la cansulta
+        if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
             $row = $query->fetchAll();
-        } else { //
+        } else { // 
             $row = NULL;
         }
 
@@ -139,7 +139,7 @@ class Servicio extends BaseModel {
     }
 
     public function getMaterial() {
-        $materiales = $this->db()->query("SELECT *FROM materiales");
+        $materiales = $this->db()->query("SELECT *FROM materiales ");
 
         if ($materiales->rowCount() >= 1) {
             while ($row = $materiales->fetch(PDO::FETCH_OBJ)) {
@@ -153,9 +153,9 @@ class Servicio extends BaseModel {
     }
 
     public function verificarServicio() {
-
+       
         $servicio = $this->db()->query("SELECT * FROM servicios where nombre_servicio='$this->nombre_Servicio'");
-
+        
         if ($servicio && $servicio->rowCount() !== 0) {
             $respuesta = true;
         } else {
@@ -170,9 +170,9 @@ class Servicio extends BaseModel {
         if ($this->id_servicio == 0) {
             $query = $this->db()->query('select id_servicio from servicios order by id_servicio desc');
 
-            if ($query && $query->rowCount() != 0) {// Evalua la cansulta
+            if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
                 $row = $query->fetchAll();
-            } else { //
+            } else { // 
                 $row = NULL;
             }
 
@@ -205,9 +205,9 @@ class Servicio extends BaseModel {
     public function searchMaterial($search) {
         $query = $this->db()->query("SELECT * FROM materiales where id_material='$search'");
 
-        if ($query && $query->rowCount() != 0) {// Evalua la cansulta
+        if ($query && $query->rowCount() != 0) {// Evalua la cansulta 
             $row = $query->fetchAll();
-        } else { //
+        } else { // 
             $row = NULl;
         }
 
@@ -236,4 +236,31 @@ class Servicio extends BaseModel {
         return $delete;
     }
 
+    public function getMaterialIdByServi($idServicio,$idMaterial) {
+
+        $materialServi = $this->db()->query("SELECT * FROM materiales inner join mat_servicios on mat_servicios.id_material=materiales.id_material where mat_servicios.id_servicio='$idServicio' AND mat_servicios.id_material='$idMaterial'");
+
+        if ($materialServi->rowCount() >= 1) {
+            while ($row = $materialServi->fetch(PDO::FETCH_OBJ)) {
+                $resulSet[] = $row;
+            }
+        } else {
+            $resulSet = null;
+        }
+
+        return $resulSet;
+    }
+
+    public function updateMatByServi($cant, $idMaterial,$idServicio) {
+        $this->registerBitacora(SERVICIOS,ACTUALIZAR);
+        $sql = "update mat_servicios set cant_mat_servicio='$cant' where id_material='$idMaterial' and id_servicio='$idServicio'";
+
+        $result = $this->db()->prepare($sql);
+        $update = $result->execute();
+
+        return $update;
+    }
+
 }
+
+?>

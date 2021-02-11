@@ -7,57 +7,82 @@ $(document).ready(function(){
         var nombre_producto = $('#nombre_producto').val();
         var formData = new FormData(this); // Creating FormData object.
         var image = $('#img_producto')[0].files[0]; // Getting file input data
+        formData.append('file',image);
         // if (image == null || image == undefined) {
         //     image = null;
         // }
-        formData.append('file',image);
+        var list_tallas = $("input[name='id_talla[]']");
+        if(list_tallas.length === 0) {
+            swal({
+                title: 'Información',
+                text: 'Debe agregar al menos una talla al producto.',
+                icon: 'info',
+                button: {
+                    text: 'Aceptar',
+                    className: 'green',
+                    value: true,
+                    visible: true,
+                },
+            }).then((accept) => {
+                $('#btn-add-talla').addClass('tooltipped');
+                var elem = document.querySelector('#btn-add-talla');
+                var instance = M.Tooltip.init(elem, {
+                    position: 'right',
+                    html: 'Agregar Talla',
+                    enterDelay: 200,
+                });
+                instance.open();
+            });
+        }
+        else {
+            $.ajax({
+                method: "POST",
+                data: formData,
+                url: url + "register",
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function() {
+                    console.log('Sending data');
+                    $('#register :input').attr('disabled', 'disabled');
+                },
+                success: function (resp) {
+                    console.log(resp);
+                    swal({
+                        title: "¡Bien hecho!",
+                        text: "Se ha registrado el producto '" + nombre_producto + "' exitosamente.",
+                        icon: "success",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        },
+                        // timer: 3000
+                    })
+                    .then(redirect => {
+                        location.href = url + "index";
+                    });
+                },
+                error: function (err) {
+                    console.log(err);
+                    swal({
+                        title: "¡Oh no!",
+                        text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                        icon: "error",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        }
+                    });
+                }
+            })
+        }
         // Sending data by Ajax
-        $.ajax({
-            method: "POST",
-            data: formData,
-            url: url + "register",
-            contentType: false,
-            cache: false,
-            processData:false,
-            beforeSend: function() {
-                console.log('Sending data');
-                $('#register :input').attr('disabled', 'disabled');
-            },
-            success: function (resp) {
-                console.log(resp);
-                swal({
-                    title: "¡Bien hecho!",
-                    text: "Se ha registrado el producto '" + nombre_producto + "' exitosamente.",
-                    icon: "success",
-                    button: {
-                        text: "Aceptar",
-                        visible: true,
-                        value: true,
-                        className: "green",
-                        closeModal: true
-                    },
-                    // timer: 3000
-                })
-                .then(redirect => {
-                    location.href = url + "index";
-                });
-            },
-            error: function (err) {
-                console.log(err);
-                swal({
-                    title: "¡Oh no!",
-                    text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
-                    icon: "error",
-                    button: {
-                        text: "Aceptar",
-                        visible: true,
-                        value: true,
-                        className: "green",
-                        closeModal: true
-                    }
-                });
-            }
-        })
     });
 
     // File type validation
@@ -93,6 +118,13 @@ $(document).ready(function(){
         // $("#id_rol").removeAttr("readonly", "false");
         $('.btn.disabled').removeClass('disabled').removeClass('purple').addClass('purple-gradient');
         $(".select-wrapper").removeClass('disabled');
+        // $('select').addClass('disabled');
+        // let key = parseInt($('#key').val());
+        // console.log(key);
+        // for(let i = 0; i <= key; i++) {
+        // console.log(i);
+        //     $(`select#talla-${i}`).attr('disabled', true);
+        // }
         $('select').formSelect();
         $('#modify-btn').hide();
         $('#delete-btn').hide();
@@ -114,7 +146,7 @@ $(document).ready(function(){
             data: formData,
             url: url + "update",
             contentType: false,
-            cache: false,
+            cache: true,
             processData:false,
             beforeSend: function() {
                 console.log('Sending data');
@@ -274,7 +306,7 @@ $(document).ready(function(){
 
         var template = ` 
             <div>
-                <input type="hidden" name="id_talla[]" value="${ id_talla }">
+                <input type="hidden" name="id_talla[]" id="talla-${ id_talla }" value="${ id_talla }">
                 <div class="input-field col s5 m5">
                     <i class="icon-straighten prefix"></i>
                     <input id="name_id_talla" type="text" name="name_id_talla" value="${ nombre_talla }" class="disabled validate" readonly>

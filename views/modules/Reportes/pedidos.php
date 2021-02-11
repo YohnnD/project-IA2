@@ -50,15 +50,15 @@
         </thead>
         <tbody>
           <?php foreach ($allPedido as $pedido): ?>
-            <?php if($pedido->status_pedido == 'Terminado' || $pedido->status_pedido == 'En proceso' || $pedido->status_pedido == 'terminado' || $pedido->status_pedido == 'en proceso' || $pedido->status_pedido == 'En Proceso' ):?>
+            <?php if(Helpers::aesDecrypt($pedido->status_pedido) == 'Terminado' || Helpers::aesDecrypt($pedido->status_pedido) == 'En proceso' || Helpers::aesDecrypt($pedido->status_pedido == 'terminado') || Helpers::aesDecrypt($pedido->status_pedido) == 'en proceso' || Helpers::aesDecrypt($pedido->status_pedido) == 'En Proceso' ):?>
           <tr>
             <td class="no"><?php echo $pedido->codigo_pedido?></td>
             <td class="desc">
-              <h3><?php echo $pedido->nombre_cliente?></h3>
-            <?php echo $pedido->representante_cliente?> - <?php echo $pedido->telefono_cliente?></td>
+              <h3><?php echo Helpers::aesDecrypt($pedido->nombre_cliente)?></h3>
+            <?php echo Helpers::aesDecrypt($pedido->representante_cliente)?> - <?php echo Helpers::aesDecrypt($pedido->telefono_cliente)?></td>
             <td class="unit"><?php echo date("d/m/Y", strtotime($pedido->fecha_entrega_pedido))?></td>
             <td class="qty"><?php echo $pedido->descripcion_pedido?></td>
-            <td class="total"><?php echo $pedido->status_pedido?></td>
+            <td class="total"><?php echo Helpers::aesDecrypt($pedido->status_pedido)?></td>
             
           </tr>
           <?php elseif($pedido->status_pedido == 'Entregado' || $pedido->status_pedido == 'entregado'): ?>

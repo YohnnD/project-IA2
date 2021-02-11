@@ -39,6 +39,19 @@
 
 
 
+
+<!--                <div class="col s12 m3 animated bounceIn">-->
+<!--                    <a href="--><?php //echo Helpers::url('Test', 'test'); ?><!--" class="btn-app purple-gradient">-->
+<!--                        <i class="icon-contact_phone"></i>-->
+<!--                        <span class="truncate">Test</span>-->
+<!--                    </a>-->
+<!--                </div>-->
+
+
+
+
+
+
             <?php if (Helpers::hasPermissions('4')): ?>
                 <div class="col s12 m3 animated bounceIn">
                     <a href="<?php echo Helpers::url('Cliente', 'index'); ?>" class="btn-app purple-gradient">

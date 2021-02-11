@@ -7,7 +7,7 @@ $('document').ready(function () {
 
     $.ajax({
         method: "GET",
-        url: url + 'ingreso',
+        url: url + 'Home/ingreso',
         dataType: 'json',
 
         beforeSend: function () {

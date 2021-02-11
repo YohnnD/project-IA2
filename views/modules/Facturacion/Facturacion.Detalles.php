@@ -19,18 +19,23 @@
 
         <!-- Main Container -->
         <main>
-            <div class="container">
-                <form action="" class="row">
+            <div class="container-fluid">
+                <div class="row">
                     <div class="col s12 breadcrumb-nav left-align">
                         <a href="<?php echo Helpers::url('Home', 'index'); ?>" class="breadcrumb">Inicio</a>
                         <a href="<?php echo Helpers::url('Factura', 'index'); ?>" class="breadcrumb">Facturación de Ventas</a>
                         <a href="<?php echo Helpers::url('Factura', 'getAll'); ?>" class="breadcrumb">Consultar Facturas</a>
-                        <a href="<?php echo Helpers::url('Factura', 'details'); ?>" class="breadcrumb">detalles Factura</a>
+                        <a href="<?php echo Helpers::url('Factura', 'details'); ?>" class="breadcrumb">Detalles Factura</a>
                     </div>
-
-                    <div class="col s12">
-                        <h4 class="center-align">Detalles de Factura</h4>
+                </div>
+            </div>
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="center-align">Detalles de Factura</h5>
                     </div>
+                    <div class="card-content">
+                    <form action="" class="row">
                     <div class="input-field col s12 m6 xl6">
                         <i class="icon-attach_money prefix"></i>
                         <input type="text" name="codigo_factura" id="codigo_factura" value="<?php echo $detalles['Factura']->codigo_factura ?>" disabled>
@@ -53,7 +58,7 @@
                     </div>
                     <div class="input-field col s12 m6 xl6">
                         <i class="icon-monetization_on prefix"></i>
-                        <input type="text" name="cliente" id="modo_pago_factura" value="<?php echo $detalles['Cliente']->nombre_cliente ?>" disabled>
+                        <input type="text" name="cliente" id="modo_pago_factura" value="<?php echo Helpers::aesDecrypt($detalles['Cliente']->nombre_cliente) ?>" disabled>
                         <label for="modo_pago_factura">Cliente</label>
                     </div>
                     <div class="input-field col s12 m6 xl6">
@@ -63,12 +68,12 @@
                     </div>
                     <div class="input-field col s12 m6 xl6">
                         <i class="icon-monetization_on prefix"></i>
-                        <input type="text" name="modo_pago_factura" id="cedula" value="<?php echo $detalles['Cliente']->telefono_cliente ?>" disabled>
+                        <input type="text" name="modo_pago_factura" id="cedula" value="<?php echo Helpers::aesDecrypt($detalles['Cliente']->telefono_cliente) ?>" disabled>
                         <label for="modo_pago_factura">Telefono</label>
                     </div>
                     <div class="input-field col s12 m6 xl6">
                         <i class="icon-monetization_on prefix"></i>
-                        <input type="text" name="modo_pago_factura" id="cedula" value="<?php echo $detalles['Cliente']->direccion_cliente ?>" disabled>
+                        <input type="text" name="modo_pago_factura" id="cedula" value="<?php echo Helpers::aesDecrypt($detalles['Cliente']->direccion_cliente) ?>" disabled>
                         <label for="modo_pago_factura">Direccion</label>
                     </div>
                     <div class="input-field col s12 m6 xl6">
@@ -139,7 +144,7 @@
                             </div>
 
                             <?php
-                                     
+
                             $monto1 = $detalles['Producto'][$i][0]['precio_producto'] * $detalles['ProPedidos'][$i]->cant_pro_pedido;
 
                             $montoProducto += $monto1;
@@ -151,7 +156,7 @@
                             <input type="text" name="total" id="total" value="<?php echo $montoProducto ?> $" disabled>
                             <label for="total">Total a Pagar Por Producto:</label>
                         </div>
-                   
+
                     <?php else: ?>
 
 
@@ -167,18 +172,21 @@
                         <a href="#!" class="btn red waves-effect waves-light col s12" id="anular">
                             <i class="icon-delete right"></i>
                             Anular
-                        </a>                
+                        </a>
                     </div>
                 <?php else:?>
                     <div class="input-field col s12 m12 center-align">
                         <a href="#!" class="btn red waves-effect waves-light col s12" id="anular" disabled>
                             <i class="icon-delete right"></i>
                             Anular
-                        </a>                
+                        </a>
                     </div>
                 <?php endif?>
                 <?php endif?>
                 </form>
+                    </div>
+                </div>
+                
             </div>
         </main>
 
