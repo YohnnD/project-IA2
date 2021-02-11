@@ -180,6 +180,7 @@ CREATE TABLE IF NOT EXISTS usuarios(
     apellido_usuario         VARCHAR(20)    NOT NULL,
     email_usuario            VARCHAR(40),
     contrasenia_usuario      VARCHAR(255)   NOT NULL,
+    contrasenia_especial     VARCHAR(255)   NOT NULL,
     id_rol                   INT            NOT NULL,
 
     PRIMARY KEY (nick_usuario)
