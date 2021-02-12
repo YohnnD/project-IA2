@@ -45,6 +45,7 @@
 				$apellidoUsuario = $this->input('apellido_usuario', true, 'string');
 				$emailUsuario = $this->input('email_usuario', true, 'string');
 				$contraseniaUsuario = $this->input('contrasenia_usuario', true, 'string');
+				$contraseniaEspecial = $this->input('contrasenia_especial', true, 'string');
 				$idRol = $this->input('id_rol', true, 'int');
                 $pregunta = $this->input('pregunta', true, 'string');
                 $respuesta = $this->input('respuesta', true, 'string');
@@ -67,6 +68,7 @@
 					$usuario->setApellidoUsuario(ucwords($apellidoUsuario));
 					$usuario->setEmailUsuario($emailUsuario);
 					$usuario->setContraseniaEncriptada($contraseniaUsuario);
+                    $usuario->setContraseniaEspecial($contraseniaEspecial);
 					$usuario->setIdRol($idRol);
 					$data = $usuario->save();
 

@@ -11,7 +11,7 @@ class Usuario extends Conexion {
     }
 
 
-    public function register($nickUsuario,$nombreUsuario,$apellidoUsuario,$emailUsuario,$contraseniaUsuario,$idRol){
+    public function register($nickUsuario,$nombreUsuario,$apellidoUsuario,$emailUsuario,$contraseniaUsuario, $contraseniaEpecial ,$idRol){
         $band=true;
 
         $result=$this->dbConexion->query("SELECT * FROM usuarios WHERE nick_usuario='$nickUsuario'");
@@ -20,7 +20,7 @@ class Usuario extends Conexion {
             $band=false;
         }else{
             $resultRegister=$this->dbConexion->query("
-                INSERT INTO usuarios VALUES ('$nickUsuario','$nombreUsuario','$apellidoUsuario','$emailUsuario','$contraseniaUsuario','$idRol')");
+                INSERT INTO usuarios VALUES ('$nickUsuario','$nombreUsuario','$apellidoUsuario','$emailUsuario','$contraseniaUsuario', '$contraseniaEpecial' ,'$idRol')");
             $band=true;
         }
         return $band;

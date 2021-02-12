@@ -52,6 +52,7 @@ class BaseModel{
             $action=strtoupper($action);
             $ip_address=$this->getUserIpAddress();
             //   var_export($_SESSION); die();
+
             $sql="INSERT INTO 
               bitacoras(nick_usuario,fecha_actu_bitacora,hora_actu_bitacora,modulo_bitacora,accion_bitacora,ip_address)
               VALUES ('$nickUser','$fecha_actual','$hora_actual','$module','$action','$ip_address')";

@@ -19,6 +19,7 @@ $(document).ready(function(){
         $('#reset-buttons').show();
         $('#change-security').hide();
         $('#change-password').hide();
+        $('#change-password-especial').hide();
 
         // $('#passwordUsuario').removeAttr('disabled', 'disabled');
     });
@@ -28,6 +29,7 @@ $(document).ready(function(){
         $('#form-security').show();
         $('.form-profile').hide();
         $('#change-password').hide();
+        $('#change-password-especial').hide();
 
         $('#modify').hide();
         $('#update-security').show();
@@ -43,8 +45,26 @@ $(document).ready(function(){
         $('#form-password').show();
         $('#modify').hide();
         $('#change-security').hide();
+        $('#change-password-especial').hide();
         // $('#update-btn').show();
         $('#update-password').show();
+        $('#reset-buttons').show();
+        $(this).hide();
+    });
+
+    $('#change-password-especial').click(function(e) {
+        $('#form-security').hide();
+        $('#update :input').removeAttr('disabled','disabled');
+        $('.form-profile').hide();
+        $('#form-password').hide();
+        $('#form-password-especial').show();
+        $('#modify').hide();
+        $('#change-security').hide();
+        $('#change-password-especial').hide();
+        $('#change-password').hide();
+        $('#update-security').hide();
+        // $('#update-btn').show();
+        $('#update-password-especial').show();
         $('#reset-buttons').show();
         $(this).hide();
     });
@@ -56,6 +76,7 @@ $(document).ready(function(){
         $('#form-security').hide();
         $('#update-security').hide();
         $('#update-password').hide();
+        $('#update-password-especial').hide();
         $('#modify').show();
         $('#update-btn').hide();
         $('#form-security').hide();
@@ -63,6 +84,7 @@ $(document).ready(function(){
         // $('#change-password').hide();
         $('#modify-btn').show();
         $('#change-security').show();
+        $('#change-password-especial').show();
         $('#change-password').show();
         $('#reset-buttons').hide();
     });
@@ -202,7 +224,7 @@ $(document).ready(function(){
                     repeat_contrasenia_usuario: repeat_contrasenia_usuario,
                     nick_usuario: nick_usuario,
                 },
-                url: localStorage.getItem('url') + "Usuario/updatePassword",
+                url: url + "updatePassword",
                 beforeSend: function() {
                     console.log("Sending data...");
                     $('#update :input').attr('disabled', 'disabled');
@@ -246,9 +268,79 @@ $(document).ready(function(){
     });
 
 
+    $('#update-password-especial-btn').click(function () {
+        var contrasenia_especial = $('#contrasenia_especial').val();
+        var nick_usuario = $('#nick_usuario').val();
+
+        console.log(nick_usuario);
+        if(contrasenia_especial !== '') {
+            $.ajax({
+                method: "POST",
+                dataType: "json",
+                data: {
+                    contrasenia_especial: contrasenia_especial,
+                    nick_usuario: nick_usuario,
+                },
+                url: url + "updatePasswordEspecial",
+                beforeSend: function() {
+                    console.log("Sending data...");
+                    $('#update :input').attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    console.log(data);
+                    swal({
+                        title: "¡Bien hecho!",
+                        text: "Se ha cambiado la clave especial del usuario '" + nick_usuario + "' exitosamente.",
+                        icon: "success",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        },
+                        timer: 3000
+                    })
+                        .then(redirect => {
+                            location.reload();
+                        })
+                },
+                error: function(err) {
+                    console.log(err);
+                    swal({
+                        title: "¡Oh no!",
+                        text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                        icon: "error",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        }
+                    });
+                }
+            });
+        }else{
+            swal({
+                title: "¡Oh no!",
+                text: "Complete los campos.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+        }
+    });
 
 
-    $('#update').submit(function(e) {
+
+
+    $('#update-btn').click(function(e) {
         e.preventDefault(); // Disable submit event
         // Getting form data
 
@@ -256,61 +348,72 @@ $(document).ready(function(){
         var nombre_usuario = $('#nombre_usuario').val();
         var apellido_usuario = $('#apellido_usuario').val();
         var email_usuario = $('#email_usuario').val();
-        var contrasenia_usuario = $('#contrasenia_usuario').val();
       //  var id_rol = $('#id_rol').val();
 
-        $.ajax({
-            method: "POST",
-            dataType: "json",
-            data: {
-                nick_usuario: nick_usuario,
-                nombre_usuario: nombre_usuario,
-                apellido_usuario: apellido_usuario,
-                email_usuario: email_usuario,
-                contrasenia_usuario: contrasenia_usuario,
-                // repeat_password_usuario: repeat_password_usuario,
-                id_rol: 3
-            },
-            url: localStorage.getItem('url')+"Usuario/update",
-            beforeSend: function() {
-                console.log("Sending data...");
-                $('#update :input').attr('disabled', 'disabled');
-            },
-            success: function(data) {
-                console.log(data);
-                swal({
-                    title: "¡Bien hecho!",
-                    text: "Se ha modificado el usuario '" + nick_usuario + "' exitosamente.",
-                    icon: "success",
-                    button: {
-                        text: "Aceptar",
-                        visible: true,
-                        value: true,
-                        className: "green",
-                        closeModal: true
-                    },
-                    timer: 3000
-                })
-                    .then(redirect => {
-                        location.reload();
+        if(nick_usuario !== '' && nombre_usuario !== '' && apellido_usuario !== '' && email_usuario !== '') {
+            $.ajax({
+                method: "POST",
+                dataType: "json",
+                data: {
+                    nick_usuario: nick_usuario,
+                    nombre_usuario: nombre_usuario,
+                    apellido_usuario: apellido_usuario,
+                    email_usuario: email_usuario,
+                },
+                url: url + "changeProfileData",
+                beforeSend: function () {
+                    console.log("Sending data...");
+                    $('#update :input').attr('disabled', 'disabled');
+                },
+                success: function (data) {
+                    console.log(data);
+                    swal({
+                        title: "¡Bien hecho!",
+                        text: "Se ha modificado el usuario '" + nick_usuario + "' exitosamente.",
+                        icon: "success",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        },
+                        timer: 3000
                     })
-            },
-            error: function(err) {
-                console.log(err);
-                swal({
-                    title: "¡Oh no!",
-                    text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
-                    icon: "error",
-                    button: {
-                        text: "Aceptar",
-                        visible: true,
-                        value: true,
-                        className: "green",
-                        closeModal: true
-                    }
-                });
-            }
-        });
+                        .then(redirect => {
+                            location.reload();
+                        })
+                },
+                error: function (err) {
+                    console.log(err);
+                    swal({
+                        title: "¡Oh no!",
+                        text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                        icon: "error",
+                        button: {
+                            text: "Aceptar",
+                            visible: true,
+                            value: true,
+                            className: "green",
+                            closeModal: true
+                        }
+                    });
+                }
+            });
+        }else{
+            swal({
+                title: "¡Oh no!",
+                text: "Complete los campos.",
+                icon: "info",
+                button: {
+                    text: "Aceptar",
+                    visible: true,
+                    value: true,
+                    className: "green",
+                    closeModal: true
+                }
+            });
+        }
     });
 
 
