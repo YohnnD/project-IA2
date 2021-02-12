@@ -47,12 +47,12 @@
                         <div class="row form-profile">
                             <div class="input-field col s12 m6">
                                 <i class="icon-person_pin prefix"></i>
-                                <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate text-validate" minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->nombre_usuario; ?>" required disabled>
+                                <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate text-validate" minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->nombre_usuario; ?>" disabled>
                                 <label for="nombre_usuario" >Nombre </label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="icon-person_pin prefix"></i>
-                                <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate text-validate"  minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->apellido_usuario; ?>" required disabled>
+                                <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate text-validate"  minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." value="<?php echo $usuario->apellido_usuario; ?>" disabled>
                                 <label for="apellido_usuario">Apellido</label>
                             </div>
                             <!-- <div class="input-field col s12 m6 xl4">
@@ -76,13 +76,21 @@
                             <input type="hidden" name="nick_usuario" id="nick_usuario" value="<?php echo $usuario->nick_usuario; ?>">
                             <div class="input-field col s12">
                                 <i class="icon-beenhere prefix"></i>
-                                <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" class="validate" required disabled>
+                                <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" class="validate" disabled>
                                 <label for="contrasenia_usuario">Password del Usuario</label>
                             </div>
                             <div class="input-field col s12">
                                 <i class="icon-beenhere prefix"></i>
-                                <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario" class="validate" required disabled>
+                                <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario" class="validate" disabled>
                                 <label for="repeat_contrasenia_usuario">Repetir Password del Usuario</label>
+                            </div>
+                        </div>
+
+                        <div id="form-password-especial" style="display:none;">
+                            <div class="input-field col s12">
+                                <i class="icon-beenhere prefix"></i>
+                                <input type="password" name="contrasenia_especial" id="contrasenia_especial" class="validate" disabled>
+                                <label for="contrasenia_especial">Clave Especial</label>
                             </div>
                         </div>
 
@@ -108,7 +116,7 @@
 
                             <div class="input-field col s12 m12">
                                 <i class="icon-person_pin prefix"></i>
-                                <input type="text" name="respuesta" id="respuesta" class="validate code-only" minlength="3"  maxlength="100" required>
+                                <input type="text" name="respuesta" id="respuesta" class="validate code-only" minlength="3"  maxlength="100">
                                 <label for="respuesta">Repuesta secreta</label>
                             </div>
                             <div class="input-field col s12 m6">
@@ -154,29 +162,41 @@
                     </div>
                     <div class="card-footer center-align">
                         <div class="row" style="margin-bottom: 0; display: flex; flex-direction: row; justify-content: center;">
-                            <div class="col s12 m4 center-align" id="modify-btn">
-                                <a id="modify" class="btn btn-large btn-rounded blue-gradient waves-effect waves-light col s12">
-                                    <i class="icon-update left"></i>
-                                    Modificar
-                                    <i class="icon-update right"></i>
-                                </a>
+
+                            <div class="row">
+                                <div class="col s12 m6 center-align" style="margin-bottom: 10px" id="modify-btn">
+                                    <a id="modify" class="btn btn-large btn-rounded blue-gradient waves-effect waves-light col s12">
+                                        <i class="icon-update left"></i>
+                                        Modificar
+                                        <i class="icon-update right"></i>
+                                    </a>
+                                </div>
+
+                                <div class="col s12 m6 center-align" style="margin-bottom: 10px" id="change-security">
+                                    <a  class="btn btn-large btn-rounded orange-gradient waves-effect waves-light col s12">
+                                        <i class="icon-update left"></i>
+                                        Cambiar Preguntas
+                                        <i class="icon-update right"></i>
+                                    </a>
+                                </div>
+
+                                <div class="col s12 m6 center-align" style="margin-bottom: 10px" id="change-password">
+                                    <a  class="btn btn-large btn-rounded indigo-gradient waves-effect waves-light col s12">
+                                        <i class="icon-update left"></i>
+                                        Cambiar Contraseña
+                                        <i class="icon-update right"></i>
+                                    </a>
+                                </div>
+
+                                <div class="col s12 m6 center-align" style="margin-bottom: 10px" id="change-password-especial">
+                                    <a  class="btn btn-large btn-rounded red-gradient waves-effect waves-light col s12">
+                                        <i class="icon-update left"></i>
+                                        Clave Especial
+                                        <i class="icon-update right"></i>
+                                    </a>
+                                </div>
                             </div>
 
-                            <div class="col s12 m4 center-align" id="change-security">
-                                <a  class="btn btn-large btn-rounded orange-gradient waves-effect waves-light col s12">
-                                    <i class="icon-update left"></i>
-                                    Cambiar Preguntas
-                                    <i class="icon-update right"></i>
-                                </a>
-                            </div>
-
-                            <div class="col s12 m4 center-align" id="change-password">
-                                <a  class="btn btn-large btn-rounded indigo-gradient waves-effect waves-light col s12">
-                                    <i class="icon-update left"></i>
-                                    Cambiar Contraseña
-                                    <i class="icon-update right"></i>
-                                </a>
-                            </div>
 
                             <div class="col s12 m6 center-align" style="display: none" id="update-security">
                                 <a  class="btn btn-large btn-rounded blue-gradient waves-effect waves-light col s12">
@@ -188,7 +208,7 @@
 
 
                             <div class="col s12 m6 center-align" style="display: none" id="update-btn">
-                                <button type="submit" class="btn btn-large btn-rounded green-gradient waves-effect waves-light col s12">
+                                <button type="button" class="btn btn-large btn-rounded green-gradient waves-effect waves-light col s12">
                                     <i class="icon-save left"></i>
                                     Actualizar
                                     <i class="icon-save right"></i>
@@ -203,8 +223,13 @@
                                     <i class="icon-update right"></i>
                                 </a>
                             </div>
-
-
+                            <div class="col s12 m6 center-align" style="display: none" id="update-password-especial">
+                                <a  class="btn btn-large btn-rounded red-gradient waves-effect waves-light col s12" id="update-password-especial-btn">
+                                    <i class="icon-update left"></i>
+                                    Actualizar Clave Especial
+                                    <i class="icon-update right"></i>
+                                </a>
+                            </div>
                             <div class="col s12 m6 center-align" style="display: none" id="reset-buttons">
                                 <a  class="btn btn-large btn-rounded red-gradient waves-effect waves-light col s12" id="reset-btn">
                                     <i class="icon-cancel left"></i>

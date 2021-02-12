@@ -52,18 +52,34 @@
 			}
 		}
 
-		public function updatePassword (){
-			$password = $_POST['repeat_contrasenia_usuario'];
-			$token = $_POST['token'];
+        public function updatePassword() {
+            if($_POST) { // Si se pasan datos por post
+                // Valida los datos recibidos por los inputs
+                $nickUsuario = $this->input('nick_usuario', true, 'string');
+                $contraseniaUsuario = $this->input('contrasenia_usuario', true, 'string');
+                $repearContraseniaUsuario = $_POST['repeat_contrasenia_usuario'];
+                if($contraseniaUsuario === $repearContraseniaUsuario) {
+                    $usuario = new Usuario(); // Instancia el objeto
+                    $usuario->setNickUsuario($nickUsuario);
+                    $usuario->setContraseniaEncriptada($contraseniaUsuario);
+                    $data = $usuario->updatePassword2();
+                    $this->sendAjax($data);
+                }
+            }
+        }
 
-			$usuario = new Usuario();
-			$usuario->setContraseniaEncriptada($password);
+        public function updatePasswordEspecial (){
+            $password = $_POST['contrasenia_especial'];
+            $nick = $_POST['nick_usuario'];
 
-			$response= $usuario->updatePassword($token);
+            $usuario = new Usuario();
+            $usuario->setContraseniaEspecial($password);
 
-			$this->redirect('Auth', 'index');
+            $response= $usuario->updatePasswordEspecial($nick);
 
-		}
+            $this->sendAjax($response);
+
+        }
 
 		public function login() {
 
@@ -143,6 +159,26 @@
                 $this->sendAjax(false);
             }
 		}
+
+
+
+		public function changeProfileData (){
+            $name       = $_POST['nombre_usuario'];
+            $surname    = $_POST['apellido_usuario'];
+            $nick       = $_POST['nick_usuario'];
+            $email       = $_POST['email_usuario'];
+
+            $usuario = new Usuario();
+
+            $usuario->setNombreUsuario($name);
+            $usuario->setNickUsuario($nick);
+            $usuario->setApellidoUsuario($surname);
+            $usuario->setEmailUsuario($email);
+
+            $response= $usuario->updateProfile($nick);
+
+            $this->sendAjax($response);
+        }
 
 
 
