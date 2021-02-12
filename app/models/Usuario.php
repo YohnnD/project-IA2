@@ -7,8 +7,10 @@
 		private $apellidoUsuario;
 		private $emailUsuario;
 		private $contraseniaUsuario;
+		private $idRol;
+		private $status;
         private $contraseniaEspecial;
-        private $idRol;
+
 
 		// Métodos
 		public function __construct() {
@@ -40,6 +42,13 @@
  			return $this->idRol;
 		}
 
+
+        public function getStatus(){
+            return $this->status;
+        }
+
+
+
 		public function setNickUsuario($nickUsuario) {
 			$this->nickUsuario = $nickUsuario;
 		}
@@ -67,6 +76,11 @@
 		public function setContraseniaEncriptada ($contraseniaUsuario) {
 			$this->contraseniaUsuario = password_hash($contraseniaUsuario, PASSWORD_DEFAULT, array('cost'=>12));
 		}
+
+
+        public function setStatus($status){
+            $this->status = $status;
+        }
 
         public function setContraseniaEspecial ($contraseniaEspecial) {
             $this->contraseniaEspecial = password_hash($contraseniaEspecial, PASSWORD_DEFAULT, array('cost'=>12));
@@ -214,13 +228,19 @@
 
 		public function save() {
 			$this->registerBitacora(USUARIOS,REGISTRAR);
-			$query = "INSERT INTO $this->table (nick_usuario,nombre_usuario,apellido_usuario,email_usuario,contrasenia_usuario, contrasenia_especial ,id_rol) VALUES (:nick_usuario,:nombre_usuario,:apellido_usuario,:email_usuario,:contrasenia_usuario, :contrasenia_especial , :id_rol) "; // COnsulta SQL
+
+			$query = "INSERT INTO $this->table (nick_usuario,
+nombre_usuario,apellido_usuario,email_usuario,contrasenia_usuario, contrasenia_especial ,id_rol,
+status) VALUES (:nick_usuario,:nombre_usuario,:apellido_usuario,:email_usuario,:contrasenia_usuario, :contrasenia_especial , :id_rol,:status) "; // COnsulta SQL
+
 			$result = $this->db()->prepare($query); // Prepara la consulta SQL
 			// Limpia los parametros
+            $status=0;
 			$result->bindParam(':nick_usuario',$this->nickUsuario);
 			$result->bindParam(':nombre_usuario',$this->nombreUsuario);
 			$result->bindParam(':apellido_usuario',$this->apellidoUsuario);
 			$result->bindParam(':email_usuario',$this->emailUsuario);
+			$result->bindParam(':status',$status);
 			$result->bindParam(':contrasenia_usuario',$this->contraseniaUsuario);
 			$result->bindParam(':contrasenia_especial',$this->contraseniaEspecial);
 			$result->bindParam(':id_rol',$this->idRol);
@@ -232,8 +252,7 @@
 			$this->registerBitacora(USUARIOS,ACTUALIZAR);
 			$query = "UPDATE $this->table SET 
 						nombre_usuario = :nombre_usuario,
-						apellido_usuario = :apellido_usuario, email_usuario = :email_usuario,
-						contrasenia_usuario = :contrasenia_usuario, id_rol = :id_rol 
+						apellido_usuario = :apellido_usuario, email_usuario = :email_usuario, id_rol = :id_rol ,status=:status
 						WHERE nick_usuario = :nick_usuario";
 			$result = $this->db()->prepare($query); // Prepara la consulta SQL
 			// Limpia los parametros
@@ -241,7 +260,7 @@
 			$result->bindParam(':nombre_usuario',$this->nombreUsuario);
 			$result->bindParam(':apellido_usuario',$this->apellidoUsuario);
 			$result->bindParam(':email_usuario',$this->emailUsuario);
-			$result->bindParam(':contrasenia_usuario',$this->contraseniaUsuario);
+			$result->bindParam(':status',$this->status);
 			$result->bindParam(':id_rol',$this->idRol);
 			$update = $result->execute(); // Ejecuta la consulta
 			return $update;
@@ -273,6 +292,7 @@
 
 		public function getOne($nickUsuario) {
 			//$this->registerBitacora(USUARIOS,DETALLES);
+            $register=null;
 			$sql = "SELECT * FROM $this->table INNER JOIN roles ON roles.id_rol = usuarios.id_rol WHERE usuarios.nick_usuario = '$nickUsuario'"; // Consulta SQL
 			$query = $this->db()->query($sql); // Ejecuta la consulta SQL
             if($row = $query->fetch(PDO::FETCH_OBJ)){ // Si el objeto existe en la tabla
@@ -359,6 +379,44 @@
             }
             return $resultSet; // Finalmente retornla el arreglo con los elementos.
 		}
+
+
+		public function getFailsUsers(){
+
+		    $now=date('Y-m-d');
+            $sql = "SELECT * FROM bitacoras where
+                 nick_usuario='$this->nickUsuario' and accion_bitacora='FALLO' 
+                 AND modulo_bitacora='INICIAR SESION'  and fecha_actu_bitacora='$now'";
+            $query = $this->db()->query($sql);
+
+            if($query){ // Evalua la cansulta
+                if($query->rowCount() >= 3) { // Si existe al menos un registro...
+                  return  ["intento"=>$query->rowCount(),"block"=>true];
+                }
+                else{ // Sino...
+                    return ["intento"=>3-$query->rowCount(),"block"=>false];
+                }
+            }
+            return null; // Finalmente retornla el arreglo con los elementos.
+        }
+
+
+
+        public function updateStatus(){
+            $query = "UPDATE $this->table SET 
+						status = :status
+						WHERE nick_usuario = :nick_usuario";
+
+            $result = $this->db()->prepare($query); // Prepara la consulta SQL
+            // Limpia los parametros
+            $result->bindParam(':nick_usuario',$this->nickUsuario);
+            $result->bindParam(':status',$this->status);
+            $update = $result->execute(); // Ejecuta la consulta
+            return $update;
+        }
+
+
+
 
 
 

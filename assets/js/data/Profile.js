@@ -98,6 +98,8 @@ $(document).ready(function(){
 
         var nick=$('#nick').val();
         var image = $("input[name='image']:checked").val();
+        var id_imagen_select = $("input[name='image']:checked").attr('id-imagen');
+
 
 
         if(respuesta===''&&respuesta.length<2){
@@ -156,6 +158,7 @@ $(document).ready(function(){
                 nick:nick,
                 image:image,
                 respuesta:respuesta,
+                id_imagen_select:id_imagen_select,
             },
             url: url+"updatePreguntaSeguridad",
 

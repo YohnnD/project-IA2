@@ -5,6 +5,7 @@ var url = localStorage.getItem('url')+"Usuario/";
     $('#register').submit(function(e) {
         e.preventDefault(); // Disable submit event
         // Getting form data
+        var id_imagen_select = $("input[name='image']:checked").attr('id-imagen');
         var nick_usuario = $('#nick_usuario').val();
         var nombre_usuario = $('#nombre_usuario').val();
         var apellido_usuario = $('#apellido_usuario').val();
@@ -80,6 +81,8 @@ var url = localStorage.getItem('url')+"Usuario/";
                     respuesta:respuesta,
                     image:image,
                     contrasenia_especial:contrasenia_especial,
+                    id_imagen_select:id_imagen_select,
+
                     // repeat_password_usuario: repeat_password_usuario,
                     id_rol: id_rol
                     },
@@ -177,7 +180,7 @@ var url = localStorage.getItem('url')+"Usuario/";
         $('#reset-password').hide();
         // $('#update-btn').show();
         $('#update-password').show();
-    
+
         $('#reset-buttons').show();
         $(this).hide();
     });
@@ -249,6 +252,7 @@ var url = localStorage.getItem('url')+"Usuario/";
         var email_usuario = $('#email_usuario').val();
         var contrasenia_usuario = $('#contrasenia_usuario').val();
         var id_rol = $('#id_rol').val();
+        var status = $('#status').val();
 
         $.ajax({
             method: "POST",
@@ -260,7 +264,8 @@ var url = localStorage.getItem('url')+"Usuario/";
                     email_usuario: email_usuario,
                     contrasenia_usuario: contrasenia_usuario,
                     // repeat_password_usuario: repeat_password_usuario,
-                    id_rol: id_rol
+                    id_rol: id_rol,
+                    status: status
                     },
             url: url + "update",
             beforeSend: function() {
@@ -283,7 +288,7 @@ var url = localStorage.getItem('url')+"Usuario/";
                     timer: 3000
                 })
                 .then(redirect => {
-                    location.href = url + "index";
+                    location.reload();
                 })
             },
             error: function(err) {

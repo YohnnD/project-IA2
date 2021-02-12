@@ -39,7 +39,7 @@
                 <div class="avatar avatar-centered">
                     <img src="<?php echo BASE_URL; ?>assets/images/matthew.png" alt="" srcset="">
                 </div>
-                <form action="" method="post" id="update">
+                <form action="#" method="post" id="update">
                     <div class="card-content row">
                         <!-- <div class="input-field col s12 m6 xl4">
                             <i class="icon-contact_mail prefix"></i>
@@ -72,7 +72,7 @@
                                 <input type="text" name="nick_usuario" id="nick_usuario" class="validate code-only" value="<?php echo $usuario->nick_usuario; ?>" required disabled>
                                 <label for="nick_usuario">Nick del Usuario</label>
                             </div>
-                            <!-- 
+                            <!--
                             <div class="file-field input-field col s12">
                                 <div class="btn purple">
                                     <span><i class="icon-photo_size_select_actual right"></i>Imagen</span>
@@ -96,19 +96,40 @@
                                 </select>
                                 <label for="id_rol">Rol</label>
                             </div>
-                        
+
+
+
+
+
+                            <div class="input-field col s12" id="last-input">
+                                <i class="icon-assistant prefix"></i>
+                                <select name="status" id="status" disabled>
+                                        <?php if($usuario->status==0):?>
+                                            <option value="0" selected> Activo</option>
+                                             <option value="1">Bloqueado</option>
+                                        <?php else:?>
+                                            <option value="0" > Activo</option>
+                                            <option value="1" selected>Bloqueado</option>
+                                        <?php endif;?>
+                                </select>
+                                <label for="id_rol">Status del Usuario</label>
+                            </div>
+
+
+
+
                         </div>
 
                         <div id="form-password" style="display: none;">
                             <input type="hidden" name="nick_usuario" id="nick_usuario" value="<?php echo $usuario->nick_usuario; ?>">
                             <div class="input-field col s12">
                                 <i class="icon-beenhere prefix"></i>
-                                <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" class="validate" required disabled>
+                                <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" class="validate"  disabled>
                                 <label for="contrasenia_usuario">Password del Usuario</label>
                             </div>
                             <div class="input-field col s12">
                                 <i class="icon-beenhere prefix"></i>
-                                <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario" class="validate" required disabled>
+                                <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario" class="validate"  disabled>
                                 <label for="repeat_contrasenia_usuario">Repetir Password del Usuario</label>
                             </div>
                         </div>
@@ -117,7 +138,7 @@
                         <div class="row" style="margin-bottom: 0">
                             <div class="col s12 m6 center-align" id="modify-btn">
                                 <a id="modify" class="btn btn-large blue-gradient btn-rounded waves-effect waves-light col s12">
-                                    <i class="icon-update left"></i>                        
+                                    <i class="icon-update left"></i>
                                     Modificar
                                     <i class="icon-update right"></i>
                                 </a>
@@ -125,7 +146,7 @@
                             <!-- <br class="show-on-down-only"> -->
                             <div class="col s12 m6 center-align" id="delete-btn">
                                 <a id="delete" class="btn btn-large btn-rounded red-gradient waves-effect waves-light col s12">
-                                    <i class="icon-remove left"></i>                        
+                                    <i class="icon-remove left"></i>
                                     Eliminar
                                     <i class="icon-remove right"></i>
                                 </a>

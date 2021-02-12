@@ -426,7 +426,6 @@ class Pedido extends BaseModel
 
         return $resulSet;
     }
-
     public function getBy()
     {
         $this->registerBitacora(PEDIDOS, DETALLES);

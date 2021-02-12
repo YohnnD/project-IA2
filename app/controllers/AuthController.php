@@ -83,6 +83,8 @@
 
 		public function login() {
 
+
+
 			if($_POST) { // Si se enviaron datos por post
 				$usuario = new Usuario(); // Instancia del objeto
 				$rol = new ROl();
@@ -90,44 +92,52 @@
 				$usuario->setNickUsuario($_POST['nick_usuario']);
 				$usuario->setContraseniaUsuario($_POST['contrasenia_usuario']);
 				$usuarioSession = $usuario->login();
+
+                $register = $usuario->getOne($_POST['nick_usuario']);
+
+
+                if(is_object($register)&&$register->status==1){
+                    $this->withMessage("Su usuario ha sido bloqueado por demasiados intentos fallidos,Debe contactar con un administrador para poder ser desbloqueado.");
+                    $usuario->registerBitacora(INICIAR_SESION,FALLO,$register->nick_usuario);
+
+                    return $this->redirect('Auth', 'index');
+
+                }
+
 				if($usuarioSession && is_object($usuarioSession)) { // Si se definio el usuario y es un objeto
 				    $this->getAsk($usuarioSession->nick_usuario);
 				}
+
+
 				else {
+                    $this->withMessage();
 				    date_default_timezone_set('America/Caracas');
-
-				    if(isset($_SESSION['fails_session']['int'])){
-				        if($_SESSION['fails_session']['status']=='block'){
-                            $dateCheck=Helpers::CheckDate($_SESSION['fails_session']['date']);
-                            if($dateCheck>=3){
-                                $_SESSION['fails_session']['status']='success';
-                                $_SESSION['fails_session']['int']=0;
-                                $this->withMessage();
-                            }else{
-                                $this->withMessage('Su ip fue bloquedas por demasiados intento,sera desbloqueda en:'.abs($dateCheck-3). " minutos");
-                            }
-
+				    if(is_object($register)){
+                        $usuario->registerBitacora(INICIAR_SESION,FALLO,$register->nick_usuario);
+                        $data=$usuario->getFailsUsers();
+                        if($data["block"]){
+                            $usuario->setStatus(1);
+                            $usuario->updateStatus();
+                            $this->withMessage("Su usuario ha sido bloqueado por demasiados intentos fallidos,Debe contactar con un administrador para poder ser desbloqueado.");
                         }else{
-                            if($_SESSION['fails_session']['int']>=3 ){
-                                $_SESSION['fails_session']['status']='block';
-                                $_SESSION['fails_session']['date']=time(); //date('d-m-Y H:i:s');
-                                $_SESSION['fails_session']['number_block']= $_SESSION['fails_session']['number_block']+1; //date('d-m-Y H:i:s');
-                                $this->withMessage("Su ip fue bloquedas por demasiados intento,sera desbloqueda en 3 minutos.");
-                            }else{
-                                $_SESSION['fails_session']['int']=$_SESSION['fails_session']['int']+1;
-                                $this->withMessage();
-                            }
+                            $this->withMessage("Sus credenciales son incorrectas. Por favor, intente de nuevo. Intentos restantes:". $data["intento"]);
                         }
-                    }else{
-                        $_SESSION['fails_session']['ip']=Helpers::getUserIpAddress();
-                        $_SESSION['fails_session']['int']=1;
-                        $_SESSION['fails_session']['status']='success';
-                        $this->withMessage();
                     }
-					$this->redirect('Auth', 'index');
+
+
+
+
+                    $this->redirect('Auth', 'index');
 				}
+
 			}
 		}
+
+
+
+
+
+
 
 		public function logout() {
 			if(isset($_SESSION)) {
@@ -213,6 +223,10 @@
                 $pregunta=$_POST['pregunta'];
                 $respuesta=$_POST['respuesta'];
                 $imagen=$_POST['image'];
+                $idImagenSelect=$_POST['id_imagen_select'];
+
+
+
                 $preguntaSeguridad = new PreguntaSeguridad(); // Instancia del objeto
                 $preguntaSeguridad->setNickUsuario($nickUsuario);
                 $isPregunta = $preguntaSeguridad->getBy();
@@ -220,7 +234,7 @@
                 if(!is_null($isPregunta)){
                     $preguntaSeguridad->delete();
                 }
-                $this->crearImagenSeguridad($imagen,$nickUsuario,$pregunta,$respuesta);
+                $this->crearImagenSeguridad($imagen,$nickUsuario,$pregunta,$respuesta,$idImagenSelect);
                 $this->sendAjax(true);
             }
 
@@ -229,15 +243,16 @@
 
 
 
-        public function crearImagenSeguridad($imagen,$nickUsuario,$pregunta,$respuesta){
+        public function crearImagenSeguridad($imagen,$nickUsuario,$pregunta,$respuesta,$idImagenSelect){
             $processor = new KzykHys\Steganography\Processor();
             $image = $processor->encode( $imagen,  Helpers::aesEncrypt($respuesta)); // jpg|png|gif
-            $imagePath='storage/preguntas/image'.time().".png";
-            $image->write($imagePath); // png only
+            $respuesta='storage/preguntas/image'.time().".png";
+            $image->write($respuesta); // png only
             $preguntaSeguridad = new PreguntaSeguridad(); // Instancia el objeto
             $preguntaSeguridad->setNickUsuario($nickUsuario);
-            $preguntaSeguridad->setImagen($imagePath);
+            $preguntaSeguridad->setRespuesta($respuesta);
             $preguntaSeguridad->setPregunta($pregunta);
+            $preguntaSeguridad->setIdImagenSeguridad($idImagenSelect);
             $preguntaSeguridad->save();
         }
 
@@ -250,10 +265,36 @@
             $preguntaSeguridad = new PreguntaSeguridad(); // Instancia el objeto
             $preguntaSeguridad->setNickUsuario($nick);
             $pregunta=$preguntaSeguridad->getBy();
+
+
+
             if($pregunta==null&&$nick=='root'){
                 return $this->createdSession($nick);
             }
-		    return $this->view('Auth/Verify.Ask',["nick"=>$nick,"pregunta"=>$pregunta]);
+
+            $image=new ImageSeguridad();
+            $image->setIdImagenSeguridad($pregunta->id_imagen_seguridad);
+            $imageUser=$image->getBy();
+            $allImagen=$image->getImagenRand();
+            $allImagen[]=$imageUser;
+            $this->shuffle_assoc($allImagen);
+
+		    return $this->view('Auth/Verify.Ask',["nick"=>$nick,"allImagen"=>$allImagen, "pregunta"=>$pregunta]);
+        }
+
+
+
+        function shuffle_assoc(&$array) {
+            $keys = array_keys($array);
+
+            shuffle($keys);
+
+            foreach($keys as $key) {
+                $new[$key] = $array[$key];
+            }
+
+            $array = $new;
+            return true;
         }
 
 
@@ -263,16 +304,19 @@
             if ($_POST) { // Si se enviaron datos por post
                 $preguntaSeguridad = new PreguntaSeguridad(); // Instancia del objeto
                 $preguntaSeguridad->setNickUsuario($_POST['nick_usuario']);
+
                 $pregunta = $preguntaSeguridad->getBy();
-
                 $respuesta = $_POST["respuesta"];
+                $idImagenSelect = $_POST["id_image_select"];
 
-                $imagePath = Helpers::aesDecrypt($pregunta->imagen);
+
+                $imagePath = Helpers::aesDecrypt($pregunta->respuesta);
                 $processor = new KzykHys\Steganography\Processor();
                 $message = $processor->decode($imagePath);
                 $respuestaDecript = Helpers::aesDecrypt($message);
 
-                if($respuesta!=$respuestaDecript){
+
+                if($respuesta!=$respuestaDecript||$idImagenSelect!=$pregunta->id_imagen_seguridad){
                     $this->withMessage("Su respuesta fue incorrecta. Por favor, intente de nuevo. ");
                     $this->redirect('Auth', 'index');
                 }else{

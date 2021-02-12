@@ -42,12 +42,13 @@
                     </div> -->
                     <div class="input-field col s12 m6">
                         <i class="icon-person_pin prefix"></i>
-                        <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate text-validate" minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras.">
+                        <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate text-validate" minlength="3" maxlength="20"  pattern="[A-Za-z ]+" title="Solo puedes usar letras." required>
                         <label for="nombre_usuario" >Nombre del Usuario</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="icon-person_pin prefix"></i>
-                        <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate text-validate"  minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras.">
+
+                        <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate text-validate"  minlength="3" maxlength="20"  pattern="[A-Za-z ]+" title="Solo puedes usar letras." required>
                         <label for="apellido_usuario">Apellido del Usuario</label>
                     </div>
                     <!-- <div class="input-field col s12 m6 xl4">
@@ -114,7 +115,7 @@
                         <?php foreach ($allImageSeguridad as $image):?>
 
                             <div class="col s12 m6 payment-form">
-                                <input type="radio" id="image_<?php echo $image->id_imagen_seguridad ?>" name="image" value="storage/image-seguridad/<?php echo $image->imagen; ?>" class="type_payment_event">
+                                <input type="radio" id="image_<?php echo $image->id_imagen_seguridad ?>" name="image" value="storage/image-seguridad/<?php echo $image->imagen; ?>" id-imagen="<?php echo $image->id_imagen_seguridad ?>" class="type_payment_event">
                                 <label class="btn-radio white lighten-4" for="image_<?php echo $image->id_imagen_seguridad ?>">
                                     <i class="">
                                         <img src="<?php echo BASE_URL; ?>storage/image-seguridad/<?php echo $image->imagen; ?>"

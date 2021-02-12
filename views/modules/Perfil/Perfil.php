@@ -129,7 +129,7 @@
                             <?php foreach ($allImageSeguridad as $image):?>
 
                                 <div class="col s12 m6 payment-form">
-                                    <input type="radio" id="image_<?php echo $image->id_imagen_seguridad ?>" name="image" value="storage/image-seguridad/<?php echo $image->imagen; ?>" class="type_payment_event">
+                                    <input type="radio" id="image_<?php echo $image->id_imagen_seguridad ?>" name="image" id-imagen="<?php echo $image->id_imagen_seguridad ?>" value="storage/image-seguridad/<?php echo $image->imagen; ?>" class="type_payment_event">
                                     <label class="btn-radio white lighten-4" for="image_<?php echo $image->id_imagen_seguridad ?>">
                                         <i class="">
                                             <img src="<?php echo BASE_URL; ?>storage/image-seguridad/<?php echo $image->imagen; ?>"
@@ -223,7 +223,6 @@
                                     <i class="icon-update right"></i>
                                 </a>
                             </div>
-
                             <div class="col s12 m6 center-align" style="display: none" id="update-password-especial">
                                 <a  class="btn btn-large btn-rounded red-gradient waves-effect waves-light col s12" id="update-password-especial-btn">
                                     <i class="icon-update left"></i>
@@ -231,8 +230,6 @@
                                     <i class="icon-update right"></i>
                                 </a>
                             </div>
-
-                            
                             <div class="col s12 m6 center-align" style="display: none" id="reset-buttons">
                                 <a  class="btn btn-large btn-rounded red-gradient waves-effect waves-light col s12" id="reset-btn">
                                     <i class="icon-cancel left"></i>

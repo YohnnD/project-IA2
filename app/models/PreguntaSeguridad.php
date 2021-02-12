@@ -4,7 +4,12 @@
         private  $idPreguntaSeguridad;
         private  $nickUsuario;
         private  $pregunta;
-        private  $imagen;
+        private  $respuesta;
+        private  $idImagenSeguridad;
+
+
+
+
 
 
         // Métodos
@@ -45,15 +50,34 @@
             $this->pregunta = Helpers::aesEncrypt($pregunta);
         }
 
-        public function getImagen(){
-            return  Helpers::aesDecrypt($this->imagen);
-        }
 
-
-        public function setImagen($imagen)
+        public function getRespuesta()
         {
-            $this->imagen =  Helpers::aesEncrypt($imagen);
+            return Helpers::aesDecrypt($this->respuesta);
         }
+
+        public function setRespuesta($respuesta)
+        {
+            $this->respuesta = Helpers::aesEncrypt($respuesta);
+        }
+
+
+        public function getIdImagenSeguridad()
+        {
+            return $this->idImagenSeguridad;
+        }
+
+        public function setIdImagenSeguridad($idImagenSeguridad)
+        {
+            $this->idImagenSeguridad = $idImagenSeguridad;
+        }
+
+
+
+
+
+
+
 
 
         public function getBy(){
@@ -86,6 +110,9 @@
 
 
 
+
+
+
         public function getAll() {
 			// $this->registerBiracora(PRODUCTOS,CONSULTAR);
 			$sql = "SELECT * FROM $this->table";
@@ -107,12 +134,13 @@
 
 
         public function save() {
-            $query = "INSERT INTO $this->table (nick_usuario,pregunta,imagen) VALUES (:nick_usuario,:pregunta,:imagen) "; // COnsulta SQL
+            $query = "INSERT INTO $this->table (nick_usuario,pregunta,respuesta,id_imagen_seguridad) VALUES (:nick_usuario,:pregunta,:respuesta,:id_imagen_seguridad) "; // COnsulta SQL
             $result = $this->db()->prepare($query); // Prepara la consulta SQL
             // Limpia los parametros
             $result->bindParam(':nick_usuario',$this->nickUsuario);
             $result->bindParam(':pregunta',$this->pregunta);
-            $result->bindParam(':imagen',$this->imagen);
+            $result->bindParam(':respuesta',$this->respuesta);
+            $result->bindParam(':id_imagen_seguridad',$this->idImagenSeguridad);
             $save = $result->execute(); // Ejecuta la consulta
             return $save;
         }
