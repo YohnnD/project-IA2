@@ -42,12 +42,12 @@
                     </div> -->
                     <div class="input-field col s12 m6">
                         <i class="icon-person_pin prefix"></i>
-                        <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate text-validate" minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." required>
+                        <input id="nombre_usuario" type="text" name="nombre_usuario"  class="validate text-validate" minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras.">
                         <label for="nombre_usuario" >Nombre del Usuario</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="icon-person_pin prefix"></i>
-                        <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate text-validate"  minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras." required>
+                        <input id="apellido_usuario" type="text" name="apellido_usuario" class="validate text-validate"  minlength="3" maxlength="20"  pattern="[A-Za-z]+" title="Solo puedes usar letras.">
                         <label for="apellido_usuario">Apellido del Usuario</label>
                     </div>
                     <!-- <div class="input-field col s12 m6 xl4">
@@ -57,22 +57,22 @@
                     </div> -->
                     <div class="input-field col s12 m6">
                         <i class="icon-markunread prefix"></i>
-                        <input type="email" name="email_usuario" id="email_usuario" class="validate" required>
+                        <input type="email" name="email_usuario" id="email_usuario" class="validate">
                         <label for="email_usuario">E-mail del Usuario</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="icon-person_pin prefix"></i>
-                        <input type="text" name="nick_usuario" id="nick_usuario" class="validate code-only" required>
+                        <input type="text" name="nick_usuario" id="nick_usuario" class="validate code-only">
                         <label for="nick_usuario">Nick del Usuario</label>
                     </div>
                     <div class="input-field col s12">
                         <i class="icon-beenhere prefix"></i>
-                        <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" pattern='[A-Za-z0-9]+{5,20}' minlength="8" title="La contraseña debe tener una logitud mínima de 8 caracteres y contener al menos un letra en mayuscula y un número."  class="validate" required>
+                        <input type="password" name="contrasenia_usuario" id="contrasenia_usuario" pattern='[A-Za-z0-9]+{5,20}' minlength="8" title="La contraseña debe tener una logitud mínima de 8 caracteres y contener al menos un letra en mayuscula y un número."  class="validate">
                         <label for="contrasenia_usuario">Password del Usuario</label>
                     </div>
                     <div class="input-field col s12">
                         <i class="icon-beenhere prefix"></i>
-                        <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario"  pattern='[A-Za-z0-9]+{5,20}' minlength="8" title="La contraseña debe tener una logitud mínima de 8 caracteres y contener al menos un letra en mayuscula y un número." class="validate" required>
+                        <input type="password" name="repeat_contrasenia_usuario" id="repeat_contrasenia_usuario"  pattern='[A-Za-z0-9]+{5,20}' minlength="8" title="La contraseña debe tener una logitud mínima de 8 caracteres y contener al menos un letra en mayuscula y un número." class="validate">
                         <label for="repeat_contrasenia_usuario">Repetir Password del Usuario</label>
                     </div>
                     <!-- <div class="file-field input-field col s12">
@@ -103,7 +103,7 @@
 
                         <div class="input-field col s12 m12">
                             <i class="icon-person_pin prefix"></i>
-                            <input type="text" name="respuesta" id="respuesta" class="validate code-only" minlength="3"  maxlength="100" required>
+                            <input type="text" name="respuesta" id="respuesta" class="validate code-only" minlength="3"  maxlength="100">
                             <label for="respuesta">Repuesta secreta</label>
                         </div>
 
@@ -126,6 +126,12 @@
 
                         <?php endforeach;?>
 
+
+                        <div class="input-field col s12">
+                            <i class="icon-beenhere prefix"></i>
+                            <input type="password" name="contrasenia_especial" id="contrasenia_especial" pattern='[A-Za-z0-9]+{5,20}' minlength="4" title="La clave especial debe tener una logitud maxima de 4 caracteres."  class="validate">
+                            <label for="contrasenia_especial">Clave Especial</label>
+                        </div>
 
 
                     <div class="input-field col s12">

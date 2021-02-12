@@ -10,6 +10,7 @@ var url = localStorage.getItem('url')+"Usuario/";
         var apellido_usuario = $('#apellido_usuario').val();
         var email_usuario = $('#email_usuario').val();
         var contrasenia_usuario = $('#contrasenia_usuario').val();
+        var contrasenia_especial = $('#contrasenia_especial').val();
         var pregunta = $('#id_pregunta').val();
         var respuesta=$('#respuesta').val();
         var image = $("input[name='image']:checked").val();
@@ -78,6 +79,7 @@ var url = localStorage.getItem('url')+"Usuario/";
                     pregunta:pregunta,
                     respuesta:respuesta,
                     image:image,
+                    contrasenia_especial:contrasenia_especial,
                     // repeat_password_usuario: repeat_password_usuario,
                     id_rol: id_rol
                     },
