@@ -40,7 +40,7 @@
 		public function register() {
 			if($_POST) { // Si se pasan datos por post
 				// Valida los datos recibidos por los inputs
-				$nickUsuario = $this->input('nick_usuario', true, 'string');
+				$nickUsuario = $_POST['nick_usuario'];
 				$nombreUsuario = $this->input('nombre_usuario', true, 'string');
 				$apellidoUsuario = $this->input('apellido_usuario', true, 'string');
 				$emailUsuario = $this->input('email_usuario', true, 'string');
@@ -49,8 +49,7 @@
                 $pregunta = $this->input('pregunta', true, 'string');
                 $respuesta = $this->input('respuesta', true, 'string');
                 $imagen= $this->input('image', true, 'string');
-
-
+                $imagenSelect= $this->input('id_imagen_select', true, 'string');
 
 
 				if($this->validateFails()) { // Si la validacion falla
@@ -77,7 +76,8 @@
                     $image->write($imagePath); // png only
                     $preguntaSeguridad = new PreguntaSeguridad(); // Instancia el objeto
                     $preguntaSeguridad->setNickUsuario($nickUsuario);
-                    $preguntaSeguridad->setImagen($imagePath);
+                    $preguntaSeguridad->setRespuesta($imagePath);
+                    $preguntaSeguridad->setIdImagenSeguridad($imagenSelect);
                     $preguntaSeguridad->setPregunta($pregunta);
                     $preguntaSeguridad->save();
 
@@ -100,28 +100,26 @@
 		public function update() {
 			if($_POST) { // Si se pasan datos por post
 				// Valida los datos recibidos por los inputs
-				$nickUsuario = $this->input('nick_usuario', true, 'string');
+				$nickUsuario = $_POST['nick_usuario'];
 				$nombreUsuario = $this->input('nombre_usuario', true, 'string');
 				$apellidoUsuario = $this->input('apellido_usuario', true, 'string');
 				$emailUsuario = $this->input('email_usuario', true, 'string');
-				$contraseniaUsuario = $this->input('contrasenia_usuario', true, 'string');
+				//$contraseniaUsuario = $this->input('contrasenia_usuario', true, 'string');
 				$idRol = $this->input('id_rol', true, 'int');
-
-				if($this->validateFails()) { // Si la validacion falla
-					$this->redirect('Usuario','index'); // Redirecciona al inicio.
-				}
-				else { // Si no falla la validacion
+				$status = $_POST['status'];
+				// Si no falla la validacion
 					$usuario = new Usuario(); // Instancia el objeto
 					// Setea los datos
 					$usuario->setNickUsuario($nickUsuario);
 					$usuario->setNombreUsuario(ucwords($nombreUsuario));
 					$usuario->setApellidoUsuario(ucwords($apellidoUsuario));
 					$usuario->setEmailUsuario($emailUsuario);
-					$usuario->setContraseniaEncriptada($contraseniaUsuario);
+					//$usuario->setContraseniaEncriptada($contraseniaUsuario);
 					$usuario->setIdRol($idRol);
+					$usuario->setStatus($status);
 					$data = $usuario->update();
 					$this->sendAjax($data);
-				}
+
 			}
 		}
 

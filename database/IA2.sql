@@ -179,6 +179,7 @@ CREATE TABLE IF NOT EXISTS usuarios(
     nombre_usuario           VARCHAR(20)    NOT NULL,
     apellido_usuario         VARCHAR(20)    NOT NULL,
     email_usuario            VARCHAR(40),
+    status                   VARCHAR (1)    NOT NULL,
     contrasenia_usuario      VARCHAR(255)   NOT NULL,
     id_rol                   INT            NOT NULL,
 
@@ -190,7 +191,8 @@ CREATE TABLE IF NOT EXISTS preguntas_seguridad(
     id_pregunta_seguridad    SERIAL         NOT NULL,
  	nick_usuario             VARCHAR (30)   NOT NULL,
     pregunta                 VARCHAR (255)   NOT NULL,
-    imagen                   VARCHAR (255)   NOT NULL,
+    respuesta                VARCHAR (255)   NOT NULL,
+    id_imagen_seguridad      INT             NOT NULL,
     PRIMARY KEY (id_pregunta_seguridad)
 );
 
@@ -271,12 +273,21 @@ INSERT INTO preguntas VALUES(DEFAULT, 'Cual es tu hobby favorito');
 INSERT INTO preguntas VALUES(DEFAULT, 'Ciudad de nacimiento de tu abuela materna');
 
 
+
+
 INSERT INTO imagen_seguridad VALUES(DEFAULT, 'champion.png');
 INSERT INTO imagen_seguridad VALUES(DEFAULT, 'crayons.png');
 INSERT INTO imagen_seguridad VALUES(DEFAULT, 'keys.png');
 INSERT INTO imagen_seguridad VALUES(DEFAULT, 'piano.png');
 INSERT INTO imagen_seguridad VALUES(DEFAULT, 'smarthouse.png');
 INSERT INTO imagen_seguridad VALUES(DEFAULT, 'strategy.png');
+
+
+
+
+
+
+
 
 
 
@@ -445,21 +456,22 @@ INSERT INTO rol_permisos_modulos VALUES(3,2,3);
 
 
 
-ALTER TABLE    pedidos                  ADD CONSTRAINT    Fkdocumento      FOREIGN KEY    (cedula_cliente)    REFERENCES    clientes(cedula_cliente)         ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    servi_pedidos            ADD CONSTRAINT    Fkpedido         FOREIGN KEY    (codigo_pedido)     REFERENCES    pedidos(codigo_pedido)           ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    servi_pedidos            ADD CONSTRAINT    Fkservicio       FOREIGN KEY    (id_servicio)       REFERENCES    servicios(id_servicio)           ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    servi_pedidos            ADD CONSTRAINT    Fktela           FOREIGN KEY    (id_tela)           REFERENCES    telas(id_tela)           		 ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    pro_pedidos              ADD CONSTRAINT    Fkpedido         FOREIGN KEY    (codigo_pedido)     REFERENCES    pedidos(codigo_pedido)           ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    pro_pedidos              ADD CONSTRAINT    Fkproducto       FOREIGN KEY    (codigo_producto)   REFERENCES    productos(codigo_producto)       ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    pro_tallas               ADD CONSTRAINT    Fkproducto       FOREIGN KEY    (codigo_producto)   REFERENCES    productos(codigo_producto)       ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    pro_tallas               ADD CONSTRAINT    Fktalla          FOREIGN KEY    (id_talla)   		  REFERENCES    tallas(id_talla)       			 ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    mat_servicios            ADD CONSTRAINT    Fkmaterial       FOREIGN KEY    (id_material)       REFERENCES    materiales(id_material)          ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    mat_servicios            ADD CONSTRAINT    Fkpedido         FOREIGN KEY    (id_servicio)       REFERENCES    servicios(id_servicio)           ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    factura_ventas           ADD CONSTRAINT    Fkpedido         FOREIGN KEY    (codigo_pedido)     REFERENCES    pedidos(codigo_pedido)           ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    bitacoras                ADD CONSTRAINT    Fkusuario        FOREIGN KEY    (nick_usuario)      REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkroles          FOREIGN KEY    (id_rol)            REFERENCES    roles(id_rol)                    ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkpermiso        FOREIGN KEY    (id_permiso)        REFERENCES    permisos(id_permiso)             ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkmodulo         FOREIGN KEY    (id_modulo)         REFERENCES    modulos(id_modulo)               ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE    preguntas_seguridad      ADD CONSTRAINT    Fkusuario       FOREIGN KEY     (nick_usuario)      REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    pedidos                  ADD CONSTRAINT    Fkdocumento      FOREIGN KEY    (cedula_cliente)      REFERENCES    clientes(cedula_cliente)         ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    servi_pedidos            ADD CONSTRAINT    Fkpedido         FOREIGN KEY    (codigo_pedido)       REFERENCES    pedidos(codigo_pedido)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    servi_pedidos            ADD CONSTRAINT    Fkservicio       FOREIGN KEY    (id_servicio)         REFERENCES    servicios(id_servicio)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    servi_pedidos            ADD CONSTRAINT    Fktela           FOREIGN KEY    (id_tela)             REFERENCES    telas(id_tela)           		 ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    pro_pedidos              ADD CONSTRAINT    Fkpedido         FOREIGN KEY    (codigo_pedido)       REFERENCES    pedidos(codigo_pedido)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    pro_pedidos              ADD CONSTRAINT    Fkproducto       FOREIGN KEY    (codigo_producto)     REFERENCES    productos(codigo_producto)       ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    pro_tallas               ADD CONSTRAINT    Fkproducto       FOREIGN KEY    (codigo_producto)     REFERENCES    productos(codigo_producto)       ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    pro_tallas               ADD CONSTRAINT    Fktalla          FOREIGN KEY    (id_talla)   		     REFERENCES    tallas(id_talla)       			 ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    mat_servicios            ADD CONSTRAINT    Fkmaterial       FOREIGN KEY    (id_material)          REFERENCES    materiales(id_material)          ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    mat_servicios            ADD CONSTRAINT    Fkpedido         FOREIGN KEY    (id_servicio)          REFERENCES    servicios(id_servicio)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    factura_ventas           ADD CONSTRAINT    Fkpedido         FOREIGN KEY    (codigo_pedido)        REFERENCES    pedidos(codigo_pedido)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    bitacoras                ADD CONSTRAINT    Fkusuario        FOREIGN KEY    (nick_usuario)         REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkroles          FOREIGN KEY    (id_rol)               REFERENCES    roles(id_rol)                    ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkpermiso        FOREIGN KEY    (id_permiso)           REFERENCES    permisos(id_permiso)             ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    rol_permisos_modulos     ADD CONSTRAINT    Fkmodulo         FOREIGN KEY    (id_modulo)            REFERENCES    modulos(id_modulo)               ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    preguntas_seguridad      ADD CONSTRAINT    Fkusuario        FOREIGN KEY    (nick_usuario)         REFERENCES    usuarios(nick_usuario)           ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE    preguntas_seguridad      ADD CONSTRAINT    FkSeguridad      FOREIGN KEY    (id_imagen_seguridad)  REFERENCES    imagen_seguridad(id_imagen_seguridad)      ON UPDATE CASCADE ON DELETE CASCADE;
 
 

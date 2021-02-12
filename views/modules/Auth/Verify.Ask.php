@@ -21,8 +21,8 @@
                 <div class="col s12 m8 offset-m2 animated bounceInDown">
                     <form action="<?php echo Helpers::url('Auth', 'verifyAsK'); ?>" method="post" class="card bg-light-opacity-8">
                         <div class="card-header center-align">
-                            <img src="<?php echo BASE_URL ?><?php echo Helpers::aesDecrypt($pregunta->imagen)?>" style="width: 75px; height: 75px; margin-top: 1rem;" alt="" srcset="">
-                            <h5>Preguntas de Seguridad</h5>
+                            <img src="<?php echo BASE_URL ?>assets/images/user-black.svg" style="width: 75px; height: 75px; margin-top: 1rem;" alt="" srcset="">
+                            <h5 class="center-align">Preguntas de Seguridad</h5>
                         </div>
                         <div class="card-content row">
                             <?php if(isset($_SESSION["error"])&&$_SESSION["error"] ): ?>
@@ -35,26 +35,47 @@
                                 </div>
                             <?php endif; ?>
                             <div class="col s12">
-                                <div class="message message-warning">
-                                    <div class="message-body">
-                                        <strong>Si reconoce esta imagen y pregunta ingrese su respuesta, en caso contrario podria estar siendo victima de phishing.</strong>
-                                    </div>
+
+                                <div class="col s12">
+                                    <h5 class="center-align">Selecionar Imagen</h5>
                                 </div>
+                                <?php foreach ($allImagen  as $image):?>
+
+                                    <div class="col s12 m3 payment-form">
+                                        <input type="radio" id="image_<?php echo $image->id_imagen_seguridad ?>" name="id_image_select" value="<?php echo $image->id_imagen_seguridad ?>" class="type_payment_event" required>
+                                        <label class="btn-radio white lighten-4" for="image_<?php echo $image->id_imagen_seguridad ?>">
+                                            <i class="">
+                                                <img src="<?php echo BASE_URL; ?>storage/image-seguridad/<?php echo $image->imagen; ?>"
+                                                     style="height: 100px!important;width: 100px!important;"
+                                                     alt="Smartphone Image" width="100%" height="100%">
+                                            </i>
+                                        </label>
+                                    </div>
+
+                                <?php endforeach;?>
+
+
                             </div>
 
+
+                            <div class="col s12">
+
+                            </div>
 
                             <input  type="hidden" name="nick_usuario" class="validate" id="nick_usuario" value="<?php  echo $nick ?>">
 
                             <div class="input-field col s12">
                                 <i class="icon- prefix"></i>
-                                <input name="respuesta" class="validate" id="respuesta" type="text" value="">
+                                <input name="respuesta" class="validate" id="respuesta" type="text" value="" required>
                                 <label for="respuesta"  >¿<?php echo Helpers::aesDecrypt($pregunta->pregunta)?>?</label>
                             </div>
+
                             <div class="col s12">
                                 <p class="center-align">
                                     <a href="<?php echo Helpers::url('Auth', 'recoverPasswordView'); ?>" class="secondary-dark-text" style="margin-left: 5px">¿Olvidó su Contraseña?</a>
                                 </p>
                             </div>
+
                         </div>
                         <div class="card-footer center-align">
                             <!-- <button id="ingresar" class="btn btn-large btn-rounded primary-gradient waves-effect effect-light">Entrar <i class="icon-send right"></i></button> -->

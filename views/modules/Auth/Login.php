@@ -30,6 +30,10 @@
                                     <div class="message message-danger">
                                         <div class="message-body">
                                             <strong><?php echo $_SESSION['message']; ?></strong>
+
+                                            <?php $_SESSION['message']='';
+                                                  $_SESSION['error']=false;
+                                             ?>
                                         </div>
                                     </div>
                                 </div>

@@ -8,4 +8,5 @@ define('ACTUALIZAR','ACTUALIZAR');
 define('REPORTE','REPORTE');
 define('VERIFICAR','VERIFICAR');
 define('FACTURAR','FACTURAR');
+define('FALLO','FALLO');
 define('EXAMPLE_ACTION','ACTION');
