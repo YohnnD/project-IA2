@@ -4,8 +4,66 @@ $(document).ready(function () {
 
 	if (status_factura==="Vigente"){
 
-	$('#anular').on('click',function () {
+        $('#anular').click(function () {
+            swal("Clave Especial:", {
+                content: {
+                    element: "input",
+                    attributes: {
+                        placeholder: "Clave Especial",
+                        type: "password",
+                    },
+                },
+            }).then((value) => {
+                var password = value;
 
+                if(password !== null){
+                    $.ajax({
+                        method: "POST",
+                        dataType: "json",
+                        data: {contrasenia_especial:password},
+                        url: localStorage.getItem('url')+"Auditoria/verifyPasswordEspecial",
+                        beforeSend: function() {
+                            console.log("Sending data...");
+                        },
+                        success: function(data) {
+                            if(data){
+                                anularFactura();
+                            }else{
+                                swal({
+                                    title: "¡La clave especial no coincide!",
+                                    text: "Verifique que la clave sea la correcta.",
+                                    icon: "info",
+                                    button: {
+                                        text: "Aceptar",
+                                        visible: true,
+                                        value: true,
+                                        className: "green",
+                                        closeModal: true
+                                    }
+                                });
+                            }
+                        },
+                        error: function(err) {
+                            console.log(err);
+                            swal({
+                                title: "¡Oh no!",
+                                text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                                icon: "error",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+	function anularFactura () {
         // Getting form data
         var codigo_factura = $('#codigo_factura').val();
         var status_factura = $('#status_factura').val();
@@ -70,7 +128,7 @@ $(document).ready(function () {
                 });
             }
         });
-    });
+    };
 	}
 	else{
 		$('#anular').on('click',function () {

@@ -2,8 +2,67 @@
 $(document).ready(function(){
     var url =localStorage.getItem('url')+"Auth/";
 
+    $('#modify').click(function () {
+        swal("Clave Especial:", {
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Clave Especial",
+                    type: "password",
+                },
+            },
+        }).then((value) => {
+            var password = value;
+
+            if(password !== null){
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {contrasenia_especial:password},
+                    url: localStorage.getItem('url')+"Auditoria/verifyPasswordEspecial",
+                    beforeSend: function() {
+                        console.log("Sending data...");
+                    },
+                    success: function(data) {
+                        if(data){
+                            modify();
+                        }else{
+                            swal({
+                                title: "¡La clave especial no coincide!",
+                                text: "Verifique que la clave sea la correcta.",
+                                icon: "info",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                }
+                            });
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
     // Modificar
-    $('#modify').click(function(e) {
+    function modify() {
         $('#update :input').removeAttr('disabled','disabled');
         // $("#nick_usuario").removeAttr("disabled", "disabled");
         // $("#nombre_usuario").removeAttr("disabled", "disabled");
@@ -22,10 +81,69 @@ $(document).ready(function(){
         $('#change-password-especial').hide();
 
         // $('#passwordUsuario').removeAttr('disabled', 'disabled');
+    };
+
+
+    $('#change-security').click(function () {
+        swal("Clave Especial:", {
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Clave Especial",
+                    type: "password",
+                },
+            },
+        }).then((value) => {
+            var password = value;
+
+            if(password !== null){
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {contrasenia_especial:password},
+                    url: localStorage.getItem('url')+"Auditoria/verifyPasswordEspecial",
+                    beforeSend: function() {
+                        console.log("Sending data...");
+                    },
+                    success: function(data) {
+                        if(data){
+                            changeSecurity();
+                        }else{
+                            swal({
+                                title: "¡La clave especial no coincide!",
+                                text: "Verifique que la clave sea la correcta.",
+                                icon: "info",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                }
+                            });
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }
+                });
+            }
+        });
     });
 
-
-    $('#change-security').click(function(e) {
+    function changeSecurity() {
         $('#form-security').show();
         $('.form-profile').hide();
         $('#change-password').hide();
@@ -35,10 +153,69 @@ $(document).ready(function(){
         $('#update-security').show();
         $('#reset-buttons').show();
         $(this).hide();
+    };
+
+    $('#change-password').click(function () {
+        swal("Clave Especial:", {
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Clave Especial",
+                    type: "password",
+                },
+            },
+        }).then((value) => {
+            var password = value;
+
+            if(password !== null){
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {contrasenia_especial:password},
+                    url: localStorage.getItem('url')+"Auditoria/verifyPasswordEspecial",
+                    beforeSend: function() {
+                        console.log("Sending data...");
+                    },
+                    success: function(data) {
+                        if(data){
+                            changePassword();
+                        }else{
+                            swal({
+                                title: "¡La clave especial no coincide!",
+                                text: "Verifique que la clave sea la correcta.",
+                                icon: "info",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                }
+                            });
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }
+                });
+            }
+        });
     });
 
 
-    $('#change-password').click(function(e) {
+    function changePassword() {
         $('#form-security').hide();
         $('#update :input').removeAttr('disabled','disabled');
         $('.form-profile').hide();
@@ -50,9 +227,68 @@ $(document).ready(function(){
         $('#update-password').show();
         $('#reset-buttons').show();
         $(this).hide();
+    };
+
+    $('#change-password-especial').click(function () {
+        swal("Clave Especial:", {
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Clave Especial",
+                    type: "password",
+                },
+            },
+        }).then((value) => {
+            var password = value;
+
+            if(password !== null){
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {contrasenia_especial:password},
+                    url: localStorage.getItem('url')+"Auditoria/verifyPasswordEspecial",
+                    beforeSend: function() {
+                        console.log("Sending data...");
+                    },
+                    success: function(data) {
+                        if(data){
+                            changePasswordEspecial();
+                        }else{
+                            swal({
+                                title: "¡La clave especial no coincide!",
+                                text: "Verifique que la clave sea la correcta.",
+                                icon: "info",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                }
+                            });
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }
+                });
+            }
+        });
     });
 
-    $('#change-password-especial').click(function(e) {
+   function changePasswordEspecial() {
         $('#form-security').hide();
         $('#update :input').removeAttr('disabled','disabled');
         $('.form-profile').hide();
@@ -67,7 +303,7 @@ $(document).ready(function(){
         $('#update-password-especial').show();
         $('#reset-buttons').show();
         $(this).hide();
-    });
+    };
 
     $('#reset-btn').click(() => {
         $('.form-profile').show();

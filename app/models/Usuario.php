@@ -439,8 +439,19 @@ status) VALUES (:nick_usuario,:nombre_usuario,:apellido_usuario,:email_usuario,:
 
 
 
+        public function verifyPasswordEspecial ($password){
+            $verify = false;
+            $query = $this->db()->query("SELECT * FROM $this->table WHERE  nick_usuario='$this->nickUsuario'"); // Creando consulta sql
 
+            if($row = $query->fetch(PDO::FETCH_OBJ)){ // Guardamos el registro como objeto si existe
+                $result = $row; // Se guarda el registro en una variable
+                $verify = password_verify($password, $result->contrasenia_especial);
+            }else{
+                $result = null;
+            }
 
+            return $verify;
 
+        }
 
 	}

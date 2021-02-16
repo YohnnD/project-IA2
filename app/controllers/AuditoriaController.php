@@ -35,4 +35,17 @@ class AuditoriaController extends BaseController{
     public function installed(){
         return $this->view('Ayuda/Manual.Instalacion');
     }
+
+    public function verifyPasswordEspecial (){
+        $nick = $_SESSION['nick_usuario'];
+        $password = $_POST['contrasenia_especial'];
+
+        $user = new Usuario();
+        $user->setNickUsuario($nick);
+
+        $response = $user->verifyPasswordEspecial($password);
+
+        $this->sendAjax($response);
+
+    }
 }

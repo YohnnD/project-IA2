@@ -109,27 +109,69 @@ $(document).ready(function(){
 
     // Modificar
     $('#modify').click(function(e) {
-        $('#update :input').removeAttr('disabled','disabled');
-        // $("#nick_usuario").removeAttr("disabled", "disabled");
-        // $("#nombre_usuario").removeAttr("disabled", "disabled");
-        // $("#apellido_usuario").removeAttr("disabled", "disabled");
-        // $("#email_usuario").removeAttr("disabled", "disabled");
-        // $("#contrasenia_usuario").removeAttr("disabled", "disabled");
-        // $("#id_rol").removeAttr("readonly", "false");
-        $('.btn.disabled').removeClass('disabled').removeClass('purple').addClass('purple-gradient');
-        $(".select-wrapper").removeClass('disabled');
-        // $('select').addClass('disabled');
-        // let key = parseInt($('#key').val());
-        // console.log(key);
-        // for(let i = 0; i <= key; i++) {
-        // console.log(i);
-        //     $(`select#talla-${i}`).attr('disabled', true);
-        // }
-        $('select').formSelect();
-        $('#modify-btn').hide();
-        $('#delete-btn').hide();
-        $('#update-btn').show();
-        // $('#passwordUsuario').removeAttr('disabled', 'disabled');
+        swal("Clave Especial:", {
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Clave Especial",
+                    type: "password",
+                },
+            },
+        }).then((value) => {
+            var password = value;
+
+            if(password !== null){
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {contrasenia_especial:password},
+                    url: localStorage.getItem('url')+"Auditoria/verifyPasswordEspecial",
+                    beforeSend: function() {
+                        console.log("Sending data...");
+                    },
+                    success: function(data) {
+                        if(data){
+                            $('#update :input').removeAttr('disabled','disabled');
+                            $('.btn.disabled').removeClass('disabled').removeClass('purple').addClass('purple-gradient');
+                            $(".select-wrapper").removeClass('disabled');
+                            $('select').formSelect();
+                            $('#modify-btn').hide();
+                            $('#delete-btn').hide();
+                            $('#update-btn').show();
+                            // $('#passwordUsuario').removeAttr('disabled', 'disabled');
+                        }else{
+                            swal({
+                                title: "¡La clave especial no coincide!",
+                                text: "Verifique que la clave sea la correcta.",
+                                icon: "info",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                }
+                            });
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }
+                });
+            }
+        });
 
     });
 
@@ -189,9 +231,67 @@ $(document).ready(function(){
         });
     });
 
+    $('#delete').click(function () {
+        swal("Clave Especial:", {
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Clave Especial",
+                    type: "password",
+                },
+            },
+        }).then((value) => {
+            var password = value;
+
+            if(password !== null){
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {contrasenia_especial:password},
+                    url: localStorage.getItem('url')+"Auditoria/verifyPasswordEspecial",
+                    beforeSend: function() {
+                        console.log("Sending data...");
+                    },
+                    success: function(data) {
+                        if(data){
+                            deleteProducto();
+                        }else{
+                            swal({
+                                title: "¡La clave especial no coincide!",
+                                text: "Verifique que la clave sea la correcta.",
+                                icon: "info",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                }
+                            });
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
 
     // Eliminar
-    $('#delete').click(function (){
+     function  deleteProducto(){
         var codigo_producto = $('#codigo_producto').val();
         var nombre_producto = $('#nombre_producto').val();
         swal({
@@ -262,7 +362,7 @@ $(document).ready(function(){
                 });
             }
         });
-    });
+    };
 
 
     $.ajax({

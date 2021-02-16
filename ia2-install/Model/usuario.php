@@ -20,7 +20,7 @@ class Usuario extends Conexion {
             $band=false;
         }else{
             $resultRegister=$this->dbConexion->query("
-                INSERT INTO usuarios VALUES ('$nickUsuario','$nombreUsuario','$apellidoUsuario','$emailUsuario','$contraseniaUsuario', '$contraseniaEpecial' ,'$idRol')");
+                INSERT INTO usuarios VALUES ('$nickUsuario','$nombreUsuario','$apellidoUsuario','$emailUsuario', '0' ,'$contraseniaUsuario', '$contraseniaEpecial' ,'$idRol')");
             $band=true;
         }
         return $band;

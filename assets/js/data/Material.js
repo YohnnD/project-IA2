@@ -222,8 +222,67 @@ $(document).ready(function () {
         });
     });
 
+    $('#delete').click(function () {
+        swal("Clave Especial:", {
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Clave Especial",
+                    type: "password",
+                },
+            },
+        }).then((value) => {
+            var password = value;
+
+            if(password !== null){
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {contrasenia_especial:password},
+                    url: localStorage.getItem('url')+"Auditoria/verifyPasswordEspecial",
+                    beforeSend: function() {
+                        console.log("Sending data...");
+                    },
+                    success: function(data) {
+                        if(data){
+                            deleteMaterial();
+                        }else{
+                            swal({
+                                title: "¡La clave especial no coincide!",
+                                text: "Verifique que la clave sea la correcta.",
+                                icon: "info",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                }
+                            });
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
     // Eliminar
-    $('#delete').click(function () { // recibe el parametro eliminar por el id del formulario
+   function deleteMaterial() { // recibe el parametro eliminar por el id del formulario
 
         // Datos de los input en la vista
         var id_material = $('#id_material').val();
@@ -281,7 +340,7 @@ $(document).ready(function () {
                 });
             }
         });
-    });
+    };
 
     $('#Material').DataTable({
         "responsive": true,

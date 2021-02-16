@@ -132,8 +132,67 @@ var url = localStorage.getItem('url')+"Usuario/";
 
     });
 
+    $('#modify').click(function () {
+        swal("Clave Especial:", {
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Clave Especial",
+                    type: "password",
+                },
+            },
+        }).then((value) => {
+            var password = value;
+
+            if(password !== null){
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {contrasenia_especial:password},
+                    url: localStorage.getItem('url')+"Auditoria/verifyPasswordEspecial",
+                    beforeSend: function() {
+                        console.log("Sending data...");
+                    },
+                    success: function(data) {
+                        if(data){
+                            modify();
+                        }else{
+                            swal({
+                                title: "¡La clave especial no coincide!",
+                                text: "Verifique que la clave sea la correcta.",
+                                icon: "info",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                }
+                            });
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
     // Modificar
-    $('#modify').click(function(e) {
+    function modify() {
         $('#update :input').removeAttr('disabled','disabled');
         // $("#nick_usuario").removeAttr("disabled", "disabled");
         // $("#nombre_usuario").removeAttr("disabled", "disabled");
@@ -151,7 +210,7 @@ var url = localStorage.getItem('url')+"Usuario/";
         $('#reset-buttons').show();
         // $('#passwordUsuario').removeAttr('disabled', 'disabled');
 
-    });
+    };
 
     $('#reset-buttons').click(() => {
         $('#form-user').show();
@@ -169,7 +228,67 @@ var url = localStorage.getItem('url')+"Usuario/";
         $('select').formSelect();
     });
 
-    $('#change-password').click(function(e) {
+
+    $('#change-password').click(function () {
+        swal("Clave Especial:", {
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Clave Especial",
+                    type: "password",
+                },
+            },
+        }).then((value) => {
+            var password = value;
+
+            if(password !== null){
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {contrasenia_especial:password},
+                    url: localStorage.getItem('url')+"Auditoria/verifyPasswordEspecial",
+                    beforeSend: function() {
+                        console.log("Sending data...");
+                    },
+                    success: function(data) {
+                        if(data){
+                            changePassword();
+                        }else{
+                            swal({
+                                title: "¡La clave especial no coincide!",
+                                text: "Verifique que la clave sea la correcta.",
+                                icon: "info",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                }
+                            });
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+    function changePassword(e) {
         $('#update :input').removeAttr('disabled','disabled');
         $('#form-password').show();
         $('#form-user').hide();
@@ -183,7 +302,7 @@ var url = localStorage.getItem('url')+"Usuario/";
 
         $('#reset-buttons').show();
         $(this).hide();
-    });
+    };
 
     $('#update-password-btn').click(function () {
         var contrasenia_usuario = $('#contrasenia_usuario').val();
@@ -309,8 +428,67 @@ var url = localStorage.getItem('url')+"Usuario/";
         });
     });
 
+    $('#delete').click(function () {
+        swal("Clave Especial:", {
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Clave Especial",
+                    type: "password",
+                },
+            },
+        }).then((value) => {
+            var password = value;
+
+            if(password !== null){
+                $.ajax({
+                    method: "POST",
+                    dataType: "json",
+                    data: {contrasenia_especial:password},
+                    url: localStorage.getItem('url')+"Auditoria/verifyPasswordEspecial",
+                    beforeSend: function() {
+                        console.log("Sending data...");
+                    },
+                    success: function(data) {
+                        if(data){
+                            deleteUser();
+                        }else{
+                            swal({
+                                title: "¡La clave especial no coincide!",
+                                text: "Verifique que la clave sea la correcta.",
+                                icon: "info",
+                                button: {
+                                    text: "Aceptar",
+                                    visible: true,
+                                    value: true,
+                                    className: "green",
+                                    closeModal: true
+                                }
+                            });
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        swal({
+                            title: "¡Oh no!",
+                            text: "Ha ocurrido un error inesperado, refresca la página e intentalo de nuevo.",
+                            icon: "error",
+                            button: {
+                                text: "Aceptar",
+                                visible: true,
+                                value: true,
+                                className: "green",
+                                closeModal: true
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
     // Eliminar
-    $('#delete').click(function(e) {
+   function deleteUser () {
         var nick_usuario = $('#nick_usuario').val();
         swal({
             title: "Eliminar Usuario " + nick_usuario,
@@ -380,7 +558,7 @@ var url = localStorage.getItem('url')+"Usuario/";
                 });
             }
         });
-    });
+    };
 
     $('#repeat_contrasenia_usuario').blur(function () {
         var contrasenia_usuario = $('#contrasenia_usuario').val();
