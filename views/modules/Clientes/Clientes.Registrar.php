@@ -67,7 +67,7 @@
                     </div>
                     <div class="input-field col s12 m6 xl6">
                         <i class="icon-contact_phone prefix"></i>
-                        <input type="text" name="telefono_cliente" id="telefono_cliente" class="validate number-date" minlength="10" maxlength="20" pattern="[0-9+]+" title="Solo puede usar números y el signo +." required>
+                        <input type="text" name="telefono_cliente" id="telefono_cliente" class="validate number-date" minlength="10" maxlength="11" pattern="[0-9+]+" title="Solo puede usar números y el signo +." required>
                         <label for="telefono_cliente">Teléfono del Cliente</label>
                     </div>
                     <div class="input-field col s12 m6 xl6">

@@ -41,7 +41,7 @@
                                 </div>
                                 <?php foreach ($allImagen  as $image):?>
 
-                                    <div class="col s12 m3 payment-form">
+                                    <div class="col s12 m4 payment-form">
                                         <input type="radio" id="image_<?php echo $image->id_imagen_seguridad ?>" name="id_image_select" value="<?php echo $image->id_imagen_seguridad ?>" class="type_payment_event" required>
                                         <label class="btn-radio white lighten-4" for="image_<?php echo $image->id_imagen_seguridad ?>">
                                             <i class="">
@@ -66,7 +66,7 @@
 
                             <div class="input-field col s12">
                                 <i class="icon- prefix"></i>
-                                <input name="respuesta" class="validate" id="respuesta" type="text" value="" required>
+                                <input name="respuesta" class="validate" id="respuesta" type="password" value="" required>
                                 <label for="respuesta"  >¿<?php echo Helpers::aesDecrypt($pregunta->pregunta)?>?</label>
                             </div>
 

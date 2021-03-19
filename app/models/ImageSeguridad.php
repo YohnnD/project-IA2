@@ -64,7 +64,7 @@
 
 
         public function getImagenRand(){
-            $sql = "SELECT * FROM $this->table WHERE id_imagen_seguridad != '$this->idImagenSeguridad' ORDER BY random() limit 8" ;
+            $sql = "SELECT * FROM $this->table WHERE id_imagen_seguridad != '$this->idImagenSeguridad' ORDER BY random() limit 6" ;
             $query = $this->db()->query($sql);
             if($query){ // Evalua la cansulta
                 if($query->rowCount() != 0) { // Si existe al menos un registro...

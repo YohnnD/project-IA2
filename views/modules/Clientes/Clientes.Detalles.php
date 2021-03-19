@@ -66,7 +66,7 @@
                     </div>
                     <div class="input-field col s12 m6 xl6">
                         <i class="icon-contact_phone prefix"></i>
-                        <input type="text" name="telefono_cliente" id="telefono_cliente" class="validate number-date" value="<?php echo Helpers::aesDecrypt($cliente->telefono_cliente); ?>" disabled>
+                        <input type="text" name="telefono_cliente" id="telefono_cliente" class="validate number-date" maxlength="11" value="<?php echo Helpers::aesDecrypt($cliente->telefono_cliente); ?>" disabled>
                         <label for="telefono_cliente">Teléfono del Cliente</label>
                     </div>
                     <div class="input-field col s12 m6 xl6">
